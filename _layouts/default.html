@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+
+   /$$   /$$ /$$$$$$$$ /$$     /$$       /$$$$$$$$ /$$   /$$ /$$$$$$$$ /$$$$$$$  /$$$$$$$$
+  | $$  | $$| $$_____/|  $$   /$$/      |__  $$__/| $$  | $$| $$_____/| $$__  $$| $$_____/
+  | $$  | $$| $$       \  $$ /$$/          | $$   | $$  | $$| $$      | $$  \ $$| $$
+  | $$$$$$$$| $$$$$     \  $$$$/           | $$   | $$$$$$$$| $$$$$   | $$$$$$$/| $$$$$
+  | $$__  $$| $$__/      \  $$/            | $$   | $$__  $$| $$__/   | $$__  $$| $$__/
+  | $$  | $$| $$          | $$             | $$   | $$  | $$| $$      | $$  \ $$| $$
+  | $$  | $$| $$$$$$$$    | $$             | $$   | $$  | $$| $$$$$$$$| $$  | $$| $$$$$$$$
+  |__/  |__/|________/    |__/             |__/   |__/  |__/|________/|__/  |__/|________/
+
+
+   Caught you nosing around eh! Well, in case you were wondering, this was built with the
+   following:
+
+   - Jekyll                 - http://jekyllrb.com
+   - Jekyll Asset Pipline   - https://github.com/matthodan/jekyll-asset-pipeline
+   - LESS                   - http://lesscss.org
+   - YUI's PureCSS          - http://purecss.io
+   - HTML5 Boilerplate      - http://html5boilerplate.com
+   - SimpleForm             - http://www.getsimpleform.com
+   - Sublime Text           - http://www.sublimetext.com
+
+  Fonts
+   - Skolar                 - http://fontdeck.com/typeface/skolar
+   - Cousine                - http://www.google.com/fonts/specimen/Cousine
+   - Social Icons           - http://fontello.com/
+
+
+  Any questions, comments or suggestions, get in touch! @DavidOllerhead
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+ -->
+  <title>{{ page.title }}{% if page.title %} | {% endif %}{{ site.name }}</title>
+  <meta name="description" content="A Consultant Front-End Developer and Development Manager based in London. ">
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Yahoo Pure CSS -->
+  <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.2.0/pure-min.css">
+
+  {% if page.carousel %}{% css_asset_tag slider %}
+  - /_assetsToCompile/css/flexslider.css
+  {% endcss_asset_tag %}{% endif %}
+
+  <!-- Compiled and Minified CSS Assets -->
+  {% css_asset_tag davidollerhead.com %}
+  - /_assetsToCompile/css/syntax.css
+  - /_assetsToCompile/css/webfonts.css
+  - /_assetsToCompile/less/main.css.less
+  {% endcss_asset_tag %}
+
+  {% if page.custom_css %}
+  <!-- Page Specific CSS -->
+  <link rel="stylesheet" href="{{ page.custom_css }}" type="text/css">
+  {% endif %}
+
+  <!-- Fav and Touch Icons -->
+  <link rel="apple-touch-icon" sizes="144x144" href="/assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon" href="/assets/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="shortcut icon" href="/assets/ico/favicon.png">
+
+  <!-- Humans.txt : http://humanstxt.org/ -->
+  <link type="text/plain" rel="author" href="/humans.txt" />
+
+</head>
+<body>
+
+  <div class="pure-g-r" id="layout">
+
+    <!-- Header -->
+    {% include header.html %}
+    <!-- End Header -->
+
+    <!-- Content -->
+    <div class="main pure-u-1">
+      {{ content }}
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    {% include footer.html %}
+    <!-- End Footer -->
+
+  </div>
+
+<!-- Compiled and Minified JS Assets -->
+{% if page.carousel %}
+<!-- Google CDN Hosted jQuery  -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+{% javascript_asset_tag slider %}
+- /_assetsToCompile/js/flexslider.min.js
+- /_assetsToCompile/js/carousel.js
+{% endjavascript_asset_tag %}
+{% endif %}
+
+{% if page.url == "/contact/" %}
+<!-- Google CDN Hosted jQuery  -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+{% javascript_asset_tag contact %}
+- /_assetsToCompile/js/contact.js
+{% endjavascript_asset_tag %}
+{% endif %}
+
+{% if page.url == "/" %}
+<!-- Google CDN Hosted jQuery  -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+{% javascript_asset_tag work %}
+- /_assetsToCompile/js/modernizr.custom.js
+- /_assetsToCompile/js/toucheffects.js
+- /_assetsToCompile/js/jquery.inview.min.js
+- /_assetsToCompile/js/work.js
+{% endjavascript_asset_tag %}
+{% endif %}
+
+  <!-- Load JS at the end like a considerate developer -->
+  {% include ga.html %}
+
+</body>
+</html>
