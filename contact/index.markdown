@@ -27,4 +27,4 @@ My <abbr title="Curriculum Vitae">CV</abbr> is available on request.
 
 
 [twitter]: http://www.twitter.com/davidollerhead
-[bicycleRules]: http://www.velominati.com/the-rules//
+[bicycleRules]: http://www.velominati.com/the-rules/
