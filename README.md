@@ -1,6 +1,8 @@
 #My Portfolio Site
 
-The portfolio site of David Ollerhead, built using:
+The portfolio site of David Ollerhead, to get going run `bundle install`, followed by `jekyll serve`
+
+Built using:
 
 - Jekyll                 - http://jekyllrb.com
 - Jekyll Asset Pipline   - https://github.com/matthodan/jekyll-asset-pipeline
