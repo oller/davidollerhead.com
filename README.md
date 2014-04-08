@@ -5,7 +5,7 @@ The portfolio site of David Ollerhead, to get going run `bundle install`, follow
 Built using:
 
 - Jekyll                 - http://jekyllrb.com
-- Jekyll Asset Pipline   - https://github.com/matthodan/jekyll-asset-pipeline
+- JAPR                   - https://github.com/kitsched/japr
 - LESS                   - http://lesscss.org
 - YUI's PureCSS          - http://purecss.io
 - HTML5 Boilerplate      - http://html5boilerplate.com
