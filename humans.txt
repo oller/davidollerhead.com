@@ -5,5 +5,5 @@ David Ollerhead -- Designer & Developer -- @DavidOllerhead
 London, UK
 
 Standards:    HTML5, CSS3
-Components:   Jekyll, Jekyll Asset Pipeline, Normalize.css, jQuery, Modernizr, Pure.css, FlexSlider
+Components:   Jekyll, Jekyll Asset Pipeline Reloaded, Normalize.css, jQuery, Modernizr, Pure.css, FlexSlider
 Software:     Sublime Text 3
