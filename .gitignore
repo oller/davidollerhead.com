@@ -1,5 +1,6 @@
 .asset_pipeline
 .sass-cache
+node_modules
 _site
 assets/fonts/skolar*
 cv/CV*
