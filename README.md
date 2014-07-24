@@ -27,5 +27,6 @@ Finally fire up jekyll to serve up the site locally and watch for changes to tri
 - Sublime Text           - http://www.sublimetext.com
 
 ## To Do
-- Refactor .less file
+- Refactor SASS
+- Bring Front-End Libs Under Bower's Management
 - Ride my bike more

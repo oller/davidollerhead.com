@@ -25,16 +25,15 @@ module JAPR
     end
   end
 
-  class LessConverter < JAPR::Compressor
-    require 'less'
+  class SassConverter < JAPR::Converter
+    require 'sass'
 
     def self.filetype
-      '.less'
+      '.scss'
     end
 
     def convert
-      parser = Less::Parser.new
-      return parser.parse(@content).to_css#(:compress => true)
+      return Sass::Engine.new(@content, syntax: :scss).render
     end
   end
 end
