@@ -1,55 +1,39 @@
-require 'jekyll_asset_pipeline'
+require 'japr'
 
-module JekyllAssetPipeline
+module JAPR
+  class CssCompressor < JAPR::Compressor
+    require 'yui/compressor'
 
-	class JavaScriptCompressor < JekyllAssetPipeline::Compressor
-		require 'closure-compiler'
+    def self.filetype
+      '.css'
+    end
 
-		def self.filetype
-			'.js'
-		end
+    def compress
+      return YUI::CssCompressor.new.compress(@content)
+    end
+  end
 
-		def compress
-			return Closure::Compiler.new.compile(@content)
-		end
-	end
+  class JavaScriptCompressor < JAPR::Compressor
+    require 'yui/compressor'
 
-	class CssCompressor < JekyllAssetPipeline::Compressor
-		require 'yui/compressor'
+    def self.filetype
+      '.js'
+    end
 
-		def self.filetype
-			'.css'
-		end
+    def compress
+      return YUI::JavaScriptCompressor.new(munge: true).compress(@content)
+    end
+  end
 
-		def compress
-			return YUI::CssCompressor.new.compress(@content)
-		end
-	end
+  class SassConverter < JAPR::Converter
+    require 'sass'
 
-	class LessConverter < JekyllAssetPipeline::Converter
-			require 'less'
+    def self.filetype
+      '.scss'
+    end
 
-			def self.filetype
-				'.less'
-			end
-
-			def convert
-				parser = Less::Parser.new
-				return parser.parse(@content).to_css#(:compress => true)
-			end
-	end
-
- # class SassConverter < JekyllAssetPipeline::Converter
- #    require 'sass'
-
- #    def self.filetype
- #      '.scss'
- #    end
-
- #    def convert
- #      return Sass::Engine.new(@content, syntax: :scss).render
- #      return Sass::Engine.new(@content, load_paths: ['.','_assetsToCompile/sass'], syntax: :scss).render
- #    end
- #  end
-
+    def convert
+      return Sass::Engine.new(@content, syntax: :scss).render
+    end
+  end
 end
