@@ -29,4 +29,6 @@ Finally fire up jekyll to serve up the site locally and watch for changes to tri
 ## To Do
 - Refactor SASS
 - Bring Front-End Libs Under Bower's Management
+- Swap FlexSlider for Slick
+- Integrate PictureFill polyfill for responsive image loading
 - Ride my bike more
