@@ -95,10 +95,11 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   </div>
 
-<!-- Compiled and Minified JS Assets -->
-{% if page.carousel %}
 <!-- Google CDN Hosted jQuery  -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+<!-- Compiled and Minified JS Assets -->
+{% if page.carousel %}
 {% javascript_asset_tag slider %}
 - /_assetsToCompile/js/flexslider.min.js
 - /_assetsToCompile/js/carousel.js
@@ -106,16 +107,12 @@ $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 {% endif %}
 
 {% if page.url == "/contact/" %}
-<!-- Google CDN Hosted jQuery  -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 {% javascript_asset_tag contact %}
 - /_assetsToCompile/js/contact.js
 {% endjavascript_asset_tag %}
 {% endif %}
 
 {% if page.url == "/" %}
-<!-- Google CDN Hosted jQuery  -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 {% javascript_asset_tag work %}
 - /_assetsToCompile/js/modernizr.custom.js
 - /_assetsToCompile/js/toucheffects.js
