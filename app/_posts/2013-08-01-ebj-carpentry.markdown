@@ -4,9 +4,9 @@ title:  EBJ Carpentry
 date:   2013-08-01 21:38:10
 categories: work
 tags: Logo Development
-thumb: /assets/img/work/ebj/thumb/thumb-ebj.jpg
+thumb: /img/work/ebj/thumb/thumb-ebj.jpg
 masthead:
- - image: /assets/img/work/ebj/logo-ebj.jpg
+ - image: /img/work/ebj/logo-ebj.jpg
    alt: Logo Design for EBJ Capentry
 ---
 

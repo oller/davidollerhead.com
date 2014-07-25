@@ -4,11 +4,11 @@ title:  "Using a Slider with Jekyll (in this case, Flexslider)"
 date:   2013-08-06 15:40:10
 categories: blog
 carousel:
- - image: /assets/img/posts/tuts/carousel-jekyll/carousel-slide1.jpg
+ - image: /img/posts/tuts/carousel-jekyll/carousel-slide1.jpg
    alt: Example Carousel Slide
- - image: /assets/img/posts/tuts/carousel-jekyll/carousel-slide2.jpg
+ - image: /img/posts/tuts/carousel-jekyll/carousel-slide2.jpg
    alt: Example Carousel Slide
- - image: /assets/img/posts/tuts/carousel-jekyll/carousel-slide3.jpg
+ - image: /img/posts/tuts/carousel-jekyll/carousel-slide3.jpg
    alt: Example Carousel Slide
 ---
 
@@ -27,8 +27,8 @@ title:  "Let's build a Carousel!"
 date:   2013-07-03 21:40:10
 categories: jekyll demo blog carousel
 carousel:
- - image: /assets/img/carousel/slide1.jpg
- - image: /assets/img/carousel/slide2.jpg
+ - image: /img/carousel/slide1.jpg
+ - image: /img/carousel/slide2.jpg
 ---
 
 Lorem ipsum dolor sit amet, consectetur...
@@ -68,9 +68,9 @@ As mentioned previously, in this example we're using Flexslider, so we'll need 3
 <!-- Google CDN Hosted jQuery  -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 <!-- Flexslider Library  -->
-<script src="/assets/js/flexslider.min.js"></script>
+<script src="/js/flexslider.min.js"></script>
 <!-- Initialisation Code  -->
-<script src="/assets/js/app.js"></script>
+<script src="/js/app.js"></script>
 {% raw %}{% endif %}{% endraw %}
 {% endhighlight %}
 

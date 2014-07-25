@@ -1,6 +1,54 @@
 ---
 layout: default
 ---
-<article class="post">
-{{ content }}
+<article class="content">
+	<h2>{{ page.title }}</h2>
+
+{% comment %} Blog, show date posted {% endcomment %}
+	{% if page.categories contains 'blog' %}
+		<p class="meta">This was posted on {{ page.date | date_to_string }}</p>
+	{% endif %}
+
+{% comment %} Portfolio work, show the tags posted under {% endcomment %}
+	{% if page.categories contains 'work' %}
+		<p class="meta">Posted under {{ page.tags | array_to_sentence_string }}</p>
+	{% endif %}
+
+{% comment %} Dynamically create a masthead as many images wide as provided {% endcomment %}
+	{% if page.masthead %}
+		<figure class="masthead">
+			<div class="pure-g-r">
+				{% for image in page.masthead %}
+					<div class="pure-u-1-{{ forloop.length }}">
+						<img src="{{ image.image }}" alt="{{ image.alt }}" title="{{ image.alt }}">
+					</div>
+				{% endfor %}
+			</div>
+			{% if page.caption %}
+				<figcaption class="muted">{{ page.caption }}</figcaption>
+			{% endif %}
+		</figure>
+	{% endif %}
+
+{% comment %} Dynamically create a flexslider-powered carousel for as many images as provided {% endcomment %}
+	{% if page.carousel %}
+	<div class="flexslider">
+		<ul class="slides">
+			{% for slides in page.carousel %}
+			<li>
+				<img src="{{ slides.image }}" alt="{{ slides.alt }}" title="{{ slides.alt }}">
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+	{% endif %}
+
+	{{ content }}
+
+{% comment %} Blog, show comments {% endcomment %}
+	{% if page.categories contains 'blog' %}
+		{% include disqus.html %}
+	{% endif %}
+
+
 </article>

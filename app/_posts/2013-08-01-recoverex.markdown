@@ -4,10 +4,10 @@ title:  Recoverex Identity
 date:   2013-08-01 21:43:10
 categories: work
 tags: Logo Development
-thumb: /assets/img/work/recoverex/thumb/thumb-recoverex.png
+thumb: /img/work/recoverex/thumb/thumb-recoverex.png
 carousel:
- - image: /assets/img/work/recoverex/site-recoverex.png
- - image: /assets/img/work/recoverex/logo-recoverex.png
+ - image: /img/work/recoverex/site-recoverex.png
+ - image: /img/work/recoverex/logo-recoverex.png
 ---
 
 Brand Identity, Logo and Wordpress Theme developed for Recoverex Ltd.

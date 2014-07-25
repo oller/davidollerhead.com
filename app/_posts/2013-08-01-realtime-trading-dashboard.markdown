@@ -4,11 +4,11 @@ title:  "Realtime Trading Dashboard"
 date:   2013-08-01 21:01:10
 categories: work
 tags: Development
-thumb: /assets/img/work/ss-dashboard/thumb/thumb-ss-dashboard.jpg
+thumb: /img/work/ss-dashboard/thumb/thumb-ss-dashboard.jpg
 carousel:
- - image: /assets/img/work/ss-dashboard/ss-dashboard.jpg
+ - image: /img/work/ss-dashboard/ss-dashboard.jpg
    alt: Trading Dashboard Screen 1
- - image: /assets/img/work/ss-dashboard/ss-dashboard2.jpg
+ - image: /img/work/ss-dashboard/ss-dashboard2.jpg
    alt: Trading Dashboard Screen 2
 ---
 

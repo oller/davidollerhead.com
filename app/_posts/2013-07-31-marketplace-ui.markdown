@@ -4,13 +4,13 @@ title:  Marketplace UI
 date: 2013-07-31 21:40:10
 categories: work
 tags: Development
-thumb: /assets/img/work/ss-selftrade/thumb/thumb-ss-selftrade.jpg
+thumb: /img/work/ss-selftrade/thumb/thumb-ss-selftrade.jpg
 carousel:
- - image: /assets/img/work/ss-selftrade/ss-selftrade1.png
+ - image: /img/work/ss-selftrade/ss-selftrade1.png
    alt: A 'Timed Sale' sale management / negotiation view
- - image: /assets/img/work/ss-selftrade/ss-selftrade2.png
+ - image: /img/work/ss-selftrade/ss-selftrade2.png
    alt: A return breakdown modal
- - image: /assets/img/work/ss-selftrade/ss-selftrade3.png
+ - image: /img/work/ss-selftrade/ss-selftrade3.png
    alt: An edit existing listing view.
 ---
 
