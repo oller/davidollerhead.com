@@ -219,23 +219,23 @@ nav {
 /* Work Grid
    ========================================================================== */
 
-.grid-content {
+.portfolio-grid {
     padding: 1em;
 }
 
-.grid-filter {
+.portfolio-grid__filter {
   background: none !important;
- ul {
-  margin: 1em;
-  background: none !important;
-  font-family: cousine;
-  font-size: 0.8em;
-  // -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  //         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  // border: 0.4em solid #FFFFFF;
-  height: auto !important;
-  display: block !important;
-  text-align: center;
+  ul {
+    margin: 1em;
+    background: none !important;
+    font-family: cousine;
+    font-size: 0.8em;
+    // -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    //         box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+    // border: 0.4em solid #FFFFFF;
+    height: auto !important;
+    display: block !important;
+    text-align: center;
     li {
       a {
         -webkit-border-radius: 5px;
@@ -249,7 +249,7 @@ nav {
   }
 }
 
-.grid-node {
+.portfolio-grid__work {
   display: inline-block;
   zoom: 1;
   letter-spacing: normal;
@@ -329,8 +329,8 @@ nav {
   }
 }
 
-.no-touch .grid-node figure:hover img,
-.grid-node figure.cs-hover img {
+.no-touch .portfolio-grid__work figure:hover img,
+.portfolio-grid__work figure.cs-hover img {
   -o-transform: translateY(-50px);
   -webkit-transform: translateY(-50px);
   -moz-transform: translateY(-50px);
@@ -339,8 +339,8 @@ nav {
 }
 
 
-.no-touch .grid-node figure:hover figcaption,
-.grid-node figure.cs-hover figcaption {
+.no-touch .portfolio-grid__work figure:hover figcaption,
+.portfolio-grid__work figure.cs-hover figcaption {
   opacity: 1;
   -o-transform: translateY(0px);
   -webkit-transform: translateY(0px);
@@ -569,21 +569,18 @@ strong {
   font-size: 2em;
   margin: .2em 0 .4em;
   line-height: 1em;
-  // font-family: 'skolar_rgitalic';
   font-weight: normal;
   color: $darkGrey;
 }
 
 footer {
-    font-size: .7em;
-    // font-family: Cousine;
     color: $darkGrey;
-    & > div {
-      font-family: Cousine;
-    }
-    .built-with {
-      text-align: right;
-    }
+    font-family: Cousine;
+    font-size: .7em;
+}
+
+.footer__built-with {
+  text-align: right;
 }
 
 .meta, .muted {
@@ -598,7 +595,7 @@ footer {
     margin-bottom: .4em;
 }
 
-.grid-content h3 a {
+.portfolio-grid h3 a {
     color: #fff;
 }
 

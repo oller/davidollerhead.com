@@ -20,7 +20,7 @@
       line-height: 1.7em;
     }
   }
-  .grid-node {
+  .portfolio-grid__work {
     width: 33.333333%;
   }
 }
@@ -92,7 +92,7 @@
     display: none;
   }
 
-  .grid-node {
+  .portfolio-grid__work {
     width: 50%;
   }
 
@@ -134,11 +134,11 @@
         list-style-position: inside;
       }
     }
-    .grid-node {
+    .portfolio-grid__work {
       width: 100%;
     }
 
-    .grid-filter {
+    .portfolio-grid__filter {
       display: none;
     }
 

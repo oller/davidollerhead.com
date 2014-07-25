@@ -12,16 +12,16 @@ $(function() {
     });
 
     // Filter Porfolio Work Grid by 'area', specified by data-filter attribute
-    $('.grid-filter a').click(function (e) {
+    $('.portfolio-grid__filter a').click(function (e) {
       var $this = $(this);
-      $('.grid-filter a').removeClass('filter');
+      $('.portfolio-grid__filter a').removeClass('filter');
       $this.addClass('filter');
       var tag = $this.data('filter');
       if (tag == "all") {
-        $('.grid-node').removeClass('masked');
+        $('.portfolio-grid__work').removeClass('masked');
       } else {
-        var $matches = $('.grid-node.' + tag);
-        $('.grid-node').not($matches).addClass('masked');
+        var $matches = $('.portfolio-grid__work.' + tag);
+        $('.portfolio-grid__work').not($matches).addClass('masked');
         $matches.removeClass('masked');
       }
       e.preventDefault();

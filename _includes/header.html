@@ -10,10 +10,12 @@
         <h1 class="site-title"><a href="/">{{ site.name }}</a> is a Consultant Front-End Developer</h1>
 
         <nav>
-            <ul>{% for p in site.navigation %}
+            <ul>
+                {% for p in site.navigation %}
                 <li{% if p.url == page.url %} class="active" {% endif %}>
                     <a href="{{ p.url }}">{{ p.navigation.title }}</a>
-                    </li>{% endfor %}
+                </li>
+                {% endfor %}
             </ul>
         </nav>
 
