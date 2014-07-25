@@ -573,14 +573,14 @@ strong {
   color: $darkGrey;
 }
 
-footer {
+.footer {
     color: $darkGrey;
     font-family: Cousine;
     font-size: .7em;
+    text-align: right;
 }
 
 .footer__built-with {
-  text-align: right;
 }
 
 .meta, .muted {

@@ -13,7 +13,6 @@ navigation:
 			{% area_list %}
 		</ul>
 	</div>
-
 	{% for post in site.categories.work %}
 		<div class="portfolio-grid__work {% for tag in post.tags %}{{ tag | downcase }} {% endfor %} faded">
 			<figure>
@@ -27,5 +26,4 @@ navigation:
 			</figure>
 		</div>
 	{% endfor %}
-
 </div>
