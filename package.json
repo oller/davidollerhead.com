@@ -1,8 +1,11 @@
 {
-  "name": "do",
+  "name": "davidollerhead.com",
   "private": true,
   "version": "0.0.0",
   "description": "Yeoman workflow for do",
+  "repository": "http://github.com/oller/davidollerhead.com.git",
+  "homepage": "http://www.davidollerhead.com",
+  "author": "David Ollerhead",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",

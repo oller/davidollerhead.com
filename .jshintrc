@@ -14,5 +14,14 @@
   "undef": true,
   "strict": false,
   "trailing": true,
-  "smarttabs": true
+  "smarttabs": true,
+  "globals": {
+    "jQuery": true,
+    "$": true,
+    "console": true,
+    "alert": true,
+    "module": true,
+    "require": true,
+    "Modernizr": true
+  }
 }

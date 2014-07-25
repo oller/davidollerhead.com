@@ -5,10 +5,6 @@
 
     David Ollerhead -- Front End Developer -- @DavidOllerhead
 
-# THANKS
-
-    <name>
-
 # TECHNOLOGY COLOPHON
 
     HTML5, CSS3
