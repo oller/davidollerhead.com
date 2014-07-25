@@ -1,9 +1,71 @@
 
 /* Layout
    ========================================================================== */
-body {
-    background: $offWhite
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box
 }
+
+html,button,input,select,textarea {
+    color: #4c4c4c;
+}
+
+body {
+    background: $offWhite;
+    font-size: 1em;
+    line-height: 1.4;
+    text-rendering: optimizeLegibility;
+}
+
+::-moz-selection {
+    background: #d63082;
+    text-shadow: none;
+    color: #fafafa;
+}
+
+::selection {
+    background: #d63082;
+    text-shadow: none;
+    color: #fafafa
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0
+}
+
+img {
+    vertical-align: middle
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+textarea {
+    resize: vertical
+}
+
+.flipreverseit {
+    unicode-bidi: bidi-override;
+    direction: rtl;
+}
+
+.chromeframe {
+    margin: .2em 0;
+    background: #ccc;
+    color: #000;
+    padding: .2em 0;
+}
+
 
 #layout {
   padding-left: 20%; /* "left col (nav + list)" width */

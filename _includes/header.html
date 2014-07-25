@@ -11,7 +11,7 @@
 
         <nav>
             <ul>{% for p in site.navigation %}
-                <li{% if p.url==page.url %} class="active" {% endif %}>
+                <li{% if p.url == page.url %} class="active" {% endif %}>
                     <a href="{{ p.url }}">{{ p.navigation.title }}</a>
                     </li>{% endfor %}
             </ul>
