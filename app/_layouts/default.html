@@ -31,11 +31,13 @@
     {% include header.html %}
     <!-- End Header -->
 
-    {{ content }}
+    <div class="content">
+        {{ content }}
 
-    <!-- Footer -->
-    {% include footer.html %}
-    <!-- End Footer -->
+        <!-- Footer -->
+        {% include footer.html %}
+        <!-- End Footer -->
+    </div>
 
     {% include scripts.html %}
     {% include googleanalytics.html %}
