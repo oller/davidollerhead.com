@@ -1,0 +1,26 @@
+@import 'singularity/stylesheets/singularitygs.scss';
+@import 'breakpoint-sass/stylesheets/breakpoint.scss';
+
+@include sgs-change('debug', true);
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+	@include add-grid(3);
+	@include add-grid(6 at 500px);
+	@include add-grid(12 at 700px);
+	@include add-grid(2 8 2 at 900px);
+	@include add-grid(1 3 5 7 9 at 1100px);
+
+	@include add-gutter(1/3);
+	@include add-gutter(.25 at 900px);
+
+    @include background-grid($color: blue);
+}
+
+.sidebar {
+	@include add-grid(3);
+	background-color: green;
+}

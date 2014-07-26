@@ -27,7 +27,15 @@
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <!-- Header -->
+    {% include header.html %}
+    <!-- End Header -->
+
     {{ content }}
+
+    <!-- Footer -->
+    {% include footer.html %}
+    <!-- End Footer -->
 
     {% include scripts.html %}
     {% include googleanalytics.html %}
