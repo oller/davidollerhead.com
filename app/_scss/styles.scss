@@ -1,0 +1,14 @@
+/*
+*  Master SCSS File
+*  Let's get things going...
+*/
+
+@import 'syntax.scss';
+@import 'singularity/stylesheets/_singularitygs.scss';
+
+$grids: 4;
+$gutters: 20px;
+
+body {
+    @include background-grid;
+}
