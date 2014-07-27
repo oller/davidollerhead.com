@@ -37,6 +37,9 @@ body {
 		bottom: 0;
 	}
 
+	@include breakpoint(1200px) {
+		@include grid-span(1);
+	}
 }
 
 .content {
