@@ -26,11 +26,15 @@ body {
 
 .sidebar {
 	@include grid-span(1);
-	// background-color: green;
+	background-color: green;
 
 	@include breakpoint(900px) {
 		@include grid-span(1);
 		background-color: lime;
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
 	}
 
 }
@@ -48,6 +52,10 @@ body {
 		@include grid-span(4, 2);
 		background-color: pink;
 	}
+
+}
+
+.portfolio-grid__work {
 
 }
 
