@@ -1,6 +1,9 @@
 ---
 layout: default
-title: Work
+navigation:
+  title: Work
+  weight: 100
+  show: true
 ---
 
  <div class="portfolio-grid tile-fade clearfix">
@@ -11,7 +14,7 @@ title: Work
 		</ul>
 	</div>
 	{% for post in site.categories.work %}
-		<div class="portfolio-grid__work {% for tag in post.tags %}{{ tag | downcase }} {% endfor %} faded">
+		<div class="portfolio-grid__work {% for tag in post.tags %}tag-{{ tag | downcase }} {% endfor %} faded">
 			<figure>
 				<a href="{{ post.url }}" title="{{ post.title }}">
 					<img src="{{ post.thumb }}">
