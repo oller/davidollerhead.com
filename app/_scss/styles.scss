@@ -3,13 +3,23 @@
 *  Let's get things going...
 */
 
+// Global Dependencies
 @import 'variables.scss';
 @import 'helpers.scss';
 @import 'mixins.scss';
+
+// Typography
 @import 'webfonts.scss';
+@import 'type.scss';
+
+// Site Layout
 @import 'layout.scss';
+
+// Page Elements
 @import 'header.scss';
 @import 'footer.scss';
 @import 'homepage.scss';
 @import 'single.scss';
+
+// Syntax Highlighting
 @import 'syntax.scss';
