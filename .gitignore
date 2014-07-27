@@ -37,3 +37,9 @@ app/_bower_components
 dist
 node_modules
 .tmp
+
+# Ignore Webfonts #
+/app/fonts/skolar*
+
+# Ignore CV #
+/app/cv
