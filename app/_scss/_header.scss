@@ -1,0 +1,45 @@
+// Header and Sidebar Styles
+// ======================================
+
+.sidebar {
+	background-color: $colour-sidebar-background;
+	padding: 1rem;
+}
+
+.header {
+	@include breakpoint($breakpoint-small) {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		top: 1rem;
+	}
+}
+
+.social {
+	text-align: center;
+	@include breakpoint($breakpoint-small) {
+		position: absolute;
+		left: 1rem;
+		right: 1rem;
+		bottom: 1rem;
+	}
+}
+
+.social__icons {
+	@include inline-list();
+	@include font-smoothing(on);
+	li {
+		margin-left: .5rem;
+		a{
+			text-decoration: none;
+			color: $colour-white-off;
+			&:hover,
+			&:focus {
+				color: $colour-white;
+			}
+		}
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}

@@ -1,3 +1,6 @@
+// Site Layout
+// ======================================
+
 // Import Singluarity Grid & Breakpoint Dependencies
 @import 'singularity/stylesheets/singularitygs.scss';
 @import 'breakpoint-sass/stylesheets/breakpoint.scss';
@@ -5,62 +8,80 @@
 // Set Debug mode to view background grid
 @include sgs-change('debug', true);
 
-* {
-  box-sizing: border-box;
-}
 
-figure {
-	margin: 0;
-}
 
 body {
 	@include add-grid(1);
-	@include add-grid(4 at $bp-medium);
-	@include add-grid(5 at $bp-large);
+	@include add-grid(4 at $breakpoint-small);
+	@include add-grid(5 at $breakpoint-medium);
+	@include add-grid(6 at $breakpoint-large);
+	@include add-grid(7 at $breakpoint-xlarge);
+
 
 	@include add-gutter(1/3);
-	@include add-gutter(0 at $bp-medium);
+	@include add-gutter(0 at $breakpoint-small);
 
-    @include background-grid($color: blue);
+    @include background-grid($color: pink);
 }
 
 .sidebar {
-	@include grid-span(1);
-	background-color: green;
+	@include grid-span(1,1);
 
-	@include breakpoint($bp-medium) {
+	@include breakpoint($breakpoint-small) {
 		@include grid-span(1);
-		background-color: lime;
 		position: fixed;
 		top: 0;
 		left: 0;
 		bottom: 0;
 	}
 
-	@include breakpoint($bp-large) {
+	@include breakpoint($breakpoint-medium) {
+		@include grid-span(1);
+	}
+
+	@include breakpoint($breakpoint-large) {
+		@include grid-span(1);
+	}
+
+	@include breakpoint($breakpoint-xlarge) {
 		@include grid-span(1);
 	}
 }
 
-.content {
+@mixin grid-content-area {
 	@include grid-span(1);
-	// background-color: purple;
 
-	@include breakpoint($bp-medium) {
+	@include breakpoint($breakpoint-small) {
 		@include grid-span(3, 2);
-		background-color: pink;
 	}
 
-	@include breakpoint($bp-large) {
+	@include breakpoint($breakpoint-medium) {
 		@include grid-span(4, 2);
-		background-color: pink;
 	}
 
+	@include breakpoint($breakpoint-large) {
+		@include grid-span(5, 2);
+	}
+
+	@include breakpoint($breakpoint-xlarge) {
+		@include grid-span(6, 2);
+	}
 }
 
-.portfolio-grid__work {
-
+.content {
+	@include grid-content-area;
+	margin-bottom: 2rem;
 }
+
+
+.footer	{
+	@include grid-content-area;
+	@include add-grid(2);
+}
+
+
+
+
 
 // .sidebar {
 // 	text-align: center;

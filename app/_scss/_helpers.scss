@@ -1,0 +1,17 @@
+// Various Resets
+// ======================================
+
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	-ms-interpolation-mode: bicubic;
+}
+
+figure {
+	margin: 0;
+}

@@ -3,8 +3,8 @@ layout: default
 title: Work
 ---
 
- <div class="portfolio-grid tile-fade pure-g-r">
-	<div class="portfolio-grid__filter pure-menu pure-menu-open pure-menu-horizontal pure-u-1">
+ <div class="portfolio-grid tile-fade clearfix">
+	<div class="portfolio-grid__filter">
 		<ul>
 			<li><a class="all" data-filter="all" href="#">All</a></li>
 			{% area_list %}
@@ -16,10 +16,10 @@ title: Work
 				<a href="{{ post.url }}" title="{{ post.title }}">
 					<img src="{{ post.thumb }}">
 				</a>
-				<figcaption>
+<!-- 				<figcaption>
 					<h3><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
 					<span>{{ post.tags | array_to_sentence_string }}</span>
-				</figcaption>
+				</figcaption> -->
 			</figure>
 		</div>
 	{% endfor %}

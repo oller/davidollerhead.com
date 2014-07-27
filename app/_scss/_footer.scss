@@ -1,0 +1,13 @@
+.footer {
+	padding: 1rem;
+	border-top: 1px solid $colour-grey;
+}
+
+.footer__copyright {
+	@include grid-span(1, 1, $gutter: 0);
+}
+
+.footer__built-with {
+	@include grid-span(1, 2, $gutter: 0);
+	text-align: right;
+}
