@@ -2,20 +2,25 @@
 
     <header class="header">
 
-        <div class="title-logo">
-            <div class="letter letter--d"></div>
-            <div class="letter letter--o"></div>
+        <div class="logo">
+            <div class="logo__letter logo__letter--d"></div>
+            <div class="logo__letter logo__letter--o"></div>
         </div>
 
-        <h1 class="site-title"><a href="/">{{ site.name }}</a> is a Consultant Front-End Developer</h1>
+        <h1 class="header__strap"><a href="/">{{ site.name }}</a> is a Consultant Front-End Developer</h1>
 
         <nav>
-            <ul>
-                {% for p in site.navigation %}
-                <li{% if p.url == page.url %} class="active" {% endif %}>
-                    <a href="{{ p.url }}">{{ p.navigation.title }}</a>
-                </li>
-                {% endfor %}
+            <ul class="header__nav">
+                {% sorted_for node in site.pages sort_by:node.navigation.weight %}
+                    {% if node.navigation.show %}
+                        <li{% if node.url == page.url %} class="active" {% endif %}>
+                            <a href="{{ node.url }}">
+                                {{ node.navigation.title }}
+                                <span><small>{{ node.navigation.weight }}</small></span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endsorted_for %}
             </ul>
         </nav>
 
