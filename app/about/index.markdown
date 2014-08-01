@@ -30,15 +30,16 @@ navigation:
 					<li>jQuery</li>
 					<li><abbr title="Object-Oriented">OO</abbr> Techniques</li>
 					<li>Angular</li>
-					<li>Grunt</li>
-					<li>Backbone</li>
+					<li>Grunt / Gulp</li>
+					<li>Backbone &amp; Underscore</li>
+					<li>RequireJS</li>
 				</ul>
 			</li>
 			<li>Front End Frameworks
 				<ul>
 					<li>Twitter Bootstrap</li>
 					<li>Zurb Foundation</li>
-					<li>YUI's PureCSS</li>
+					<li>Sass Singularity</li>
 				</ul>
 			</li>
 			<li>Responsive Design</li>
@@ -50,6 +51,7 @@ navigation:
 			<li>PHP
 				<ul>
 					<li>Zend Framework</li>
+					<li>Symfony</li>
 					<li>MVC</li>
 					<li>Wordpress</li>
 				</ul>
@@ -57,7 +59,7 @@ navigation:
 			<li>MySQL</li>
 			<li>Version Control
 				<ul>
-					<li>Git / SVN / CVS</li>
+					<li>Git / Mercurial / SVN</li>
 				</ul>
 			</li>
 			<li><abbr title="User-Experience">UX</abbr> &amp; <abbr title="User-Interface">UI</abbr> Design</li>
