@@ -1,6 +1,6 @@
 // Single Post Styles
 // ======================================
 
-.post {
-	padding: 2rem;
+.skills {
+	@include float-span(1, $grid: 2, $gutter: 0);
 }

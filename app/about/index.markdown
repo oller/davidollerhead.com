@@ -9,15 +9,15 @@ navigation:
 ---
 
 
-<div class="clearfix formatted intro">
-	<img src="/assets/img/about/avatar-snow-bw.jpg" title="Snowman buddy" alt="Profile Photo" class="profile-pic">
+<div class="">
+	<img src="/img/about/avatar-snow-bw.jpg" title="Snowman buddy" alt="Profile Photo" class="round">
 	<p>A Senior Front-End Developer and Development Manager based in London. Over 10 years of experience developing &amp; managing across a range of industries and platforms.</p>
 	<p>Keen on continually developing by learning and developing with the best tools and frameworks to hand.</p>
 </div>
 
 
-<div class="pure-g-r highlight skills">
-	<div class="pure-u-1-3">
+<div class="clearfix">
+	<div class="skills">
 		<ul>
 			<li>HTML5</li>
 			<li>CSS3
@@ -45,7 +45,7 @@ navigation:
 			<li>Responsive Design</li>
 		</ul>
 	</div>
-	<div class="pure-u-1-3">
+	<div class="skills">
 		<ul>
 			<li>Agile / Scrum</li>
 			<li>PHP

@@ -1,13 +1,16 @@
 .footer {
-	padding: 1rem;
 	border-top: 1px solid $colour-grey;
+	color: $colour-type;
+	font-family: $font-monospace;
+	font-size: .7rem;
+	padding: 1rem;
 }
 
 .footer__copyright {
-	@include grid-span(1, 1, $gutter: 0);
+	@include grid-span(12);
 }
 
 .footer__built-with {
-	@include grid-span(1, 2, $gutter: 0);
+	@include grid-span(12, 13);
 	text-align: right;
 }

@@ -81,7 +81,7 @@ $letter-size: 4vw;
 }
 
 .header__strap {
-	font-family: 'Cousine';
+	font-family: $font-monospace;
 	font-size: .8rem;
 	font-weight: normal;
 	text-align: center;
@@ -99,11 +99,11 @@ $letter-size: 4vw;
         font-family: cousine;
         list-style: none;
         &.active a {
-            color: $colour-white-off;;
+            color: $colour-white-off;
             background-color: darken($colour-sidebar-background, 6%);
             &:hover, &:focus {
                 background-color: darken($colour-sidebar-background, 6%);
-                color: $colour-white-off;;
+                color: $colour-white-off;
             }
         }
         a {
