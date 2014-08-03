@@ -30,17 +30,15 @@ layout: default
 		</figure>
 	{% endif %}
 
-{% comment %} Dynamically create a flexslider-powered carousel for as many images as provided {% endcomment %}
+{% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
 	{% if page.carousel %}
-	<div class="flexslider">
-		<ul class="slides">
+		<div class="carousel">
 			{% for slides in page.carousel %}
-			<li>
+			<div>
 				<img src="{{ slides.image }}" alt="{{ slides.alt }}" title="{{ slides.alt }}">
-			</li>
+			</div>
 			{% endfor %}
-		</ul>
-	</div>
+		</div>
 	{% endif %}
 
 	{{ content }}

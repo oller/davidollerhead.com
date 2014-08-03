@@ -48,7 +48,7 @@ body {
 	}
 }
 
-@mixin grid-content-area {
+%grid-content-area {
 	@include grid-span(1);
 
 	@include breakpoint($breakpoint-small) {
@@ -69,13 +69,13 @@ body {
 }
 
 .content {
-	@include grid-content-area;
+	@extend %grid-content-area;
 	margin-bottom: 2rem;
 }
 
 
 .footer	{
-	@include grid-content-area;
+	@extend %grid-content-area;
 	@include add-grid(2);
 }
 
