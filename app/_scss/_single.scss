@@ -1,0 +1,6 @@
+// Single Post Styles
+// ======================================
+
+.skills {
+	@include float-span(1, $grid: 2, $gutter: 0);
+}

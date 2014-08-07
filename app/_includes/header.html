@@ -1,0 +1,66 @@
+<div class="sidebar">
+
+    <header class="header">
+
+        <div class="logo">
+            <div class="logo__letter logo__letter--d"></div>
+            <div class="logo__letter logo__letter--o"></div>
+        </div>
+
+        <h1 class="header__strap"><a href="/">{{ site.name }}</a> is a Consultant Front-End Developer</h1>
+
+        <nav>
+            <ul class="header__nav">
+                {% sorted_for node in site.pages sort_by:node.navigation.weight %}
+                    {% if node.navigation.show %}
+                        <li{% if node.url == page.url %} class="active" {% endif %}>
+                            <a href="{{ node.url }}">
+                                {{ node.navigation.title }}
+                                <span><small>{{ node.navigation.weight }}</small></span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endsorted_for %}
+            </ul>
+        </nav>
+
+    </header>
+
+    <div class="social">
+
+        <ul class="social__icons">
+            <li>
+                <a class="icon-twitter-bird" target="_blank" href="http://www.twitter.com/DavidOllerhead" title="Twitter">
+                    <span class="visuallyhidden">Twitter</span>
+                </a>
+            </li>
+            <li>
+                <a class="icon-facebook-rect" target="_blank" href="http://www.facebook.com/oller" title="Facebook">
+                    <span class="visuallyhidden">Facebook</span>
+                </a>
+            </li>
+            <li>
+                <a class="icon-linkedin-rect" target="_blank" href="http://uk.linkedin.com/in/davidollerhead" title="LinkedIn">
+                    <span class="visuallyhidden">LinkedIn</span>
+                </a>
+            </li>
+            <li>
+                <a class="icon-github" target="_blank" href="http://www.github.com/oller" title="Github">
+                    <span class="visuallyhidden">Github</span>
+                </a>
+            </li>
+            <li>
+                <a class="icon-instagram-filled" target="_blank" href="http://www.instagram.com/davidollerhead" title="Instagram">
+                    <span class="visuallyhidden">Instagram</span>
+                </a>
+            </li>
+            <li>
+                <a class="icon-bicycle" target="_blank" href="http://app.strava.com/athletes/707623" title="Strava">
+                    <span class="visuallyhidden">Srava</span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+
+</div>

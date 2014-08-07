@@ -1,0 +1,22 @@
+// Mixin Library
+// ======================================
+
+@mixin inline-list {
+  list-style-type: none;
+  &, & li {
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+  }
+}
+
+@mixin font-smoothing($value: on) {
+    @if $value == on {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    @else {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}

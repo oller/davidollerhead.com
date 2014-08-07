@@ -1,0 +1,34 @@
+// Variables
+// ======================================
+
+// Breakpoints (Mobile First)
+// ======================================
+$breakpoint-small: 800px;
+$breakpoint-medium: 1024px;
+$breakpoint-large: 1400px;
+$breakpoint-xlarge: 1800px;
+
+
+// Background Images
+// ======================================
+$bg-image: '/img/backgroundPattern.png';
+$bg-image-dark: '/img/backgroundPatternDark.png';
+$bg-image-darker: '/img/backgroundPatternDarker.png';
+
+// Colours
+// ======================================
+$colour-sidebar-background: #555;
+$colour-white: #FFFFFF;
+$colour-white-off: #FAFAFA;
+$colour-accent-primary: #D63082;
+$colour-accent-secondary: #1DACA7;
+$colour-filter-background: #F35535;
+$colour-grey: #AAA;
+$colour-grey-dark: #888;
+$colour-type: #4C4C4C;
+
+// Webfonts
+// ======================================
+$font-body: 'skolar_rgregular';
+$font-heading: 'Droid Sans';
+$font-monospace: 'Cousine';

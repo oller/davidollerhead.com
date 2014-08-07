@@ -1,0 +1,51 @@
+---
+layout: default
+---
+
+{% comment %} Dynamically create a masthead as many images wide as provided {% endcomment %}
+	{% if page.masthead %}
+		<figure class="">
+			{% for image in page.masthead %}
+				<div class="{{ forloop.length }}">
+					<img src="{{ image.image }}" alt="{{ image.alt }}" title="{{ image.alt }}">
+				</div>
+			{% endfor %}
+			{% if page.caption %}
+				<figcaption class="muted">{{ page.caption }}</figcaption>
+			{% endif %}
+		</figure>
+	{% endif %}
+
+{% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
+	{% if page.carousel %}
+		<div class="carousel">
+			{% for slides in page.carousel %}
+			<div>
+				<img src="{{ slides.image }}" alt="{{ slides.alt }}" title="{{ slides.alt }}">
+			</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
+<article class="content">
+
+	<h2>{{ page.title }}</h2>
+
+	{% if page.categories contains 'blog' %}
+		{% comment %} Blog, show date posted {% endcomment %}
+		<p class="meta">This was posted on {{ page.date | date_to_string }}</p>
+	{% elsif page.categories contains 'work' %}
+		{% comment %} Portfolio work, show the tags posted under {% endcomment %}
+		<p class="meta">Posted under {{ page.tags | array_to_sentence_string }}</p>
+	{% endif %}
+
+	{{ content }}
+
+{% comment %} Blog, show comments {% endcomment %}
+	{% if page.categories contains 'blog' %}
+		{% include disqus.html %}
+	{% endif %}
+
+
+</article>
