@@ -2,8 +2,9 @@
 // ======================================
 
 body {
+  color: $colour-grey-darker;
 	font-family: $font-body;
-	font-size: 1.2rem;
+	font-size: $font-size-base;
 	line-height: 1.6;
 }
 
@@ -17,28 +18,26 @@ h6 {
 	font-weight: normal;
 }
 
-p {
-	margin-top: 0;
-}
 
 .meta {
-	color: $colour-grey;
-	font-size: 0.8rem;
-	font-family: $font-monospace;
+  color: $colour-grey;
+  font-size: 0.8rem;
+  font-family: $font-monospace;
 }
 
 p {
+	margin-top: 0;
+
   a {
     @include single-transition();
-    background-color: rgba($colour-accent-primary, .05);
-    color: $colour-accent-primary;
-    padding: 0 0.25em;
+    border-bottom: 1px solid $colour-accent-primary;
+    color: $colour-grey-darker;
     text-decoration: none;
-    white-space: nowrap;
+    // white-space: nowrap;
 
     &:hover,
     &:focus {
-      background-color: rgba($colour-accent-primary, .1);
+      color: $colour-accent-primary;
     }
   }
 }
