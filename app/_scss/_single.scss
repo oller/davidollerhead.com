@@ -1,6 +1,10 @@
 // Single Post Styles
 // ======================================
 
+
+// About
+// ======================================
+
 .skills {
 	@include float-span(1, $grid: 1, $gutter: 0);
     @include breakpoint($breakpoint-small) {
@@ -13,4 +17,29 @@
             color: $colour-grey-dark;
         }
     }
+}
+
+
+// Blog Posts
+// ======================================
+
+.blog-posts {
+    list-style: none;
+    padding-left: 0;
+}
+
+.blog-post {
+    margin-bottom: 1.5rem;
+}
+
+.blog-post__heading {
+    font-family: $font-body;
+    margin-bottom: .2rem;
+}
+
+.blog-post__excerpt {
+    color: $colour-grey-dark;
+    font-size: 1rem;
+    margin-bottom: 0;
+
 }

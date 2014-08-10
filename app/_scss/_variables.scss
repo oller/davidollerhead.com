@@ -32,9 +32,9 @@ $colour-grey-darker: #4C4C4C;
 
 // Webfonts
 // ======================================
-$font-body: 'skolar_rgregular';
-$font-heading: 'skolar_sbsemibold';
-$font-monospace: 'Cousine';
+$font-body: 'skolar_rgregular', 'serif';
+$font-heading: 'skolar_sbsemibold', 'serif';
+$font-monospace: 'Cousine', 'Andale Mono', AndaleMono, monospace;
 
 // Type
 // ======================================

@@ -13,7 +13,7 @@
 @include add-gutter(0 at $breakpoint-small);
 
 body {
-    background: url('/img/backgroundPattern.png');
+    background: $colour-white;
 }
 
 .header {
@@ -62,7 +62,8 @@ body {
 
 .container {
 	@extend %grid-content-area;
-	margin-bottom: 2rem;
+    background: url('/img/backgroundPattern.png');
+	padding-bottom: 2rem;
 }
 
 .content {

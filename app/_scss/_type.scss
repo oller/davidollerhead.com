@@ -16,6 +16,7 @@ h5,
 h6 {
 	font-family: $font-heading;
 	font-weight: normal;
+  margin-top: .4em;
 }
 
 
@@ -27,13 +28,15 @@ h6 {
 
 p {
 	margin-top: 0;
+}
 
+.container,
+.footer {
   a {
     @include single-transition();
     border-bottom: 1px solid $colour-accent-primary;
     color: $colour-grey-darker;
     text-decoration: none;
-    // white-space: nowrap;
 
     &:hover,
     &:focus {
@@ -41,4 +44,3 @@ p {
     }
   }
 }
-
