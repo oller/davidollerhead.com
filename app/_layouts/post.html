@@ -2,6 +2,9 @@
 layout: default
 ---
 
+{% comment %} If we've masthead content, wrap it so we can alter the padding below {% endcomment %}
+{% if page.masthead or page.carousel %}
+<div class="masthead">
 {% comment %} Dynamically create a masthead as many images wide as provided {% endcomment %}
 	{% if page.masthead %}
 		<figure class="">
@@ -11,7 +14,7 @@ layout: default
 				</div>
 			{% endfor %}
 			{% if page.caption %}
-				<figcaption class="muted">{{ page.caption }}</figcaption>
+				<figcaption class="">{{ page.caption }}</figcaption>
 			{% endif %}
 		</figure>
 	{% endif %}
@@ -26,7 +29,8 @@ layout: default
 			{% endfor %}
 		</div>
 	{% endif %}
-
+</div>
+{% endif %}
 
 <article class="content">
 
@@ -34,7 +38,7 @@ layout: default
 
 	{% if page.categories contains 'blog' %}
 		{% comment %} Blog, show date posted {% endcomment %}
-		<p class="meta">This was posted on {{ page.date | date_to_string }}</p>
+		<p class="meta">Posted on {{ page.date | date_to_string }}</p>
 	{% elsif page.categories contains 'work' %}
 		{% comment %} Portfolio work, show the tags posted under {% endcomment %}
 		<p class="meta">Posted under {{ page.tags | array_to_sentence_string }}</p>

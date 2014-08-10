@@ -8,6 +8,8 @@ $breakpoint-medium: 1024px;
 $breakpoint-large: 1400px;
 $breakpoint-xlarge: 1800px;
 
+$mobile-gutter: 1rem;
+
 
 // Background Images
 // ======================================
@@ -22,13 +24,15 @@ $colour-white: #FFFFFF;
 $colour-white-off: #FAFAFA;
 $colour-accent-primary: #D63082;
 $colour-accent-secondary: #1DACA7;
-$colour-filter-background: #F35535;
+$colour-accent-ternary: #F35535;
+$colour-grey-light: #DDD;
 $colour-grey: #AAA;
 $colour-grey-dark: #888;
-$colour-type: #4C4C4C;
+$colour-grey-darker: #4C4C4C;
+$colour-opacity-hover: .2;
 
 // Webfonts
 // ======================================
 $font-body: 'skolar_rgregular';
-$font-heading: 'Droid Sans';
+$font-heading: 'skolar_sbsemibold';
 $font-monospace: 'Cousine';

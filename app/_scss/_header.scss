@@ -1,24 +1,24 @@
 // Header and Sidebar Styles
 // ======================================
 
-.sidebar {
-	background-color: $colour-sidebar-background;
-	padding: 1rem;
+.header {
+    background-color: $colour-sidebar-background;
+    padding: 1rem;
 }
 
-.header {
-	@include breakpoint($breakpoint-small) {
-		position: absolute;
-		left: 1rem;
-		right: 1rem;
-		top: 3rem;
-	}
+.nav {
+    @include breakpoint($breakpoint-small) {
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        top: 6rem;
+    }
 }
 
 // Squidgy Logo Styles
 // ======================================
 
-$letter-size: 4vw;
+$letter-size: 3rem;
 
 @mixin squidgy($scale: 1)
 {
@@ -48,77 +48,101 @@ $letter-size: 4vw;
               inset 0 0 (10px/$scale) 1px rgba(255,255,255,0.1);
 }
 .logo {
-	margin: 0 auto 2em;
-	text-align: center;
+    @include grid-span(12);
+    margin: 1rem auto;
+    text-align: center;
+
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(24);
+    }
 }
 
 .logo__letter {
-	@include squidgy();
-	transition: all 300ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
-	-webkit-filter: blur(1px);
-	-moz-filter: blur(1px);
-	filter: blur(1px);
-	filter: url('/assets/img/blur.svg#blur');
-	display: inline-block;
-	width: $letter-size;
-	height: $letter-size;
-	&:hover {
-		@include squidgy-hover();
-	}
-	&:active {
-		@include squidgy-active();
-	}
+    @include squidgy();
+    transition: all 300ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+    -webkit-filter: blur(1px);
+    -moz-filter: blur(1px);
+    filter: blur(1px);
+    filter: url('/assets/img/blur.svg#blur');
+    display: inline-block;
+    width: $letter-size;
+    height: $letter-size;
+    &:hover {
+        @include squidgy-hover();
+    }
+    &:active {
+        @include squidgy-active();
+    }
 }
 
 .logo__letter--d {
-	border-radius: 0 10em 10em 0;
-	margin-right: .1em;
+    border-radius: 0 10em 10em 0;
+    margin-right: .1em;
 }
 
 .logo__letter--o {
-	border-radius: 10em;
-	margin-left: .1em;
+    border-radius: 10em;
+    margin-left: .1em;
 }
 
 .header__strap {
-	font-family: $font-monospace;
-	font-size: .8rem;
-	font-weight: normal;
-	text-align: center;
-	color: $colour-white-off;
-	a {
-		color: $colour-white-off;
-	}
+    display: none;
+
+    @include breakpoint($breakpoint-small) {
+        color: $colour-white-off;
+        display: block;
+        font-family: $font-monospace;
+        font-size: .8rem;
+        font-weight: normal;
+        margin-bottom: 2rem;
+        text-align: center;
+        a {
+            color: $colour-white-off;
+        }
+    }
 }
 
 .header__nav {
-    margin: 1em 0 0;
+    @include grid-span(12, 13);
+    margin: 0;
     padding: 0;
+
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(24);
+    }
+
     li {
-        margin-top: .6em;
+        margin-bottom: .6em;
         font-family: cousine;
         list-style: none;
+
         &.active a {
             color: $colour-white-off;
             background-color: darken($colour-sidebar-background, 6%);
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
                 background-color: darken($colour-sidebar-background, 6%);
                 color: $colour-white-off;
             }
         }
+
         a {
+            @include single-transition();
             background-color: $colour-sidebar-background;
             color: $colour-grey;
             display: block;
             padding: .5em 1.2em;
-            font-size: .8em;
+            font-size: .7em;
             border-radius: 5px;
             text-decoration: none;
-            &:hover, &:focus {
+            &:hover,
+            &:focus {
+                // Hover
                 color: $colour-grey;
                 background-color: darken($colour-sidebar-background, 2%);
             }
             &:active {
+                // Key Down
                 background-color: darken($colour-sidebar-background, 4%);
                 color: lighten($colour-grey, 20%);
             }
@@ -126,31 +150,35 @@ $letter-size: 4vw;
     }
 }
 
-.social {
-	text-align: center;
-	@include breakpoint($breakpoint-small) {
-		position: absolute;
-		left: 1rem;
-		right: 1rem;
-		bottom: 2rem;
-	}
+.header__social {
+    @include grid-span(12);
+    text-align: center;
+    margin: 1rem auto;
+
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(24);
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 2rem;
+    }
 }
 
 .social__icons {
-	@include inline-list();
-	@include font-smoothing(on);
-	li {
-		margin-left: .5rem;
-		a{
-			text-decoration: none;
-			color:$colour-white-off;
-			&:hover,
-			&:focus {
-				color:$colour-white;
-			}
-		}
-		&:first-child {
-			margin-left: 0;
-		}
-	}
+    @include inline-list();
+    @include font-smoothing(on);
+    li {
+        margin-left: .5rem;
+        a{
+            text-decoration: none;
+            color:$colour-white-off;
+            &:hover,
+            &:focus {
+                color:$colour-white;
+            }
+        }
+        &:first-child {
+            margin-left: 0;
+        }
+    }
 }

@@ -94,8 +94,6 @@ So there you have it, you ought to now be able to easily include a flexslider ca
 
 This is slightly simplified for ease of presentation.  On top of this, I'm using the [Jekyll Asset Pipeline][pipeline-gh] to concatenate and minify all css / js, but the logic still stands and can be applied to minified assets too.
 
-> Top One, Nice one, Get Sorted!
-
 
 [flexslider-gh]: https://github.com/woothemes/FlexSlider
 [pipeline-gh]: https://github.com/matthodan/jekyll-asset-pipeline
