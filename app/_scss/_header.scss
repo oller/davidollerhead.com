@@ -3,7 +3,7 @@
 
 .header {
     background-color: $colour-sidebar-background;
-    padding: 1rem;
+    padding: 2rem;
 }
 
 .nav {
@@ -110,7 +110,7 @@ $letter-size: 3rem;
     padding: 0;
 
     @include breakpoint($breakpoint-small) {
-        @include grid-span(24);
+        @include grid-span(20, 2);
     }
 
     li {
@@ -169,14 +169,16 @@ $letter-size: 3rem;
 .social__icons {
     @include inline-list();
     @include font-smoothing(on);
+
     li {
         margin-left: .5rem;
         a{
+            @include single-transition();
             text-decoration: none;
-            color:$colour-white-off;
+            color: $colour-grey;
             &:hover,
             &:focus {
-                color:$colour-white;
+                color: $colour-white-off;
             }
         }
         &:first-child {
