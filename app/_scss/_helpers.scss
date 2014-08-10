@@ -18,3 +18,9 @@ figure {
 .round {
 	border-radius: 1000px;
 }
+
+::selection,
+::-moz-selection {
+    background: $colour-accent-primary; /* Gecko Browsers */
+    color: $colour-white;
+}

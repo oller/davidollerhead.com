@@ -90,15 +90,16 @@ $letter-size: 3rem;
     display: none;
 
     @include breakpoint($breakpoint-small) {
-        color: $colour-white-off;
+        color: $colour-grey;
         display: block;
         font-family: $font-monospace;
         font-size: .8rem;
-        font-weight: normal;
         margin-bottom: 2rem;
+        padding: 0 1rem;
         text-align: center;
         a {
             color: $colour-white-off;
+            text-decoration: none;
         }
     }
 }
