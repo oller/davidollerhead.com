@@ -5,6 +5,7 @@ layout: default
 {% comment %} If we've masthead content, wrap it so we can alter the padding below {% endcomment %}
 {% if page.masthead or page.carousel %}
 <div class="masthead">
+
 {% comment %} Dynamically create a masthead as many images wide as provided {% endcomment %}
 	{% if page.masthead %}
 		<figure class="">
@@ -29,6 +30,7 @@ layout: default
 			{% endfor %}
 		</div>
 	{% endif %}
+
 </div>
 {% endif %}
 
