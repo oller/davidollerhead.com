@@ -20,7 +20,7 @@
 }
 
 
-// Blog Posts
+// Blog Posts List
 // ======================================
 
 .blog-posts {
@@ -42,4 +42,16 @@
     font-size: 1rem;
     margin-bottom: 0;
 
+}
+
+
+// Post Page
+// ======================================
+
+.post-heading {
+    margin-bottom: 2rem;
+}
+
+.post-heading__headline {
+    margin-bottom: 0;
 }
