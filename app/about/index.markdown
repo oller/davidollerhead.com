@@ -16,7 +16,7 @@ navigation:
 </div>
 
 
-<div class="clearfix">
+<div class="highlight clearfix">
 	<div class="skills">
 		<ul>
 			<li>HTML5</li>
