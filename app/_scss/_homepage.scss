@@ -7,7 +7,6 @@
 
 .portfolio-grid__filter {
   // background-color: $colour-accent-ternary;
-  margin: 0;
   padding: 1rem;
   text-align: center;
 
@@ -22,6 +21,7 @@
         text-decoration: none;
         color: $colour-grey;
         padding: .5rem 1rem;
+        border: 0;
         border-radius: 5px;
         &:hover,
         &:focus {
