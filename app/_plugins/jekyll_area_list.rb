@@ -11,7 +11,7 @@ module Jekyll
       tags = context.registers[:site].tags
       tags.each do |tag, posts|
         unless tag.nil?
-          html << "<li><a class=\"#{tag.downcase}\" data-filter=\"#{tag.downcase}\" href=\"#\">#{tag.capitalize}</a></li>\n"
+          html << "<li><a data-filter=\"#{tag.downcase}\" href=\"#\">#{tag.capitalize}</a></li>\n"
         end
       end
       html

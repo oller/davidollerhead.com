@@ -6,7 +6,7 @@
 }
 
 .portfolio-grid__filter {
-	background-color: $colour-filter-background;
+	// background-color: $colour-filter-background;
 	margin: 0;
 	padding: 1rem;
 	text-align: center;
@@ -17,11 +17,18 @@
 			font-family: $font-monospace;
 			font-size: .8rem;
 			margin-left: 1.4rem;
-			a{
+			a {
+				@include single-transition();
 				text-decoration: none;
-				color: $colour-white-off;
+				color: $colour-grey;
+				padding: .5rem 1rem;
+				border-radius: 5px;
 				&:hover,
 				&:focus {
+					background-color: rgba($colour-grey-dark, $colour-opacity-hover);
+				}
+				&.active {
+					background-color: $colour-accent-primary;
 					color: $colour-white;
 				}
 			}
@@ -33,6 +40,8 @@
 }
 
 .portfolio-grid__work {
+	@include single-transition();
+
 	@include breakpoint($breakpoint-small) {
 	      @include float-span(1, $grid: 2);
 	}
@@ -47,5 +56,9 @@
 
 	@include breakpoint($breakpoint-xlarge) {
 		@include float-span(1, $grid: 5);
+	}
+
+	&.masked {
+		opacity: .1;
 	}
 }
