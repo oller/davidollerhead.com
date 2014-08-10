@@ -54,6 +54,7 @@ $letter-size: 3rem;
 
     @include breakpoint($breakpoint-small) {
         @include grid-span(24);
+        margin: 0 auto 2rem;
     }
 }
 

@@ -6,59 +6,60 @@
 }
 
 .portfolio-grid__filter {
-	// background-color: $colour-accent-ternary;
-	margin: 0;
-	padding: 1rem;
-	text-align: center;
+  // background-color: $colour-accent-ternary;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
 
-	ul {
-		@include inline-list();
-		li {
-			font-family: $font-monospace;
-			font-size: .8rem;
-			margin-left: 1.4rem;
-			a {
-				@include single-transition();
-				text-decoration: none;
-				color: $colour-grey;
-				padding: .5rem 1rem;
-				border-radius: 5px;
-				&:hover,
-				&:focus {
-					background-color: rgba($colour-grey-dark, $colour-opacity-hover);
-				}
-				&.active {
-					background-color: $colour-accent-primary;
-					color: $colour-white;
-				}
-			}
-			&:first-child {
-				margin-left: 0;
-			}
-		}
-	}
+  ul {
+    @include inline-list();
+    li {
+      font-family: $font-monospace;
+      font-size: .8rem;
+      margin-left: 1.4rem;
+      a {
+        @include single-transition();
+        text-decoration: none;
+        color: $colour-grey;
+        padding: .5rem 1rem;
+        border-radius: 5px;
+        &:hover,
+        &:focus {
+          background-color: rgba($colour-grey-dark, 0.2);
+          color: $colour-grey-dark;
+        }
+        &.active {
+          background-color: $colour-accent-primary;
+          color: $colour-white;
+        }
+      }
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
 }
 
 .portfolio-grid__work {
-	@include single-transition();
+  @include single-transition();
 
-	@include breakpoint($breakpoint-small) {
-	      @include float-span(1, $grid: 2);
-	}
+  @include breakpoint($breakpoint-small) {
+        @include float-span(1, $grid: 2);
+  }
 
-	@include breakpoint($breakpoint-medium) {
-		@include float-span(1, $grid: 3);
-	}
+  @include breakpoint($breakpoint-medium) {
+    @include float-span(1, $grid: 3);
+  }
 
-	@include breakpoint($breakpoint-large) {
-		@include float-span(1, $grid: 4);
-	}
+  @include breakpoint($breakpoint-large) {
+    @include float-span(1, $grid: 4);
+  }
 
-	@include breakpoint($breakpoint-xlarge) {
-		@include float-span(1, $grid: 5);
-	}
+  @include breakpoint($breakpoint-xlarge) {
+    @include float-span(1, $grid: 5);
+  }
 
-	&.masked {
-		opacity: .1;
-	}
+  &.masked {
+    opacity: .1;
+  }
 }
