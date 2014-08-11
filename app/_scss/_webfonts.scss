@@ -2,32 +2,32 @@
 // ======================================
 
 @font-face {
-  font-family: 'skolar_rgregular';
-  src: url('/fonts/skolar_regular-webfont.eot');
-  src: url('/fonts/skolar_regular-webfont.eot?#iefix') format('embedded-opentype'),
-       url('/fonts/skolar_regular-webfont.woff') format('woff'),
-       url('/fonts/skolar_regular-webfont.ttf') format('truetype'),
-       url('/fonts/skolar_regular-webfont.svg#skolar_rgregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'skolar_rgregular';
+    src: url('/fonts/skolar_regular-webfont.eot');
+    src: url('/fonts/skolar_regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/skolar_regular-webfont.woff') format('woff'),
+    url('/fonts/skolar_regular-webfont.ttf') format('truetype'),
+    url('/fonts/skolar_regular-webfont.svg#skolar_rgregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'skolar_sbsemibold';
-  src: url('/fonts/skolar_semibold-webfont.eot');
-  src: url('/fonts/skolar_semibold-webfont.eot?#iefix') format('embedded-opentype'),
-       url('/fonts/skolar_semibold-webfont.woff') format('woff'),
-       url('/fonts/skolar_semibold-webfont.ttf') format('truetype'),
-       url('/fonts/skolar_semibold-webfont.svg#skolar_sbsemibold') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'skolar_sbsemibold';
+    src: url('/fonts/skolar_semibold-webfont.eot');
+    src: url('/fonts/skolar_semibold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/skolar_semibold-webfont.woff') format('woff'),
+    url('/fonts/skolar_semibold-webfont.ttf') format('truetype'),
+    url('/fonts/skolar_semibold-webfont.svg#skolar_sbsemibold') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-  font-family: 'Cousine';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Cousine'), url(http://themes.googleusercontent.com/static/fonts/cousine/v4/S-JOYqoHekxYm2RHFzWYtgLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
+    font-family: 'Cousine';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Cousine'), url(http://themes.googleusercontent.com/static/fonts/cousine/v4/S-JOYqoHekxYm2RHFzWYtgLUuEpTyoUstqEm5AMlJo4.woff) format('woff');
 }
 
 // @font-face {
@@ -45,36 +45,37 @@
 // }
 
 @font-face {
-  font-family: 'davidollerhead-icons';
-  src: url("/fonts/davidollerhead-icons.eot");
-  src: url("/fonts/davidollerhead-icons.eot?#iefix") format('embedded-opentype'),
-       url("/fonts/davidollerhead-icons.woff") format('woff'),
-       url("/fonts/davidollerhead-icons.ttf") format('truetype'),
-       url("/fonts/davidollerhead-icons.svg#davidollerhead-icons") format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'davidollerhead-icons';
+    src: url("/fonts/davidollerhead-icons.eot");
+    src: url("/fonts/davidollerhead-icons.eot?#iefix") format('embedded-opentype'),
+    url("/fonts/davidollerhead-icons.woff") format('woff'),
+    url("/fonts/davidollerhead-icons.ttf") format('truetype'),
+    url("/fonts/davidollerhead-icons.svg#davidollerhead-icons") format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
+
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: 'davidollerhead-icons';
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-/* opacity .8 */
-/* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
-/* Animation center compensation - magrins should be symmetric */
-/* remove if not needed */
-  margin-left: .2em;
-/* you can be more comfortable with increased icons size */
-/* font-size: 120%; */
-/* Uncomment for 3D effect */
-/* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    font-family: 'davidollerhead-icons';
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity .8 */
+    /* fix buttons height, for twitter bootstrap */
+    line-height: 1em;
+    /* Animation center compensation - magrins should be symmetric */
+    /* remove if not needed */
+    margin-left: .2em;
+    /* you can be more comfortable with increased icons size */
+    /* font-size: 120%; */
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
 .icon-bicycle:before { content: '\e80a'; } /* '' */

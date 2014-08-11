@@ -1,0 +1,5 @@
+linters:
+  Indentation:
+    enabled: true
+    character: space # or 'tab'
+    width: 4

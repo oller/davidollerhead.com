@@ -4,7 +4,9 @@
 // Compass-Sourced Inline list mixin
 @mixin inline-list {
     list-style-type: none;
-    &, & li {
+
+    &,
+    & li {
         display: inline;
         margin: 0;
         padding: 0;

@@ -18,7 +18,7 @@ navigation:
 
 <div class="highlight clearfix">
 	<div class="skills">
-		<ul>
+		<ul class="skills__set">
 			<li>HTML5</li>
 			<li>CSS3
 				<ul>
@@ -46,7 +46,7 @@ navigation:
 		</ul>
 	</div>
 	<div class="skills">
-		<ul>
+		<ul class="skills__set">
 			<li>Agile / Scrum</li>
 			<li>PHP
 				<ul>
