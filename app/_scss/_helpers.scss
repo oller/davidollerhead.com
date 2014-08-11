@@ -2,25 +2,25 @@
 // ======================================
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
-	-ms-interpolation-mode: bicubic;
+    max-width: 100%;
+    height: auto;
+    -ms-interpolation-mode: bicubic;
 }
 
 figure {
-	margin: 0;
+    margin: 0;
 }
 
 .round {
-	border-radius: 1000px;
+    border-radius: 1000px;
 }
 
 ::selection,
 ::-moz-selection {
-    background: $colour-accent-primary; /* Gecko Browsers */
+    background: $colour-accent-primary;
     color: $colour-white;
 }

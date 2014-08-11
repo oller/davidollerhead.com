@@ -2,10 +2,10 @@
 // ======================================
 
 body {
-  color: $colour-grey-darker;
-	font-family: $font-body;
-	font-size: $font-size-base;
-	line-height: 1.6;
+    color: $colour-grey-darker;
+    font-family: $font-body;
+    font-size: $font-size-base;
+    line-height: 1.6;
 }
 
 h1,
@@ -14,33 +14,33 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: $font-heading;
-	font-weight: normal;
-  margin-top: .4em;
+    font-family: $font-heading;
+    font-weight: normal;
+    margin-top: .4em;
 }
 
 
 .meta {
-  color: $colour-grey;
-  font-size: 0.8rem;
-  font-family: $font-monospace;
-}
+    color: $colour-grey;
+    font-size: 0.8rem;
+    font-family: $font-monospace;
+    }
 
 p {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .container,
 .footer {
-  a {
-    @include single-transition();
-    border-bottom: 1px solid $colour-accent-primary;
-    color: $colour-grey-darker;
-    text-decoration: none;
+    a {
+        @include single-transition();
+        border-bottom: 1px solid $colour-accent-primary;
+        color: $colour-grey-darker;
+        text-decoration: none;
 
-    &:hover,
-    &:focus {
-      color: $colour-accent-primary;
+        &:hover,
+        &:focus {
+          color: $colour-accent-primary;
+        }
     }
-  }
 }

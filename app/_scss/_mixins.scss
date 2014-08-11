@@ -3,29 +3,30 @@
 
 // Compass-Sourced Inline list mixin
 @mixin inline-list {
-  list-style-type: none;
-  &, & li {
-    margin: 0px;
-    padding: 0px;
-    display: inline;
-  }
+    list-style-type: none;
+    &, & li {
+        display: inline;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 @mixin font-smoothing($value: on) {
-    @if $value == on {
+    @if $value==on {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-    }
-    @else {
+    } @else {
         -webkit-font-smoothing: subpixel-antialiased;
         -moz-osx-font-smoothing: auto;
     }
 }
 
 // We use this to add transitions to elements
-// $property - Default: all, Options: http://www.w3.org/TR/css3-transitions/#animatable-properties
+// $property - Default: all,
+// Options: http://www.w3.org/TR/css3-transitions/#animatable-properties
 // $speed - Default: 300ms
-// $ease - Default:ease-out, Options: http://css-tricks.com/almanac/properties/t/transition-timing-function/
+// $ease - Default:ease-out,
+// Options: http://css-tricks.com/almanac/properties/t/transition-timing-function/
 @mixin single-transition($property:all, $speed:300ms, $ease:ease-out) {
-  transition: $property $speed $ease;
+    transition: $property $speed $ease;
 }

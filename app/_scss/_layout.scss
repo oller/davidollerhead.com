@@ -17,72 +17,72 @@ body {
 }
 
 .header {
-	@include grid-span(24);
+    @include grid-span(24);
 
-	@include breakpoint($breakpoint-small) {
-		@include grid-span(6);
-		position: fixed;
-		top: 0;
-		left: 0;
-		bottom: 0;
-	}
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(6);
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+    }
 
-	@include breakpoint($breakpoint-medium) {
-		@include grid-span(5);
-	}
+    @include breakpoint($breakpoint-medium) {
+        @include grid-span(5);
+    }
 
-	@include breakpoint($breakpoint-large) {
-		@include grid-span(4);
-	}
+    @include breakpoint($breakpoint-large) {
+        @include grid-span(4);
+    }
 
-	@include breakpoint($breakpoint-xlarge) {
-		@include grid-span(3);
-	}
+    @include breakpoint($breakpoint-xlarge) {
+        @include grid-span(3);
+    }
 }
 
 %grid-content-area {
-	@include grid-span(24);
+    @include grid-span(24);
 
-	@include breakpoint($breakpoint-small) {
-		@include grid-span(18, 7);
-	}
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(18, 7);
+    }
 
-	@include breakpoint($breakpoint-medium) {
-		@include grid-span(19, 6);
-	}
+    @include breakpoint($breakpoint-medium) {
+        @include grid-span(19, 6);
+    }
 
-	@include breakpoint($breakpoint-large) {
-		@include grid-span(20, 5);
-	}
+    @include breakpoint($breakpoint-large) {
+        @include grid-span(20, 5);
+    }
 
-	@include breakpoint($breakpoint-xlarge) {
-		@include grid-span(21, 4);
-	}
+    @include breakpoint($breakpoint-xlarge) {
+        @include grid-span(21, 4);
+    }
 }
 
 .container {
-	@extend %grid-content-area;
+    @extend %grid-content-area;
     background: url('/img/backgroundPattern.png');
 }
 
 .content {
-	@include grid-span(22, 2);
-	padding-top: 5rem;
+    @include grid-span(22, 2);
+    padding-top: 5rem;
     padding-bottom: 6rem;
 
-	.masthead + & {
-		padding-top: 0;
-	}
+    .masthead + & {
+        padding-top: 0;
+    }
 
-	@include breakpoint($breakpoint-small) {
-		@include grid-span(16, 5);
-	}
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(16, 5);
+    }
 
-	@include breakpoint($breakpoint-medium) {
-		@include grid-span(14, 5);
-	}
+    @include breakpoint($breakpoint-medium) {
+        @include grid-span(14, 5);
+    }
 }
 
-.footer	{
-	@extend %grid-content-area;
+.footer {
+    @extend %grid-content-area;
 }

@@ -6,13 +6,13 @@
 // ======================================
 
 .skills {
-	@include float-span(1, $grid: 1, $gutter: 0);
+    @include float-span(1, $grid: 1, $gutter: 0);
     @include breakpoint($breakpoint-small) {
-		@include float-span(1, $grid: 2, $gutter: 0);
+        @include float-span(1, $grid: 2, $gutter: 0);
     }
 
     ul {
-        font-size: $font-size-base * 0.8;
+        font-size: $font-size-base * .8;
         ul li {
             color: $colour-grey-dark;
         }
@@ -41,7 +41,6 @@
     color: $colour-grey-dark;
     font-size: 1rem;
     margin-bottom: 0;
-
 }
 
 
