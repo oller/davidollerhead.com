@@ -20,29 +20,29 @@
 
 $letter-size: 3rem;
 
-@mixin squidgy($scale: 1) {
-    box-shadow: 0 (8px/$scale) (15px/$scale) (-4px/$scale) rgba(0,0,0,0.4),
-              inset 0 -3px 4px -1px rgba(0,0,0,0.4),
-              0 (-8px/$scale) (15px/$scale) -1px rgba(255,255,255,0.2),
-              inset 0 (3px/$scale) (4px/$scale) -1px rgba(255,255,255,0.1),
-              inset 0 0 (5px/$scale) 1px rgba(255,255,255,0.4),
-              inset 0 (10px/$scale) (15px/$scale) 0 rgba(255,255,255,0.1);
+@mixin squidgy () {
+    box-shadow: 0 8px 15px -4px rgba(0, 0, 0, .4),
+              inset 0 -3px 4px -1px rgba(0, 0, 0, .4),
+              0 -8px 15px -1px rgba(255, 255, 255, .2),
+              inset 0 3px 4px -1px rgba(255, 255, 255, .1),
+              inset 0 0 5px 1px rgba(255, 255, 255, .4),
+              inset 0 10px 15px 0 rgba(255, 255, 255, .1);
 }
 
-@mixin squidgy-hover($scale: 1) {
-    box-shadow: 0 (8px/$scale) (15px/$scale) (-4px/$scale) rgba(0,0,0,0.4),
-              inset 0 (-8px/$scale) (25px/$scale) -1px rgba(255,255,255,0.3),
-              0 (-8px/$scale) (15px/$scale) -1px rgba(255,255,255,0.2),
-              inset 0 (8px/$scale) (20px/$scale) 0 rgba(0,0,0,0.4),
-              inset 0 0 (5px/$scale) 1px rgba(255,255,255,0.2);
+@mixin squidgy-hover () {
+    box-shadow: 0 8px 15px -4px rgba(0, 0, 0, .4),
+              inset 0 -8px 25px -1px rgba(255, 255, 255, .3),
+              0 -8px 15px -1px rgba(255, 255, 255, .2),
+              inset 0 8px 20px 0 rgba(0, 0, 0, .4),
+              inset 0 0 5px 1px rgba(255, 255, 255, .2);
 }
 
-@mixin squidgy-active($scale: 1) {
-    box-shadow: 0 (8px/$scale) (15px/$scale) (-4px/$scale) rgba(0,0,0,0.4),
-              inset 0 (-8px/$scale) (30px/$scale) 1px rgba(255,255,255,0.4),
-              0 (-8px/$scale) (15px/$scale) -1px rgba(255,255,255,0.2),
-              inset 0 (8px/$scale) (20px/$scale) 0 rgba(0,0,0,0.8),
-              inset 0 0 (10px/$scale) 1px rgba(255,255,255,0.1);
+@mixin squidgy-active () {
+    box-shadow: 0 8px 15px -4px rgba(0, 0, 0, .4),
+              inset 0 -8px 30px 1px rgba(255, 255, 255, .4),
+              0 -8px 15px -1px rgba(255, 255, 255, .2),
+              inset 0 8px 20px 0 rgba(0, 0, 0, .8),
+              inset 0 0 10px 1px rgba(255, 255, 255, .1);
 }
 
 .logo {
@@ -58,17 +58,19 @@ $letter-size: 3rem;
 
 .logo__letter {
     @include squidgy();
-    transition: all 300ms cubic-bezier(.230, 1, .320, 1);
-    -webkit-filter: blur(1px);
+    display: inline-block;
     -moz-filter: blur(1px);
+    -webkit-filter: blur(1px);
     filter: blur(1px);
     filter: url('/assets/img/blur.svg#blur');
-    display: inline-block;
-    width: $letter-size;
     height: $letter-size;
+    transition: all 300ms cubic-bezier(.230, 1, .320, 1);
+    width: $letter-size;
+
     &:hover {
         @include squidgy-hover();
     }
+
     &:active {
         @include squidgy-active();
     }
@@ -94,6 +96,7 @@ $letter-size: 3rem;
         margin-bottom: 2rem;
         padding: 0 1rem;
         text-align: center;
+
         a {
             color: $colour-white-off;
             text-decoration: none;
@@ -111,13 +114,14 @@ $letter-size: 3rem;
     }
 
     li {
-        margin-bottom: .6em;
         font-family: cousine;
         list-style: none;
+        margin-bottom: .6em;
 
         &.active a {
-            color: $colour-white-off;
             background-color: darken($colour-sidebar-background, 6%);
+            color: $colour-white-off;
+
             &:hover,
             &:focus {
                 background-color: darken($colour-sidebar-background, 6%);
@@ -128,18 +132,20 @@ $letter-size: 3rem;
         a {
             @include single-transition();
             background-color: $colour-sidebar-background;
+            border-radius: 5px;
             color: $colour-grey;
             display: block;
-            padding: .5em 1.2em;
             font-size: .7em;
-            border-radius: 5px;
+            padding: .5em 1.2em;
             text-decoration: none;
+
             &:hover,
             &:focus {
                 // Hover
-                color: $colour-grey;
                 background-color: darken($colour-sidebar-background, 2%);
+                color: $colour-grey;
             }
+
             &:active {
                 // Key Down
                 background-color: darken($colour-sidebar-background, 4%);
@@ -151,8 +157,8 @@ $letter-size: 3rem;
 
 .header__social {
     @include grid-span(12);
-    text-align: center;
     margin: 1rem auto;
+    text-align: center;
 
     @include breakpoint($breakpoint-small) {
         @include grid-span(24);
@@ -169,15 +175,18 @@ $letter-size: 3rem;
 
     li {
         margin-left: .5rem;
-        a{
+
+        a {
             @include single-transition();
-            text-decoration: none;
             color: $colour-grey;
+            text-decoration: none;
+
             &:hover,
             &:focus {
                 color: $colour-white-off;
             }
         }
+
         &:first-child {
             margin-left: 0;
         }

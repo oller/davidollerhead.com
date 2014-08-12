@@ -23,8 +23,8 @@ h6 {
 .meta {
     color: $colour-grey;
     font-family: $font-monospace;
-    font-size: 0.8rem;
-    }
+    font-size: .8rem;
+}
 
 p {
     margin-top: 0;
@@ -40,7 +40,7 @@ p {
 
         &:hover,
         &:focus {
-          color: $colour-accent-primary;
+            color: $colour-accent-primary;
         }
     }
 }

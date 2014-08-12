@@ -24,7 +24,8 @@
                 padding: .5rem 1rem;
                 text-decoration: none;
 
-                &:hover, &:focus {
+                &:hover,
+                &:focus {
                     background-color: rgba($colour-grey-dark, .2);
                     color: $colour-grey-dark;
                 }

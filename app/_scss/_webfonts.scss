@@ -46,43 +46,43 @@
 
 @font-face {
     font-family: 'davidollerhead-icons';
-    src: url("/fonts/davidollerhead-icons.eot");
-    src: url("/fonts/davidollerhead-icons.eot?#iefix") format('embedded-opentype'),
-    url("/fonts/davidollerhead-icons.woff") format('woff'),
-    url("/fonts/davidollerhead-icons.ttf") format('truetype'),
-    url("/fonts/davidollerhead-icons.svg#davidollerhead-icons") format('svg');
+    src: url('/fonts/davidollerhead-icons.eot');
+    src: url('/fonts/davidollerhead-icons.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/davidollerhead-icons.woff') format('woff'),
+    url('/fonts/davidollerhead-icons.ttf') format('truetype'),
+    url('/fonts/davidollerhead-icons.svg#davidollerhead-icons') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
-[class^="icon-"]:before,
-[class*=" icon-"]:before {
+[class^='icon-']:before,
+[class*=' icon-']:before {
+    display: inline-block;
     font-family: 'davidollerhead-icons';
     font-style: normal;
     font-weight: normal;
+    // fix buttons height, for twitter bootstrap
+    line-height: 1em;
+    // remove if not needed
+    margin-left: .2em;
+    margin-right: .2em;
     speak: none;
-    display: inline-block;
+    text-align: center;
     text-decoration: inherit;
     width: 1em;
-    margin-right: .2em;
-    text-align: center;
-    /* opacity .8 */
-    /* fix buttons height, for twitter bootstrap */
-    line-height: 1em;
-    /* Animation center compensation - magrins should be symmetric */
-    /* remove if not needed */
-    margin-left: .2em;
-    /* you can be more comfortable with increased icons size */
-    /* font-size: 120%; */
-    /* Uncomment for 3D effect */
-    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+    // opacity .8
+    // Animation center compensation - magrins should be symmetric
+    // you can be more comfortable with increased icons size
+    // font-size: 120%;
+    // Uncomment for 3D effect
+    // text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
 }
 
-.icon-bicycle:before { content: '\e80a'; } /* '' */
-.icon-facebook-rect:before { content: '\f301'; } /* '' */
-.icon-twitter-bird:before { content: '\f303'; } /* '' */
-.icon-github-text:before { content: '\f307'; } /* '' */
-.icon-github:before { content: '\f308'; } /* '' */
-.icon-skype:before { content: '\f30b'; } /* '' */
-.icon-linkedin-rect:before { content: '\f31b'; } /* '' */
-.icon-instagram-filled:before { content: '\f31f'; } /* '' */
+.icon-bicycle:before { content: '\e80a'; } // ''
+.icon-facebook-rect:before { content: '\f301'; } // ''
+.icon-twitter-bird:before { content: '\f303'; } // ''
+.icon-github-text:before { content: '\f307'; } // ''
+.icon-github:before { content: '\f308'; } // ''
+.icon-skype:before { content: '\f30b'; } // ''
+.icon-linkedin-rect:before { content: '\f31b'; } // ''
+.icon-instagram-filled:before { content: '\f31f'; } // ''
