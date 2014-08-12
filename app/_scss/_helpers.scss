@@ -19,7 +19,11 @@ figure {
     border-radius: 1000px;
 }
 
-::selection,
+::selection {
+    background: $colour-accent-primary;
+    color: $colour-white;
+}
+
 ::-moz-selection {
     background: $colour-accent-primary;
     color: $colour-white;
