@@ -10,7 +10,7 @@ author:
   email: david@davidollerhead.com
 
 # Grunt handles images and assets.
-exclude: ['img', 'css', 'js', 'fonts',
+exclude: ['img', 'css', 'js', 'fonts', 'node_modules',
           '**.png', '**.jpg', '**.jpeg', '**.gif', '**.webp', '**.svg', '**.ico']
 
 include: ['.htaccess']
