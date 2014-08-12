@@ -2,17 +2,21 @@
 
 Another iteration of my portfolio site, this time with jekyll.
 
-Rebuilt using (Yeoman)[http://wwwy.yeoman.io) and the excellent (Jekyll-rb generator)[https://github.com/robwierzbowski/generator-jekyllrb]
+Rebuilt using [Yeoman](http://wwwy.yeoman.io) and the excellent [Jekyll-rb generator](https://github.com/robwierzbowski/generator-jekyllrb)
 
 ## Get going
 
-`bundle install`
-`npm install`
-`bower install`
+First, let's all install all the dependencies
 
-Once all dependencies are installed you can get grunt to do the heavy lifting.
+```bash
+bundle install
+npm install
+bower install
+```
 
-### Grunt Workflow
+Now we can get grunt to do the heavy lifting.
+
+## Grunt Workflow
 
 #### grunt serve
 
