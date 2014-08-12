@@ -4,6 +4,9 @@
 .header {
     background-color: $colour-sidebar-background;
     padding: 2rem;
+    @include breakpoint($breakpoint-small) {
+        padding: 0;
+    }
 }
 
 .nav {
@@ -163,8 +166,6 @@ $letter-size: 3rem;
     @include breakpoint($breakpoint-small) {
         @include grid-span(24);
         position: absolute;
-        left: 1rem;
-        right: 1rem;
         bottom: 2rem;
     }
 }
