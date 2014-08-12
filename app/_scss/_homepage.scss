@@ -1,45 +1,42 @@
 // Homepage Styles
 //======================================
 
-.portfolio-grid {
-}
-
-.portfolio-grid__filter {
-    // background-color: $colour-accent-ternary;
+.portfolio-grid__filters {
     padding: 1rem;
     text-align: center;
 
     ul {
         @include inline-list();
-        li {
-            font-family: $font-monospace;
-            font-size: .8rem;
-            margin-left: 1.4rem;
+    }
+}
 
-            a {
-                @include single-transition();
-                border: 0;
-                border-radius: 5px;
-                color: $colour-grey;
-                padding: .5rem 1rem;
-                text-decoration: none;
+.portfolio-grid__filter {
+    font-family: $font-monospace;
+    font-size: .8rem;
+    margin-left: 1.4rem;
 
-                &:hover,
-                &:focus {
-                    background-color: rgba($colour-grey-dark, .2);
-                    color: $colour-grey-dark;
-                }
+    a {
+        @include single-transition();
+        border: 0;
+        border-radius: 5px;
+        color: $colour-grey;
+        padding: .5rem 1rem;
+        text-decoration: none;
 
-                &.active {
-                    background-color: $colour-accent-primary;
-                    color: $colour-white;
-                }
-            }
-
-            &:first-child {
-                margin-left: 0;
-            }
+        &:hover,
+        &:focus {
+            background-color: rgba($colour-grey-dark, .2);
+            color: $colour-grey-dark;
         }
+
+        &.active {
+            background-color: $colour-accent-primary;
+            color: $colour-white;
+        }
+    }
+
+    &:first-child {
+        margin-left: 0;
     }
 }
 

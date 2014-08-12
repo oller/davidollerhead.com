@@ -1,4 +1,4 @@
-module Jekyll
+ module Jekyll
   class AreaList < Liquid::Tag
     safe = true
 
@@ -11,7 +11,7 @@ module Jekyll
       tags = context.registers[:site].tags
       tags.each do |tag, posts|
         unless tag.nil?
-          html << "<li><a data-filter=\"#{tag.downcase}\" href=\"#\">#{tag.capitalize}</a></li>\n"
+          html << "<li class='portfolio-grid__filter'><a data-filter=\"#{tag.downcase}\" href=\"#\">#{tag.capitalize}</a></li>\n"
         end
       end
       html
