@@ -33,6 +33,7 @@ GEM
     pygments.rb (0.5.4)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.1.0)
+    rainbow (2.0.0)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
@@ -41,6 +42,9 @@ GEM
     redcarpet (2.3.0)
     safe_yaml (0.9.7)
     sass (3.3.10)
+    scss-lint (0.24.0)
+      rainbow (~> 2.0)
+      sass (~> 3.3.0)
     toml (0.1.1)
       parslet (~> 1.5.0)
     yajl-ruby (1.1.0)
@@ -52,3 +56,4 @@ DEPENDENCIES
   jekyll (~> 1.4.0)
   redcarpet
   sass (>= 3.2)
+  scss-lint
