@@ -145,13 +145,13 @@ $letter-size: 3rem;
 
             &:hover,
             &:focus {
-                // Hover
+                // On hover
                 background-color: darken($colour-sidebar-background, 2%);
                 color: $colour-grey;
             }
 
             &:active {
-                // Key Down
+                // On key down
                 background-color: darken($colour-sidebar-background, 4%);
                 color: lighten($colour-grey, 20%);
             }
