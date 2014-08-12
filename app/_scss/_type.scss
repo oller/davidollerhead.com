@@ -30,17 +30,67 @@ p {
     margin-top: 0;
 }
 
-.container,
+
+// Fancy 3d inline links
+.content,
 .footer {
+    backface-visibility: hidden;
+    overflow: hidden;
+    position: relative;
+    z-index: 1; /* needed for setting pseudo-element z-index */
+
     a {
-        @include single-transition();
-        border-bottom: 1px solid $colour-accent-primary;
         color: $colour-grey-darker;
+        display: inline-block;
+        font-weight: 500;
+        outline: none;
+        perspective: 600px;
+        perspective-origin: 50% 100%;
+        position: relative;
         text-decoration: none;
+        transition: color .3s;
+        vertical-align: bottom;
+        white-space: nowrap;
 
         &:hover,
         &:focus {
-            color: $colour-accent-primary;
+            color: $colour-white;
+        }
+
+        &::before,
+        &::after {
+            backface-visibility: hidden;
+            box-sizing: content-box;
+            content: '';
+            font-smoothing: antialiased;
+            height: 100%;
+            left: -4px;
+            padding: 0 4px;
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: -1;
+        }
+
+        &::before {
+            background-color: $colour-accent-primary;
+            transform-origin: 50% 100%;
+            transform: rotateX(90deg);
+            transition-timing-function: cubic-bezier(.7,0,.3,1);
+            transition: transform .2s;
+        }
+
+        &::after {
+            border-bottom: 2px solid $colour-accent-primary;
+        }
+
+
+        &:hover::before,
+        &:focus::before {
+            transform: rotateX(0deg);
         }
     }
 }
+
+
