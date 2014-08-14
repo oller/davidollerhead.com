@@ -41,3 +41,11 @@ During scaffolding the generator gives you the option to configure [grunt-build-
 `grunt` on its own is a special task that runs `grunt check`, any tests you've added, and `grunt build`.
 
 
+## To Do
+
+- Navigation Weighting / Sorting
+- Lazy Load Carousel
+- Carousel Prev / Next icons
+- Picturefill Responsive Image Polyfill
+- Contact Form Submission
+- Profile Image Position
