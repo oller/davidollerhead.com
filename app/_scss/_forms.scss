@@ -1,0 +1,40 @@
+// Forms Styles
+// ======================================
+
+.form__field {
+    border: 1px solid $colour-grey-light;
+    border-radius: $border-radius;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 100%;
+    &:focus {
+        outline: none;
+        border: 1px solid $colour-accent-primary;
+    }
+}
+
+.form__submit {
+    @include single-transition();
+    background-color: $colour-accent-primary;
+    border: 0;
+    border-radius: $border-radius;
+    color: $colour-white;
+    font-family: $font-monospace;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    position: relative;
+    text-align: center;
+    width: 100%;
+
+
+    &:focus,
+    &:hover {
+        background: darken($colour-accent-primary, 8%);
+        outline: none;
+    }
+
+    &:active {
+        background: darken($colour-accent-primary, 16%);
+    }
+}

@@ -12,12 +12,12 @@ You can get me at [@DavidOllerhead][twitter], or use the form below.
 
 <form action="" class="">
     <fieldset class="">
-        <input type="text" class="" placeholder="Your Name" name="name" required="required" autofocus="autofocus" />
-        <input type="email" class="" placeholder="Email Address" name="email" required="required" />
-        <textarea class="" name="message" placeholder="Your Message" rows="8" required="required"> </textarea>
+        <input type="text" class="form__field" placeholder="Name" name="name" required="required" autofocus="autofocus" />
+        <input type="email" class="form__field" placeholder="Email" name="email" required="required" />
+        <textarea class="form__field" name="message" placeholder="Message" rows="8" required="required"></textarea>
     </fieldset>
 
-    <button type="submit" class="">Send Message</button>
+    <button type="submit" class="form__submit">Send Message</button>
 </form>
 
 My <abbr title="Curriculum Vitae">CV</abbr> is available on request.

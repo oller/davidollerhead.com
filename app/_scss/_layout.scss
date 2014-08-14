@@ -68,7 +68,7 @@ body {
 .content {
     @include grid-span(22, 2);
     padding-bottom: 6rem;
-    padding-top: 5rem;
+    padding-top: 3rem;
 
     .masthead + & {
         padding-top: 0;
@@ -76,6 +76,7 @@ body {
 
     @include breakpoint($breakpoint-small) {
         @include grid-span(16, 5);
+        padding-top: 5rem;
     }
 
     @include breakpoint($breakpoint-medium) {
