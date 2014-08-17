@@ -8,9 +8,10 @@
     margin-bottom: 1rem;
     padding: 1rem;
     width: 100%;
+
     &:focus {
-        outline: none;
         border: 1px solid $colour-accent-primary;
+        outline: none;
     }
 }
 
@@ -28,7 +29,6 @@
     text-align: center;
     width: 100%;
 
-
     &:focus,
     &:hover {
         background: darken($colour-accent-primary, 8%);
@@ -37,5 +37,14 @@
 
     &:active {
         background: darken($colour-accent-primary, 16%);
+    }
+}
+
+.form__submit--success {
+    background-color: $colour-accent-secondary;
+
+    &:focus,
+    &:hover {
+        background-color: $colour-accent-secondary;
     }
 }
