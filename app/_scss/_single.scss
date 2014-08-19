@@ -5,8 +5,25 @@
 // About
 // ======================================
 
+
+.about__photo {
+    display: block;
+    margin: 0 auto 1rem;
+
+    @include breakpoint($breakpoint-small) {
+        float: right;
+        margin-left: 1rem;
+        width: 35%;
+    }
+
+    @include breakpoint($breakpoint-large) {
+        width: 25%
+    }
+}
+
 .skills {
     @include float-span(1, $grid: 1, $gutter: 0);
+
     @include breakpoint($breakpoint-small) {
         @include float-span(1, $grid: 2, $gutter: 0);
     }
@@ -15,8 +32,12 @@
 .skills__set {
     font-size: $font-size-base * .8;
 
-    ul li {
-        color: $colour-grey-dark;
+    ul {
+        padding-left: 1rem;
+
+        li {
+            color: $colour-grey-dark;
+        }
     }
 }
 
