@@ -3,3 +3,6 @@ linters:
     enabled: true
     character: space # or 'tab'
     width: 4
+
+  DuplicateProperty:
+    enabled: false
