@@ -3,6 +3,7 @@
 
 // Breakpoints (Mobile First)
 // ======================================
+
 $breakpoint-small: 800px;
 $breakpoint-medium: 1024px;
 $breakpoint-large: 1400px;
@@ -12,16 +13,19 @@ $mobile-gutter: 1rem;
 
 // Settings
 // ======================================
+
 $border-radius: 5px;
 
 // Background Images
 // ======================================
+
 $bg-image: '/img/backgroundPattern.png';
 $bg-image-dark: '/img/backgroundPatternDark.png';
 $bg-image-darker: '/img/backgroundPatternDarker.png';
 
 // Colours
 // ======================================
+
 $colour-sidebar-background: #555;
 $colour-white: #fff;
 $colour-white-off: #fafafa;
@@ -35,10 +39,12 @@ $colour-grey-darker: #4c4c4c;
 
 // Webfonts
 // ======================================
+
 $font-body: 'skolar_rgregular', 'serif';
 $font-heading: 'skolar_sbsemibold', 'serif';
 $font-monospace: 'Cousine', 'Inconsolata', 'Andale Mono', AndaleMono, monospace;
 
 // Type
 // ======================================
+
 $font-size-base: 1.2rem;
