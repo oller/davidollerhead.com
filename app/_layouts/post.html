@@ -25,7 +25,7 @@ layout: default
 		<div class="carousel">
 			{% for slides in page.carousel %}
 			<div>
-				<img src="{{ slides.image }}" alt="{{ slides.alt }}" title="{{ slides.alt }}">
+				<img data-lazy="{{ slides.image }}" alt="{{ slides.alt }}" title="{{ slides.alt }}">
 			</div>
 			{% endfor %}
 		</div>

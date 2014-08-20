@@ -43,8 +43,8 @@ Builds an optimized site to the dist directory. [Usemin blocks](https://github.c
 ## To Do
 
 - Navigation Weighting / Sorting
-- Lazy Load Carousel
+- ~~Lazy Load Carousel~~
 - Carousel Prev / Next icons
 - Picturefill Responsive Image Polyfill
-- Contact Form Submission
-- Profile Image Position
+- ~~Contact Form Submission~~
+- ~~Profile Image Position~~
