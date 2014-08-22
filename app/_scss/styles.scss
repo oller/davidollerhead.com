@@ -6,7 +6,12 @@
 // Global Dependencies
 @import 'variables.scss';
 @import 'helpers.scss';
-@import 'mixins.scss';
+@import 'toolbox.scss';
+
+// Vendor Styles
+@import 'vendor/syntax.scss';
+@import 'vendor/slick.scss';
+@import 'vendor/disqus.scss';
 
 // Typography
 @import 'webfonts.scss';
@@ -20,10 +25,5 @@
 @import 'footer.scss';
 @import 'homepage.scss';
 @import 'single.scss';
+@import 'masthead.scss';
 @import 'forms.scss';
-
-// Syntax Highlighting
-@import 'vendor/syntax.scss';
-
-// Slick Carousel
-@import 'vendor/slick.scss';

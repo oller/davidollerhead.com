@@ -1,0 +1,17 @@
+// Masthead
+// ======================================
+
+.masthead {
+    @extend %clearfix;
+    margin-bottom: 2rem;
+}
+
+@for $i from 1 through 5 {
+    .masthead__image--1of#{$i} {
+        @include float-span(1, $grid: round($i/2), $gutter: 0);
+
+        @include breakpoint($breakpoint-small) {
+            @include float-span(1, $grid: $i, $gutter: 0);
+        }
+    }
+}

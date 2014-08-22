@@ -1,9 +1,12 @@
 // Single Post Styles
 // ======================================
 
-
 // About
 // ======================================
+
+.about__intro {
+    @extend %clearfix;
+}
 
 .about__photo {
     display: block;

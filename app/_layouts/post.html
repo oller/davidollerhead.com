@@ -4,20 +4,18 @@ layout: default
 
 {% comment %} If we've masthead content, wrap it so we can alter the padding below {% endcomment %}
 {% if page.masthead or page.carousel %}
-<div class="masthead">
+<figure class="masthead">
 
 {% comment %} Dynamically create a masthead as many images wide as provided {% endcomment %}
-	{% if page.masthead %}
-		<figure class="">
-			{% for image in page.masthead %}
-				<div class="{{ forloop.length }}">
-					<img src="{{ image.image }}" alt="{{ image.alt }}" title="{{ image.alt }}">
-				</div>
-			{% endfor %}
-			{% if page.caption %}
-				<figcaption class="">{{ page.caption }}</figcaption>
-			{% endif %}
-		</figure>
+    {% if page.masthead %}
+		{% for image in page.masthead %}
+			<div class="masthead__image--1of{{ forloop.length }}">
+				<img src="{{ image.image }}" alt="{{ image.alt }}">
+			</div>
+		{% endfor %}
+		{% if page.caption %}
+			<figcaption class="">{{ page.caption }}</figcaption>
+		{% endif %}
 	{% endif %}
 
 {% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
@@ -31,7 +29,7 @@ layout: default
 		</div>
 	{% endif %}
 
-</div>
+</figure>
 {% endif %}
 
 <article class="content">
