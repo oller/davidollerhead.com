@@ -7,7 +7,9 @@
             <div class="logo__letter logo__letter--o"></div>
         </div>
 
-        <h1 class="header__strap"><a href="/">{{ site.name }}</a> is a Consultant Front-End Developer</h1>
+        <h1 class="header__strap">
+            <a href="/">{{ site.name }}</a> is a Consultant Front-End Developer
+        </h1>
 
         <ul class="header__nav">
             {% sorted_for node in site.pages sort_by:node.navigation.weight %}
