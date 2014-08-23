@@ -5,13 +5,14 @@ date: 2013-07-31 21:40:10
 categories: work
 tags: Development
 thumb: /img/work/ss-selftrade/thumb/thumb-ss-selftrade.jpg
-carousel:
- - image: /img/work/ss-selftrade/ss-selftrade1.png
-   alt: A 'Timed Sale' sale management / negotiation view
- - image: /img/work/ss-selftrade/ss-selftrade2.png
-   alt: A return breakdown modal
- - image: /img/work/ss-selftrade/ss-selftrade3.png
-   alt: An edit existing listing view.
+masthead:
+  carousel:
+   - image: /img/work/ss-selftrade/ss-selftrade1.png
+     alt: A 'Timed Sale' sale management / negotiation view
+   - image: /img/work/ss-selftrade/ss-selftrade2.png
+     alt: A return breakdown modal
+   - image: /img/work/ss-selftrade/ss-selftrade3.png
+     alt: An edit existing listing view.
 ---
 
 A fully responsive marketplace listing and trading platform.  Enabling and empowering users to list stock, but also to negotiate on price and transact in an intuitive and secure environment.

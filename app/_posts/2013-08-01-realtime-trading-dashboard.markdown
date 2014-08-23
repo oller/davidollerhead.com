@@ -5,11 +5,12 @@ date:   2013-08-01 21:01:10
 categories: work
 tags: Development
 thumb: /img/work/ss-dashboard/thumb/thumb-ss-dashboard.jpg
-carousel:
- - image: /img/work/ss-dashboard/ss-dashboard.jpg
-   alt: Trading Dashboard Screen 1
- - image: /img/work/ss-dashboard/ss-dashboard2.jpg
-   alt: Trading Dashboard Screen 2
+masthead:
+  carousel:
+   - image: /img/work/ss-dashboard/ss-dashboard.jpg
+     alt: Trading Dashboard Screen 1
+   - image: /img/work/ss-dashboard/ss-dashboard2.jpg
+     alt: Trading Dashboard Screen 2
 ---
 
 Briefed on creating a real-time trading dashboard to be displayed on flatscreens throughout an office space, giving all staff an insight into a marketplace's activity and performance in realtime.

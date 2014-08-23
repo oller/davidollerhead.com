@@ -6,8 +6,9 @@ categories: work
 tags: Logo
 thumb: /img/work/solid/thumb/thumb-solid.png
 masthead:
- - image: /img/work/solid/logo-SolidPayments.png
-   alt: Solid Payments Logo
+  gallery:
+   - image: /img/work/solid/logo-SolidPayments.png
+     alt: Solid Payments Logo
 ---
 
 Brand Identity, Logo and Business Cards for Solid Payments, a start-up Secure Payment Gateway provider operating in the Middle East.

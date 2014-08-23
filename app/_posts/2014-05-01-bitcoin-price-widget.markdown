@@ -10,8 +10,6 @@ masthead:
     - <div id="coindesk-widget" data-size="mpu" data-align="center"></div><script type="text/javascript" src="/js/work/bitcoin/coindesk-widget.min.js"></script>
 ---
 
-
-
 An embeddable JavaScript widget to represent and visualise the past hour's bitcoin price information.
 
 The [d3 JavaScript library][d3]  was used to render the sparkline, based on the data retrieved from the price API.

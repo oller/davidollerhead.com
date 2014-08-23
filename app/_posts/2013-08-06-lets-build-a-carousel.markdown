@@ -3,13 +3,14 @@ layout: post
 title:  "Using a Slider with Jekyll (in this case, Flexslider)"
 date:   2013-08-06 15:40:10
 categories: blog
-carousel:
- - image: /img/posts/tuts/carousel-jekyll/carousel-slide1.jpg
-   alt: Example Carousel Slide
- - image: /img/posts/tuts/carousel-jekyll/carousel-slide2.jpg
-   alt: Example Carousel Slide
- - image: /img/posts/tuts/carousel-jekyll/carousel-slide3.jpg
-   alt: Example Carousel Slide
+masthead:
+  carousel:
+   - image: /img/posts/tuts/carousel-jekyll/carousel-slide1.jpg
+     alt: Example Carousel Slide
+   - image: /img/posts/tuts/carousel-jekyll/carousel-slide2.jpg
+     alt: Example Carousel Slide
+   - image: /img/posts/tuts/carousel-jekyll/carousel-slide3.jpg
+     alt: Example Carousel Slide
 ---
 
 It's been a pleasure getting acquainted with jekyll and putting this portfolio site together.  By means of an introductory post, and also to share some rather basic techniques in jekyll, I thought I'd share how I went about adding certain features.  First stop, a slider&hellip;
