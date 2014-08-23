@@ -1,4 +1,3 @@
-// Generated on 2014-07-25 using generator-jekyllrb 1.2.1
 'use strict';
 
 // Directory reference:
@@ -16,23 +15,23 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     // Configurable paths
-    yeoman: {
+    davidollerhead: {
       app: 'app',
       dist: 'dist'
     },
     watch: {
       sass: {
-        files: ['<%= yeoman.app %>/_scss/**/*.{scss,sass}'],
+        files: ['<%= davidollerhead.app %>/_scss/**/*.{scss,sass}'],
         tasks: ['sass:server', 'autoprefixer:server']
       },
       autoprefixer: {
-        files: ['<%= yeoman.app %>/css/**/*.css'],
+        files: ['<%= davidollerhead.app %>/css/**/*.css'],
         tasks: ['copy:stageCss', 'autoprefixer:server']
       },
       jekyll: {
         files: [
-          '<%= yeoman.app %>/**/*.{html,yml,md,mkd,markdown}',
-          '!<%= yeoman.app %>/_bower_components/**/*'
+          '<%= davidollerhead.app %>/**/*.{html,yml,md,mkd,markdown}',
+          '!<%= davidollerhead.app %>/_bower_components/**/*'
         ],
         tasks: ['jekyll:server']
       },
@@ -43,8 +42,8 @@ module.exports = function (grunt) {
         files: [
           '.jekyll/**/*.html',
           '.tmp/css/**/*.css',
-          '{.tmp,<%= yeoman.app %>}/<%= js %>/**/*.js',
-          '<%= yeoman.app %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
+          '{.tmp,<%= davidollerhead.app %>}/<%= js %>/**/*.js',
+          '<%= davidollerhead.app %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
         ]
       }
     },
@@ -61,7 +60,7 @@ module.exports = function (grunt) {
           base: [
             '.tmp',
             '.jekyll',
-            '<%= yeoman.app %>'
+            '<%= davidollerhead.app %>'
           ]
         }
       },
@@ -69,7 +68,7 @@ module.exports = function (grunt) {
         options: {
           open: true,
           base: [
-            '<%= yeoman.dist %>'
+            '<%= davidollerhead.dist %>'
           ]
         }
       },
@@ -79,7 +78,7 @@ module.exports = function (grunt) {
             '.tmp',
             '.jekyll',
             'test',
-            '<%= yeoman.app %>'
+            '<%= davidollerhead.app %>'
           ]
         }
       }
@@ -89,11 +88,11 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '<%= yeoman.dist %>/*',
+            '<%= davidollerhead.dist %>/*',
             // Running Jekyll also cleans the target directory.  Exclude any
             // non-standard `keep_files` here (e.g., the generated files
             // directory from Jekyll Picture Tag).
-            '!<%= yeoman.dist %>/.git*'
+            '!<%= davidollerhead.dist %>/.git*'
           ]
         }]
       },
@@ -115,7 +114,7 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/_scss',
+          cwd: '<%= davidollerhead.app %>/_scss',
           src: '**/*.{scss,sass}',
           dest: '.tmp/css',
           ext: '.css'
@@ -128,7 +127,7 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.app %>/_scss',
+          cwd: '<%= davidollerhead.app %>/_scss',
           src: '**/*.{scss,sass}',
           dest: '.tmp/css',
           ext: '.css'
@@ -142,9 +141,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>/css',
+          cwd: '<%= davidollerhead.dist %>/css',
           src: '**/*.css',
-          dest: '<%= yeoman.dist %>/css'
+          dest: '<%= davidollerhead.dist %>/css'
         }]
       },
       server: {
@@ -160,11 +159,11 @@ module.exports = function (grunt) {
       options: {
         bundleExec: true,
         config: '_config.yml,_config.build.yml',
-        src: '<%= yeoman.app %>'
+        src: '<%= davidollerhead.app %>'
       },
       dist: {
         options: {
-          dest: '<%= yeoman.dist %>',
+          dest: '<%= davidollerhead.dist %>',
         }
       },
       server: {
@@ -181,16 +180,16 @@ module.exports = function (grunt) {
     },
     useminPrepare: {
       options: {
-        dest: '<%= yeoman.dist %>'
+        dest: '<%= davidollerhead.dist %>'
       },
-      html: '<%= yeoman.dist %>/index.html'
+      html: '<%= davidollerhead.dist %>/index.html'
     },
     usemin: {
       options: {
-        assetsDirs: '<%= yeoman.dist %>',
+        assetsDirs: '<%= davidollerhead.dist %>',
       },
-      html: ['<%= yeoman.dist %>/**/*.html'],
-      css: ['<%= yeoman.dist %>/css/**/*.css']
+      html: ['<%= davidollerhead.dist %>/**/*.html'],
+      css: ['<%= davidollerhead.dist %>/css/**/*.css']
     },
     htmlmin: {
       dist: {
@@ -203,9 +202,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '<%= davidollerhead.dist %>',
           src: '**/*.html',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= davidollerhead.dist %>'
         }]
       }
     },
@@ -228,9 +227,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '<%= davidollerhead.dist %>',
           src: '**/*.{jpg,jpeg,png}',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= davidollerhead.dist %>'
         }]
       }
     },
@@ -238,9 +237,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: '<%= davidollerhead.dist %>',
           src: '**/*.svg',
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= davidollerhead.dist %>'
         }]
       }
     },
@@ -249,7 +248,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>',
+          cwd: '<%= davidollerhead.app %>',
           src: [
             // Jekyll processes and moves HTML and text files.
             // Usemin moves CSS and javascript inside of Usemin blocks.
@@ -263,7 +262,7 @@ module.exports = function (grunt) {
             'favicon.ico',
             'apple-touch*.png'
           ],
-          dest: '<%= yeoman.dist %>'
+          dest: '<%= davidollerhead.dist %>'
         }]
       },
       // Copy CSS into .tmp directory for Autoprefixer processing
@@ -271,7 +270,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>/css',
+          cwd: '<%= davidollerhead.app %>/css',
           src: '**/*.css',
           dest: '.tmp/css'
         }]
@@ -284,10 +283,10 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           src: [
-            '<%= yeoman.dist %>/js/**/*.js',
-            '<%= yeoman.dist %>/css/**/*.css',
-            '<%= yeoman.dist %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
-            '<%= yeoman.dist %>/fonts/**/*.{eot*,otf,svg,ttf,woff}'
+            '<%= davidollerhead.dist %>/js/**/*.js',
+            '<%= davidollerhead.dist %>/css/**/*.css',
+            '<%= davidollerhead.dist %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
+            '<%= davidollerhead.dist %>/fonts/**/*.{eot*,otf,svg,ttf,woff}'
           ]
         }]
       }
@@ -299,8 +298,8 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/js/**/*.js',
-        '!<%= yeoman.app %>/js/work/**/*.js',
+        '<%= davidollerhead.app %>/js/**/*.js',
+        '!<%= davidollerhead.app %>/js/work/**/*.js',
         'test/spec/**/*.js'
       ]
     },
@@ -310,14 +309,14 @@ module.exports = function (grunt) {
       },
       check: {
         src: [
-          '<%= yeoman.app %>/css/**/*.css',
+          '<%= davidollerhead.app %>/css/**/*.css',
         ]
       }
     },
     scsslint: {
       allFiles: [
-        '<%= yeoman.app %>/_scss/**/*.scss',
-        '!<%= yeoman.app %>/_scss/vendor/**/*.scss'
+        '<%= davidollerhead.app %>/_scss/**/*.scss',
+        '!<%= davidollerhead.app %>/_scss/vendor/**/*.scss'
       ],
       options: {
         config: '.scss-lint.yml',

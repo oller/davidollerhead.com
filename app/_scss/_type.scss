@@ -48,12 +48,17 @@ blockquote {
     padding: 1rem 0 1rem 3rem;
     position: relative;
 
+    p {
+        margin-bottom: 0;
+    }
+
+    // Open quotation mark
     &:before {
-        color: $colour-grey-light;
         content: '\201C';
         font-size: 5rem;
         left: 0;
-        line-height: 4rem;
+        line-height: 1;
+        opacity: .4;
         position: absolute;
         top: 0;
     }
