@@ -112,7 +112,7 @@ $letter-size: 3rem;
     padding: 0;
 
     @include breakpoint($breakpoint-small) {
-        @include grid-span(20, 2);
+        @include grid-span(20, 3);
     }
 
     li {

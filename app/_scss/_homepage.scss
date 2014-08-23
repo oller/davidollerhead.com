@@ -43,20 +43,18 @@
 
 .portfolio-grid__work {
     @include single-transition();
-    @include breakpoint($breakpoint-small) {
-        @include float-span(1, $grid: 2);
-    }
+    @include float-span(1, $grid: 2, $gutter: 0);
 
     @include breakpoint($breakpoint-medium) {
-        @include float-span(1, $grid: 3);
+        @include float-span(1, $grid: 3, $gutter: 0);
     }
 
     @include breakpoint($breakpoint-large) {
-        @include float-span(1, $grid: 4);
+        @include float-span(1, $grid: 4, $gutter: 0);
     }
 
     @include breakpoint($breakpoint-xlarge) {
-        @include float-span(1, $grid: 5);
+        @include float-span(1, $grid: 5, $gutter: 0);
     }
 
     &.masked {
