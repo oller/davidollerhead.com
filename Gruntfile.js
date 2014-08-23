@@ -107,7 +107,10 @@ module.exports = function (grunt) {
         bundleExec: true,
         debugInfo: false,
         lineNumbers: false,
-        loadPath: 'app/_bower_components'
+        loadPath: [
+        'app/_bower_components',
+        'app/_bower_components/animate-sass'
+        ]
       },
       dist: {
         files: [{
