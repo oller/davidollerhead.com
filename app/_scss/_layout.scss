@@ -6,7 +6,7 @@
 @import 'breakpoint-sass/stylesheets/breakpoint.scss';
 
 // Set Debug mode to view background grid
-@include sgs-change('debug', true);
+// @include sgs-change('debug', true);
 
 @include add-grid(24);
 @include add-gutter($mobile-gutter);
@@ -82,10 +82,6 @@ body {
     @include breakpoint($breakpoint-medium) {
         @include grid-span(14, 5);
     }
-}
-
-.masthead {
-    margin-bottom: 2rem;
 }
 
 .footer {

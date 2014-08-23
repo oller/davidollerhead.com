@@ -107,7 +107,10 @@ module.exports = function (grunt) {
         bundleExec: true,
         debugInfo: false,
         lineNumbers: false,
-        loadPath: 'app/_bower_components'
+        loadPath: [
+        'app/_bower_components',
+        'app/_bower_components/animate-sass'
+        ]
       },
       dist: {
         files: [{
@@ -297,6 +300,7 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= yeoman.app %>/js/**/*.js',
+        '!<%= yeoman.app %>/js/work/**/*.js',
         'test/spec/**/*.js'
       ]
     },
@@ -313,7 +317,7 @@ module.exports = function (grunt) {
     scsslint: {
       allFiles: [
         '<%= yeoman.app %>/_scss/**/*.scss',
-        '!<%= yeoman.app %>/_scss/vendor/*.scss'
+        '!<%= yeoman.app %>/_scss/vendor/**/*.scss'
       ],
       options: {
         config: '.scss-lint.yml',

@@ -63,13 +63,14 @@
                 // Callback on success
                 request.done(function(response, textStatus, jqXHR) {
                     // positive feedback to user
-                    $('#submit').prop('disabled', true).addClass('form__submit--success').text('\u2713 Message Sent!');
+                    $('#submit').prop('disabled', true).addClass('form__submit--success animated pulse').text('\u2713 Message Sent!');
                 });
 
                 // Callback on failure
                 request.fail(function(jqXHR, textStatus, errorThrown) {
                     // Log error to the console
                     console.error('The following error occured: ' + textStatus, errorThrown);
+                    $('#submit').prop('disabled', true).addClass('form__submit--success animated shake').text('\u00D7 Message Failed, Please try again');
                 });
 
                 // Callback regardless

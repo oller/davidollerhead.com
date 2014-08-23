@@ -9,12 +9,11 @@ navigation:
 ---
 
 
-<div class="clearfix">
+<div class="about__intro">
 	<img src="/img/about/avatar-snow-bw.jpg" class="about__photo round" title="Snowman buddy" alt="Profile Photo">
 	<p>A Senior Front-End Developer and Development Manager based in London. Over 10 years of experience developing &amp; managing across a range of industries and platforms.</p>
 	<p>Keen on continually developing by learning and developing with the best tools and frameworks to hand.</p>
 </div>
-
 
 <div class="highlight clearfix">
 	<div class="skills">

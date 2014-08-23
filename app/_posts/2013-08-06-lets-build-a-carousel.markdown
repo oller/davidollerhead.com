@@ -20,7 +20,7 @@ First things first, you'll need to add the images, and note down the path to tho
 
 Once we've saved the images, we need to referenece them from the YML Front Matter at the top of the Jekyll Post or Page we'd like them (and therefore the carousel) to appear on.
 
-{% highlight php %}
+{% highlight yaml %}
 ---
 layout: post
 title:  "Let's build a Carousel!"

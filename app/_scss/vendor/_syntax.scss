@@ -1,8 +1,8 @@
 // Syntax Higlighting Styles for Pygments
 // ======================================
 
-
 .highlight {
+    @extend %clearfix;
     background: url('/img/backgroundPatternDark.png');
     padding: .5rem 1rem;
     border-radius: 5px;
