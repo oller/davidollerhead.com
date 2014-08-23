@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+<article class="content">
+
+    <header class="post-heading">
+        <h2 class="post-heading__headline">{{ page.title }}</h2>
+        {% if page.categories contains 'blog' %}
+            {% comment %} Blog, show date posted {% endcomment %}
+            <p class="meta">Posted on {{ page.date | date_to_string }}</p>
+        {% elsif page.categories contains 'work' %}
+            {% comment %} Portfolio work, show the tags posted under {% endcomment %}
+            <p class="meta">Posted under {{ page.tags | array_to_sentence_string }}</p>
+        {% endif %}
+    </header>
+
+	{{ content }}
+
+{% comment %} Blog, show comments {% endcomment %}
+	{% if page.categories contains 'blog' %}
+		{% include disqus.html %}
+	{% endif %}
+
+
+</article>
