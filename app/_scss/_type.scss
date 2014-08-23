@@ -41,6 +41,24 @@ code {
     font-size: .8rem;
 }
 
+blockquote {
+    color: $colour-grey;
+    font-size: 1.4rem;
+    margin: 0;
+    padding: 1rem 0 1rem 3rem;
+    position: relative;
+
+    &:before {
+        color: $colour-grey-light;
+        content: '\201C';
+        font-size: 5rem;
+        left: 0;
+        line-height: 4rem;
+        position: absolute;
+        top: 0;
+    }
+}
+
 // Fancy 3d inline links
 // ======================================
 
