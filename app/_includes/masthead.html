@@ -1,0 +1,38 @@
+{% comment %} If we've masthead content, wrap it so we can alter the padding below {% endcomment %}
+{% if page.masthead %}
+<figure class="masthead">
+
+{% comment %} Dynamically create a masthead as many images wide as provided {% endcomment %}
+    {% if page.masthead.gallery %}
+        {% for image in page.masthead.gallery %}
+            <div class="masthead__image--1of{{ forloop.length }}">
+                <img src="{{ image.image }}" alt="{{ image.alt }}">
+            </div>
+        {% endfor %}
+
+        {% if page.caption %}
+            <figcaption class="">{{ page.caption }}</figcaption>
+        {% endif %}
+
+    {% endif %}
+
+{% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
+    {% if page.masthead.carousel %}
+        <div class="carousel">
+            {% for slide in page.masthead.carousel %}
+            <div>
+                <img data-lazy="{{ slide.image }}" alt="{{ slide.alt }}" title="{{ slide.alt }}">
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+{% comment %} Inject raw markup from post's yml (for code samples) {% endcomment %}
+    {% if page.masthead.raw %}
+        <div class="masthead--bg">
+            {{ page.masthead.raw }}
+        </div>
+    {% endif %}
+
+</figure>
+{% endif %}
