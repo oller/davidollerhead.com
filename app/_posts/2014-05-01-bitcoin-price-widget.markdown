@@ -7,7 +7,7 @@ tags: Development
 thumb: /img/work/bitcoin/thumb/thumb-bitcoin.png
 masthead:
   raw:
-    - <div id="coindesk-widget" data-size="mpu" data-align="center"></div><script type="text/javascript" src="/js/work/bitcoin/coindesk-widget.min.js"></script>
+    - <div id="bitcoin-widget" data-size="mpu" data-align="center"></div><script type="text/javascript" src="/work/bitcoin/bitcoin-widget.min.js"></script>
 ---
 
 An embeddable JavaScript widget to represent and visualise the past hour's bitcoin price information.

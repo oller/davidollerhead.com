@@ -299,7 +299,6 @@ module.exports = function (grunt) {
       all: [
         'Gruntfile.js',
         '<%= davidollerhead.app %>/js/**/*.js',
-        '!<%= davidollerhead.app %>/js/work/**/*.js',
         'test/spec/**/*.js'
       ]
     },
