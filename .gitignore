@@ -43,3 +43,6 @@ app/fonts/skolar*
 
 # Ignore CV #
 app/cv
+
+# Ignore FTP upload credentials
+.ftppass

@@ -15,6 +15,10 @@
 }
 
 .footer__built-with {
-    @include grid-span(12, 13);
-    text-align: right;
+    display: none;
+
+    @include breakpoint($breakpoint-small) {
+        @include grid-span(12, 13);
+        text-align: right;
+    }
 }
