@@ -39,7 +39,7 @@ node_modules
 .tmp
 
 # Ignore Webfonts #
-/app/fonts/skolar*
+app/fonts/skolar*
 
 # Ignore CV #
-/app/cv
+app/cv
