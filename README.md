@@ -34,10 +34,13 @@ Builds an optimized site to the dist directory. [Usemin blocks](https://github.c
 
 `grunt serve:dist` will run `grunt build` and open the result in your default browser
 
+#### grunt deploy
+
+A task that uploads the content of the dist directory to the ftp details specified in the gruntfile.
 
 #### grunt (default)
 
-`grunt` on its own is a special task that runs `grunt check`, any tests you've added, and `grunt build`.
+`grunt` on its own is a complete test, build and deployment task that runs `grunt check`, any tests, `grunt build` then finally `grunt deploy` to ftp upload the generated site.
 
 
 ## To Do
