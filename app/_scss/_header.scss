@@ -63,8 +63,6 @@ $letter-size: 3rem;
 .logo__letter {
     @include squidgy();
     display: inline-block;
-    filter: blur(1px);
-    // filter: url('/img/blur.svg#blur');
     height: $letter-size;
     transition: all 300ms cubic-bezier(.230, 1, .320, 1);
     width: $letter-size;
