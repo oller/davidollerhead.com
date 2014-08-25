@@ -47,7 +47,7 @@ A task that uploads the content of the dist directory to the ftp details specifi
 
 - Navigation Weighting / Sorting
 - ~~Lazy Load Carousel~~
-- Carousel Prev / Next icons
+- ~~Carousel Prev / Next icons~~
 - Picturefill Responsive Image Polyfill
 - ~~Contact Form Submission~~
 - ~~Profile Image Position~~
