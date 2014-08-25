@@ -21,6 +21,11 @@
     @include breakpoint($breakpoint-large) {
         width: 25%;
     }
+
+    @include breakpoint($breakpoint-xlarge) {
+        width: 20%;
+    }
+
 }
 
 .skills {
