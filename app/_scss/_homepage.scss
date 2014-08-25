@@ -2,11 +2,16 @@
 //======================================
 
 .portfolio-grid__filters {
-    padding: 1rem;
-    text-align: center;
+    display: none;
 
-    ul {
-        @include inline-list();
+    @include breakpoint($breakpoint-small) {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+
+        ul {
+            @include inline-list();
+        }
     }
 }
 
