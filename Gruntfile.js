@@ -400,15 +400,13 @@ module.exports = function(grunt) {
     ]);
 
     grunt.registerTask('deploy', [
-        'check',
-        'test',
-        'build',
         'ftp-deploy'
     ]);
 
     grunt.registerTask('default', [
         'check',
         'test',
-        'build'
+        'build',
+        'ftp-deploy'
     ]);
 };
