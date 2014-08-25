@@ -2,13 +2,13 @@
 
 // Default Variables
 
-$slick-font-path: "./fonts/" !default;
+$slick-font-path: "/fonts/" !default;
 $slick-loader-path: "/img/" !default;
-$slick-arrow-color: white !default;
-$slick-dot-color: black !default;
-$slick-prev-character: '\2190' !default;
-$slick-next-character: '\2192' !default;
-$slick-dot-character: '\2022' !default;
+$slick-arrow-color: $colour-grey !default;
+$slick-dot-color: $colour-grey !default;
+$slick-prev-character: '\e805' !default;
+$slick-next-character: '\e804' !default;
+// $slick-dot-character: '\2022' !default;
 
 
 @function slick-image-url($url) {
@@ -146,17 +146,18 @@ $slick-dot-character: '\2022' !default;
 
 .slick-prev,
 .slick-next {
+    @include animate-prefixer(animation-duration, 2s);
     position: absolute;
     display: block;
-    height: 20px;
-    width: 20px;
+    height: 50px;
+    width: 30px;
     line-height: 0;
     font-size: 0;
     cursor: pointer;
     background: transparent;
     color: transparent;
     top: 50%;
-    margin-top: -10px;
+    margin-top: -25px;
     padding: 0;
     border: none;
     outline: none;
@@ -166,24 +167,35 @@ $slick-dot-character: '\2022' !default;
     &.slick-disabled:before {
         opacity: 0.25;
     }
+    &:hover:before {
+        opacity: 1;
+        color: $colour-accent-primary;
+    }
 }
 .slick-prev:before, .slick-next:before {
-    font-family:"slick";
-    font-size: 20px;
+    @include single-transition();
+    font-family: $font-icons;
+    font-size: 50px;
     line-height: 1;
     color: $slick-arrow-color;
-    opacity: 0.85;
+    opacity: 0.2;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    .slick-slider:hover & {
+        opacity: 0.6;
+    }
 }
 .slick-prev {
-    left: -25px;
+    left: 40px;
     &:before {
         content: $slick-prev-character;
     }
 }
 .slick-next {
-    right: -25px;
+    @include animate-prefixer(animation-name, shake);
+
+    right: 40px;
     &:before {
         content: $slick-next-character;
     }
@@ -196,18 +208,19 @@ $slick-dot-character: '\2022' !default;
 }
 .slick-dots {
     position: absolute;
-    bottom: -45px;
+    bottom: -30px;
     list-style: none;
     display: block;
     text-align: center;
     padding: 0px;
+    margin: 0;
     width: 100%;
 
     li {
         position: relative;
         display: inline-block;
-        height: 20px;
-        width: 20px;
+        height: 12px;
+        width: 12px;
         margin: 0px 5px;
         padding: 0px;
         cursor: pointer;
@@ -216,8 +229,8 @@ $slick-dot-character: '\2022' !default;
             border: 0;
             background: transparent;
             display: block;
-            height: 20px;
-            width: 20px;
+            height: 12px;
+            width: 12px;
             outline: 0;
             line-height: 0;
             font-size: 0;
@@ -232,14 +245,16 @@ $slick-dot-character: '\2022' !default;
                 position: absolute;
                 top: 0;
                 left: 0;
-                content: $slick-dot-character;
-                width: 20px;
-                height: 20px;
-                font-family:"slick";
-                font-size: 6px;
+                // content: $slick-dot-character;
+                content: '';
+                width: 12px;
+                height: 12px;
+                // font-family:"slick";
+                // font-size: 6px;
+                border-radius: 100%;
                 line-height: 20px;
                 text-align: center;
-                color: $slick-dot-color;
+                background-color: $slick-dot-color;
                 opacity: 0.25;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;

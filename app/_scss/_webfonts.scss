@@ -45,7 +45,7 @@
 // }
 
 @font-face {
-    font-family: 'icons-davidollerhead';
+    font-family: $font-icons;
     font-style: normal;
     font-weight: normal;
     src: url('/fonts/icons-davidollerhead.eot');
@@ -59,7 +59,7 @@
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
     display: inline-block;
-    font-family: 'icons-davidollerhead';
+    font-family: $font-icons;
     font-style: normal;
     font-variant: normal;
     font-weight: normal;
