@@ -1,0 +1,5 @@
+{% if bemModifier %}
+{% capture bemModifiedClass %}{{ bemBaseClass }}--{{ bemModifier }}{% endcapture %}
+{% else %}
+{% assign bemModifiedClass = '' %}
+{% endif %}

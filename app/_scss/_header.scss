@@ -162,38 +162,14 @@ $letter-size: 3rem;
 }
 
 .header__social {
-    @include grid-span(12);
-    margin: 2rem auto 0;
-    text-align: center;
+    display: none;
 
     @include breakpoint($breakpoint-small) {
         @include grid-span(24);
         bottom: 2rem;
+        display: block;
         margin: 0 auto;
         position: absolute;
-    }
-}
-
-.social__icons {
-    @include inline-list();
-    @include font-smoothing(on);
-
-    li {
-        margin-left: .5rem;
-
-        a {
-            @include single-transition();
-            color: $colour-grey;
-            text-decoration: none;
-
-            &:hover,
-            &:focus {
-                color: $colour-white-off;
-            }
-        }
-
-        &:first-child {
-            margin-left: 0;
-        }
+        text-align: center;
     }
 }

@@ -1,4 +1,7 @@
-<ul class="social__icons">
+{% assign bemBaseClass = 'social__icons' %}
+{% include bemmodifier.html %}
+
+<ul class="{{bemBaseClass}} {{bemModifiedClass}}">
     <li>
         <a class="icon-twitter" target="_blank" href="http://www.twitter.com/DavidOllerhead" title="Twitter">
             <span class="visuallyhidden">Twitter</span>
