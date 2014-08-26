@@ -7,5 +7,4 @@
 
 # TECHNOLOGY COLOPHON
 
-    HTML5, CSS3
-    Normalize.css, jQuery, Modernizr
+    Yeoman, Jekyll, Grunt, Singularity, SCSS, Normalize.css, jQuery, Modernizr
