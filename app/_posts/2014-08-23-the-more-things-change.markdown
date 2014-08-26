@@ -15,6 +15,6 @@ I could (and have been known to) bore people going into this in much greater dep
 
 I encountered a few problems along the way, which has given me some potential blog post topics.  In the meantime, I intend to continue to develop this and use it as a playground to implement new designs, patterns and technologies.
 
-Now, to get to work on the [PageSpeed score](https://developers.google.com/speed/pagespeed/insights/?url=davidollerhead.com)&hellip;
+Now, to get to work on the [PageSpeed score](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fdavidollerhead.com%2Fblog%2Findex.html&tab=desktop)&hellip;
 
 > Plus ça change, plus c'est la même chose
