@@ -11,8 +11,8 @@ navigation:
 
 <div class="about__intro">
     <img src="/img/about/avatar-snow-bw.jpg" class="about__photo round animated fadeInUp" title="Snowman buddy" alt="Profile Photo">
-    <p>A Senior Front-End Developer and Development Manager based in London. Over 10 years of experience developing &amp; managing across a range of industries and platforms.</p>
-    <p>Keen on continually developing by learning and developing with the best tools and frameworks to hand.</p>
+    <p>A Senior Front-End Developer based in London. Over 10 years of experience across a diverse range of businesses, from <abbr title="National Association of Securities Dealer Automated Quotation system">NASDAQ</abbr> &amp; <abbr title="Financial Times Stock Exchange">FTSE</abbr> listed multinationals to <abbr title="Venture Capital">VC</abbr> funded tech start-ups.</p>
+    <p>Commercially minded, with a passion for delivering fast, intuitive and beautiful interfaces to websites and applications, built to the latest web standards. </p>
 </div>
 
 <div class="highlight">
@@ -49,9 +49,8 @@ navigation:
             <li>Agile / Scrum</li>
             <li>PHP
                 <ul>
-                    <li>Zend Framework</li>
+                    <li>Zend</li>
                     <li>Symfony</li>
-                    <li>MVC</li>
                     <li>Wordpress</li>
                 </ul>
             </li>
@@ -72,10 +71,12 @@ navigation:
 
 I strongly believe you can build an application that goes beyond satisfying the business and user's requirements, and becomes a genuine pleasure to use and interact with.
 
-Excited with all aspects of open-source development. I enjoy contributing, and the collaborative aspects of working in a team environment.  Employing Agile methodologies to drive a delivery focused approach.
+Development is a team effort, and I enjoy the collaborative aspects of working in a team environment.  Employing Agile methodologies to drive a delivery focused approach.
 
-Outside of tinkering around in [Sublime][sublimeText], I love riding bikes, both [up and down hills][strava] to varying degrees of success.
+Excited with all aspects of open-source development. I enjoy actively participating and contributing to many projects on [github][github].
 
+Outside of tinkering around in [Sublime][sublime], I love riding bikes, both [up and down hills][strava] to varying degrees of success.
 
-[sublimeText]: http://www.sublimetext.com
+[github]: http://www.github.com/oller
+[sublime]: http://www.sublimetext.com
 [strava]: http://app.strava.com/athletes/707623
