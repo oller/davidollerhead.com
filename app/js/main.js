@@ -11,19 +11,20 @@
 
         gridFilter: function() {
             // Filter Porfolio Work Grid by 'area', specified by data-filter attribute
-            var activeClass = 'active';
+            var activeFilterClass = 'active';
+            var maskedClass = 'masked';
 
             $('.portfolio-grid__filter a').click(function(e) {
                 var $this = $(this);
-                $('.portfolio-grid__filter a').removeClass(activeClass);
-                $this.addClass(activeClass);
+                $('.portfolio-grid__filter a').removeClass(activeFilterClass);
+                $this.addClass(activeFilterClass);
                 var tag = $this.data('filter');
                 if (tag === 'all') {
-                    $('.portfolio-grid__work').removeClass('masked');
+                    $('.portfolio-grid__work').removeClass(maskedClass);
                 } else {
-                    var $matches = $('.portfolio-grid__work.' + 'tag-' + tag);
-                    $('.portfolio-grid__work').not($matches).addClass('masked');
-                    $matches.removeClass('masked');
+                    var $matches = $('.portfolio-grid__work[data-tags*="'+ tag +'"');
+                    $('.portfolio-grid__work').not($matches).addClass(maskedClass);
+                    $matches.removeClass(maskedClass);
                 }
                 e.preventDefault();
             });
@@ -44,10 +45,6 @@
                 var form = $(this);
                 var inputs = form.find('input, select, button, textarea');
                 var serializedData = form.serialize();
-
-                console.log(form);
-                console.log(inputs);
-                console.log(serializedData);
 
                 // Disable inputs during .post
                 inputs.prop('disabled', true);
