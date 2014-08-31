@@ -1,6 +1,10 @@
 // Homepage Styles
 //======================================
 
+.portfolio-grid {
+    @extend %clearfix;
+}
+
 .portfolio-grid__filters {
     display: none;
 
