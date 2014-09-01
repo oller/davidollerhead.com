@@ -22,7 +22,7 @@
                 if (tag === 'all') {
                     $('.portfolio-grid__work').removeClass(maskedClass);
                 } else {
-                    var $matches = $('.portfolio-grid__work[data-tags*="'+ tag +'"');
+                    var $matches = $('.portfolio-grid__work[data-tags~="'+ tag +'"');
                     $('.portfolio-grid__work').not($matches).addClass(maskedClass);
                     $matches.removeClass(maskedClass);
                 }
