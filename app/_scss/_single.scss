@@ -9,6 +9,9 @@
 }
 
 .about__photo {
+    @include animate-prefixer(animation-name, fadeInUp);
+    @include animate-prefixer(animation-duration, $base-duration);
+
     display: block;
     margin: 0 auto 1rem;
 
