@@ -51,7 +51,6 @@
 }
 
 .portfolio-grid__work {
-    @include single-transition();
     @include float-span(1, $grid: 2, $gutter: 0);
 
     @include breakpoint($breakpoint-medium) {
@@ -66,7 +65,26 @@
         @include float-span(1, $grid: 5, $gutter: 0);
     }
 
+    // Stagger into animation
+    @include animate-prefixer(animation-name, zoomIn);
+    @include animate-prefixer(animation-duration, $base-duration / 2);
+    @include animate-prefixer(animation-fill-mode, both);
+    @for $i from 1 through 20 {
+        $delay: 1s * ($i/20);
+        &:nth-child(#{$i}) {
+            @include animate-prefixer(animation-delay, $delay);
+        }
+    }
+
+    // Masked Toggling - To be tidied Up!
     &.masked {
-        opacity: .1;
+        .portfolio-grid__thumb {
+            opacity: .1;
+        }
+    }
+
+    .portfolio-grid__thumb {
+        @include single-transition();
     }
 }
+

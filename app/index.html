@@ -15,7 +15,7 @@ navigation:
 	</div>
 	{% for post in site.categories.work %}
 		<div class="portfolio-grid__work" data-tags="{% for tag in post.tags %}{{ tag | downcase }} {% endfor %}">
-			<figure>
+			<figure class="portfolio-grid__thumb">
 				<a href="{{ post.url }}" title="{{ post.title }}">
 					<img src="{{ post.thumb }}">
 				</a>
