@@ -12,8 +12,8 @@
 
 .nav {
     @include breakpoint($breakpoint-small) {
-        position: absolute;
         left: 1rem;
+        position: absolute;
         right: 1rem;
         top: 6rem;
     }

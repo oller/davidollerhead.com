@@ -21,10 +21,10 @@ body {
 
     @include breakpoint($breakpoint-small) {
         @include grid-span(6);
+        bottom: 0;
+        left: 0;
         position: fixed;
         top: 0;
-        left: 0;
-        bottom: 0;
     }
 
     @include breakpoint($breakpoint-medium) {
