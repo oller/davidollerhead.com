@@ -46,7 +46,7 @@ $hinge-translate                : 700px !default;
 //==================================================================================================//
 
 // Fade Enter
-$use-fadeIn             :   false !default;
+$use-fadeIn             :   true !default;
 $use-fadeInUp           :   true !default;
 $use-fadeInUpBig        :   false !default;
 $use-fadeInDown         :   false !default;
@@ -133,7 +133,7 @@ $use-rollOut            :   false !default;
 
 
 // Zoom In
-$use-zoomIn             :   true !default;
+$use-zoomIn             :   false !default;
 $use-zoomInDown         :   false !default;
 $use-zoomInLeft         :   false !default;
 $use-zoomInRight        :   false !default;
