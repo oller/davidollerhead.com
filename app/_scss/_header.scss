@@ -119,12 +119,12 @@ $letter-size: 3rem;
         margin-bottom: .6em;
 
         &.active a {
-            background-color: rgba($colour-black,.15);
+            background-color: rgba($colour-black, .15);
             color: $colour-white-off;
 
             &:hover,
             &:focus {
-                background-color: rgba($colour-black,.15);
+                background-color: rgba($colour-black, .15);
                 color: $colour-white-off;
             }
         }
@@ -141,13 +141,13 @@ $letter-size: 3rem;
             &:hover,
             &:focus {
                 // On hover
-                background-color: rgba($colour-black,.05);
+                background-color: rgba($colour-black, .05);
                 color: $colour-grey;
             }
 
             &:active {
                 // On key down
-                background-color: rgba($colour-black,.1);
+                background-color: rgba($colour-black, .1);
                 color: lighten($colour-grey, 20%);
             }
         }

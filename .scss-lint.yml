@@ -4,5 +4,6 @@ linters:
     character: space # or 'tab'
     width: 4
 
-  DuplicateProperty:
-    enabled: false
+  SelectorFormat:
+    enabled: true
+    convention: BEM
