@@ -24,7 +24,7 @@ Fully vector and prepared for HiDPI devices.  The widget source includes base64 
 
 Designed to be embedded with the minimum footprint, the widget can be embedded with 2 lines code:
 
-{% highlight js %}
+{% highlight html %}
 <div id="bitcoin-widget" data-size="mpu" data-align="center"></div>
 <script type="text/javascript" src="/path/to/bitcoin-widget.min.js"></script>
 {% endhighlight %}
