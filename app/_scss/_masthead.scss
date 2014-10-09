@@ -21,7 +21,7 @@
 }
 
 .masthead--bg {
-    background: url('/img/backgroundFill.jpg') no-repeat bottom center fixed;
-    background-size: cover;
-    padding: 4rem 0;
+    background: #eee;
+    background-image: radial-gradient(closest-corner, rgba(8, 8, 8, 0) 60%, rgba(8, 8, 8, 0.15)), linear-gradient(315deg, #ddd 10%, #fff 90%);
+    padding: 5rem 0;
 }

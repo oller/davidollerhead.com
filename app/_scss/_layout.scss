@@ -67,7 +67,7 @@ body {
 
 .content {
     @include grid-span(22, 2);
-    padding: 3rem 0 6rem;
+    padding: 2rem 0 6rem;
 
     .masthead + & {
         padding-top: 0;
