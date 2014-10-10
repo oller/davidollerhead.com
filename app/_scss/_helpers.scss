@@ -15,10 +15,16 @@ figure {
     margin: 0;
 }
 
+// Appearance Modifiers
 .round {
-    border-radius: 1000px;
+    border-radius: 100%;
 }
 
+.drop-shadow {
+    box-shadow: 0 18px 30px rgba($colour-black, .2), 0 4px 10px rgba($colour-black, .5);
+}
+
+// Selection Styles
 ::selection {
     background: $colour-accent-primary;
     color: $colour-white;
