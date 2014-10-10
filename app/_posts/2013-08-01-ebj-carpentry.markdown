@@ -11,6 +11,7 @@ masthead:
      alt: Logo Design for EBJ Capentry
 ---
 
-Brand Identity, Logo and Wordpress Theme developed for EBJ Carpentry, a friend's startup Carpentry Services company operating in South West London.
+Brand Identity, Logo and Wordpress Theme developed for EBJ Carpentry, a
+friend's startup Carpentry Services company operating in South West London.
 
 [ebj]: http://www.ebjcarpentry.com/

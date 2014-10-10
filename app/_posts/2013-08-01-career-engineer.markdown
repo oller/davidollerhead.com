@@ -11,4 +11,5 @@ masthead:
      alt: Career Engineer Logo
 ---
 
-Brand Identity & Logo for The Career Engineer, a job site specific to the engineering industry.
+Brand Identity & Logo for The Career Engineer, a job site specific to the
+engineering industry.

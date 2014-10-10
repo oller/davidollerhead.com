@@ -12,7 +12,8 @@ masthead:
    - image: /img/work/book-covers/book-cover3.jpg
 ---
 
-A series of book covers created for [Wiley Publishing][wiley-publishing] for their Academic division.
+A series of book covers created for [Wiley Publishing][wiley-publishing] for
+their Academic division.
 
 
 [wiley-publishing]: http://eu.wiley.com/

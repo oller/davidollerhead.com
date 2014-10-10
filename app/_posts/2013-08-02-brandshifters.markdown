@@ -11,4 +11,5 @@ masthead:
    - image: /img/work/brandshifters/logo-brandshifters.jpg
 ---
 
-Brand Identity and Logo and Site for Brandshifters, a start-up clearance e-retailer.
+Brand Identity and Logo and Site for Brandshifters, a start-up clearance
+e-retailer.

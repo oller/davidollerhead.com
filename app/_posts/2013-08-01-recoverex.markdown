@@ -13,4 +13,7 @@ masthead:
 
 Brand Identity, Logo and Wordpress Theme developed for Recoverex Ltd.
 
-Recoverex Ltd is a privately backed e-commerce group which owns the innovative online B2B marketplace Stockshifters.com, the industry's leading online community The Wholesale Forums and Brandshifters, a start-up clearance e-retailer.
+Recoverex Ltd is a privately backed e-commerce group which owns the innovative
+online B2B marketplace Stockshifters.com, the industry's leading online
+community The Wholesale Forums and Brandshifters, a start-up clearance
+e-retailer.
