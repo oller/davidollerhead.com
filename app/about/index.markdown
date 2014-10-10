@@ -28,7 +28,7 @@ navigation:
                 <ul>
                     <li>jQuery</li>
                     <li><abbr title="Object-Oriented">OO</abbr> Techniques</li>
-                    <li>Angular</li>
+                    <li>AngularJS</li>
                     <li>Grunt / Gulp</li>
                     <li>Backbone &amp; Underscore</li>
                     <li>RequireJS</li>
