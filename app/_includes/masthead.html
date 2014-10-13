@@ -9,11 +9,6 @@
                 <img src="{{ image.image }}" alt="{{ image.alt }}">
             </div>
         {% endfor %}
-
-        {% if page.caption %}
-            <figcaption class="">{{ page.caption }}</figcaption>
-        {% endif %}
-
     {% endif %}
 
 {% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
@@ -32,6 +27,11 @@
         <div class="masthead--bg">
             {{ page.masthead.raw }}
         </div>
+    {% endif %}
+
+{% comment %} Show caption {% endcomment %}
+    {% if page.masthead.caption %}
+        <figcaption class="masthead__caption">{{ page.masthead.caption }}</figcaption>
     {% endif %}
 
 </figure>

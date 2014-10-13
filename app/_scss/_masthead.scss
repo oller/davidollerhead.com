@@ -20,6 +20,16 @@
     }
 }
 
+.masthead__caption {
+    background-color: $colour-grey;
+    bottom: 0;
+    color: $colour-white-off;
+    font-family: $font-monospace;
+    font-size: .8rem;
+    padding: .2rem .5rem;
+    text-align: right;
+}
+
 .masthead--bg {
     background: #eee;
     background-image: radial-gradient(closest-corner, rgba(8, 8, 8, 0) 60%, rgba(8, 8, 8, .15)), linear-gradient(315deg, #ddd 10%, #fff 90%);
