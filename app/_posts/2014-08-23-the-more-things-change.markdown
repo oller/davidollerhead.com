@@ -22,8 +22,8 @@ I encountered a few problems along the way, which has given me some potential
 blog post topics.  In the meantime, I intend to continue to develop this and
 use it as a playground to implement new designs, patterns and technologies.
 
-Now, to get to work on the [PageSpeed score](https://developers.google.com/spe
-ed/pagespeed/insights/?url=http%3A%2F%2Fdavidollerhead.com%2Fblog%2Findex.html
-&tab=desktop)&hellip;
+Now, to get to work on the [PageSpeed score][pagespeed]&hellip;
 
 > Plus ça change, plus c'est la même chose
+
+[pagespeed]: https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fdavidollerhead.com%2Fblog%2Findex.html&tab=desktop
