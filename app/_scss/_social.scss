@@ -13,12 +13,13 @@
             border-bottom: 0;
             color: $colour-grey;
             text-decoration: none;
+
+            &:hover,
+            &:focus {
+                color: $colour-white-off;
+            }
         }
 
-        &:hover,
-        &:focus {
-            color: $colour-white-off;
-        }
 
         &:first-child {
             margin-left: 0;
