@@ -9,6 +9,9 @@ $slick-dot-color: $colour-grey !default;
 $slick-prev-character: '\e805' !default;
 $slick-next-character: '\e804' !default;
 // $slick-dot-character: '\2022' !default;
+$slick-opacity-default: .75 !default;
+$slick-opacity-on-hover: 1 !default;
+$slick-opacity-not-active: .25 !default;
 
 
 @function slick-image-url($url) {
@@ -42,8 +45,8 @@ $slick-next-character: '\e804' !default;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -ms-touch-action: none;
-    touch-action: none;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .slick-list {
@@ -66,22 +69,19 @@ $slick-next-character: '\e804' !default;
         cursor: hand;
     }
 }
-.slick-slider .slick-list,
-.slick-track,
-.slick-slide,
-.slick-slide img {
+.slick-slider .slick-track {
     -webkit-transform: translate3d(0, 0, 0);
     -moz-transform: translate3d(0, 0, 0);
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+
 .slick-track {
     position: relative;
     left: 0;
     top: 0;
     display: block;
-    zoom: 1;
 
     &:before,
     &:after {
@@ -165,10 +165,10 @@ $slick-next-character: '\e804' !default;
         outline: none;
     }
     &.slick-disabled:before {
-        opacity: 0.25;
+        opacity: $slick-opacity-not-active;
     }
     &:hover:before {
-        opacity: 1;
+        opacity: $slick-opacity-on-hover;
         color: $colour-accent-primary;
     }
 }
@@ -178,12 +178,12 @@ $slick-next-character: '\e804' !default;
     font-size: 50px;
     line-height: 1;
     color: $slick-arrow-color;
-    opacity: 0.2;
+    opacity: $slick-opacity-not-active;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
     .slick-slider:hover & {
-        opacity: 0.6;
+        opacity: $slick-opacity-default;
     }
 }
 .slick-prev {
@@ -194,7 +194,6 @@ $slick-next-character: '\e804' !default;
 }
 .slick-next {
     @include animate-prefixer(animation-name, shake);
-
     right: 40px;
     &:before {
         content: $slick-next-character;
@@ -255,7 +254,7 @@ $slick-next-character: '\e804' !default;
                 line-height: 20px;
                 text-align: center;
                 background-color: $slick-dot-color;
-                opacity: 0.25;
+                opacity: $slick-opacity-not-active;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
             }
@@ -263,7 +262,7 @@ $slick-next-character: '\e804' !default;
         }
 
         &.slick-active button:before {
-            opacity: 0.75;
+            opacity: $slick-opacity-default;
         }
     }
 }
