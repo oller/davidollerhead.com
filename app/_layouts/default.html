@@ -41,16 +41,29 @@
 
 
     $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-     -->
+    -->
 
-    <!-- build:css({app,.tmp}) /css/main.css -->
-    <link rel="stylesheet" href="/_bower_components/normalize-css/normalize.css">
-    <link rel="stylesheet" href="/_bower_components/html5-boilerplate/css/main.css">
-    <link rel="stylesheet" href="/css/styles.css">
-    <!-- endbuild -->
+    <!--[if (gte IE 9)|(IEMobile)]><!-->
+        <!-- build:css({app,.tmp}) /css/main.css -->
+        <link rel="stylesheet" href="/_bower_components/normalize-css/normalize.css">
+        <link rel="stylesheet" href="/_bower_components/html5-boilerplate/css/main.css">
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- endbuild -->
+    <!--<![endif]-->
+
+    <!--[if (lte IE 8)&(!IEMobile)]>
+        <!-- build:css /css/main.ie8.css --><!-- endbuild -->
+    <![endif]-->
 
     <!-- Humans.txt : http://humanstxt.org/ -->
     <link type="text/plain" rel="author" href="/humans.txt" />
+
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <!-- build:js(app) /js/ie-polyfills.js -->
+        <script src="/_bower_components/rem-unit-polyfill/js/rem.js"></script>
+        <!-- endbuild -->
+    <![endif]-->
 
     {% include favicons.html %}
 

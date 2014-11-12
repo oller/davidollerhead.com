@@ -260,7 +260,9 @@ module.exports = function(grunt) {
                         // Explicitly add any files your site needs for distribution here.
                         '_bower_components/jquery/jquery.js',
                         'favicon.ico',
-                        'apple-touch*.png'
+                        'favicon*.png',
+                        'apple-touch*.png',
+                        'mstile*.png'
                     ],
                     dest: '<%= davidollerhead.dist %>'
                 }]
@@ -323,6 +325,21 @@ module.exports = function(grunt) {
                 colorizeOutput: true
             }
         },
+        stripmq: {
+            options: {
+                width: 1200,
+                type: 'screen'
+            },
+            all: {
+                files: [{
+                    expand: true,
+                    cwd: '<%= davidollerhead.dist %>/css',
+                    src: '*.css',
+                    dest: '<%= davidollerhead.dist %>/css',
+                    ext: '.ie8.css'
+                }]
+            }
+        },
         concurrent: {
             server: [
                 'sass:server',
@@ -378,7 +395,7 @@ module.exports = function(grunt) {
         'jekyll:check',
         'sass:server',
         'jshint:all',
-        'csslint:check',
+        // 'csslint:check',
         'scsslint'
     ]);
 
@@ -394,6 +411,7 @@ module.exports = function(grunt) {
         'uglify',
         'imagemin',
         'svgmin',
+        'stripmq',
         'filerev',
         'usemin',
         'htmlmin'
