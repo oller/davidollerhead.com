@@ -11,20 +11,21 @@
 
         gridFilter: function() {
             // Filter Porfolio Work Grid by 'area', specified by data-filter attribute
-            var activeFilterClass = 'active';
-            var maskedClass = 'masked';
+            var classActive = 'active';
+            var classMasked = 'masked';
+            var elPortfolioWork = $('.portfolio-grid__work');
 
-            $('.portfolio-grid__filter a').click(function(e) {
-                var $this = $(this);
-                $('.portfolio-grid__filter a').removeClass(activeFilterClass);
-                $this.addClass(activeFilterClass);
-                var tag = $this.data('filter');
+            $('.portfolio-grid__filter').on('click', 'a', function(e) {
+                var clicked = $(this);
+                clicked.addClass(classActive);
+                clicked.parent().siblings().children('a').removeClass(classActive);
+                var tag = clicked.data('filter');
                 if (tag === 'all') {
-                    $('.portfolio-grid__work').removeClass(maskedClass);
+                    elPortfolioWork.removeClass(classMasked);
                 } else {
                     var $matches = $('.portfolio-grid__work[data-tags~="'+ tag +'"]');
-                    $('.portfolio-grid__work').not($matches).addClass(maskedClass);
-                    $matches.removeClass(maskedClass);
+                    elPortfolioWork.not($matches).addClass(classMasked);
+                    $matches.removeClass(classMasked);
                 }
                 e.preventDefault();
             });
