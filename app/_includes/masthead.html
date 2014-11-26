@@ -11,6 +11,13 @@
         {% endfor %}
     {% endif %}
 
+{% comment %} Full Screen Hero image {% endcomment %}
+    {% if page.masthead.hero %}
+        {% for image in page.masthead.hero %}
+            <div class="masthead__hero" style="background-image: url({{ image.image }})"></div>
+        {% endfor %}
+    {% endif %}
+
 {% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
     {% if page.masthead.carousel %}
         <div class="carousel">

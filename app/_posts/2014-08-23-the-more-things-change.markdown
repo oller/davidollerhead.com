@@ -4,9 +4,8 @@ title:  "The more things change, the more things stay exactly the same"
 date:   2014-08-23 19:17:00
 categories: blog
 masthead:
-  gallery:
+  hero:
    - image: /img/posts/2014-08-23_lake.jpg
-     alt: A tranquil lake
 ---
 
 I've just finished a complete refactor of this site, you'd have barely noticed
