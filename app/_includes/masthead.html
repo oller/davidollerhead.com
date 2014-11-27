@@ -14,7 +14,7 @@
 {% comment %} Full Screen Hero image {% endcomment %}
     {% if page.masthead.hero %}
         {% for image in page.masthead.hero %}
-            <div class="masthead__hero" style="background-image: url({{ image.image }})"></div>
+            <div class="masthead__hero" style="background-image: url('{{ image.image }}')"></div>
         {% endfor %}
     {% endif %}
 

@@ -17,7 +17,7 @@
                     <li{% if node.url == page.url %} class="active" {% endif %}>
                         <a href="{{ node.url }}">
                             {{ node.navigation.title }}
-                            <!-- <span><small>{{ node.navigation.weight }}</small></span> -->
+                            {% comment %}{{ node.navigation.weight }}{% endcomment %}
                         </a>
                     </li>
                 {% endif %}
