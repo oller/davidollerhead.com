@@ -17,7 +17,7 @@ navigation:
 		<div class="portfolio-grid__work" data-tags="{% for tag in post.tags %}{{ tag | downcase }} {% endfor %}">
 			<figure class="portfolio-grid__thumb">
 				<a href="{{ post.url }}" title="{{ post.title }}">
-					<img src="{{ post.thumb }}">
+					<img src="{{ post.thumb }}" alt="{{ post.title }}">
 				</a>
 <!-- 				<figcaption>
 					<h3><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></h3>
