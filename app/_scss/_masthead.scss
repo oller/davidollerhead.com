@@ -22,7 +22,7 @@
 
 .masthead__hero {
     @extend %bg--cover;
-    height: 60vh;
+    height: 60rem;
 
     @include breakpoint($breakpoint-small) {
         height: 100vh;
