@@ -12,7 +12,7 @@ navigation:
 <div class="about__intro">
     <img src="/img/about/avatar-snow-bw.jpg" class="about__photo round" title="Snowman buddy" alt="Profile Photo">
     <p>A Senior Front-End Developer based in London. Over 10 years of experience across a diverse range of businesses, from <abbr title="National Association of Securities Dealer Automated Quotation system">NASDAQ</abbr> &amp; <abbr title="Financial Times Stock Exchange">FTSE</abbr> listed multinationals to <abbr title="Venture Capital">VC</abbr> funded tech start-ups.</p>
-    <p>Commercially minded, with a passion for delivering fast, intuitive and beautiful interfaces, built to the latest web standards. </p>
+    <p>Commercially minded, with a passion for delivering fast, intuitive and beautiful interfaces, built to the latest web standards and best practices.</p>
 </div>
 
 <div class="highlight">
@@ -26,8 +26,8 @@ navigation:
             </li>
             <li>JavaScript
                 <ul>
-                    <li>jQuery</li>
                     <li><abbr title="Object-Oriented">OO</abbr> Techniques</li>
+                    <li>jQuery</li>
                     <li>AngularJS</li>
                     <li>Grunt / Gulp</li>
                     <li>Backbone &amp; Underscore</li>
