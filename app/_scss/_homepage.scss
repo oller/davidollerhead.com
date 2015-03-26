@@ -38,15 +38,23 @@
             background-color: rgba($colour-grey-dark, .2);
             color: $colour-grey-dark;
         }
-
-        &.active {
-            background-color: $colour-accent-primary;
-            color: $colour-white;
-        }
     }
 
     &:first-child {
         margin-left: 0;
+    }
+}
+
+.portfolio-grid__filter--active {
+    a {
+        background-color: $colour-accent-primary;
+        color: $colour-white;
+
+        &:hover,
+        &:focus {
+            background-color: $colour-accent-primary;
+            color: $colour-white;
+        }
     }
 }
 
@@ -79,14 +87,13 @@
             @include animate-prefixer(animation-delay, $delay);
         }
     }
+}
 
-    .portfolio-grid__thumb {
-        @include single-transition();
-        @at-root {
-            .masked#{&} {
-                opacity: .1;
-            }
+.portfolio-grid__thumb {
+    @include single-transition();
+    @at-root {
+        .portfolio-grid__work--masked #{&} {
+            opacity: .2;
         }
     }
 }
-

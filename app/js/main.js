@@ -11,14 +11,13 @@
 
         gridFilter: function() {
             // Filter Porfolio Work Grid by 'area', specified by data-filter attribute
-            var classActive = 'active';
-            var classMasked = 'masked';
+            var classActive = 'portfolio-grid__filter--active';
+            var classMasked = 'portfolio-grid__work--masked';
             var elPortfolioWork = $('.portfolio-grid__work');
 
-            $('.portfolio-grid__filter').on('click', 'a', function(e) {
+            $('.portfolio-grid__filters').on('click', '.portfolio-grid__filter', function(e) {
                 var clicked = $(this);
-                clicked.addClass(classActive);
-                clicked.parent().siblings().children('a').removeClass(classActive);
+                clicked.addClass(classActive).siblings().removeClass(classActive);
                 var tag = clicked.data('filter');
                 if (tag === 'all') {
                     elPortfolioWork.removeClass(classMasked);
