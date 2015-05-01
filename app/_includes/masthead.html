@@ -20,7 +20,7 @@
 
 {% comment %} Dynamically create a slick-powered carousel for as many images as provided {% endcomment %}
     {% if page.masthead.carousel %}
-        <div class="carousel">
+        <div class="js-carousel" data-slick="{'arrows': true, 'dots': true, 'fade': true, lazyLoad: 'ondemand'}">
             {% for slide in page.masthead.carousel %}
             <div>
                 <img data-lazy="{{ slide.image }}" alt="{{ slide.alt }}" title="{{ slide.alt }}">
