@@ -223,7 +223,8 @@ module.exports = function(grunt) {
         imagemin: {
             dist: {
                 options: {
-                    progressive: true
+                    progressive: true,
+                    optimizationLevel: 2
                 },
                 files: [{
                     expand: true,
@@ -258,7 +259,8 @@ module.exports = function(grunt) {
                         // Like Jekyll, exclude files & folders prefixed with an underscore.
                         '!**/_*{,/**}',
                         // Explicitly add any files your site needs for distribution here.
-                        '_bower_components/jquery/jquery.js',
+                        '_bower_components/jquery/jquery.min.js',
+                        '_bower_components/lazysizes/lazysizes.min.js',
                         'favicon.ico',
                         'favicon*.png',
                         'apple-touch*.png',
@@ -287,8 +289,8 @@ module.exports = function(grunt) {
                     src: [
                         '<%= davidollerhead.dist %>/js/**/*.js',
                         '<%= davidollerhead.dist %>/css/**/*.css',
-                        '<%= davidollerhead.dist %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
-                        '<%= davidollerhead.dist %>/fonts/**/*.{eot*,otf,svg,ttf,woff}'
+                        //'<%= davidollerhead.dist %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
+                        '<%= davidollerhead.dist %>/fonts/**/*.{eot*,otf,svg,ttf,woff,woff2}'
                     ]
                 }]
             }
@@ -304,16 +306,16 @@ module.exports = function(grunt) {
                 'test/spec/**/*.js'
             ]
         },
-        csslint: {
-            options: {
-                csslintrc: '.csslintrc'
-            },
-            check: {
-                src: [
-                    '<%= davidollerhead.app %>/css/**/*.css',
-                ]
-            }
-        },
+        // csslint: {
+            // options: {
+                // csslintrc: '.csslintrc'
+            // },
+            // check: {
+                // src: [
+                    // '<%= davidollerhead.dist %>/css/**/*.css',
+                // ]
+            // }
+        // },
         scsslint: {
             allFiles: [
                 '<%= davidollerhead.app %>/_scss/**/*.scss',
@@ -350,6 +352,30 @@ module.exports = function(grunt) {
                 'sass:dist',
                 'copy:dist'
             ]
+        },
+        responsive_images: {
+            resize: {
+                options: {
+                    engine: 'gm',
+                    upscale: false,
+                    newFilesOnly: true,
+                    sizes: [
+                        // { name: 'lq', width: '100%', quality: 20 }, // Low Quality Placeholder
+                        { name: 'xs', width: 200 },
+                        { name: 'sm', width: 400 },
+                        { name: 'md', width: 800 },
+                        { name: 'lg', width: 1200 }
+                    ]
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= davidollerhead.app %>/img',
+                    src: [
+                        '{about,posts,work}/**/*.{jpg,gif,png}'
+                    ],
+                    dest: '<%= davidollerhead.dist %>/img'
+                }]
+            }
         },
         parker: {
             options: {
@@ -418,6 +444,7 @@ module.exports = function(grunt) {
         'autoprefixer:dist',
         'cssmin',
         'uglify',
+        'responsive_images',
         'imagemin',
         'svgmin',
         'parker',
@@ -425,6 +452,10 @@ module.exports = function(grunt) {
         'filerev',
         'usemin',
         'htmlmin'
+    ]);
+
+    grunt.registerTask('images', [
+        'responsive_images'
     ]);
 
     grunt.registerTask('deploy', [

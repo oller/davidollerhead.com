@@ -4,7 +4,7 @@
 ### dist/css/main.css
 
 - **Total Stylesheets:** 1
-- **Total Stylesheet Size:** 23715
+- **Total Stylesheet Size:** 23904
 - **Total Media Queries:** 5
 - **Media Queries:**
 	- print
@@ -12,16 +12,16 @@
 	- (min-width:1024px)
 	- (min-width:1400px)
 	- (min-width:1800px)
-- **Total Rules:** 300
-- **Selectors Per Rule:** 1.5333333333333334
-- **Total Selectors:** 460
-- **Identifiers Per Selector:** 1.65
-- **Specificity Per Selector:** 11.493478260869566
+- **Total Rules:** 303
+- **Selectors Per Rule:** 1.528052805280528
+- **Total Selectors:** 463
+- **Identifiers Per Selector:** 1.6457883369330453
+- **Specificity Per Selector:** 11.503239740820735
 - **Top Selector Specificity:** 40
 - **Top Selector Specificity Selector:** .slick-slider:hover .slick-next:before
 - **Total Id Selectors:** 1
-- **Total Identifiers:** 759
-- **Total Declarations:** 771
+- **Total Identifiers:** 762
+- **Total Declarations:** 781
 - **Total Unique Colors:** 33
 - **Unique Colors:**
 	- `#FFFF00`
@@ -62,4 +62,4 @@
 
 * * *
 
-Last generated: Mon Jun 15 2015 12:31:29 by [grunt-parker](https://github.com/leny/grunt-parker).
+Last generated: Mon Jun 15 2015 17:32:31 by [grunt-parker](https://github.com/leny/grunt-parker).

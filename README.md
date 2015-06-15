@@ -6,9 +6,17 @@ Rebuilt using [Yeoman](http://wwwy.yeoman.io) and the excellent [Jekyll-rb gener
 
 ## Get going
 
-First, let's all install all the dependencies
+First off, we're going to need the following installed:
+
+- [brew](http://brew.sh/)
+- [bundler](http://bundler.io/)
+- [node](http://nodejs.org/)
+- [bower](http://bower.io/)
+
+Now, we can install all the dependencies.
 
 ```bash
+brew install GraphicsMagick
 bundle install
 npm install
 bower install
@@ -48,6 +56,6 @@ A task that uploads the content of the dist directory to the ftp details specifi
 - Navigation Weighting / Sorting
 - ~~Lazy Load Carousel~~
 - ~~Carousel Prev / Next icons~~
-- Picturefill Responsive Image Polyfill
+- ~~Responsive Images~~
 - ~~Contact Form Submission~~
 - ~~Profile Image Position~~

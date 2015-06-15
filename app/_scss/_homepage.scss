@@ -72,28 +72,34 @@
     @include breakpoint($breakpoint-xlarge) {
         @include float-span(1, $grid: 5, $gutter: 0);
     }
-
-    // Stagger intro animation
-    @include animate-prefixer(animation-name, fadeIn);
-    @include animate-prefixer(animation-duration, $base-duration);
-    @include animate-prefixer(animation-fill-mode, both);
-
-    $portfolio-count: 20;
-
-    @for $i from 1 through $portfolio-count {
-        $delay: 2s * ($i/$portfolio-count);
-
-        &:nth-child(#{$i}) {
-            @include animate-prefixer(animation-delay, $delay);
-        }
-    }
 }
 
 .portfolio-grid__thumb {
     @include single-transition();
+    position: relative;
+
     @at-root {
         .portfolio-grid__work--masked #{&} {
             opacity: .2;
         }
     }
+
+    &:before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+    }
+}
+
+.portfolio-grid__link {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.portfolio-grid__img {
+    height: 100%;
+    width: 100%;
 }
