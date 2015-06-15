@@ -24,3 +24,6 @@ markdown: redcarpet
 #   extensions: ['fenced_code_blocks', 'smart']
 
 pygments: true
+
+# We are in dev environment
+production: false
