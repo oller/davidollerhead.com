@@ -351,6 +351,15 @@ module.exports = function(grunt) {
                 'copy:dist'
             ]
         },
+        parker: {
+            options: {
+                file: '<%= davidollerhead.app %>/CSSReport.md',
+                colophon: true
+            },
+            src : [
+                '<%= davidollerhead.dist %>/css/main.css'
+            ]
+        },
         'ftp-deploy': {
             prod: {
                 auth: {
@@ -411,6 +420,7 @@ module.exports = function(grunt) {
         'uglify',
         'imagemin',
         'svgmin',
+        'parker',
         'stripmq',
         'filerev',
         'usemin',
