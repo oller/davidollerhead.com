@@ -1,28 +1,26 @@
 <script>
-    window.lazySizesConfig = window.lazySizesConfig || {};
-    window.lazySizesConfig.rias = window.lazySizesConfig.rias || {};
-    window.lazySizesConfig.rias.widths = [200,400, 800, 1200];
-    window.lazySizesConfig.rias.widthmap = {
-        200: 'xs',
-        400: 'sm',
-        800: 'md',
-        1200: 'lg'
-    };
+window.lazySizesConfig = window.lazySizesConfig || {};
+window.lazySizesConfig.rias = window.lazySizesConfig.rias || {};
+window.lazySizesConfig.rias.widths = [200, 400, 800, 1200];
+window.lazySizesConfig.rias.widthmap = {
+    200: 'xs',
+    400: 'sm',
+    800: 'md',
+    1200: 'lg'
+};
 </script>
 <!-- CDN Hosted Libs with local Fallbacks-->
-<!-- <script src="http://cdn.jsdelivr.net/g/lazysizes(lazysizes.min.js+plugins/rias/ls.rias.min.js+plugins/aspectratio/ls.aspectratio.min.js)" async></script> -->
 <script src="http://cdn.jsdelivr.net/g/lazysizes(lazysizes.min.js+plugins/rias/ls.rias.min.js)" async></script>
-<!-- <script>window.lazySizes || document.write('<script src="/_bower_components/lazysizes/lazysizes.min.js"><\/script>')</script> -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/_bower_components/jquery/jquery.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="/_bower_components/jquery/jquery.min.js"><\/script>');</script>
 
 {% if page.masthead.carousel %}
-    <script src="//cdn.jsdelivr.net/jquery.slick/1.5.2/slick.min.js"></script>
-    <script>
-        $(function() {
-            $('.js-carousel').slick();
-        });
-    </script>
+<script src="//cdn.jsdelivr.net/jquery.slick/1.5.2/slick.min.js"></script>
+<script>
+    $(function () {
+        $('.js-carousel').slick();
+    });
+</script>
 {% endif %}
 
 <!-- build:js(app) /js/script.js -->

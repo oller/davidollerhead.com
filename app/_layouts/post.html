@@ -17,10 +17,9 @@ layout: default
 
 	{{ content }}
 
-{% comment %} Blog, show comments {% endcomment %}
+    {% comment %} Blog, show comments {% endcomment %}
 	{% if page.categories contains 'blog' %}
 		{% include disqus.html %}
 	{% endif %}
-
 
 </article>

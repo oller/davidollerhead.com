@@ -16,10 +16,10 @@ navigation:
 	</div>
 	{% for post in site.categories.work %}
         {% if site.production %}
-            {% assign thumbnail = post.thumb | split: '.' %}
-            {% assign thumbnailPath = thumbnail | first %}
-            {% assign thumbnailFormat = thumbnail | last  %}
-            {% capture imagePath %}{{ thumbnailPath }}-{width}.{{ thumbnailFormat }}{% endcapture %}
+            {% assign thumb = post.thumb | split: '.' %}
+            {% assign thumbPath = thumb | first %}
+            {% assign thumbFormat = thumb | last  %}
+            {% capture imagePath %}{{ thumbPath }}-{width}.{{ thumbFormat }}{% endcapture %}
         {% else %}
             {% capture imagePath %}{{ post.thumb }}{% endcapture %}
         {% endif %}

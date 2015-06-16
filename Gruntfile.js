@@ -7,6 +7,8 @@
 //   images: img
 //   fonts: fonts
 
+var ngrok = require('ngrok');
+
 module.exports = function(grunt) {
     // Show elapsed time after tasks run
     require('time-grunt')(grunt);
@@ -306,16 +308,6 @@ module.exports = function(grunt) {
                 'test/spec/**/*.js'
             ]
         },
-        // csslint: {
-            // options: {
-                // csslintrc: '.csslintrc'
-            // },
-            // check: {
-                // src: [
-                    // '<%= davidollerhead.dist %>/css/**/*.css',
-                // ]
-            // }
-        // },
         scsslint: {
             allFiles: [
                 '<%= davidollerhead.app %>/_scss/**/*.scss',
@@ -386,6 +378,23 @@ module.exports = function(grunt) {
                 '<%= davidollerhead.dist %>/css/main.css'
             ]
         },
+        pagespeed: {
+            options: {
+                nokey: true,
+                locale: 'en_GB',
+                 threshold: 40
+            },
+            mobile: {
+                options: {
+                    strategy: 'mobile'
+                }
+            },
+            desktop: {
+                options: {
+                    strategy: 'desktop'
+                }
+            }
+        },
         'ftp-deploy': {
             prod: {
                 auth: {
@@ -430,9 +439,24 @@ module.exports = function(grunt) {
         'jekyll:check',
         'sass:server',
         'jshint:all',
-        // 'csslint:check',
         'scsslint'
     ]);
+
+
+    grunt.registerTask('psi-ngrok', 'Run pagespeed with ngrok', function() {
+        var done = this.async();
+        var port = 9000;
+
+        ngrok.connect(port, function(err, url) {
+            if (err !== null) {
+                grunt.fail.fatal(err);
+                return done();
+            }
+            grunt.config.set('pagespeed.options.url', url);
+            grunt.task.run('pagespeed');
+            done();
+        });
+    });
 
     grunt.registerTask('build', [
         'clean',
@@ -452,10 +476,6 @@ module.exports = function(grunt) {
         'filerev',
         'usemin',
         'htmlmin'
-    ]);
-
-    grunt.registerTask('images', [
-        'responsive_images'
     ]);
 
     grunt.registerTask('deploy', [

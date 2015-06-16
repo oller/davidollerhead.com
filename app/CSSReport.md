@@ -4,7 +4,7 @@
 ### dist/css/main.css
 
 - **Total Stylesheets:** 1
-- **Total Stylesheet Size:** 23904
+- **Total Stylesheet Size:** 23958
 - **Total Media Queries:** 5
 - **Media Queries:**
 	- print
@@ -62,4 +62,4 @@
 
 * * *
 
-Last generated: Mon Jun 15 2015 17:32:31 by [grunt-parker](https://github.com/leny/grunt-parker).
+Last generated: Tue Jun 16 2015 10:26:42 by [grunt-parker](https://github.com/leny/grunt-parker).
