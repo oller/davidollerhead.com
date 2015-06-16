@@ -15,11 +15,17 @@ navigation:
 		</ul>
 	</div>
 	{% for post in site.categories.work %}
-        {% assign thumb = post.thumb | split: '.' %}
-        {% assign thumbPath = thumb | first %}
-        {% assign thumbFormat = thumb | last  %}
-        {% capture imageLQPath %}{{ thumbPath }}-lq.{{ thumbFormat }}{% endcapture %}
+        {% comment %}Split the image path on last '.'  Break into path and file format{% endcomment %}
+        {% assign thumbPathArray = post.thumb | split: '.' %}
+        {% assign thumbPath = '' %}
+        {% for item in thumbPathArray %}
+            {% if forloop.last != true %}
+                {% capture thumbPath %}{{ thumbPath }}{{ item }}{% endcapture %}
+            {% endif %}
+        {% endfor %}
+        {% assign thumbFormat = thumbPathArray | last  %}
         {% if site.production %}
+            {% capture imageLQPlaceholder %}src="{{ thumbPath }}-lq.{{ thumbFormat }}"{% endcapture %}
             {% capture imageResponsivePath %}{{ thumbPath }}-{width}.{{ thumbFormat }}{% endcapture %}
         {% else %}
             {% capture imageResponsivePath %}{{ post.thumb }}{% endcapture %}
@@ -27,7 +33,7 @@ navigation:
 		<div class="portfolio-grid__work" data-tags="{% for tag in post.tags %}{{ tag | downcase }} {% endfor %}">
 			<figure class="portfolio-grid__thumb">
 				<a class="portfolio-grid__link" href="{{ post.url }}" title="{{ post.title }}">
-					<img class="portfolio-grid__img lazyload" src="{{ imageLQPath }}" data-src="{{ imageResponsivePath | strip }}" data-sizes="auto" alt="{{ post.title }}">
+					<img class="portfolio-grid__img lazyload" {{ imageLQPlaceholder }} data-src="{{ imageResponsivePath | strip }}" data-sizes="auto" alt="{{ post.title }}">
 				</a>
                 {% comment %}
 				<figcaption>
