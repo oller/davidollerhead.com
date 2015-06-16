@@ -262,7 +262,6 @@ module.exports = function(grunt) {
                         '!**/_*{,/**}',
                         // Explicitly add any files your site needs for distribution here.
                         '_bower_components/jquery/jquery.min.js',
-                        '_bower_components/lazysizes/lazysizes.min.js',
                         'favicon.ico',
                         'favicon*.png',
                         'apple-touch*.png',
@@ -352,7 +351,7 @@ module.exports = function(grunt) {
                     upscale: false,
                     newFilesOnly: true,
                     sizes: [
-                        // { name: 'lq', width: '100%', quality: 20 }, // Low Quality Placeholder
+                        { name: 'lq', width: '100%', quality: 15 }, // Low Quality Placeholder
                         { name: 'xs', width: 200 },
                         { name: 'sm', width: 400 },
                         { name: 'md', width: 800 },

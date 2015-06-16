@@ -15,18 +15,19 @@ navigation:
 		</ul>
 	</div>
 	{% for post in site.categories.work %}
+        {% assign thumb = post.thumb | split: '.' %}
+        {% assign thumbPath = thumb | first %}
+        {% assign thumbFormat = thumb | last  %}
+        {% capture imageLQPath %}{{ thumbPath }}-lq.{{ thumbFormat }}{% endcapture %}
         {% if site.production %}
-            {% assign thumb = post.thumb | split: '.' %}
-            {% assign thumbPath = thumb | first %}
-            {% assign thumbFormat = thumb | last  %}
-            {% capture imagePath %}{{ thumbPath }}-{width}.{{ thumbFormat }}{% endcapture %}
+            {% capture imageResponsivePath %}{{ thumbPath }}-{width}.{{ thumbFormat }}{% endcapture %}
         {% else %}
-            {% capture imagePath %}{{ post.thumb }}{% endcapture %}
+            {% capture imageResponsivePath %}{{ post.thumb }}{% endcapture %}
         {% endif %}
 		<div class="portfolio-grid__work" data-tags="{% for tag in post.tags %}{{ tag | downcase }} {% endfor %}">
 			<figure class="portfolio-grid__thumb">
 				<a class="portfolio-grid__link" href="{{ post.url }}" title="{{ post.title }}">
-					<img class="portfolio-grid__img lazyload" data-src="{{ imagePath | strip }}" data-sizes="auto" alt="{{ post.title }}" data-aspectratio="1">
+					<img class="portfolio-grid__img lazyload" src="{{ imageLQPath }}" data-src="{{ imageResponsivePath | strip }}" data-sizes="auto" alt="{{ post.title }}">
 				</a>
                 {% comment %}
 				<figcaption>
