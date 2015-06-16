@@ -40,7 +40,7 @@ Builds an optimized site to the dist directory. [Usemin blocks](https://github.c
 
 `grunt serve:dist` will run `grunt build` and open the result in your default browser
 
-### grunt psi-ngrok
+#### grunt psi-ngrok
 
 A task to build and locally host a production version of the site, use ngrok to tunnel out a public address and pass this to Google's PageSpeed Insights API.  Returning the score for both mobile and desktop and any recommendations.  A threshold score can be set should a performance budget be imopsed.
 
