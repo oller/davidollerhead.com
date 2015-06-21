@@ -31,7 +31,7 @@
 
 {% comment %} Inject raw markup from post's yml (for code samples) {% endcomment %}
     {% if page.masthead.raw %}
-        <div class="masthead--bg">
+        <div class="masthead__bg{% if page.masthead.flush %} masthead__bg--flush-{{ page.masthead.flush}}{% endif %}">
             {{ page.masthead.raw }}
         </div>
     {% endif %}

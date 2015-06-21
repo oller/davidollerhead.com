@@ -4,6 +4,7 @@
 .masthead {
     @extend %clearfix;
     margin-bottom: 2rem;
+    overflow: hidden;
 }
 
 @for $i from 1 through 5 {
@@ -39,9 +40,13 @@
     text-align: right;
 }
 
-.masthead--bg {
+.masthead__bg {
     background: #eee;
     background-image: radial-gradient(closest-corner, rgba(8, 8, 8, 0) 60%, rgba(8, 8, 8, .15)), linear-gradient(315deg, #ddd 10%, #fff 90%);
     padding: 5rem 0;
     text-align: center;
+}
+
+.masthead__bg--flush-bottom {
+    padding-bottom: 0;
 }
