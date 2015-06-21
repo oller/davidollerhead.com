@@ -8,7 +8,7 @@ masthead:
   flush: bottom
 ---
 
-Chrome on my Android phone has started to support the ability to the set the background colour for the address bar at the top of the browser.
+Chrome on Android has started to support the ability to the set the background colour for the address bar at the top of the browser.
 
 It turns out this can be achieved with a single `<meta>` tag in the `<head>` of the page.
 
