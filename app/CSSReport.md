@@ -58,8 +58,3 @@
 	- `#971E59`
 	- `#1DACA7`
 - **Total Important Keywords:** 6
-
-
-* * *
-
-Last generated: Sun Jun 21 2015 15:17:12 by [grunt-parker](https://github.com/leny/grunt-parker).
