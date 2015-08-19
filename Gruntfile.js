@@ -368,10 +368,28 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        critical: {
+            css: {
+                options: {
+                    base: './',
+                    css: [
+                        '<%= davidollerhead.dist %>/css/main*.css',
+                        '!<%= davidollerhead.dist %>/css/main.ie8*.css'
+                    ],
+                    width: 800,
+                    height: 600
+                },
+                files: [{
+                    expand: true,
+                    cwd: '<%= davidollerhead.dist %>',
+                    src: '**/*.html',
+                    dest: '<%= davidollerhead.dist %>'
+                }]
+            }
+        },
         parker: {
             options: {
-                file: '<%= davidollerhead.app %>/CSSReport.md',
-                colophon: true
+                file: '<%= davidollerhead.app %>/CSSReport.md'
             },
             src : [
                 '<%= davidollerhead.dist %>/css/main.css'
@@ -441,7 +459,6 @@ module.exports = function(grunt) {
         'scsslint'
     ]);
 
-
     grunt.registerTask('psi-ngrok', 'Run pagespeed with ngrok', function() {
         var done = this.async();
         var port = 9000;
@@ -474,6 +491,7 @@ module.exports = function(grunt) {
         'stripmq',
         'filerev',
         'usemin',
+        'critical',
         'htmlmin'
     ]);
 
