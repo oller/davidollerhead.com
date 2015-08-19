@@ -4,7 +4,7 @@
 ### dist/css/main.css
 
 - **Total Stylesheets:** 1
-- **Total Stylesheet Size:** 24019
+- **Total Stylesheet Size:** 23947
 - **Total Media Queries:** 5
 - **Media Queries:**
 	- print
@@ -12,16 +12,16 @@
 	- (min-width:1024px)
 	- (min-width:1400px)
 	- (min-width:1800px)
-- **Total Rules:** 304
-- **Selectors Per Rule:** 1.5263157894736843
-- **Total Selectors:** 464
-- **Identifiers Per Selector:** 1.644396551724138
-- **Specificity Per Selector:** 11.5
+- **Total Rules:** 306
+- **Selectors Per Rule:** 1.5196078431372548
+- **Total Selectors:** 465
+- **Identifiers Per Selector:** 1.643010752688172
+- **Specificity Per Selector:** 11.516129032258064
 - **Top Selector Specificity:** 40
 - **Top Selector Specificity Selector:** .slick-slider:hover .slick-next:before
 - **Total Id Selectors:** 1
-- **Total Identifiers:** 763
-- **Total Declarations:** 783
+- **Total Identifiers:** 764
+- **Total Declarations:** 781
 - **Total Unique Colors:** 33
 - **Unique Colors:**
 	- `#FFFF00`

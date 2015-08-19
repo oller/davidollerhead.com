@@ -373,7 +373,8 @@ module.exports = function(grunt) {
                 options: {
                     base: './',
                     css: [
-                        '<%= davidollerhead.dist %>/css/main.baea.css'
+                        '<%= davidollerhead.dist %>/css/main*.css',
+                        '!<%= davidollerhead.dist %>/css/main.ie8*.css'
                     ],
                     width: 800,
                     height: 600
