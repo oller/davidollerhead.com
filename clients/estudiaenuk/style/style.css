@@ -1,0 +1,97 @@
+/* CSS Document */
+/* STRUCTURE =================================*/
+
+body{
+	margin:0;
+	background:url(../images/bground.gif) center repeat-y;
+}
+
+#wrapper{
+	margin: 0px auto;
+	width:700px;
+
+}
+#left {
+	width: 30px;
+	background:url(../images/fade-left.jpg) repeat-y right;
+}
+
+#right {
+	width: 30px;
+	background:url(../images/fade-right.jpg) repeat-y left;
+}
+
+#content { 
+	
+	width: 700px;
+}
+#footer {
+	clear: both;
+	background: #ffffff;
+	color:#008FD1;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 0.6em;
+	text-align:center;
+	font-weight:normal;
+	border-top: 1px solid #fb0fa5;
+	line-height:1.1em;
+	padding: 0.5em 0 0 0;
+	margin: 4em 0 4em 0 ;
+}
+
+/* FORMATTING =================================*/
+
+p{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#555;
+	font-size:0.7em;
+	margin:0 3em 1em 3em;
+	line-height:1.4em;
+}
+
+
+h1{
+	color:#008FD1;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 1.4em;
+	margin-left: 0.8em;
+	font-weight:normal;
+	line-height:1.1em;
+
+}
+
+.alignright{
+float:right;
+padding: 10px}
+
+.alignleft{
+float:left;
+padding: 10px}
+
+
+/* NAVIGATION =================================*/
+
+.navlinks li {
+display:inline;
+list-style:none;
+padding:0 2px 0px 2px;
+margin-left: -5px;
+margin-bottom: -10px;
+}
+
+.navlinks li:hover {
+padding:0 2px 0px 2px;
+border-bottom: 4px solid #fb0fa5;
+margin-bottom: -10px;
+}
+
+/* OTHER =================================*/
+
+.banner{
+border-top:1px solid gray;
+border-bottom:3px solid gray;
+}
+#logo {
+text-align:right;
+padding: 12px 15px 0 0;
+}

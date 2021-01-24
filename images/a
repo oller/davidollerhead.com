@@ -1,0 +1,483 @@
+var Mint = new Object();
+Mint.save = function() 
+{
+	var now		= new Date();
+	var debug	= false; // this is set by php 
+	if (window.location.hash == '#Mint:Debug') { debug = true; };
+	var path	= 'http://webdesignbook.net/mint/?record' + ((debug)?'&debug&errors':'') + '&key=71704730303961754356335a397a746a4d34475265333431435231';
+	
+	// Loop through the different plug-ins to assemble the query string
+	for (var developer in this) 
+	{
+		for (var plugin in this[developer]) 
+		{
+			if (this[developer][plugin] && this[developer][plugin].onsave) 
+			{
+				path += this[developer][plugin].onsave();
+			};
+		};
+	};
+	// Slap the current time on there to prevent caching on subsequent page views in a few browsers
+	path += '&'+now.getTime();
+	
+	// Redirect to the debug page
+	if (debug) { window.location.href = path; return; };
+	
+	// Record data 
+	if (Image) { var img = new Image(); img.src = path; };
+};
+if (!Mint.SI) { Mint.SI = new Object(); }
+Mint.SI.Referrer = 
+{
+	onsave	: function() 
+	{
+		if (typeof Mint_SI_DocumentTitle=='undefined') { Mint_SI_DocumentTitle = document.title; }
+		var referer		= (window.decodeURI)?window.decodeURI(document.referrer):document.referrer;
+		var resource	= (window.decodeURI)?window.decodeURI(document.URL):document.URL;
+		return '&referer=' + escape(referer) + '&resource=' + escape(resource) + '&resource_title=' + escape(Mint_SI_DocumentTitle);
+	}
+};
+if (!Mint.SI) { Mint.SI = new Object(); }
+Mint.SI.UserAgent007 = 
+{
+	flashVersion		: 0,
+	resolution			: '0x0',
+	detectFlashVersion	: function () 
+	{
+		var m =16;
+		var ua = navigator.userAgent.toLowerCase();
+		if (navigator.plugins && navigator.plugins.length) 
+		{
+			var p = navigator.plugins['Shockwave Flash'];
+			if (typeof p == 'object') 
+			{
+				for (var i=m;i>=3;i--) 
+				{
+					if (p.description && p.description.indexOf(' ' + i + '.') != -1) { this.flashVersion = i; break; }
+				}
+			}
+		}
+		else if (ua.indexOf("msie") != -1 && ua.indexOf("win")!=-1 && parseInt(navigator.appVersion) >= 4 && ua.indexOf("16bit")==-1) 
+		{
+			var vb = '<scr' + 'ipt language="VBScript"\> \nOn Error Resume Next \nDim obFlash \nFor i = ' + m + ' To 3 Step -1 \n   Set obFlash = CreateObject("ShockwaveFlash.ShockwaveFlash." & i) \n   If IsObject(obFlash) Then \n      Mint.SI.UserAgent007.flashVersion = i \n      Exit For \n   End If \nNext \n<'+'/scr' + 'ipt\> \n';
+			document.write(vb);
+		}
+		else if (ua.indexOf("webtv/2.5") != -1) this.flashVersion = 3;
+		else if (ua.indexOf("webtv") != -1) this.flashVersion = 2;
+		return this.flashVersion;
+	},
+	onsave				: function() 
+	{
+		this.resolution = screen.width+'x'+screen.height;
+		return '&resolution=' + this.resolution + '&flash_version=' + this.flashVersion;
+	}
+};
+Mint.SI.UserAgent007.detectFlashVersion();
+if (!Mint.SI) { Mint.SI = new Object(); }
+Mint.SI.WindowWidth = 
+{
+	onsave	: function() 
+	{
+		var width = -1;
+		if (window.innerWidth)
+		{
+			width = window.innerWidth;
+		}
+		else if (document.getElementsByTagName)
+		{
+			var html = document.getElementsByTagName('html');
+			if (html[0].offsetWidth)
+			{
+				width = html[0].offsetWidth;
+			}
+		}
+		return '&window_width=' + width;
+	}
+};
+
+
+var ol_extensions = 'zip,pdf,rar,mpg,mp3,mov,jpg,gif';
+var ol_download_script = '/mint/pepper/orderedlist/downloads/download.php';
+
+var is_download = 0;
+
+function getExtension(value) {
+  return value.substring(value.lastIndexOf('.') + 1,value.length);
+}
+
+function isdefined( variable) {
+    return (typeof(window[variable]) == "undefined")?  false: true;
+}
+
+function ol_get_domain(str) {
+	if (str.substr(0,7) == 'http://') str = str.substr(7);
+	if (str.substr(0,8) == 'https://') str = str.substr(8);
+	str = str.substr(0,str.indexOf('/'));
+	str = str.replace('www.','');
+	return str;
+}
+
+if (!isdefined('addLoadEvent')) {
+	function addLoadEvent(func) {
+		var oldonload = window.onload;
+		if (typeof window.onload != 'function') {
+			window.onload = func;
+		} else {
+			window.onload = function() {
+				oldonload();
+				func();
+			}
+		}
+	}
+}
+
+function activateDownloads() {
+	ext_list = ol_extensions.split(',');
+	var e=document.getElementsByTagName("a");
+	for(var i=0;i<e.length;i++) {
+		for (var j = 0; j <ext_list.length; j++) {
+			if (getExtension(e[i].href) == ext_list[j]) {
+				if (ol_get_domain(e[i].href) == ol_get_domain(document.URL)) {
+						e[i].onMouseOver = function() { thelink = this.href; target = unescape(thelink.substr(thelink.indexOf('='))); window.status = 'Download: ' + target; }
+						e[i].onMouseOut = function() { window.status = ''; } 
+						e[i].href = ol_download_script + '?file=' + escape(e[i].href);
+				}
+			}
+		}
+	}
+}
+
+addLoadEvent(activateDownloads);
+if(!Mint.RHC3) Mint.RHC3 = new Object();
+
+Mint.RHC3.SessionTracker = {
+	acceptscookies : 0,
+	onsave : function() {
+		var st_key = 'no';
+		this.setcookie('eatscookies','yes');
+		cookiecheck = this.getcookie('eatscookies');
+		return '&eatscookies='+cookiecheck;
+	},
+	getcookie : function(cookiename){
+		var thecookie = document.cookie;
+		var crumbs = thecookie.split(';');
+		for(var i=0;i<crumbs.length;i++){
+			chips = crumbs[i].split('=');
+			chips[0] = chips[0].replace(/^\s*|\s*$/g,'');
+			if(chips[0] == cookiename){
+				return chips[1];
+			}
+		}
+		return 'no';
+	},
+	setcookie : function(cookiename, cookievalue){
+		var sitedom = ".webdesignbook.net";
+		document.cookie = cookiename+'='+cookievalue+';domain='+sitedom+';';
+	}
+};
+if(typeof window.addEventListener != 'undefined')
+	window.addEventListener('load', outclicks_init, false);
+else if(typeof document.addEventListener != 'undefined')
+	document.addEventListener('load', outclicks_init, false);
+
+else if(typeof window.attachEvent != 'undefined')
+	window.attachEvent('onload', outclicks_init);
+else
+{
+	if(typeof window.onload == 'function')
+	{
+		var existing = onload;
+
+		window.onload = function()
+		{
+			existing();
+			outclicks_init();
+		};
+	}
+	else
+	{
+		window.onload = outclicks_init;
+	}
+}
+
+function oc_addEvent(elm, evType, fn, useCapture) {
+	if (elm.addEventListener) {
+		elm.addEventListener(evType, fn, useCapture);
+		return true;
+	}
+	else if (elm.attachEvent) {
+		var r = elm.attachEvent('on' + evType, fn);
+		return r;
+	}
+	else {
+		elm['on' + evType] = fn;
+	}
+}
+
+function outclicks_init () {
+	 olinks = document.getElementsByTagName('a');
+	 this_domain = 'webdesignbook.net';
+
+	 for (i=0; i < olinks.length; i++) {
+		link = olinks[i].href;
+		// if it is off-domain and not a link, add listener
+		if(oc_get_domain(link) != this_domain && link.indexOf('javascript:') == -1) {
+            // hopefully that will do
+            oc_addEvent(olinks[i], "click", trackOutclicks);
+                        
+        }
+	 }
+
+}
+
+function oc_get_domain(str) {
+	if (str.substr(0,7) == 'http://') str = str.substr(7);
+	if (str.substr(0,8) == 'https://') str = str.substr(8);
+	str = str.substr(0,str.indexOf('/'));
+	str = str.replace('www.','');
+	return str;
+}
+
+function esc (str) {
+	if (typeof encodeURIComponent == 'undefined')
+		return escape(str);
+	else
+		return encodeURIComponent(str);
+}
+
+function trackOutclicks (e) {
+    e = (e) ? e : ((window.event) ? window.event : "");
+    if(e){
+        var elem = (e.target) ? e.target : e.srcElement;
+        var path = '/mint/pepper/andrewsutherland/outclicks/data.php';
+
+        path += "?outclick="+esc(elem.href);
+        path += "&from_title="+esc(document.title);
+        path += "&from="+esc(self.location);
+
+        // old browsers
+        if (typeof encodeURIComponent == 'undefined') {
+                // when user clicks a site, then back, then clicks another, don't retrack their hits
+                // don't worry, it confuses me too
+                c = document.getElementById('outClickTracker');
+                if (c) c.parentNode.removeChild(c);
+                document.body.innerHTML += '<script src="'+path+'" language="javascript" id="outClickTracker"></script>';
+        }
+        else {
+
+            var data = false;
+            /*@cc_on @*/
+            /*@if (@_jscript_version >= 5)
+            try { data = new ActiveXObject("Msxml2.XMLHTTP"); } 
+            catch (e) { try { data = new ActiveXObject("Microsoft.XMLHTTP"); } catch (E) { data = false; } }
+            @end @*/
+            if (!data && typeof XMLHttpRequest!='undefined') data = new XMLHttpRequest();
+            if (data) data.open("GET", path, false); data.send(null);
+        
+        }    
+    }
+
+}// incredibly funky onload add-event scripting, for all browsers
+
+if(typeof window.addEventListener != 'undefined')
+    window.addEventListener('load', adsense_init, false);
+else if(typeof document.addEventListener != 'undefined')
+    document.addEventListener('load', adsense_init, false);
+else if(typeof window.attachEvent != 'undefined')
+    window.attachEvent('onload', adsense_init);
+else
+{
+    if(typeof window.onload == 'function')
+    {
+	var existing = onload;
+
+	window.onload = function()
+	{
+	    existing();
+	    adsense_init();
+	};
+    }
+    else
+    {
+         window.onload = adsense_init;
+    }
+}
+
+//for firefox
+var px;
+var py;
+var adUnit = "";
+var browser = "";
+var adunitsize = "";
+
+function getMouse(e) {
+        px=e.pageX;
+        py=e.clientY;
+}
+
+function findY(obj) {
+        var y = 0;
+        while (obj) {
+                y += obj.offsetTop;
+                obj = obj.offsetParent;
+        }
+        return(y);
+}
+function findX(obj) {
+        var x = 0;
+        while (obj) {
+                x += obj.offsetLeft;
+                obj = obj.offsetParent;
+        }
+        return(x);
+}
+
+
+function doPageExit(e) {
+    if (document.getElementsByTagName) 
+    { 
+        ad = document.getElementsByTagName("iframe");
+    } 
+    else if (document.body.all)
+    { 
+        ad = document.body.all.tags("IFRAME"); 
+    } 
+    else 
+    {
+        ad = Array(); 
+    } 
+
+    for (i=0; i < ad.length; i++) {
+            var adLeft = findX(ad[i]);
+            var adTop = findY(ad[i]);
+            var inFrameX = (px > (adLeft - 10) && px < (parseInt(adLeft)+parseInt(ad[i].width)+10));
+            //var inFrameY = (py > (adTop - 10) && py < (parseInt(adTop)+parseInt(ad[i].height)+10));
+            var inFrameY = (py > 0 && py < (ad[i].height + 10));
+                  
+            //if (inFrameX) {
+            if (inFrameX && inFrameY) {
+                adUnit = i+1;
+                browser = navigator.appName;
+                adunitsize = ad[i].width + "x" + ad[i].height;
+                trackAdsense();
+            }
+    }
+
+/*
+        for (i=0; i < ad.length; i++) {
+                var adLeft = findX(ad[i]);
+                var adTop = findY(ad[i]);
+                var inFrameX = (px > (adLeft - 10) && px < (parseInt(adLeft) + parseInt(ad[i].width) + 15));
+                var inFrameY = (py > (adTop - 10) && py < (parseInt(adTop) + parseInt(ad[i].height) + 10));
+
+                if (inFrameY && inFrameX) {
+                        adUnit = i+1;
+                        browser = "Firefox";
+                        adunitsize = ad[i].width + "x" + ad[i].height;
+                        trackAdsense();
+
+                }
+        }
+*/
+}
+//end for firefox
+
+function as_addEvent(elm, evType, fn, useCapture) {
+    if (elm.addEventListener) {
+        elm.addEventListener(evType, fn, useCapture);
+        return true;
+    }
+    else if (elm.attachEvent) {
+        var r = elm.attachEvent('on' + evType, fn);
+        return r;
+    }
+    else {
+        elm['on' + evType] = fn;
+    }
+}
+
+
+function as_get_domain(str) {
+        if (str.substr(0,7) == 'http://') str = str.substr(7);
+        if (str.substr(0,8) == 'https://') str = str.substr(8);
+        str = str.substr(0,str.indexOf('/'));
+        str = str.replace('www.','');
+        return str;
+}
+
+
+function adsense_init () {
+    var browserName = navigator.appName;
+    if (document.all){ //ie
+        if (document.getElementsByTagName) 
+        { 
+            el = document.getElementsByTagName("iframe");
+        } 
+        else if (document.body.all)
+        { 
+            el = document.body.all.tags("IFRAME"); 
+        } 
+        else 
+        {
+            el = Array(); 
+        } 
+	  
+        for(var i = 0; i < el.length; i++) 
+        {
+            if (as_get_domain(el[i].src).indexOf('googlesyndication.com') > -1)
+            {
+                adUnit = i+1;
+                browser = browserName;
+                adunitsize = el[i].width + "x" + el[i].height;
+                as_addEvent(el[i],"focus",trackAdsense);
+            }
+        }
+    } else { //firefox and mozilla
+            window.addEventListener('beforeunload', doPageExit, false);
+            window.addEventListener('mousemove', getMouse, true);
+    }
+}
+
+function esc_ads (str) {
+    if (typeof encodeURIComponent == 'undefined')
+        return escape(str);
+    else
+        return encodeURIComponent(str);
+}
+
+
+function trackAdsense() {
+    var path = '/mint/pepper/jimrutherford/adsense/data.php';
+
+    if (document.all) { //ie
+        if (window.status.indexOf('go to') == 0) 
+        { 
+	    path += "?from_title=adsense_ads_"+esc_ads(document.title);
+        } 
+        else if (window.status.indexOf('View ads about') == 0) 
+        { 
+	    path += "?from_title=adsense_links_"+esc_ads(document.title);
+        } 
+    }
+    else // firefox and mozilla
+    {
+         path += "?from_title=adsense_"+esc_ads(document.title);
+    }
+    path += "&from="+esc_ads(self.location);
+    path += "&unit="+esc_ads(adUnit);
+    path += "&browser="+esc_ads(browser);
+    path += "&adunitsize="+esc_ads(adunitsize);
+
+    //window.open(path,'path','width=1024,height=68')
+    var data = false;
+    /*@cc_on @*/
+    /*@if (@_jscript_version >= 5)
+    try { data = new ActiveXObject("Msxml2.XMLHTTP"); }
+    catch (e) { try { data = new ActiveXObject("Microsoft.XMLHTTP"); } catch (E) { data = false; } }
+    @end @*/
+    if (!data && typeof XMLHttpRequest!='undefined') data = new XMLHttpRequest();
+    if (data) data.open("GET", path, false); 
+    data.send(null);
+    //alert(path);
+}
+Mint.save();

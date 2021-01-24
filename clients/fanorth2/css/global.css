@@ -1,0 +1,362 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/* Global whitespace reset */
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	text-align: center;
+	color: #333;
+	background-color: #fafafa;
+	font: 68.75%/1.7em Arial, Helvetica, sans-serif;
+}
+/* Links */
+
+a, a:active, a:link {
+	text-decoration: none;
+	color: #7a7b54;
+}
+a:visited {
+	text-decoration: none;
+}
+p a, p a:active, p a:link {
+	text-decoration: none;
+	color: #7a7b54;
+	border-bottom:dotted 1px;
+}
+p a:hover {
+	border-bottom:solid 1px;
+}
+/* Lists */
+
+ul {
+	list-style: none;
+}
+ul.bulletlist {
+	list-style: circle;
+	margin-left:3em;
+	font: 1.2em/1.6em Georgia, "Times New Roman", Times, serif;
+	color:#7a7b54;
+	margin: 1em 2em;
+}
+ul.italic {
+	font-style: italic;
+	color: #333;
+	margin: 1.5em 0 0 0;
+}
+/* Work */
+
+
+#list_nav li {
+	display:block;
+	border-bottom:1px solid #DEDEDE;
+	width:237px;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+}
+#list_nav li a {
+	display:block;
+	padding:5px 5px 5px 10px;
+	font-size:11px;
+	color:#7a7b54;
+	text-decoration:none;
+	line-height:15px;
+}
+#list_nav li a:hover {
+	color:#333;
+	background:#F0F0F0;
+}
+#list_nav li a.active {
+	color:#333;
+	background:#F0F0F0;
+}
+#folioLaunch {
+	width:300px;
+	float:left;
+	margin: 10px 20px 4px 0px;
+}
+li {
+	font-size: 110%;
+	line-height: 1.3em;
+}
+/* Images */
+
+img {
+	border: none;
+}
+img.thumb {
+	float: left;
+	margin: 0 1em 0 0;
+	border: 1px solid #eee;
+}
+.logo {
+	position: absolute;
+	left: 10px;
+	top: 0px;
+}
+h1, h2, h3, h4, h6 {
+	font: 1.2em/1.4em Arial, Helvetica, sans-serif;
+	font-weight: normal;
+}
+body#home h1, body#home h2, body#home h3, body#home h6 {
+	font: 1.2em/1.4em Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	letter-spacing: -1px;
+}
+p {
+	margin: 0.5em 0 0 0;
+	font-size: 110%;
+	line-height: 1.5em;
+}
+/* h1 */
+h1 {
+	font-size: 3em;
+	line-height: 1.3em;
+}
+/* h2 */
+h2 {
+	font-size: 1.7em;
+	line-height: 1.3em;
+	margin: 0;
+	padding: 0;
+}
+/* h3 */
+#grey {
+	margin: 0 0 0.2em 0;
+	font: 1.4em/1.4em Arial, Helvetica, sans-serif;
+	color: #999999;
+}
+/* h6 */
+h6 {
+	margin: 0 0 0.2em 0;
+	font: 1.2em/1.4em Arial, Helvetica, sans-serif;
+	color: #333;
+}
+/* h4 */
+h4 {
+	font-size: 1.3em;
+	line-height: 1.6em;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 1em;
+}
+.c1 h4 {
+	font-size: 1.5em;
+	line-height: 1.6em;
+	margin: 2em 0 0 0;
+	padding: 0;
+}
+/* h5 */
+h5 {
+	font-size: 1.5em;
+	margin: 1em 0 0.5em 0;
+	padding: 0;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#7a7b54;
+}
+
+address {
+	padding-left:1em;
+	padding-top:1em;
+	font-family:Georgia, "Times New Roman", Times, serif;
+	color:#7a7b54;
+	font-style:normal;
+}
+
+p#viewmap {
+	text-align:left;
+	padding-left:1em;
+	margin-bottom:1em;
+}
+/* Homepage*/
+
+body#home #maincontent h2#homepageheadline {
+	width: 816px;
+	height: 200px;
+	margin-bottom: 0.5em;
+}
+body#home #maincontent h3#homepageheadline {
+	margin-top: 0.1em;
+	width: 816px;
+}
+body#home #maincontent h3 {
+	margin: 0 0 0.2em 0;
+	font: 1.8em/1.5em Arial, Helvetica, sans-serif;
+	color: #333;
+}
+body#home #maincontent h3 a {
+	color: #666;
+	border-bottom: none;
+}
+body#home #maincontent h4 {
+	margin: 0 0 0.5em 0;
+}
+/* Structure */
+
+#container {
+	width: 72.73em;
+	margin: 0 auto 0 auto;
+	text-align: left;
+	position: relative;
+}
+#mastheadwrapper {
+	position: relative;
+	height: 6em;
+	padding: 2em 1em 0 1em;
+	border-top: solid #7a7b54 3px;
+}
+#masthead {
+	position: relative;
+	text-align: center;
+	width: 72.73em;
+	margin: 0 auto 0 auto;
+	padding: 0 0 0 1em;
+}
+#mainnavigation {
+	position: absolute;
+	top: 3em;
+	left: 40%;
+	width: 57.5%;
+	text-align: right;
+	list-style: none;
+	font: 1em/1.4em Arial, Helvetica, sans-serif;
+	padding: 0 3em 0 0;
+	letter-spacing:-1px;
+}
+#mainnavigation li {
+	display: inline;
+	margin: 0 0 0 2em;
+}
+#mainnavigation li a {
+	color: #7a7b54;
+}
+#mainnavigation li a:hover {
+	color: #333;
+}
+#mainnavigation.home li.hm a, #mainnavigation.about li a, #mainnavigation.work li a, #mainnavigation.contact li a {
+	color: #999;
+}
+.climg {
+	float: left;
+	width: 98px;
+	margin: 0 10px 1px 0;
+}
+/* Columns */
+
+div#maincontent {
+	float: left;
+	margin: 10px 0 30px 0;
+}
+/* columns */ 
+body.col div.c1, body.col div.footc1, body.col div.c2, body.col div.footc2, body.col div.c3, body.col div.footc3, body.col div.c4, body.col div.footc4 {
+	float: left;
+	width: 22em;
+	padding: 0 .75em;
+	margin-left: 1em;
+}
+body.col div.img {
+	float:left;
+	width: 420px;
+	height: 200px;
+	margin: 0 3em 0 1em;
+	padding: 0 .75em;
+}
+/* = IE 6 Hack for About and Contact Pages */
+* html body.col div.img {
+	float:left;
+	width: 350px;
+	height: 200px;
+	margin: 0 0 0 1em;
+	padding-right: 10px;
+}
+/* = IE 7 Hack for About and Contact Pages */
+*:first-child+html body.col div.img {
+	float:left;
+	width: 400px;
+	height: 200px;
+	margin: 0 3em 0 1em;
+	padding: 0 .75em;
+}
+body.col div.sub {
+	float: left;
+	width: 25em;
+	margin: -1em 0.5em 2em 0.5em;
+	padding: 0 2em;
+}
+body.col div.wk {
+	float: left;
+	width: 45em;
+	margin-left: 0;
+	padding: 0 .75em;
+}
+/* = IE 6 Hack for Our Services Pages */
+* html body.col div.wk {
+	float: left;
+	width: 45em;
+	margin-left:2px;
+	margin-right:-8px;
+	padding: 0 .75em;
+}
+body.col div.footc1, body.col div.footc2, body.col div.footc3, body.col div.footc4 {
+	color: #333;
+}
+/* footer */
+#footer {
+	float: left;
+	width: 100%;
+	margin: 1.5em 0 0 0;
+	font-size: 100%;
+}
+#footer a, #footer a:link {
+	color: #666;
+}
+#footer a:hover {
+	color: #999;
+}
+#footer #credits {
+	margin: 1em 1em 0 1em;
+	padding-top:5px;
+	border-top: solid #999 1px;
+	color: #999999;
+}
+#footer #cr {
+	float:left;
+}
+#footer #logos {
+	float:right;
+}
+
+#footer #logos img {
+	margin-left:5px;
+}
+/* Floats */
+.float-left {
+	float:left;
+}
+.float-right {
+	float:right;
+	margin-left:1em;
+	margin-top:1em;
+}
+/* clear */
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+.clearfix {
+	display: inline-table;
+}
+/* hides from IE Mac \*/
+* html .clearfix {
+	height: 1%;
+}
+.clearfix {
+	display: block;
+}
+/*End hide from

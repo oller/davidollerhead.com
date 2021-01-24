@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+
+body.col div.c1, body.col div.c2, body.col div.c3, body.col div.c4, {
+ float: left;
+ width: 21em;
+ margin: 0 .25em 0 1.25em;
+ padding: 0 .75em;
+ height:1%;
+ display:inline;
+}

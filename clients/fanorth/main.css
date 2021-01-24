@@ -1,0 +1,197 @@
+/*-------------------------------------------------
+	F.A.North
+	Created by David Ollerhead
+-------------------------------------------------*/
+
+/*-------------------------------------------------
+Page Layout
+-------------------------------------------------*/
+
+* {
+ padding: 0;
+ margin: 0;
+}
+body {
+ font-family: Constantia, Georgia, "Times New Roman", Times, serif;
+ color: #333;
+ background-color:#3e3e3e;
+ padding: 24px;
+ font-size: 62.5%; 
+}
+#wrapper {
+ width: 720px;
+ margin: 0px;
+}
+#header {
+ margin: 5px 5px 0px 5px;
+ height: 265px;
+ padding: 0px;
+ background-image:url(images/fanorth_header.jpg);
+ background-repeat:no-repeat;
+ background-position:top left;
+}
+#leftcolumn { /* Parent Wrapper for inside boxes */
+ margin: 0 0px 0px 5px;
+ padding: 4px;
+ display: inline; /* IE Hack */
+ width: 28%;
+ float: left;
+ background-color: #fff;
+ min-height: 300px;
+}
+* html #leftcolumn {height:300px} /* IE Min-Height Hack */ 
+
+#centercolumn {
+ margin: 0px 0px 0px 0px;
+ display: inline; /* IE Hack */
+ padding: 4px;
+ width: 68.4%;
+ float: left;
+ min-height: 312px;
+ background-color:#fff;
+}
+
+* html #centercolumn {height:312px} /* IE Min-Height Hack */ 
+
+#footer {
+ background-color: #fff;
+ margin: 0 5px 5px 5px;
+ display: inline; /* IE Hack */
+ padding: 4px;
+ float: left;
+ width: 97.4%;
+ font-size:0.9em;
+ text-align:right;
+ border-right:1px solid white;
+}
+
+#topnav {
+padding-top:48px;
+}
+
+#copy {
+margin:15px 30px 30px 80px;
+}
+
+#copy ul{
+list-style-image:url(images/imgList.gif);
+padding:10px 0 0 30px;
+line-height:1.8em;
+font-size:1.2em;
+}
+
+#nav {
+ margin-top:15px;
+ padding-left:15px;
+}
+
+#photos {
+background-color:#ccc;
+margin: 30px 0 0 0;
+width:380px;
+}
+
+.thumbnails img {
+margin:10px 0 10px 20px;
+border:none;
+}
+
+/*-------------------------------------------------
+Navigation Menu
+-------------------------------------------------*/
+
+#nav li {
+ font-size:18px;
+ line-height:1.5em;
+ list-style:none;
+}
+
+#topnav li{
+ font-size:18px;
+ list-style: none;
+ display:inline;
+ padding-left:1em;
+}
+
+.navlinks a {
+ text-decoration:none;
+ color:#333;
+}
+
+.navlinks a:hover {
+ color:#000;
+}
+
+/*-------------------------------------------------
+Core Styles
+-------------------------------------------------*/
+
+#copy p {
+ line-height:1.8em;
+ font-size:1.2em; 
+ padding-top:1em;
+}
+
+#copy p a:link {
+text-decoration:none;
+ border-bottom:1px dotted;
+ color:#333;	
+}
+
+#copy p a:visited {
+text-decoration:none;
+ border-bottom:1px dotted;
+ color:#333;	
+}
+
+#copy p a:hover{
+ border-bottom:1px solid;
+}
+
+#copy p a:active {
+text-decoration:none;
+ border-bottom:1px dotted;
+ color:#333;	
+}
+
+h1 {
+ font-size:1.8em;
+ padding-bottom:0.4em;
+ border-bottom:1px solid;
+ font-weight:normal;
+ color:#222;
+}
+
+h2 {
+ font-size:1.4em;
+ font-weight:normal;
+ padding-top:1.5em;
+ color:#222;
+ border-bottom: 1px solid #666666;
+}
+
+/***** Global Classes *****/
+ 
+.clear         { clear:both; }
+ 
+.float-left    { float:left; }
+.float-right   { float:right; }
+ 
+.text-left     { text-align:left; }
+.text-right    { text-align:right; }
+.text-center   { text-align:center; }
+.text-justify  { text-align:justify; }
+ 
+.bold          { font-weight:bold; }
+.italic        { font-style:italic; }
+.underline     { border-bottom:1px solid; }
+.highlight     { background:#ffc; }
+ 
+.wrap          { width:960px;margin:0 auto; }
+ 
+.img-left      { float:left;margin:4px 10px 4px 0; }
+.img-right     { float:right;margin:4px 0 4px 10px; }
+ 
+.nopadding     { padding:0; }
+.noindent      { margin-left:0;padding-left:0; }
+.nobullet      { list-style:none;list-style-image:none; }

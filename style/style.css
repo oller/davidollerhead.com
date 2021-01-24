@@ -1,0 +1,520 @@
+@charset "iso-8859-1";
+
+.trigger{
+			cursor:pointer;
+		}		
+
+.box_header
+ {color: #666666;
+font-size:10px; }
+
+#navAlpha {
+	position:relative;
+	width: 150px;
+	background-color: transparent;
+	padding:0px;
+	margin-top:10px;
+	z-index:2;
+	voice-family: "\"}\"";
+	voice-family:inherit;
+	float:left;
+	}
+	
+#menu a, #menu a:visited {
+  position:inherit;
+  text-decoration:none;
+  text-align:left;
+  background-color: #ffffff; 
+  color:#00a7f1;
+  display:block; 
+  font-weight: bold;
+  font-size:18px;
+  width:150px; 
+  padding:0.5em;
+  margin:0.5em 0;
+  border-right:5px solid #ffffff;
+  border-top:1px solid #ffffff;
+
+  }
+#menu a:hover {
+  border-right:5px solid #00a7f1;
+  color:#00a7f1;
+  background:#f6f6f6
+  }
+  
+.PhotoSpray a, .PhotoSpray a:visited {
+  position:inherit;
+  text-decoration:none;
+  text-align:center;
+  background-color: #ffffff; 
+  color:#00a7f1;
+  display:block; padding-top:5px; padding-bottom:5px;
+  border:thin solid white;
+  }
+  
+.PhotoSpray a:hover {
+  color:#00a7f1;
+  background:#f6f6f6;padding-top:5px; padding-bottom:5px;
+  border:thin solid gray;
+  }
+
+
+body {
+	margin: 0;
+	padding: 0;
+	background: #ffffff;
+	text-align: center;
+	font: 11px verdana, helvetica, sans-serif;
+}
+
+A {
+	COLOR: #00a7f1; TEXT-DECORATION: none
+}
+A:link {
+	COLOR: #00a7f1; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #00a7f1; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #00a7f1; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #00a7f1; TEXT-DECORATION: none
+}
+
+blockquote {
+	font-size: 9px;
+	background: url(../images/quote.png) no-repeat top left;
+	margin: 10px 30px 10px 30px;
+	padding: 10px 0 10px 15px;
+}
+
+cite {
+	font: normal 13px verdana, helvetica, sans-serif;
+}
+
+code {
+	margin-left: 15px;
+}
+form p {
+	margin-left: 15px;
+}
+
+h1	{
+	text-align: left;
+	letter-spacing: 1px;
+	margin: -40px 0 0 0;
+	padding-top: 60px;
+	color: #E0E0E0;
+/*	font-family: "Lucida Sans Unicode", Arial, Helvetica, sans-serif,; */
+	font-size: 28px;
+}
+
+#header div#description {
+	color: #000;
+	font-size: 12px;
+	text-align: left;
+	margin-right: 75px;
+}
+
+h1 a:link, h1 a:active, h1 a:visited, h1 a {
+	font-variant: small-caps;
+	text-decoration: none;
+	color:#00a7f1;
+}
+
+h1#comments {
+	margin-bottom: 10px;
+}
+
+h2 {
+	margin: 0 0 0 15px;
+	padding-top: 5px;
+	font: normal 18px verdana, helvetica, sans-serif;
+	color: #666666;
+}
+
+h2 a:link, h2 a:active, h2 a:visited, h2 a {
+	color: #666666;
+	text-decoration: none;
+}
+
+h2#comments, h2#respond {
+	padding-left: 10px;
+}
+
+h2 span.comments {
+	margin-left: 15px;
+}
+
+h2 span.comments, h2 span.comments a:link, h2 span.comments a:active, h2 span.comments a:visited, h2 span.comments a {
+	color: #aaa;
+	text-decoration: none;
+}
+
+#header_wrapper {
+	BACKGROUND: url(../images/header_background.gif) #fff repeat-x left top; WIDTH: 100%; TEXT-ALIGN: center
+}
+
+#header {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px auto; WIDTH: 750px; PADDING-TOP: 0px; POSITION: relative; TOP: 0px; HEIGHT: 100px; TEXT-ALIGN: left
+}
+#home #banner_wrapper {
+	WIDTH: 100%; 
+	BACKGROUND: url(../images/bannerwrapper_bg.gif) repeat-x left; 
+	TEXT-ALIGN: center;
+	cursor: pointer;
+	margin:0px 0px 0px 0px;
+	padding:0px 0px 0px 0px;
+	
+	
+}
+#banner	{
+	background:url(../images/davidollerhead-header_01.jpg) no-repeat right;
+	height:263px;
+	width: 760px;
+	padding: 0px;
+	margin:auto;
+	text-align:center;
+	overflow:hidden;
+
+}
+
+#home #banner IMG {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#blogtitle {
+	LEFT: 0px; 
+	float: left; 
+	TOP: 18px;
+}
+
+/* -----------------Content Section----------------------- */
+
+#content_wrapper {
+	BACKGROUND: url(../images/background_bottom.gif) #ffffff repeat-x left bottom; 
+	WIDTH: 100%; 
+	TEXT-ALIGN: center;
+}
+
+#container {
+	width: 760px;
+	background: #ffffff;
+	padding: 0px;
+	margin:auto;
+	text-align:center;
+	overflow:hidden;
+}
+
+#container img.imgheader {
+	margin-left: 15px;
+	border: 0;
+}
+
+.entry {
+	margin-left: 24px;
+	margin-bottom: 12px;
+	margin-top:18px;
+	width: 476px;
+	background: transparent;
+	color:#666666;
+}
+
+.entry div#commentform {
+	padding-left: 10px;
+}
+
+.entry ol li, .entry ul li {
+	margin: 5px 20px 10px 10px;
+	line-height: 15px;
+}
+
+.entry p {
+	margin: 5px 25px 10px 25px;
+	line-height: 18px;
+}
+
+.entry p.entrymeta {
+	border-top: solid 1px #ccc;
+	padding-top: 5px;
+	padding-bottom: 20px;
+	font-size: 9px;
+	text-align: left;
+}
+
+.entry p.entrymeta a, .entry p.entrymeta a:link, .entry p.entrymeta a:active, .entry p.entrymeta a:visited {
+	font-size: 9px;
+	color: #999;
+}
+
+.entry ul.links {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.entry ul.links li {
+	margin: 0;
+	padding:0;
+	list-style-type: none;
+}
+
+.entry ul.links li ul {
+	margin: 10px 0 10px 0;
+	padding: 0;
+	list-style-type: disc;
+}
+
+.entry ul.links li ul li {
+	margin-left: 40px;
+	line-height: 20px;
+	list-style-type: disc;
+}
+
+#footer {
+	PADDING-RIGHT: 0px; 
+	PADDING-LEFT: 0px; 
+	BACKGROUND-IMAGE: url(../images/footer.gif); 
+	WIDTH: 100%; 
+	PADDING-TOP: 15px; 
+	BACKGROUND-COLOR: #fff
+}
+#footer P {
+	MARGIN: 0px 0px 4px; FONT: 10px/15px arial, sans-serif; COLOR: #333; HEIGHT: 55px
+}
+
+input#s {
+	border: 0;
+	border: solid 1px #ccc;
+	background: #fff;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+
+input#searchsubmit {
+	font: 9px verdana, helvetica, sans-serif;
+}
+
+input, textarea {
+	background: #FAFAFA;
+	border: solid 1px #ddd;
+}
+
+#main {
+	width: 500px;
+	float: left;
+	margin-top: 0px;
+	text-align: left;
+/*	ball in top left	
+	background-image:url(/images/header/davidollerhead-header_02.jpg);
+	background-position:top left;
+	background-repeat:no-repeat;
+*/	
+}
+
+#sidebar {
+	width: 230px;
+	float: right;
+	margin-top: 0px;
+	margin-right:0px;
+}
+
+#sidebarbox {
+	width: 230px;
+	float: right;
+	margin-top: 30px;
+	margin-right:15px;
+	margin-bottom:30px;
+	font-size: 12px;
+	text-align: right;
+}
+
+/* Begin Images */
+p img {
+	padding: 0;
+	max-width: 100%;
+	}
+
+/*	Using 'class="alignright"' on an image will (who would've
+	thought?!) align the image to the right. And using 'class="centered',
+	will of course center the image. This is much better than using
+	align="center", being much more futureproof (and valid) */
+	
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	}
+	
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+	}
+
+img.alignleft {
+	padding: 4px;
+	margin: 5px 7px 2px 0;
+	display:inline;
+	}
+
+.alignright {
+	float:  right;
+	}
+	
+.alignleft {
+	float: left;
+	}
+/* End Images */
+
+.box{
+	display:block
+}
+.box *{
+	display:block;
+	height:1px;
+	overflow:hidden;
+	background:#e3e3e3
+}
+.box1{
+	border-right:1px solid #e3e3e3;
+	padding-right:1px;
+	margin-right:3px;
+	border-left:1px solid #e3e3e3;
+	padding-left:1px;
+	margin-left:3px;
+	background:#e3e3e3;
+}
+.box2{
+	border-right:1px solid #e3e3e3;
+	border-left:1px solid #e3e3e3;
+	padding:0px 1px;
+	background:#e3e3e3;
+	margin:0px 1px;
+}
+.box3{
+	border-right:1px solid #e3e3e3;
+	border-left:1px solid #e3e3e3;
+	margin:0px 1px;
+}
+.box4{
+	border-right:1px solid #e3e3e3;
+	border-left:1px solid #e3e3e3;
+}
+.box5{
+	border-right:1px solid #e3e3e3;
+	border-left:1px solid #e3e3e3;
+}
+.box_content{
+	padding:5px 5px 5px 5px ;
+	background: #e3e3e3;
+	line-height:15px;
+	font: 10px verdana, helvetica, sans-serif;
+} 
+
+/* lightbox css */
+#lightbox{
+	position: absolute;
+	top: 40px;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+	line-height: 0;
+	}
+
+#lightbox a img{ border: none; }
+
+#outerImageContainer{
+	position: relative;
+	background-color: #fff;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	}
+
+#imageContainer{
+	padding: 10px;
+	}
+
+#loading{
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+	}
+#hoverNav{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+	}
+#imageContainer>#hoverNav{ left: 0;}
+#hoverNav a{ outline: none;}
+
+#prevLink, #nextLink{
+	width: 49%;
+	height: 100%;
+	background: transparent url(../images/blank.gif) no-repeat; /* Trick IE into showing hover */
+	display: block;
+	}
+#prevLink { left: 0; float: left;}
+#nextLink { right: 0; float: right;}
+#prevLink:hover, #prevLink:visited:hover { background: url(../images/prevlabel.gif) left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(../images/nextlabel.gif) right 15% no-repeat; }
+
+
+#imageDataContainer{
+	font: 10px Verdana, Helvetica, sans-serif;
+	background-color: #fff;
+	margin: 0 auto;
+	line-height: 1.4em;
+	}
+
+#imageData{
+	padding:0 10px;
+	}
+#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
+#imageData #caption{ font-weight: bold;	}
+#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
+#imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em;	}	
+		
+#overlay{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+	background-color: #000;
+	filter:alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+	}
+	
+
+.clearfix:after {
+	content: "."; 
+	display: block; 
+	height: 0; 
+	clear: both; 
+	visibility: hidden;
+	}
+
+* html>body .clearfix {
+	display: inline-block; 
+	width: 100%;
+	}
+
+* html .clearfix {
+	/* Hides from IE-mac \*/
+	height: 1%;
+	/* End hide from IE-mac */
+	}	
+	

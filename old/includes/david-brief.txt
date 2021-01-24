@@ -1,0 +1,16 @@
+<td width="127" colspan="2" valign="top"><p class="header"><span class="header"><br/>
+      DAVID IN BRIEF </span></p>
+          <p class="text">STAR SIGN: <span class="lineup">GEMINI</span> <br/>AGE: <span class="lineup">23</span> 
+            <br/>
+      DOB: <span class="lineup">06-06-1982</span><br/>
+      BORN: <span class="lineup">AMSTERDAM, NL </span><br/>
+      LIVES:<span class="lineup"> <a href="http://maps.google.co.uk/maps?q=wokingham" target="_blank" class="special">WOKINGHAM</a>, UK </span><br/>
+	  EDUCATION: <span class="lineup">B.Sc (hons) - Computer Science -<br/>Loughborough University</span><br/>
+      <br/>
+      <p class="lineup"><span class="text">VIEW MY CV</span><br/>
+	  <a href="#" class="special">PDF</a> | <a href="#" class="special">DOC</a>	  </p>
+      <hr size="2px" noshade color="#CCCCCC">
+<!---
+      <p class="text">
+      <hr size="2px" color="#CCCCCC" noshade>    </td>
+-->
