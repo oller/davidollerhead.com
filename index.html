@@ -3,41 +3,42 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>David Ollerhead</title>
     <meta name="description" content="Portfolio of David Ollerhead">
     <meta name="author" content="David Ollerhead">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <style type="text/css">
-        .initials {
+        .initial {
             position: relative;
             height: 100px;
             width: 100px;
             margin: 0 10px;
         }
 
-        .initials:before {
+        .initial:before {
             box-shadow: 0 0 17.5px 8.75px #fff;
             border-radius: 50%;
             background: #fff;
             position: absolute;
             opacity: 0.2;
             content: "";
-            height: 100px;
-            width: 100px;
+            height: 100%;
+            width: 100%;
         }
 
         /* D */
-        .initials:first-child {
+        .initial:first-child {
             width: 90px;
         }
 
-        .initials:first-child .button {
+        .initial:first-child .button {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
         /* End D Overrides */
 
-        .initials .button {
+        .initial .button {
             -webkit-filter: blur(1px);
             -moz-filter: blur(1px);
             filter: blur(1px);
@@ -51,7 +52,8 @@
             width: 100%;
         }
 
-        .initials input {
+        .initial input {
+            -webkit-tap-highlight-color: transparent;
             opacity: 0;
             position: absolute;
             cursor: pointer;
@@ -62,46 +64,44 @@
             top: 0;
         }
 
-        .initials input:active~.button {
+        .initial input:active~.button {
             box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 30px 1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 25px 0 rgba(0, 0, 0, 0.4), inset 0 0 10px 1px rgba(255, 255, 255, 0.6);
         }
 
-        .initials input:active~.label {
+        .initial input:active~.label {
             font-size: 40px;
             color: rgba(0, 0, 0, 0.45);
         }
 
-        .initials input:checked~.button {
+
+        .initial input:checked~.button {
             box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 20px 0 rgba(0, 0, 0, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
         }
 
-        .initials input:checked~.label {
-            font-size: 40px;
-            color: rgba(0, 0, 0, 0.4);
-        }
     </style>
 </head>
 
 <body>
     <div class="h-screen flex items-center justify-center" style="background-color: #ccd0d4;">
-        <div class="initials">
+        <div class="initial">
             <input type="checkbox">
             <span class="button"></span>
         </div>
-        <div class="initials">
+        <div class="initial">
             <input type="checkbox" checked>
             <span class="button"></span>
         </div>
     </div>
-    <div class="p-6 bg-gray-200 text-gray-400 text-xs flex justify-between">
+    <div class="px-6 py-8 bg-gray-200 text-gray-400 text-md flex justify-between">
         <span>
             David Ollerhead is a Front End Developer based in London
         </span>
-        <span>
+        <span class="hidden sm:block">
             &copy;
             <script>document.write(new Date().getFullYear())</script>
         </span>
     </div>
 </body>
+<script type="text/javascript" src="http://livejs.com/live.js"></script>
 
 </html>
