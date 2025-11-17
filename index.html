@@ -6,10 +6,7 @@
     <title>David Ollerhead</title>
     <meta name="description" content="Portfolio of David Ollerhead" />
     <meta name="author" content="David Ollerhead" />
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style type="text/css">
       .initial {
         position: relative;
@@ -88,10 +85,9 @@
   </head>
 
   <body>
-    <div class="h-screen flex flex-col">
+    <div class="h-dvh flex flex-col">
       <div
-        class="h-screen flex items-center justify-center"
-        style="background-color: #ccd0d4"
+        class="flex grow items-center justify-center bg-[#ccd0d4]"
       >
         <div class="initial">
           <input type="checkbox" aria-label="D" />
