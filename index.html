@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -8,6 +8,33 @@
     <meta name="author" content="David Ollerhead" />
     <meta name="color-scheme" content="light" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script>
+      // helper for async pauses
+      const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+      document.addEventListener("DOMContentLoaded", async function (e) {
+        const radio = document.getElementById("O");
+        if (!radio) return;
+
+        // If present, toggle a class on the parent container so we can mirror :active CSS
+        const container = radio.closest('.initial');
+
+        await wait (2000);
+
+        // Begin simulated press
+        if (container) container.classList.add('is-active');
+
+        // hold
+        await wait(500);
+        radio.checked = true;
+
+        // wait another 1s while still held
+        await wait(50);
+
+        // release
+        if (container) container.classList.remove('is-active');
+      });
+    </script>
     <style type="text/css">
       .initial {
         position: relative;
@@ -46,7 +73,8 @@
         position: absolute;
         height: 100%;
         width: 100%;
-        box-shadow: 0 14px 22px -4px rgba(0, 0, 0, 0.55),
+        box-shadow:
+          0 14px 22px -4px rgba(0, 0, 0, 0.55),
           inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
           0 -10px 15px -1px rgba(255, 255, 255, 0.75),
           inset 0 3px 4px -1px rgba(255, 255, 255, 0.25),
@@ -67,7 +95,19 @@
       }
 
       .initial input:active ~ .button {
-        box-shadow: 0 12px 20px -4px rgba(0, 0, 0, 0.4),
+          box-shadow:
+          0 12px 20px -4px rgba(0, 0, 0, 0.4),
+          inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
+          0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+          inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
+          inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+        transform: scale(0.985);
+      }
+
+      /* programmatic active state: when JS adds .is-active to the container, apply same visuals */
+      .initial.is-active .button {
+        box-shadow:
+          0 12px 20px -4px rgba(0, 0, 0, 0.4),
           inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
           0 -10px 15px -1px rgba(255, 255, 255, 0.7),
           inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
@@ -76,13 +116,14 @@
       }
 
       .initial input:checked ~ .button {
-        box-shadow: 0 14px 22px -4px rgba(0, 0, 0, 0.45),
+          box-shadow:
+          0 14px 22px -4px rgba(0, 0, 0, 0.45),
           inset 0 -8px 20px -1px rgba(255, 255, 255, 0.9),
           0 -10px 15px -1px rgba(255, 255, 255, 0.7),
           inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
           inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
       }
-    </style>
+   </style>
   </head>
 
   <body>
@@ -91,11 +132,11 @@
     >
       <div class="flex grow items-center justify-center">
         <div class="initial">
-          <input type="checkbox" aria-label="D" />
+          <input type="checkbox" id="D" aria-label="D" />
           <span class="button"></span>
         </div>
         <div class="initial">
-          <input type="checkbox" aria-label="O" checked />
+          <input type="checkbox" id="O" aria-label="O" />
           <span class="button"></span>
         </div>
       </div>
