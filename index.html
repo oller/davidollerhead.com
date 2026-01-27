@@ -1,184 +1,164 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>David Ollerhead</title>
-    <meta name="description" content="David Ollerhead landing page" />
-    <meta name="author" content="David Ollerhead" />
-    <meta name="color-scheme" content="light" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script>
-      const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-      document.addEventListener("DOMContentLoaded", async function (e) {
-        const radio = document.getElementById("O");
-        if (!radio) return;
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>David Ollerhead</title>
+  <meta name="description" content="David Ollerhead landing page" />
+  <meta name="author" content="David Ollerhead" />
+  <meta name="color-scheme" content="light" />
+  <script src="https://www.vexo.co/analytics.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script>
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        const container = radio.closest(".initial");
+    document.addEventListener("DOMContentLoaded", async function (e) {
+      const radio = document.getElementById("O");
+      if (!radio) return;
 
-        if (container) {
-          await wait(2000);
+      const container = radio.closest(".initial");
 
-          // Toggle class to mirror :active css
-          container.classList.add("is-active");
+      if (container) {
+        await wait(2000);
 
-          // Keep button pressed
-          await wait(500);
-          radio.checked = true;
+        // Toggle class to mirror :active css
+        container.classList.add("is-active");
 
-          // Release after a brief period
-          await wait(50);
-          container.classList.remove("is-active");
-        }
-      });
-    </script>
-    <style type="text/css">
-      .initial {
-        position: relative;
-        height: 100px;
-        width: 100px;
-        margin: 0 10px;
-        flex-shrink: 0;
+        // Keep button pressed
+        await wait(500);
+        radio.checked = true;
+
+        // Release after a brief period
+        await wait(50);
+        container.classList.remove("is-active");
       }
+    });
+  </script>
+  <style type="text/css">
+    .initial {
+      position: relative;
+      height: 100px;
+      width: 100px;
+      margin: 0 10px;
+    }
 
-      .initial:before {
-        box-shadow: 0 0 12px 5px rgba(255, 255, 255, 0.9);
-        border-radius: 50%;
-        background: #fff;
-        position: absolute;
-        opacity: 0.25;
-        content: "";
-        height: 100%;
-        width: 100%;
-        pointer-events: none;
-      }
+    .initial:before {
+      box-shadow: 0 0 12px 5px rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      background: #fff;
+      position: absolute;
+      opacity: 0.25;
+      content: "";
+      height: 100%;
+      width: 100%;
+      pointer-events: none;
+    }
 
-      /* D shape - overrides */
-      .initial:first-child {
-        width: 90px;
-      }
+    /* D shape - overrides */
+    .initial:first-child {
+      width: 90px;
+    }
 
-      .initial:first-child .button {
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-      }
+    .initial:first-child .button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
 
-      .initial .button {
-        filter: blur(0.25px);
-        transition: all 280ms cubic-bezier(0.23, 1, 0.32, 1);
-        background: #ccd0d4;
-        border-radius: 50%;
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        box-shadow:
-          0 14px 22px -4px rgba(0, 0, 0, 0.55),
-          inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
-          0 -10px 15px -1px rgba(255, 255, 255, 0.75),
-          inset 0 3px 4px -1px rgba(255, 255, 255, 0.25),
-          inset 0 0 4px 1px rgba(255, 255, 255, 0.85),
-          inset 0 16px 24px 0 rgba(255, 255, 255, 0.2);
-      }
+    .initial .button {
+      filter: blur(0.25px);
+      transition: all 280ms cubic-bezier(0.23, 1, 0.32, 1);
+      background: #ccd0d4;
+      border-radius: 50%;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      box-shadow:
+        0 14px 22px -4px rgba(0, 0, 0, 0.55),
+        inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.75),
+        inset 0 3px 4px -1px rgba(255, 255, 255, 0.25),
+        inset 0 0 4px 1px rgba(255, 255, 255, 0.85),
+        inset 0 16px 24px 0 rgba(255, 255, 255, 0.2);
+    }
 
-      .initial input {
-        -webkit-tap-highlight-color: transparent;
-        opacity: 0;
-        position: absolute;
-        cursor: pointer;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        left: 0;
-        top: 0;
-      }
+    .initial input {
+      -webkit-tap-highlight-color: transparent;
+      opacity: 0;
+      position: absolute;
+      cursor: pointer;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+    }
 
-      .initial input:active ~ .button {
-        box-shadow:
-          0 12px 20px -4px rgba(0, 0, 0, 0.4),
-          inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
-          0 -10px 15px -1px rgba(255, 255, 255, 0.7),
-          inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
-          inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
-        transform: scale(0.985);
-      }
+    .initial input:active~.button {
+      box-shadow:
+        0 12px 20px -4px rgba(0, 0, 0, 0.4),
+        inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+        inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
+        inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+      transform: scale(0.985);
+    }
 
-      /* programmatic active state: when JS adds .is-active to the container, apply same visuals */
-      .initial.is-active .button {
-        box-shadow:
-          0 12px 20px -4px rgba(0, 0, 0, 0.4),
-          inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
-          0 -10px 15px -1px rgba(255, 255, 255, 0.7),
-          inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
-          inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
-        transform: scale(0.985);
-      }
+    /* programmatic active state: when JS adds .is-active to the container, apply same visuals */
+    .initial.is-active .button {
+      box-shadow:
+        0 12px 20px -4px rgba(0, 0, 0, 0.4),
+        inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+        inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
+        inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+      transform: scale(0.985);
+    }
 
-      .initial input:checked ~ .button {
-        box-shadow:
-          0 14px 22px -4px rgba(0, 0, 0, 0.45),
-          inset 0 -8px 20px -1px rgba(255, 255, 255, 0.9),
-          0 -10px 15px -1px rgba(255, 255, 255, 0.7),
-          inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
-          inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
-      }
-      /* background noise texture */
-      .bg-noise {
-        position: relative;
-        isolation: isolate;
-      }
-      .bg-noise::before {
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        content: "";
-        opacity: 0.3;
-        mix-blend-mode: overlay;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='2.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      }
-    </style>
-  </head>
+    .initial input:checked~.button {
+      box-shadow:
+        0 14px 22px -4px rgba(0, 0, 0, 0.45),
+        inset 0 -8px 20px -1px rgba(255, 255, 255, 0.9),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+        inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
+        inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
+    }
+  </style>
+</head>
 
-  <body>
-    <div
-      class="h-dvh flex flex-col"
-    >
-      <div class="flex grow items-center justify-center bg-gradient-to-t from-[#D5D9DE]  to-[#CCD0D4] bg-noise">
-        <div class="initial">
-          <input type="checkbox" id="D" aria-label="D" />
-          <span class="button"></span>
-        </div>
-        <div class="initial">
-          <input type="checkbox" id="O" aria-label="O" />
-          <span class="button"></span>
-        </div>
+<body>
+  <div class="h-dvh flex flex-col bg-gradient-to-t from-[#d5d9de] to-[#ccd0d4]">
+    <div class="flex grow items-center justify-center">
+      <div class="initial">
+        <input type="checkbox" id="D" aria-label="D" />
+        <span class="button"></span>
       </div>
-
-      <div class="px-6 py-8 bg-gray-200">
-        <div
-          class="container mx-auto text-gray-400 text-md flex flex-col items-center sm:flex-row sm:justify-between gap-6"
-        >
-          <div class="text-center sm:text-left">
-            David Ollerhead is a hands-on Front End focused Engineering Manager.
-            Currently @ JPMorganChase.
-          </div>
-          <a
-            href="https://www.linkedin.com/in/davidollerhead/"
-            class="text-gray-400 hover:text-gray-500 transition-colors duration-150 p-2"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Open David Ollerhead's LinkedIn profile (opens in a new tab)"
-            aria-label="Open David Ollerhead's LinkedIn profile (opens in a new tab)"
-          >
-            <svg class="size-5" viewBox="0 0 382 382" fill="currentColor">
-              <path
-                d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z"
-              ></path>
-            </svg>
-          </a>
-        </div>
+      <div class="initial">
+        <input type="checkbox" id="O" aria-label="O" />
+        <span class="button"></span>
       </div>
     </div>
-  </body>
+
+    <div class="px-6 py-8 bg-gray-200">
+      <div
+        class="container mx-auto text-gray-400 text-md flex flex-col items-center sm:flex-row sm:justify-between gap-6">
+        <div class="text-center sm:text-left">
+          David Ollerhead is a hands-on Front End focused Engineering Manager.
+          Currently @ JPMorganChase.
+        </div>
+        <a href="https://www.linkedin.com/in/davidollerhead/"
+          class="text-gray-400 hover:text-gray-500 transition-colors duration-150 p-2" target="_blank"
+          rel="noopener noreferrer" title="Open David Ollerhead's LinkedIn profile (opens in a new tab)"
+          aria-label="Open David Ollerhead's LinkedIn profile (opens in a new tab)">
+          <svg class="size-5" viewBox="0 0 382 382" fill="currentColor">
+            <path
+              d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z">
+            </path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
