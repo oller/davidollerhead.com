@@ -21,14 +21,10 @@ A focused, single-file landing page featuring tactile interactive push buttons, 
 Because the site is a self-contained static page, no build step or package manager is required. You can serve it locally using any static web server:
 
 ```bash
-# Using npx serve
 npx serve .
-
-# Or using Python 3
-python -m http.server 8000
 ```
 
-Then open `http://localhost:3000` (or `http://localhost:8000`) in your browser.
+Then open `http://localhost:3000` in your browser.
 
 ---
 
