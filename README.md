@@ -45,13 +45,13 @@ git push origin main:gh-pages
 
 This repository preserves 20 years of iterations and experiments across web development eras:
 
-| Era / Year | Tag(s) | Branch | Description & Tech Stack |
+| Era / Year | Tag | Branch | Description & Tech Stack |
 | :--- | :--- | :--- | :--- |
 | **2026** (Current) | [`2026`](https://github.com/oller/davidollerhead.com/releases/tag/2026) | `main`, `gh-pages` | Single-page tactile landing page (Tailwind CSS 4, Vexo, semantic landmark tags). |
 | **2021** | [`2021`](https://github.com/oller/davidollerhead.com/releases/tag/2021) | `gh-pages` | Initial migration to a minimal single-page GitHub Pages site. |
 | **2015** | [`2015`](https://github.com/oller/davidollerhead.com/releases/tag/2015) | `archive/jekyll-2015` | Final Grunt & Jekyll build with Critical CSS, Parker CSS metrics, responsive image LQIP, and blog posts. |
-| **2014** | [`2014`](https://github.com/oller/davidollerhead.com/releases/tag/2014), [`v2.0.0`](https://github.com/oller/davidollerhead.com/releases/tag/v2.0.0) | `archive/jekyll-2015` | Full rewrite with Yeoman (`generator-jekyllrb`), Grunt, Bower, Singularity grid, and Sass. |
-| **2013** | [`v1.0`](https://github.com/oller/davidollerhead.com/releases/tag/v1.0) | `archive/jekyll-2015` | First Jekyll portfolio iteration with PureCSS, HTML5 Boilerplate, and JAPR asset pipeline. |
+| **2014** | [`2014`](https://github.com/oller/davidollerhead.com/releases/tag/2014) | `archive/jekyll-2015` | Full rewrite with Yeoman (`generator-jekyllrb`), Grunt, Bower, Singularity grid, and Sass. |
+| **2013** | [`2013`](https://github.com/oller/davidollerhead.com/releases/tag/2013) | `archive/jekyll-2015` | First Jekyll portfolio iteration with PureCSS, HTML5 Boilerplate, and JAPR asset pipeline. |
 | **2006** | [`2006`](https://github.com/oller/davidollerhead.com/releases/tag/2006) | `2006` | Nostalgic archive of original site (XHTML 1.0 Strict, Prototype.js, Scriptaculous, Flash `.swf`, and Photoshop `.psd` designs). |
 
 To explore any previous version, simply check out its tag:
