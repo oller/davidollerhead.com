@@ -8,7 +8,7 @@ The personal website and portfolio landing page of **David Ollerhead**, live at 
 
 A focused, single-file landing page featuring tactile interactive push buttons, smooth physics, and modern web standards.
 
-- **Structure:** Zero-build static architecture ([index.html](file:///C:/Users/david/Sites/davidollerhead.com/index.html))
+- **Structure:** Zero-build static architecture ([index.html](./index.html))
 - **Styling:** [Tailwind CSS v4](https://tailwindcss.com) via browser runtime
 - **Interactions:** Custom skeuomorphic / neumorphic "D" and "O" toggle buttons with custom cubic-bezier transitions and programmatic press on load
 - **Analytics:** [Vexo](https://vexo.co)
