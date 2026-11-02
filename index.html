@@ -7,11 +7,27 @@
   <title>David Ollerhead</title>
   <meta name="description" content="David Ollerhead landing page" />
   <meta name="author" content="David Ollerhead" />
-  <meta name="color-scheme" content="light" />
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+    })();
+  </script>
   <script src="https://www.vexo.co/analytics.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script>
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    document.addEventListener("DOMContentLoaded", function () {
+      document.getElementById("theme-toggle").addEventListener("click", function () {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch (e) {}
+      });
+    });
 
     document.addEventListener("DOMContentLoaded", async function (e) {
       const radio = document.getElementById("O");
@@ -36,6 +52,119 @@
     });
   </script>
   <style type="text/css">
+    :root {
+      --page-from: #d5d9de;
+      --page-to: #ccd0d4;
+      --footer-bg: #e5e7eb;
+      --footer-text: #606876;
+      --footer-hover: #4b5563;
+      --btn-bg: #ccd0d4;
+      --glow-bg: #fff;
+      --glow-shadow: rgba(255, 255, 255, 0.9);
+      --btn-blur: 0.25px;
+      --shadow-rest:
+        0 14px 22px -4px rgba(0, 0, 0, 0.55),
+        inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.75),
+        inset 0 3px 4px -1px rgba(255, 255, 255, 0.25),
+        inset 0 0 4px 1px rgba(255, 255, 255, 0.85),
+        inset 0 16px 24px 0 rgba(255, 255, 255, 0.2);
+      --shadow-active:
+        0 12px 20px -4px rgba(0, 0, 0, 0.4),
+        inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+        inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
+        inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+      --shadow-checked:
+        0 14px 22px -4px rgba(0, 0, 0, 0.45),
+        inset 0 -8px 20px -1px rgba(255, 255, 255, 0.9),
+        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+        inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
+        inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
+    }
+
+    /* Tokyo Night (storm/moon) inspired dark theme */
+    :root[data-theme="dark"] {
+      --page-from: #1e2030;
+      --page-to: #24283b;
+      --footer-bg: #1a1c2a;
+      --footer-text: #7c86b2;
+      --footer-hover: #a9b8e8;
+      --btn-bg: linear-gradient(180deg, #292d44 0%, #242840 100%);
+      --glow-bg: #485a8c;
+      --glow-shadow: rgba(72, 90, 140, 0.7);
+      --shadow-rest:
+        0 14px 22px -4px rgba(3, 4, 10, 0.7),
+        inset 0 -3px 4px -1px rgba(3, 4, 10, 0.4),
+        0 -8px 12px -2px rgba(95, 120, 190, 0.13),
+        inset 0 3px 4px -1px rgba(115, 140, 205, 0.06),
+        inset 0 0 4px 1px rgba(110, 135, 200, 0.17),
+        inset 0 16px 24px 0 rgba(105, 130, 200, 0.035);
+      --shadow-active:
+        0 12px 20px -4px rgba(3, 4, 10, 0.6),
+        inset 0 -8px 25px 1px rgba(100, 125, 195, 0.34),
+        0 -8px 12px -2px rgba(95, 120, 190, 0.12),
+        inset 0 10px 22px 0 rgba(3, 4, 10, 0.85),
+        inset 0 3px 6px 0 rgba(3, 4, 10, 0.5),
+        inset 0 0 5px 1px rgba(120, 145, 210, 0.32);
+      --shadow-checked:
+        0 12px 20px -4px rgba(3, 4, 10, 0.6),
+        inset 0 -8px 22px 0 rgba(100, 125, 195, 0.3),
+        0 -8px 12px -2px rgba(95, 120, 190, 0.11),
+        inset 0 10px 22px 0 rgba(3, 4, 10, 0.75),
+        inset 0 3px 6px 0 rgba(3, 4, 10, 0.4),
+        inset 0 0 5px 1px rgba(120, 145, 210, 0.26);
+    }
+
+    :root[data-theme="dark"] .initial:before { opacity: 0.1; }
+    :root { color-scheme: light; }
+    :root[data-theme="dark"] { color-scheme: dark; }
+
+    .page { background: linear-gradient(to top, var(--page-from), var(--page-to)); }
+    .site-footer { background: var(--footer-bg); }
+    .site-footer .footer-inner { color: var(--footer-text); }
+    .site-footer a:hover { color: var(--footer-hover); }
+
+    .theme-toggle {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      padding: 8px;
+      border-radius: 9999px;
+      color: var(--footer-text);
+      cursor: pointer;
+      transition: color 150ms;
+    }
+    .theme-toggle:hover { color: var(--footer-hover); }
+    .theme-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+    /* sun <-> moon morph: the disc grows while a cutter circle slides across it
+       to carve the crescent; the rays rotate and shrink into the centre. */
+    .theme-icon * {
+      transform-box: view-box;
+      transform-origin: 12px 12px;
+    }
+    .theme-icon,
+    .theme-icon .body,
+    .theme-icon .cutter,
+    .theme-icon .rays {
+      transition: transform 500ms cubic-bezier(0.34, 1.3, 0.5, 1), opacity 300ms ease;
+    }
+    .theme-icon .disc,
+    .theme-icon .cutter { vector-effect: non-scaling-stroke; }
+    .theme-icon { transform: rotate(90deg); } /* sun is symmetric every 45deg, so this is invisible at rest */
+    .theme-icon .body { transform: scale(0.5); }
+    .theme-icon .cutter { transform: translate(20px, -20px); }
+    .theme-icon .rays { transform: rotate(0deg) scale(1); opacity: 1; }
+
+    :root[data-theme="dark"] .theme-icon { transform: rotate(0deg); }
+    :root[data-theme="dark"] .theme-icon .body { transform: scale(1); }
+    :root[data-theme="dark"] .theme-icon .cutter { transform: translate(4.5px, -4.5px); }
+    :root[data-theme="dark"] .theme-icon .rays { transform: rotate(90deg) scale(0); opacity: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .theme-icon, .theme-icon * { transition: none !important; }
+    }
+
     .initial {
       position: relative;
       height: 100px;
@@ -44,9 +173,9 @@
     }
 
     .initial:before {
-      box-shadow: 0 0 12px 5px rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 12px 5px var(--glow-shadow);
       border-radius: 50%;
-      background: #fff;
+      background: var(--glow-bg);
       position: absolute;
       opacity: 0.25;
       content: "";
@@ -68,18 +197,12 @@
     .initial .button {
       filter: blur(0.25px);
       transition: all 280ms cubic-bezier(0.23, 1, 0.32, 1);
-      background: #ccd0d4;
+      background: var(--btn-bg);
       border-radius: 50%;
       position: absolute;
       height: 100%;
       width: 100%;
-      box-shadow:
-        0 14px 22px -4px rgba(0, 0, 0, 0.55),
-        inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
-        0 -10px 15px -1px rgba(255, 255, 255, 0.75),
-        inset 0 3px 4px -1px rgba(255, 255, 255, 0.25),
-        inset 0 0 4px 1px rgba(255, 255, 255, 0.85),
-        inset 0 16px 24px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: var(--shadow-rest);
     }
 
     .initial input {
@@ -95,39 +218,42 @@
     }
 
     .initial input:active~.button {
-      box-shadow:
-        0 12px 20px -4px rgba(0, 0, 0, 0.4),
-        inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
-        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
-        inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
-        inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-active);
       transform: scale(0.985);
     }
 
     /* programmatic active state: when JS adds .is-active to the container, apply same visuals */
     .initial.is-active .button {
-      box-shadow:
-        0 12px 20px -4px rgba(0, 0, 0, 0.4),
-        inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
-        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
-        inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
-        inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-active);
       transform: scale(0.985);
     }
 
     .initial input:checked~.button {
-      box-shadow:
-        0 14px 22px -4px rgba(0, 0, 0, 0.45),
-        inset 0 -8px 20px -1px rgba(255, 255, 255, 0.9),
-        0 -10px 15px -1px rgba(255, 255, 255, 0.7),
-        inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
-        inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
+      box-shadow: var(--shadow-checked);
     }
   </style>
 </head>
 
 <body>
-  <div class="h-dvh flex flex-col bg-gradient-to-t from-[#d5d9de] to-[#ccd0d4]">
+  <div class="page h-dvh flex flex-col relative">
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
+      <svg class="theme-icon size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <defs>
+          <mask id="moon-mask">
+            <rect x="-12" y="-12" width="48" height="48" fill="#fff" stroke="none" />
+            <circle class="cutter" cx="12" cy="12" r="7.5" fill="#000" stroke="none" />
+          </mask>
+          <clipPath id="moon-clip"><circle cx="12" cy="12" r="10" /></clipPath>
+        </defs>
+        <g class="body">
+          <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon-mask)" />
+          <g clip-path="url(#moon-clip)">
+            <circle class="cutter" cx="12" cy="12" r="7.5" />
+          </g>
+        </g>
+        <g class="rays"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></g>
+      </svg>
+    </button>
     <main class="flex grow items-center justify-center">
       <div class="initial">
         <input type="checkbox" id="D" aria-label="D" />
@@ -139,15 +265,15 @@
       </div>
     </main>
 
-    <footer class="px-6 py-8 bg-gray-200">
+    <footer class="site-footer px-6 py-8">
       <div
-        class="container mx-auto text-[#606876] text-md flex flex-col items-center sm:flex-row sm:justify-between gap-6">
+        class="footer-inner container mx-auto text-md flex flex-col items-center sm:flex-row sm:justify-between gap-6">
         <div class="text-center sm:text-left">
           David Ollerhead is a hands-on Front End focused Engineering Manager.
           Currently @ JPMorganChase.
         </div>
         <div class="flex items-center gap-1">
-          <a href="https://github.com/oller" class="hover:text-gray-600 transition-colors duration-150 p-2"
+          <a href="https://github.com/oller" class="transition-colors duration-150 p-2"
             target="_blank" rel="noopener noreferrer" title="Open David Ollerhead's GitHub profile (opens in a new tab)"
             aria-label="Open David Ollerhead's GitHub profile (opens in a new tab)">
             <svg class="size-5" viewBox="0 0 24 24" fill="currentColor">
@@ -157,7 +283,7 @@
             </svg>
           </a>
           <a href="https://www.linkedin.com/in/davidollerhead/"
-            class="hover:text-gray-600 transition-colors duration-150 p-2" target="_blank" rel="noopener noreferrer"
+            class="transition-colors duration-150 p-2" target="_blank" rel="noopener noreferrer"
             title="Open David Ollerhead's LinkedIn profile (opens in a new tab)"
             aria-label="Open David Ollerhead's LinkedIn profile (opens in a new tab)">
             <svg class="size-5" viewBox="0 0 382 382" fill="currentColor">
