@@ -9,9 +9,11 @@
   <meta name="author" content="David Ollerhead" />
   <meta name="color-scheme" content="light dark" />
   <script>
+    // Apply the saved (or system) theme before first paint to avoid a flash
     (function () {
       var saved = null;
-      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      // localStorage can throw (e.g. private mode)
+      try {saved = localStorage.getItem("theme");} catch (e) { }
       var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.dataset.theme = dark ? "dark" : "light";
     })();
@@ -21,11 +23,34 @@
   <script>
     const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+    // Theme toggle: flips and saves the theme, with a circular wipe where supported
     document.addEventListener("DOMContentLoaded", function () {
-      document.getElementById("theme-toggle").addEventListener("click", function () {
-        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-        document.documentElement.dataset.theme = next;
-        try { localStorage.setItem("theme", next); } catch (e) {}
+      const toggle = document.getElementById("theme-toggle");
+
+      toggle.addEventListener("click", function () {
+        const root = document.documentElement;
+        const next = root.dataset.theme === "dark" ? "light" : "dark";
+        const apply = () => {
+          root.dataset.theme = next;
+          try {localStorage.setItem("theme", next);} catch (e) { }
+        };
+
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        // No View Transitions support or reduced motion: switch instantly
+        if (!document.startViewTransition || reduceMotion) return apply();
+
+        // Wipe grows from the toggle to the farthest corner of the viewport
+        const r = toggle.getBoundingClientRect();
+        const x = r.left + r.width / 2;
+        const y = r.top + r.height / 2;
+        const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+
+        document.startViewTransition(apply).ready.then(() => {
+          root.animate(
+            {clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]},
+            {duration: 700, easing: "cubic-bezier(0.4, 0, 0.2, 1)", pseudoElement: "::view-transition-new(root)"}
+          );
+        }).catch(() => { }); // skipped or interrupted: nothing to do
       });
     });
 
@@ -52,6 +77,7 @@
     });
   </script>
   <style type="text/css">
+    /* Theme tokens: light is the default, [data-theme="dark"] overrides it */
     :root {
       --page-from: #d5d9de;
       --page-to: #ccd0d4;
@@ -59,9 +85,11 @@
       --footer-text: #606876;
       --footer-hover: #4b5563;
       --btn-bg: #ccd0d4;
+      /* Halo behind each button */
       --glow-bg: #fff;
       --glow-shadow: rgba(255, 255, 255, 0.9);
       --btn-blur: 0.25px;
+      /* Shadow stacks per state: drop shadow, inner shading, light above, inner highlights */
       --shadow-rest:
         0 14px 22px -4px rgba(0, 0, 0, 0.55),
         inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
@@ -83,7 +111,8 @@
         inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
     }
 
-    /* Tokyo Night (storm/moon) inspired dark theme */
+    /* Dark theme (Tokyo Night inspired). Highlights are muted slate blue rather
+       than white, which reads as a grey veil on dark surfaces. */
     :root[data-theme="dark"] {
       --page-from: #1e2030;
       --page-to: #24283b;
@@ -97,8 +126,8 @@
         0 14px 22px -4px rgba(3, 4, 10, 0.7),
         inset 0 -3px 4px -1px rgba(3, 4, 10, 0.4),
         0 -8px 12px -2px rgba(95, 120, 190, 0.13),
-        inset 0 3px 4px -1px rgba(115, 140, 205, 0.06),
-        inset 0 0 4px 1px rgba(110, 135, 200, 0.17),
+        inset 0 1px 1.5px 0 rgba(105, 130, 200, 0.16),
+        inset 0 0 2px 1px rgba(100, 125, 195, 0.08),
         inset 0 16px 24px 0 rgba(105, 130, 200, 0.035);
       --shadow-active:
         0 12px 20px -4px rgba(3, 4, 10, 0.6),
@@ -116,15 +145,37 @@
         inset 0 0 5px 1px rgba(120, 145, 210, 0.26);
     }
 
-    :root[data-theme="dark"] .initial:before { opacity: 0.1; }
-    :root { color-scheme: light; }
-    :root[data-theme="dark"] { color-scheme: dark; }
+    /* Fainter halo than light mode (0.25) */
+    :root[data-theme="dark"] .initial:before {
+      opacity: 0.1;
+    }
 
-    .page { background: linear-gradient(to top, var(--page-from), var(--page-to)); }
-    .site-footer { background: var(--footer-bg); }
-    .site-footer .footer-inner { color: var(--footer-text); }
-    .site-footer a:hover { color: var(--footer-hover); }
+    /* Match native UI (scrollbars etc.) to the theme */
+    :root {
+      color-scheme: light;
+    }
 
+    :root[data-theme="dark"] {
+      color-scheme: dark;
+    }
+
+    .page {
+      background: linear-gradient(to top, var(--page-from), var(--page-to));
+    }
+
+    .site-footer {
+      background: var(--footer-bg);
+    }
+
+    .site-footer .footer-inner {
+      color: var(--footer-text);
+    }
+
+    .site-footer a:hover {
+      color: var(--footer-hover);
+    }
+
+    /* Theme toggle, top right */
     .theme-toggle {
       position: absolute;
       top: 16px;
@@ -135,34 +186,94 @@
       cursor: pointer;
       transition: color 150ms;
     }
-    .theme-toggle:hover { color: var(--footer-hover); }
-    .theme-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
-    /* sun <-> moon morph: the disc grows while a cutter circle slides across it
-       to carve the crescent; the rays rotate and shrink into the centre. */
+
+    .theme-toggle:hover {
+      color: var(--footer-hover);
+    }
+
+    .theme-toggle:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 2px;
+    }
+
+    /* Sun <-> moon morph: the disc grows while a "cutter" circle slides across it
+       to carve the crescent, and the rays shrink into the centre. */
     .theme-icon * {
       transform-box: view-box;
       transform-origin: 12px 12px;
     }
+
     .theme-icon,
     .theme-icon .body,
     .theme-icon .cutter,
     .theme-icon .rays {
       transition: transform 500ms cubic-bezier(0.34, 1.3, 0.5, 1), opacity 300ms ease;
     }
+
+    /* Constant line weight while scaling */
     .theme-icon .disc,
-    .theme-icon .cutter { vector-effect: non-scaling-stroke; }
-    .theme-icon { transform: rotate(90deg); } /* sun is symmetric every 45deg, so this is invisible at rest */
-    .theme-icon .body { transform: scale(0.5); }
-    .theme-icon .cutter { transform: translate(20px, -20px); }
-    .theme-icon .rays { transform: rotate(0deg) scale(1); opacity: 1; }
+    .theme-icon .cutter {
+      vector-effect: non-scaling-stroke;
+    }
 
-    :root[data-theme="dark"] .theme-icon { transform: rotate(0deg); }
-    :root[data-theme="dark"] .theme-icon .body { transform: scale(1); }
-    :root[data-theme="dark"] .theme-icon .cutter { transform: translate(4.5px, -4.5px); }
-    :root[data-theme="dark"] .theme-icon .rays { transform: rotate(90deg) scale(0); opacity: 0; }
+    .theme-icon {
+      transform: rotate(90deg);
+    }
 
+    /* Sun state. The 90deg spin is invisible at rest (sun repeats every 45deg) */
+    .theme-icon .body {
+      transform: scale(0.5);
+    }
+
+    .theme-icon .cutter {
+      transform: translate(20px, -20px);
+    }
+
+    .theme-icon .rays {
+      transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+
+    /* Moon state (dark theme) */
+    :root[data-theme="dark"] .theme-icon {
+      transform: rotate(0deg);
+    }
+
+    :root[data-theme="dark"] .theme-icon .body {
+      transform: scale(1);
+    }
+
+    :root[data-theme="dark"] .theme-icon .cutter {
+      transform: translate(4.5px, -4.5px);
+    }
+
+    :root[data-theme="dark"] .theme-icon .rays {
+      transform: rotate(90deg) scale(0);
+      opacity: 0;
+    }
+
+    /* Page wipe: disable the default cross-fade (the circle is animated in JS) */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(root) {
+      z-index: 0;
+    }
+
+    ::view-transition-new(root) {
+      z-index: 1;
+    }
+
+    /* No icon animation for reduced motion */
     @media (prefers-reduced-motion: reduce) {
-      .theme-icon, .theme-icon * { transition: none !important; }
+
+      .theme-icon,
+      .theme-icon * {
+        transition: none !important;
+      }
     }
 
     .initial {
@@ -236,14 +347,18 @@
 
 <body>
   <div class="page h-dvh flex flex-col relative">
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">
-      <svg class="theme-icon size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme"
+      title="Toggle light/dark theme">
+      <svg class="theme-icon size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <defs>
           <mask id="moon-mask">
             <rect x="-12" y="-12" width="48" height="48" fill="#fff" stroke="none" />
             <circle class="cutter" cx="12" cy="12" r="7.5" fill="#000" stroke="none" />
           </mask>
-          <clipPath id="moon-clip"><circle cx="12" cy="12" r="10" /></clipPath>
+          <clipPath id="moon-clip">
+            <circle cx="12" cy="12" r="10" />
+          </clipPath>
         </defs>
         <g class="body">
           <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon-mask)" />
@@ -251,7 +366,10 @@
             <circle class="cutter" cx="12" cy="12" r="7.5" />
           </g>
         </g>
-        <g class="rays"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></g>
+        <g class="rays">
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </g>
       </svg>
     </button>
     <main class="flex grow items-center justify-center">
@@ -273,8 +391,8 @@
           Currently @ JPMorganChase.
         </div>
         <div class="flex items-center gap-1">
-          <a href="https://github.com/oller" class="transition-colors duration-150 p-2"
-            target="_blank" rel="noopener noreferrer" title="Open David Ollerhead's GitHub profile (opens in a new tab)"
+          <a href="https://github.com/oller" class="transition-colors duration-150 p-2" target="_blank"
+            rel="noopener noreferrer" title="Open David Ollerhead's GitHub profile (opens in a new tab)"
             aria-label="Open David Ollerhead's GitHub profile (opens in a new tab)">
             <svg class="size-5" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -282,8 +400,8 @@
               </path>
             </svg>
           </a>
-          <a href="https://www.linkedin.com/in/davidollerhead/"
-            class="transition-colors duration-150 p-2" target="_blank" rel="noopener noreferrer"
+          <a href="https://www.linkedin.com/in/davidollerhead/" class="transition-colors duration-150 p-2"
+            target="_blank" rel="noopener noreferrer"
             title="Open David Ollerhead's LinkedIn profile (opens in a new tab)"
             aria-label="Open David Ollerhead's LinkedIn profile (opens in a new tab)">
             <svg class="size-5" viewBox="0 0 382 382" fill="currentColor">
