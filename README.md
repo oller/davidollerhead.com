@@ -30,14 +30,7 @@ Then open `http://localhost:3000` in your browser.
 
 ## Deployment Workflow
 
-The site is served by GitHub Pages from the `gh-pages` branch. 
-
-To deploy changes made on `main`:
-
-```bash
-git push origin main
-git push origin main:gh-pages
-```
+The site is served by GitHub Pages directly from the root of the `main` branch. Merging a pull request into `main` deploys it automatically, usually within a minute. An empty `.nojekyll` file skips Jekyll processing so files are served as-is.
 
 ---
 
