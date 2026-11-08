@@ -37,16 +37,21 @@
         // No View Transitions support or reduced motion: switch instantly
         if (!document.startViewTransition || reduceMotion) return apply();
 
-        // Wipe grows from the toggle to the farthest corner of the viewport
-        const r = toggle.getBoundingClientRect();
+        // Wipe grows from the centre of the icon itself (not the padded button box),
+        // measured in the same viewport space the view-transition snapshot uses
+        const icon = toggle.querySelector(".theme-icon") || toggle;
+        const r = icon.getBoundingClientRect();
+        const vw = document.documentElement.clientWidth;
+        const vh = document.documentElement.clientHeight;
         const x = r.left + r.width / 2;
         const y = r.top + r.height / 2;
-        const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+        // Distance to the farthest corner, plus slack so the edge clears it before the end
+        const radius = Math.ceil(Math.hypot(Math.max(x, vw - x), Math.max(y, vh - y))) + 2;
 
         document.startViewTransition(apply).ready.then(() => {
           root.animate(
             {clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]},
-            {duration: 700, easing: "cubic-bezier(0.4, 0, 0.2, 1)", pseudoElement: "::view-transition-new(root)"}
+            {duration: 700, easing: "cubic-bezier(0.65, 0, 0.35, 1)", fill: "forwards", pseudoElement: "::view-transition-new(root)"}
           );
         }).catch(() => { }); // skipped or interrupted: nothing to do
       });
@@ -338,6 +343,12 @@
 
     ::view-transition-new(root) {
       z-index: 1;
+    }
+
+    /* Keep the snapshots pinned to the viewport so the circle never gets clipped */
+    ::view-transition-group(root) {
+      animation-duration: 700ms;
+      overflow: hidden;
     }
 
     /* No icon animation for reduced motion */
