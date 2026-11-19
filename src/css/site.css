@@ -15,6 +15,7 @@
   --border-subtle: rgba(96, 104, 118, 0.22);
   --surface-subtle: rgba(255, 255, 255, 0.45);
   --code-bg: rgba(255, 255, 255, 0.6);
+  --pill-bg: rgba(31, 36, 45, 0.07);
 }
 
 /* Dark theme (Tokyo Night inspired) */
@@ -33,6 +34,7 @@
   --border-subtle: rgba(124, 134, 178, 0.22);
   --surface-subtle: rgba(26, 28, 42, 0.5);
   --code-bg: rgba(26, 28, 42, 0.7);
+  --pill-bg: rgba(192, 202, 245, 0.09);
 }
 
 *,
@@ -137,14 +139,14 @@ svg {
 .site-nav {
   grid-column: 2;
   justify-self: center;
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 0.25rem;
 }
 
 .site-nav a {
-  padding: 0.375rem 0.625rem;
-  border-radius: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
   font-size: 0.875rem;
   color: var(--footer-text);
   transition: color 150ms;
@@ -157,6 +159,43 @@ svg {
 .site-nav a[aria-current="page"] {
   color: var(--text-primary);
   font-weight: 500;
+}
+
+/* Hover pill: no-anchor-support fallback is a plain per-link background */
+.site-nav a:hover {
+  background: var(--pill-bg);
+}
+
+/* With anchor positioning, one pill slides between the links. The hovered link
+   is the anchor; the nav's ::before is positioned against it. */
+@supports (anchor-name: --x) {
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    anchor-name: --nav-hover;
+    background: none;
+  }
+
+  .site-nav::before {
+    content: "";
+    position: absolute;
+    position-anchor: --nav-hover;
+    inset: anchor(top) anchor(right) anchor(bottom) anchor(left);
+    border-radius: 9999px;
+    background: var(--pill-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: inset 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+  }
+
+  .site-nav:has(a:hover, a:focus-visible)::before {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav::before {
+    transition: opacity 300ms ease;
+  }
 }
 
 /* Theme toggle */
