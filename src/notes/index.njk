@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+title: Notes
+description: Notes and essays by David Ollerhead.
+permalink: /notes/
+---
+<header class="notes-header">
+  <h1>Notes</h1>
+  <a href="/feed.xml" class="rss-link" aria-label="Atom feed for Notes">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 11a9 9 0 0 1 9 9" />
+      <path d="M4 4a16 16 0 0 1 16 16" />
+      <circle cx="5" cy="19" r="1" fill="currentColor" />
+    </svg>
+    <span>RSS</span>
+  </a>
+</header>
+
+{% if collections.notes.length -%}
+<ul class="notes-list">
+  {%- for note in collections.notes %}
+  <li>
+    <a href="{{ note.url }}">
+      <time datetime="{{ note.date | isoDate }}">{{ note.date | readableDate }}</time>
+      <span class="note-title">{{ note.data.title }}</span>
+    </a>
+  </li>
+  {%- endfor %}
+</ul>
+{% else -%}
+<p class="prose">No notes published yet.</p>
+{% endif -%}
