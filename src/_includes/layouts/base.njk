@@ -38,38 +38,36 @@
   <div class="page {% if isHome %}page--home{% else %}page--content{% endif %}">
     <header class="site-header">
       {% if not isHome -%}
-      <a href="/" class="site-brand">{{ site.title }}</a>
+      <a href="/" class="site-brand" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" /></svg></a>
       {% endif -%}
-      <div class="header-controls">
-        <nav class="site-nav" aria-label="Primary">
-          <a href="/now/"{% if page.url == "/now/" %} aria-current="page"{% endif %}>Now</a>
-          <a href="/notes/"{% if page.url and page.url.startsWith("/notes/") %} aria-current="page"{% endif %}>Notes</a>
-        </nav>
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
-          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <defs>
-              <mask id="moon-mask">
-                <rect x="-12" y="-12" width="48" height="48" fill="#fff" stroke="none" />
-                <circle class="cutter" cx="12" cy="12" r="7.5" fill="#000" stroke="none" />
-              </mask>
-              <clipPath id="moon-clip">
-                <circle cx="12" cy="12" r="10" />
-              </clipPath>
-            </defs>
-            <g class="body">
-              <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon-mask)" />
-              <g clip-path="url(#moon-clip)">
-                <circle class="cutter" cx="12" cy="12" r="7.5" />
-              </g>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/now/"{% if page.url == "/now/" %} aria-current="page"{% endif %}>Now</a>
+        <a href="/notes/"{% if page.url and page.url.startsWith("/notes/") %} aria-current="page"{% endif %}>Notes</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <defs>
+            <mask id="moon-mask">
+              <rect x="-12" y="-12" width="48" height="48" fill="#fff" stroke="none" />
+              <circle class="cutter" cx="12" cy="12" r="7.5" fill="#000" stroke="none" />
+            </mask>
+            <clipPath id="moon-clip">
+              <circle cx="12" cy="12" r="10" />
+            </clipPath>
+          </defs>
+          <g class="body">
+            <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon-mask)" />
+            <g clip-path="url(#moon-clip)">
+              <circle class="cutter" cx="12" cy="12" r="7.5" />
             </g>
-            <g class="rays">
-              <path
-                d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-            </g>
-          </svg>
-        </button>
-      </div>
+          </g>
+          <g class="rays">
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+          </g>
+        </svg>
+      </button>
     </header>
 
     <main>
