@@ -1,16 +1,18 @@
 # davidollerhead.com
 
-The personal website and portfolio landing page of **David Ollerhead**, live at [davidollerhead.com](https://davidollerhead.com).
+The personal website of **David Ollerhead**, live at [davidollerhead.com](https://davidollerhead.com).
 
 ---
 
 ## Current Version (2026)
 
-A focused, single-file landing page featuring tactile interactive push buttons, smooth physics, and modern web standards.
+A minimal personal site built with [Eleventy](https://www.11ty.dev/), preserving the tactile D/O landing page alongside `/now/` and `/notes/` sections.
 
-- **Structure:** Zero-build static architecture ([index.html](./index.html))
-- **Styling:** Vanilla CSS with custom properties, light/dark themes, and system fonts
-- **Interactions:** Custom skeuomorphic / neumorphic "D" and "O" toggle buttons with custom cubic-bezier transitions and programmatic press on load
+- **Static Site Generator:** [Eleventy 3.x](https://www.11ty.dev/) (`src/` → `_site/`)
+- **Styling:** Vanilla CSS with custom properties, light/dark themes, View Transitions circular wipe, and system fonts
+- **Syntax Highlighting:** Build-time highlighting via [Shiki](https://shiki.style/) (`@shikijs/markdown-it`) using `tokyo-night` (dark) and `github-light` (light), switched purely via CSS
+- **Feeds:** Atom feed for notes at `/feed.xml` (`@11ty/eleventy-plugin-rss`)
+- **Interactions:** Custom skeuomorphic / neumorphic "D" and "O" toggle buttons on the homepage with custom cubic-bezier transitions and programmatic press on load
 - **Analytics:** [Vexo](https://vexo.co)
 - **Hosting:** [GitHub Pages](https://pages.github.com) via custom domain (`CNAME: davidollerhead.com`)
 
@@ -18,19 +20,57 @@ A focused, single-file landing page featuring tactile interactive push buttons, 
 
 ## Local Development
 
-Because the site is a self-contained static page, no build step or package manager is required. You can serve it locally using any static web server:
+Install dependencies first:
 
 ```bash
-npx serve .
+npm install
 ```
 
-Then open `http://localhost:3000` in your browser.
+Start the Eleventy dev server with live reload:
+
+```bash
+npm run dev
+```
+
+Build the production site into `_site/`:
+
+```bash
+npm run build
+```
+
+---
+
+## Writing a New Note
+
+Notes live in `src/notes/` as Markdown files (for example, `src/notes/my-note.md`).
+
+Each note uses YAML frontmatter at the top of the file:
+
+```markdown
+---
+title: Your Note Title
+date: 2026-11-19
+description: Short summary for metadata.
+slug: my-note
+---
+
+Note content in Markdown...
+```
+
+- `title` (required): Display title in `/notes/`, on the note page, and in `/feed.xml`.
+- `date` (required): Publication date (`YYYY-MM-DD`); notes are listed reverse-chronologically.
+- `description` (optional): Meta description for the note page.
+- `slug` (optional): Overrides the URL slug. If omitted, Eleventy uses the filename (`fileSlug`).
+
+A note with `slug: my-note` (or filename `my-note.md`) builds to `_site/notes/my-note/index.html` and is served at `/notes/my-note/`. It is automatically included in `/notes/` and `/feed.xml`.
 
 ---
 
 ## Deployment Workflow
 
-The site is served by GitHub Pages directly from the root of the `main` branch. Merging a pull request into `main` deploys it automatically, usually within a minute. An empty `.nojekyll` file skips Jekyll processing so files are served as-is.
+The site is built and deployed to GitHub Pages via the [GitHub Actions workflow](.github/workflows/deploy.yml) on pushes to `main` (and manual `workflow_dispatch` runs). The workflow runs `npm ci` and `npm run build`, then uploads `_site/` with `actions/upload-pages-artifact` and deploys with `actions/deploy-pages`. `CNAME` and `.nojekyll` are copied into `_site/` during the build.
+
+> **Important (post-merge step):** After merging these changes into `main`, switch GitHub Pages in repository **Settings → Pages → Build and deployment → Source** from **Deploy from a branch** to **GitHub Actions**.
 
 ---
 

@@ -1,0 +1,12 @@
+---
+layout: layouts/base.njk
+---
+<article class="prose">
+  <header class="article-header">
+    <h1>{{ title }}</h1>
+    {% if updated %}
+    <p class="page-meta">Last updated <time datetime="{{ updated | isoDate }}">{{ updated | readableDate }}</time></p>
+    {% endif %}
+  </header>
+  {{ content | safe }}
+</article>

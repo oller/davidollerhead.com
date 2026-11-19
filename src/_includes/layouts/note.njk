@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+---
+<article class="prose">
+  <header class="article-header">
+    <p class="page-meta"><a href="/notes/" class="back-link">&larr; Notes</a> &middot; <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
+    <h1>{{ title }}</h1>
+  </header>
+  {{ content | safe }}
+</article>
