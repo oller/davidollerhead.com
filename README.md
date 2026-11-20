@@ -1,50 +1,30 @@
 # davidollerhead.com
 
-The personal website of **David Ollerhead**, live at [davidollerhead.com](https://davidollerhead.com).
+Personal website of **David Ollerhead**, live at [davidollerhead.com](https://davidollerhead.com).
 
----
+## Stack
 
-## Current Version (2026)
+Built with [Eleventy 3](https://www.11ty.dev/) (`src/` → `_site/`), featuring the tactile D/O landing page alongside `/now/` and `/notes/`.
 
-A minimal personal site built with [Eleventy](https://www.11ty.dev/), preserving the tactile D/O landing page alongside `/now/` and `/notes/` sections.
-
-- **Static Site Generator:** [Eleventy 3.x](https://www.11ty.dev/) (`src/` → `_site/`)
-- **Styling:** Vanilla CSS with custom properties, light/dark themes, View Transitions circular wipe, and system fonts
-- **Syntax Highlighting:** Build-time highlighting via [Shiki](https://shiki.style/) (`@shikijs/markdown-it`) using `tokyo-night` (dark) and `github-light` (light), switched purely via CSS
-- **Feeds:** Atom feed for notes at `/feed.xml` (`@11ty/eleventy-plugin-rss`)
-- **Interactions:** Custom skeuomorphic / neumorphic "D" and "O" toggle buttons on the homepage with custom cubic-bezier transitions and programmatic press on load
-- **Analytics:** [Vexo](https://vexo.co)
-- **Hosting:** [GitHub Pages](https://pages.github.com) via custom domain (`CNAME: davidollerhead.com`)
-
----
+- **Styling:** Vanilla CSS with `light-dark()` theming, a View Transitions circular theme wipe, a CSS anchor-positioned nav hover pill, and system fonts.
+- **Syntax Highlighting:** Build-time [Shiki](https://shiki.style/) (`@shikijs/markdown-it`) using `catppuccin-latte` (light) and `tokyo-night` (dark), switched via CSS.
+- **Feeds:** Atom feed for notes at `/feed.xml` (`@11ty/eleventy-plugin-rss`).
+- **Analytics:** [Vexo](https://vexo.co).
+- **Hosting:** [GitHub Pages](https://pages.github.com) on `gh-pages` with custom domain (`CNAME: davidollerhead.com`).
 
 ## Local Development
 
-Install dependencies first:
-
 ```bash
 npm install
+npm run dev    # live-reloading dev server at http://localhost:8080/
+npm run build  # production build into _site/
 ```
 
-Start the Eleventy dev server with live reload:
+## Content
 
-```bash
-npm run dev
-```
+### Notes
 
-Build the production site into `_site/`:
-
-```bash
-npm run build
-```
-
----
-
-## Writing a New Note
-
-Notes live in `src/notes/` as Markdown files (for example, `src/notes/my-note.md`).
-
-Each note uses YAML frontmatter at the top of the file:
+Add a Markdown file under `src/notes/` (e.g. `src/notes/my-note.md`):
 
 ```markdown
 ---
@@ -57,40 +37,32 @@ slug: my-note
 Note content in Markdown...
 ```
 
-- `title` (required): Display title in `/notes/`, on the note page, and in `/feed.xml`.
-- `date` (required): Publication date (`YYYY-MM-DD`); notes are listed reverse-chronologically.
-- `description` (optional): Meta description for the note page.
-- `slug` (optional): Overrides the URL slug. If omitted, Eleventy uses the filename (`fileSlug`).
+- `title` (required): Shown in `/notes/`, on the note page, and in `/feed.xml`.
+- `date` (required): `YYYY-MM-DD`; notes sort reverse-chronologically.
+- `description` (optional): Meta description for the page.
+- `slug` (optional): Overrides the URL slug (defaults to the filename).
 
-A note with `slug: my-note` (or filename `my-note.md`) builds to `_site/notes/my-note/index.html` and is served at `/notes/my-note/`. It is automatically included in `/notes/` and `/feed.xml`.
+Each file builds to `/notes/<slug>/` and is automatically listed in `/notes/` and `/feed.xml`.
 
----
+### Now page
 
-## Deployment Workflow
+Edit `src/now.md` and bump the `updated` (`YYYY-MM-DD`) frontmatter date.
 
-The site is built and deployed to GitHub Pages via the [GitHub Actions workflow](.github/workflows/deploy.yml) on pushes to `main` (and manual `workflow_dispatch` runs). The workflow runs `npm ci` and `npm run build`, then uploads `_site/` with `actions/upload-pages-artifact` and deploys with `actions/deploy-pages`. `CNAME` and `.nojekyll` are copied into `_site/` during the build.
+## Deployment & PR Previews
 
-> **Important (post-merge step):** After merging these changes into `main`, switch GitHub Pages in repository **Settings → Pages → Build and deployment → Source** from **Deploy from a branch** to **GitHub Actions**.
+- **Production:** Pushes to `main` (and manual `workflow_dispatch` runs) trigger [deploy.yml](.github/workflows/deploy.yml), which builds `_site/` (including `CNAME` and `.nojekyll`) and publishes it to the `gh-pages` branch while preserving `pr-preview/`.
+- **PR previews:** Pull requests trigger [pr-preview.yml](.github/workflows/pr-preview.yml), which builds the branch with `--pathprefix=/pr-preview/pr-<number>/` (rewriting URLs via `EleventyHtmlBasePlugin`), deploys it to `https://davidollerhead.com/pr-preview/pr-<number>/`, posts a sticky preview link on the PR, and removes the preview when the PR closes.
 
----
+## Archive & History
 
-## Repository Archive & History
+This repository keeps 20 years of previous versions as tags and archive branches:
 
-This repository preserves 20 years of iterations and experiments across web development eras:
-
-| Era / Version | Code at Tag | Archive Branch | Description & Tech Stack |
+| Version | Tag | Branch | Tech Stack |
 | :--- | :--- | :--- | :--- |
-| **Current (2026)** | [`2026`](https://github.com/oller/davidollerhead.com/tree/2026) | `main` | Minimal tactile landing page (vanilla CSS, Vexo analytics, semantic landmarks). |
-| **Jekyll v2 (2014–2015)** | [`2015`](https://github.com/oller/davidollerhead.com/tree/2015) | `archive/jekyll-2015` | Full blog & portfolio built with Yeoman, Grunt, Sass, Critical CSS inlining, and case studies. |
-| **Jekyll v1 (2013–2014)** | [`2013`](https://github.com/oller/davidollerhead.com/tree/2013) | `archive/jekyll-2015` | Original Jekyll iteration with YUI PureCSS, HTML5 Boilerplate, and JAPR asset pipeline. |
-| **Classic (2006)** | [`2006`](https://github.com/oller/davidollerhead.com/tree/2006) | `2006` | Nostalgic archive of original site (XHTML 1.0 Strict, Prototype.js, Scriptaculous, Flash `.swf`, and Photoshop designs). |
+| **Current** | — | `main` | Eleventy 3, vanilla CSS (`light-dark()`, View Transitions, anchor positioning), Shiki, Atom feed. |
+| **Single-page (2026)** | [`2026`](https://github.com/oller/davidollerhead.com/tree/2026) | — | Single-file tactile D/O landing page (vanilla CSS, Vexo analytics). |
+| **Jekyll v2 (2014–2015)** | [`2015`](https://github.com/oller/davidollerhead.com/tree/2015) | `archive/jekyll-2015` | Blog & portfolio built with Yeoman, Grunt, Sass, and critical CSS inlining. |
+| **Jekyll v1 (2013–2014)** | [`2013`](https://github.com/oller/davidollerhead.com/tree/2013) | `archive/jekyll-2015` | Original Jekyll site with YUI PureCSS, HTML5 Boilerplate, and JAPR. |
+| **Classic (2006)** | [`2006`](https://github.com/oller/davidollerhead.com/tree/2006) | `2006` | XHTML 1.0 Strict, Prototype.js, Scriptaculous, Flash `.swf`, and Photoshop designs. |
 
-To explore any previous version, simply check out its tag:
-
-```bash
-# Example: Check out the 2006 retro site
-git checkout 2006
-
-# Example: Check out the 2015 Jekyll blog & portfolio
-git checkout 2015
-```
+Check out any tag to inspect an older version (e.g. `git checkout 2006` or `git checkout 2015`).
