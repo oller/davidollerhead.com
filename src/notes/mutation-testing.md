@@ -10,7 +10,7 @@ slug: mutation-testing
 
 Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.
 
-Mutation testing addresses that gap by making small, automated changes (mutants) to your source code—flipping conditionals, changing arithmetic operators, or removing return values—and re-running the test suite against each mutant. If the tests still pass, the mutant *survived*, pointing to a blind spot in your assertions.
+Mutation testing addresses that gap by making small, automated changes (mutants) to your source code, such as flipping conditionals, changing arithmetic operators, or removing return values, and re-running the test suite against each mutant. If the tests still pass, the mutant *survived*, pointing to a blind spot in your assertions.
 
 Consider a simple boundary check:
 

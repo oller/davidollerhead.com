@@ -59,8 +59,8 @@ This repository keeps 20 years of previous versions as tags and archive branches
 
 | Version | Tag | Branch | Tech Stack |
 | :--- | :--- | :--- | :--- |
-| **Current** | — | `main` | Eleventy 3, vanilla CSS (`light-dark()`, View Transitions, anchor positioning), Shiki, Atom feed. |
-| **Single-page (2026)** | [`2026`](https://github.com/oller/davidollerhead.com/tree/2026) | — | Single-file tactile D/O landing page (vanilla CSS, Vexo analytics). |
+| **Current** | - | `main` | Eleventy 3, vanilla CSS (`light-dark()`, View Transitions, anchor positioning), Shiki, Atom feed. |
+| **Single-page (2026)** | [`2026`](https://github.com/oller/davidollerhead.com/tree/2026) | - | Single-file tactile D/O landing page (vanilla CSS, Vexo analytics). |
 | **Jekyll v2 (2014–2015)** | [`2015`](https://github.com/oller/davidollerhead.com/tree/2015) | `archive/jekyll-2015` | Blog & portfolio built with Yeoman, Grunt, Sass, and critical CSS inlining. |
 | **Jekyll v1 (2013–2014)** | [`2013`](https://github.com/oller/davidollerhead.com/tree/2013) | `archive/jekyll-2015` | Original Jekyll site with YUI PureCSS, HTML5 Boilerplate, and JAPR. |
 | **Classic (2006)** | [`2006`](https://github.com/oller/davidollerhead.com/tree/2006) | `2006` | XHTML 1.0 Strict, Prototype.js, Scriptaculous, Flash `.swf`, and Photoshop designs. |
