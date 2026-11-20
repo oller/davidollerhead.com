@@ -78,31 +78,16 @@ svg {
   height: 1.25rem;
 }
 
-.visually-hidden:where(:not(:focus-within, :active)) {
-  position: absolute !important;
-  clip-path: inset(50%) !important;
-  overflow: hidden !important;
-  width: 1px !important;
-  height: 1px !important;
-  margin: -1px !important;
-  padding: 0 !important;
-  border: 0 !important;
-  white-space: nowrap !important;
-}
-
-.skip-link:focus-visible {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 50;
-  padding: 0.5rem 0.875rem;
-  border-radius: 0.375rem;
-  background: var(--footer-bg);
-  color: var(--text-primary);
-  font-size: 0.875rem;
-  font-weight: 500;
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
+.visually-hidden {
+  position: absolute;
+  clip-path: inset(50%);
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
 }
 
 .page {
