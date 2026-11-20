@@ -1,7 +1,9 @@
+import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 import rssPlugin from "@11ty/eleventy-plugin-rss";
 import Shiki from "@shikijs/markdown-it";
 
 export default async function (eleventyConfig) {
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(rssPlugin);
 
   const shikiPlugin = await Shiki({
