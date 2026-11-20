@@ -77,11 +77,11 @@
 }
 
 /* D shape - overrides */
-.initial:first-of-type {
+.initial:first-child {
   width: 90px;
 }
 
-.initial:first-of-type .button {
+.initial:first-child .button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -119,16 +119,4 @@
 .initial.is-active .button {
   box-shadow: var(--shadow-active);
   transform: scale(0.985);
-}
-
-@media (forced-colors: active) {
-  .initial .button {
-    filter: none;
-    border: 2px solid ButtonText;
-  }
-
-  .initial input:checked ~ .button {
-    background: Highlight;
-    border-color: HighlightText;
-  }
 }
