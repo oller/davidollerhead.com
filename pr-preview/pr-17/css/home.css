@@ -1,0 +1,122 @@
+:root {
+  --btn-bg: #ccd0d4;
+  /* Halo behind each button */
+  --glow-bg: #fff;
+  --glow-shadow: rgba(255, 255, 255, 0.9);
+  --glow-opacity: 0.25;
+  --btn-blur: 0.25px;
+  /* Shadow stacks per state: drop shadow, inner shading, light above, inner highlights */
+  --shadow-rest:
+    0 14px 22px -4px rgba(0, 0, 0, 0.55),
+    inset 0 -3px 4px -1px rgba(0, 0, 0, 0.25),
+    0 -10px 15px -1px rgba(255, 255, 255, 0.75),
+    inset 0 3px 4px -1px rgba(255, 255, 255, 0.25),
+    inset 0 0 4px 1px rgba(255, 255, 255, 0.85),
+    inset 0 16px 24px 0 rgba(255, 255, 255, 0.2);
+  --shadow-active:
+    0 12px 20px -4px rgba(0, 0, 0, 0.4),
+    inset 0 -8px 25px 1px rgba(255, 255, 255, 0.9),
+    0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+    inset 0 8px 20px 0 rgba(0, 0, 0, 0.45),
+    inset 0 0 8px 1px rgba(255, 255, 255, 0.7);
+  --shadow-checked:
+    0 14px 22px -4px rgba(0, 0, 0, 0.45),
+    inset 0 -8px 20px -1px rgba(255, 255, 255, 0.9),
+    0 -10px 15px -1px rgba(255, 255, 255, 0.7),
+    inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
+    inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
+}
+
+/* Dark theme (Tokyo Night inspired). Highlights are muted slate blue rather
+   than white, which reads as a grey veil on dark surfaces. */
+:root[data-theme="dark"] {
+  --btn-bg: linear-gradient(180deg, #292d44 0%, #242840 100%);
+  --glow-bg: #485a8c;
+  --glow-shadow: rgba(72, 90, 140, 0.7);
+  /* Fainter halo than light mode (0.25) */
+  --glow-opacity: 0.1;
+  --shadow-rest:
+    0 14px 22px -4px rgba(3, 4, 10, 0.7),
+    inset 0 -3px 4px -1px rgba(3, 4, 10, 0.4),
+    0 -8px 12px -2px rgba(95, 120, 190, 0.13),
+    inset 0 1px 1.5px 0 rgba(105, 130, 200, 0.16),
+    inset 0 0 2px 1px rgba(100, 125, 195, 0.08),
+    inset 0 16px 24px 0 rgba(105, 130, 200, 0.035);
+  --shadow-active:
+    0 12px 20px -4px rgba(3, 4, 10, 0.6),
+    inset 0 -8px 25px 1px rgba(100, 125, 195, 0.34),
+    0 -8px 12px -2px rgba(95, 120, 190, 0.12),
+    inset 0 10px 22px 0 rgba(3, 4, 10, 0.85),
+    inset 0 3px 6px 0 rgba(3, 4, 10, 0.5),
+    inset 0 0 5px 1px rgba(120, 145, 210, 0.32);
+  --shadow-checked:
+    0 12px 20px -4px rgba(3, 4, 10, 0.6),
+    inset 0 -8px 22px 0 rgba(100, 125, 195, 0.3),
+    0 -8px 12px -2px rgba(95, 120, 190, 0.11),
+    inset 0 10px 22px 0 rgba(3, 4, 10, 0.75),
+    inset 0 3px 6px 0 rgba(3, 4, 10, 0.4),
+    inset 0 0 5px 1px rgba(120, 145, 210, 0.26);
+}
+
+.initial {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  margin: 0 10px;
+}
+
+.initial::before {
+  box-shadow: 0 0 12px 5px var(--glow-shadow);
+  border-radius: 50%;
+  background: var(--glow-bg);
+  position: absolute;
+  inset: 0;
+  opacity: var(--glow-opacity);
+  content: "";
+  pointer-events: none;
+}
+
+/* D shape - overrides */
+.initial:first-child {
+  width: 90px;
+}
+
+.initial:first-child .button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.initial .button {
+  filter: blur(var(--btn-blur));
+  transition: transform 280ms cubic-bezier(0.23, 1, 0.32, 1), box-shadow 280ms cubic-bezier(0.23, 1, 0.32, 1);
+  background: var(--btn-bg);
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  box-shadow: var(--shadow-rest);
+}
+
+.initial input {
+  -webkit-tap-highlight-color: transparent;
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.initial input:checked ~ .button {
+  box-shadow: var(--shadow-checked);
+}
+
+.initial input:focus-visible ~ .button {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
+/* Active press state (native :active and programmatic .is-active) */
+.initial input:active ~ .button,
+.initial.is-active .button {
+  box-shadow: var(--shadow-active);
+  transform: scale(0.985);
+}
