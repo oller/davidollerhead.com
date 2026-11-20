@@ -29,27 +29,8 @@
 ::before,
 ::after {
   box-sizing: border-box;
-}
-
-body,
-h1,
-h2,
-h3,
-p,
-ul,
-ol,
-blockquote,
-pre,
-hr {
   margin: 0;
-}
-
-ul,
-ol {
   padding: 0;
-}
-
-hr {
   border: 0;
 }
 
@@ -60,9 +41,6 @@ html {
 }
 
 button {
-  margin: 0;
-  padding: 0;
-  border: 0;
   background: transparent;
   font: inherit;
 }
