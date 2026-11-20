@@ -42,5 +42,5 @@ jobs:
           source-dir: _site
           preview-branch: gh-pages
           umbrella-dir: pr-preview
-          pages-base-url: https://davidollerhead.com
+          pages-base-url: davidollerhead.com
           qr-code: "false"
