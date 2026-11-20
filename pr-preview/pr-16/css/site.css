@@ -133,7 +133,6 @@ pre.shiki:focus-visible {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
 }
 
 .site-nav a {
@@ -155,15 +154,12 @@ pre.shiki:focus-visible {
   font-weight: 500;
 }
 
-/* With anchor positioning, one pill slides between links. Keep link hit areas
-   contiguous (gap: 0) and inset the pill visually so there's no hover dead zone. */
+/* With anchor positioning, one pill slides between links. The hovered link
+   is the anchor; the nav's ::before draws the rounded pill so the links keep
+   rectangular hit boxes with no corner dead zones between them. */
 @supports (anchor-name: --x) {
-  .site-nav {
-    gap: 0;
-  }
-
   .site-nav a {
-    padding-inline: 1.25rem;
+    border-radius: 0;
   }
 
   .site-nav a:hover,
@@ -172,11 +168,15 @@ pre.shiki:focus-visible {
     background: none;
   }
 
+  .site-nav a:focus-visible {
+    border-radius: 9999px;
+  }
+
   .site-nav::before {
     content: "";
     position: absolute;
     position-anchor: --nav-hover;
-    inset: anchor(top) calc(anchor(right) + 0.25rem) anchor(bottom) calc(anchor(left) + 0.25rem);
+    inset: anchor(top) anchor(right) anchor(bottom) anchor(left);
     border-radius: 9999px;
     background: var(--pill-bg);
     opacity: 0;
