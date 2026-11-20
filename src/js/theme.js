@@ -1,31 +1,14 @@
 // Theme toggle: flips and saves overrides (clearing storage when returning to
-// the system preference), with a circular View Transition wipe where supported.
+// the system preference), with a circular wipe where supported.
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.getElementById("theme-toggle");
   const meta = document.querySelector('meta[name="color-scheme"]');
   if (!toggle) return;
 
-  const root = document.documentElement;
-  const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-
-  const getSaved = () => {
-    try { return localStorage.getItem("theme"); } catch (e) { return null; }
-  };
-
-  const syncFromPreference = () => {
-    const saved = getSaved();
-    const dark = saved ? saved === "dark" : darkQuery.matches;
-    root.dataset.theme = dark ? "dark" : "light";
-    if (meta) meta.content = saved === "light" || saved === "dark" ? saved : "light dark";
-  };
-
-  // Follow OS changes when not overridden, and stay in sync across tabs
-  darkQuery.addEventListener("change", () => { if (!getSaved()) syncFromPreference(); });
-  window.addEventListener("storage", (e) => { if (e.key === "theme") syncFromPreference(); });
-
   toggle.addEventListener("click", function () {
+    const root = document.documentElement;
     const next = root.dataset.theme === "dark" ? "light" : "dark";
-    const matchesSystem = next === (darkQuery.matches ? "dark" : "light");
+    const matchesSystem = next === (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 
     const apply = () => {
       root.dataset.theme = next;
