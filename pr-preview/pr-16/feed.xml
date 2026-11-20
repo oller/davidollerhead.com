@@ -37,12 +37,12 @@
 &lt;p&gt;The &lt;em&gt;mutation score&lt;/em&gt; is the percentage of mutants killed. Unlike line coverage, it measures whether your tests can detect a change in behaviour, not just whether they ran the code.&lt;/p&gt;
 &lt;h2&gt;Common mutators&lt;/h2&gt;
 &lt;p&gt;Most tools ship a similar set of mutation operators:&lt;/p&gt;
-&lt;div class=&quot;table-wrapper&quot; tabindex=&quot;0&quot; role=&quot;region&quot; aria-label=&quot;Table&quot;&gt;&lt;table&gt;
+&lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;
-&lt;th scope=&quot;col&quot;&gt;Category&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;Original&lt;/th&gt;
-&lt;th scope=&quot;col&quot;&gt;Mutant&lt;/th&gt;
+&lt;th&gt;Category&lt;/th&gt;
+&lt;th&gt;Original&lt;/th&gt;
+&lt;th&gt;Mutant&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
@@ -83,7 +83,7 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/div&gt;&lt;p&gt;Each of these maps to a real class of bug: off-by-one errors, inverted checks, forgotten side effects, and silently dropped return values.&lt;/p&gt;
+&lt;p&gt;Each of these maps to a real class of bug: off-by-one errors, inverted checks, forgotten side effects, and silently dropped return values.&lt;/p&gt;
 &lt;h2&gt;A second example&lt;/h2&gt;
 &lt;p&gt;Boundary conditions are the classic case, but removed side effects are just as common:&lt;/p&gt;
 &lt;pre class=&quot;shiki shiki-themes github-light tokyo-night&quot; style=&quot;background-color:#fff;--shiki-dark-bg:#1a1b26;color:#24292e;--shiki-dark:#a9b1d6&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color:#D73A49;--shiki-dark:#7DCFFF&quot;&gt;export&lt;/span&gt;&lt;span style=&quot;color:#D73A49;--shiki-dark:#BB9AF7&quot;&gt; function&lt;/span&gt;&lt;span style=&quot;color:#6F42C1;--shiki-dark:#7AA2F7&quot;&gt; checkout&lt;/span&gt;&lt;span style=&quot;color:#24292E;--shiki-dark:#9ABDF5&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color:#E36209;--shiki-dark:#E0AF68&quot;&gt;cart&lt;/span&gt;&lt;span style=&quot;color:#D73A49;--shiki-dark:#89DDFF&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;color:#6F42C1;--shiki-dark:#C0CAF5&quot;&gt; Cart&lt;/span&gt;&lt;span style=&quot;color:#24292E;--shiki-dark:#89DDFF&quot;&gt;,&lt;/span&gt;&lt;span style=&quot;color:#E36209;--shiki-dark:#E0AF68&quot;&gt; payments&lt;/span&gt;&lt;span style=&quot;color:#D73A49;--shiki-dark:#89DDFF&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;color:#6F42C1;--shiki-dark:#C0CAF5&quot;&gt; PaymentGateway&lt;/span&gt;&lt;span style=&quot;color:#24292E;--shiki-dark:#89DDFF&quot;&gt;,&lt;/span&gt;&lt;span style=&quot;color:#E36209;--shiki-dark:#E0AF68&quot;&gt; audit&lt;/span&gt;&lt;span style=&quot;color:#D73A49;--shiki-dark:#89DDFF&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;color:#6F42C1;--shiki-dark:#C0CAF5&quot;&gt; AuditLog&lt;/span&gt;&lt;span style=&quot;color:#24292E;--shiki-dark:#9ABDF5&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color:#24292E;--shiki-dark:#9ABDF5&quot;&gt; {&lt;/span&gt;&lt;/span&gt;

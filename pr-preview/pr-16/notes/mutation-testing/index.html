@@ -89,12 +89,12 @@
 <p>The <em>mutation score</em> is the percentage of mutants killed. Unlike line coverage, it measures whether your tests can detect a change in behaviour, not just whether they ran the code.</p>
 <h2>Common mutators</h2>
 <p>Most tools ship a similar set of mutation operators:</p>
-<div class="table-wrapper" tabindex="0" role="region" aria-label="Table"><table>
+<table>
 <thead>
 <tr>
-<th scope="col">Category</th>
-<th scope="col">Original</th>
-<th scope="col">Mutant</th>
+<th>Category</th>
+<th>Original</th>
+<th>Mutant</th>
 </tr>
 </thead>
 <tbody>
@@ -135,7 +135,7 @@
 </tr>
 </tbody>
 </table>
-</div><p>Each of these maps to a real class of bug: off-by-one errors, inverted checks, forgotten side effects, and silently dropped return values.</p>
+<p>Each of these maps to a real class of bug: off-by-one errors, inverted checks, forgotten side effects, and silently dropped return values.</p>
 <h2>A second example</h2>
 <p>Boundary conditions are the classic case, but removed side effects are just as common:</p>
 <pre class="shiki shiki-themes github-light tokyo-night" style="background-color:#fff;--shiki-dark-bg:#1a1b26;color:#24292e;--shiki-dark:#a9b1d6" tabindex="0"><code class="language-ts"><span class="line"><span style="color:#D73A49;--shiki-dark:#7DCFFF">export</span><span style="color:#D73A49;--shiki-dark:#BB9AF7"> function</span><span style="color:#6F42C1;--shiki-dark:#7AA2F7"> checkout</span><span style="color:#24292E;--shiki-dark:#9ABDF5">(</span><span style="color:#E36209;--shiki-dark:#E0AF68">cart</span><span style="color:#D73A49;--shiki-dark:#89DDFF">:</span><span style="color:#6F42C1;--shiki-dark:#C0CAF5"> Cart</span><span style="color:#24292E;--shiki-dark:#89DDFF">,</span><span style="color:#E36209;--shiki-dark:#E0AF68"> payments</span><span style="color:#D73A49;--shiki-dark:#89DDFF">:</span><span style="color:#6F42C1;--shiki-dark:#C0CAF5"> PaymentGateway</span><span style="color:#24292E;--shiki-dark:#89DDFF">,</span><span style="color:#E36209;--shiki-dark:#E0AF68"> audit</span><span style="color:#D73A49;--shiki-dark:#89DDFF">:</span><span style="color:#6F42C1;--shiki-dark:#C0CAF5"> AuditLog</span><span style="color:#24292E;--shiki-dark:#9ABDF5">)</span><span style="color:#24292E;--shiki-dark:#9ABDF5"> {</span></span>

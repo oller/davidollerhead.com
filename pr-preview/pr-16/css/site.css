@@ -126,8 +126,7 @@ svg {
 .rss-link:focus-visible,
 .back-link:focus-visible,
 .social-links a:focus-visible,
-pre.shiki:focus-visible,
-.table-wrapper:focus-visible {
+pre.shiki:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
@@ -136,8 +135,7 @@ pre.shiki:focus-visible,
 .notes-list a:focus-visible,
 .rss-link:focus-visible,
 .back-link:focus-visible,
-.social-links a:focus-visible,
-.table-wrapper:focus-visible {
+.social-links a:focus-visible {
   border-radius: 0.25rem;
 }
 
@@ -395,7 +393,7 @@ pre.shiki:focus-visible,
 .prose ol + p,
 .prose pre + p,
 .prose blockquote + p,
-.prose .table-wrapper + p,
+.prose table + p,
 .prose .placeholder-notice + p {
   margin-top: 1.15rem;
 }
@@ -449,15 +447,10 @@ pre.shiki:focus-visible,
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.table-wrapper {
-  overflow-x: auto;
-  max-width: 100%;
-  margin-block: 1.5rem;
-}
-
 .prose table {
   width: 100%;
   border-collapse: collapse;
+  margin-block: 1.5rem;
   font-size: 0.9375rem;
   line-height: 1.5;
 }
