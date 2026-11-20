@@ -535,7 +535,7 @@ pre.shiki:focus-visible {
   color: var(--footer-hover);
 }
 
-/* Shiki dual-theme switching (github-light by default, tokyo-night in dark mode) */
+/* Shiki dual-theme switching (catppuccin-latte by default, tokyo-night in dark mode) */
 pre.shiki {
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
