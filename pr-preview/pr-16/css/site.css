@@ -1,95 +1,28 @@
-/* Theme tokens: follow system preference by default, overridden via <meta name="color-scheme"> */
+/* Theme tokens: follow system preference by default, overridden by [data-theme] */
 :root {
   color-scheme: light dark;
+  --page-from: light-dark(#d5d9de, #1e2030);
+  --page-to: light-dark(#ccd0d4, #24283b);
+  --footer-bg: light-dark(#e5e7eb, #1a1c2a);
+  --footer-text: light-dark(#4f5765, #8994c2);
+  --footer-hover: light-dark(#2d333d, #a9b8e8);
+  --text-primary: light-dark(#1f242d, #c0caf5);
+  --text-secondary: light-dark(#374151, #a9b1d6);
+  --text-muted: light-dark(#4f5765, #8994c2);
+  --link-color: light-dark(#1f242d, #c0caf5);
+  --link-hover: light-dark(#2d333d, #a9b8e8);
+  --border-subtle: light-dark(rgba(79, 87, 101, 0.25), rgba(137, 148, 194, 0.24));
+  --surface-subtle: light-dark(rgba(255, 255, 255, 0.45), rgba(26, 28, 42, 0.5));
+  --code-bg: light-dark(rgba(255, 255, 255, 0.6), rgba(26, 28, 42, 0.7));
+  --pill-bg: light-dark(rgba(31, 36, 45, 0.07), rgba(192, 202, 245, 0.09));
+}
 
-  --page-from-light: #d5d9de;
-  --page-to-light: #ccd0d4;
-  --footer-bg-light: #e5e7eb;
-  --footer-text-light: #4f5765;
-  --footer-hover-light: #2d333d;
-  --text-primary-light: #1f242d;
-  --text-secondary-light: #374151;
-  --text-muted-light: #4f5765;
-  --link-color-light: #1f242d;
-  --link-hover-light: #2d333d;
-  --border-subtle-light: rgba(79, 87, 101, 0.25);
-  --surface-subtle-light: rgba(255, 255, 255, 0.45);
-  --code-bg-light: rgba(255, 255, 255, 0.6);
-  --pill-bg-light: rgba(31, 36, 45, 0.07);
+:root[data-theme="light"] {
+  color-scheme: light;
+}
 
-  /* Dark palette (Tokyo Night inspired) */
-  --page-from-dark: #1e2030;
-  --page-to-dark: #24283b;
-  --footer-bg-dark: #1a1c2a;
-  --footer-text-dark: #8994c2;
-  --footer-hover-dark: #a9b8e8;
-  --text-primary-dark: #c0caf5;
-  --text-secondary-dark: #a9b1d6;
-  --text-muted-dark: #8994c2;
-  --link-color-dark: #c0caf5;
-  --link-hover-dark: #a9b8e8;
-  --border-subtle-dark: rgba(137, 148, 194, 0.24);
-  --surface-subtle-dark: rgba(26, 28, 42, 0.5);
-  --code-bg-dark: rgba(26, 28, 42, 0.7);
-  --pill-bg-dark: rgba(192, 202, 245, 0.09);
-
-  /* Fallback tokens for browsers without light-dark() */
-  --page-from: var(--page-from-light);
-  --page-to: var(--page-to-light);
-  --footer-bg: var(--footer-bg-light);
-  --footer-text: var(--footer-text-light);
-  --footer-hover: var(--footer-hover-light);
-  --text-primary: var(--text-primary-light);
-  --text-secondary: var(--text-secondary-light);
-  --text-muted: var(--text-muted-light);
-  --link-color: var(--link-color-light);
-  --link-hover: var(--link-hover-light);
-  --border-subtle: var(--border-subtle-light);
-  --surface-subtle: var(--surface-subtle-light);
-  --code-bg: var(--code-bg-light);
-  --pill-bg: var(--pill-bg-light);
-
-  @media (prefers-color-scheme: dark) {
-    --page-from: var(--page-from-dark);
-    --page-to: var(--page-to-dark);
-    --footer-bg: var(--footer-bg-dark);
-    --footer-text: var(--footer-text-dark);
-    --footer-hover: var(--footer-hover-dark);
-    --text-primary: var(--text-primary-dark);
-    --text-secondary: var(--text-secondary-dark);
-    --text-muted: var(--text-muted-dark);
-    --link-color: var(--link-color-dark);
-    --link-hover: var(--link-hover-dark);
-    --border-subtle: var(--border-subtle-dark);
-    --surface-subtle: var(--surface-subtle-dark);
-    --code-bg: var(--code-bg-dark);
-    --pill-bg: var(--pill-bg-dark);
-  }
-
-  @supports (color: light-dark(white, black)) {
-    --page-from: light-dark(var(--page-from-light), var(--page-from-dark));
-    --page-to: light-dark(var(--page-to-light), var(--page-to-dark));
-    --footer-bg: light-dark(var(--footer-bg-light), var(--footer-bg-dark));
-    --footer-text: light-dark(var(--footer-text-light), var(--footer-text-dark));
-    --footer-hover: light-dark(var(--footer-hover-light), var(--footer-hover-dark));
-    --text-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
-    --text-secondary: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
-    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
-    --link-color: light-dark(var(--link-color-light), var(--link-color-dark));
-    --link-hover: light-dark(var(--link-hover-light), var(--link-hover-dark));
-    --border-subtle: light-dark(var(--border-subtle-light), var(--border-subtle-dark));
-    --surface-subtle: light-dark(var(--surface-subtle-light), var(--surface-subtle-dark));
-    --code-bg: light-dark(var(--code-bg-light), var(--code-bg-dark));
-    --pill-bg: light-dark(var(--pill-bg-light), var(--pill-bg-dark));
-  }
-
-  &:has(> head > meta[name="color-scheme"][content="dark"]) {
-    color-scheme: dark;
-  }
-
-  &:has(> head > meta[name="color-scheme"][content="light"]) {
-    color-scheme: light;
-  }
+:root[data-theme="dark"] {
+  color-scheme: dark;
 }
 
 *,
@@ -141,17 +74,16 @@ a {
 
 svg {
   display: block;
-  inline-size: 1.25rem;
-  block-size: 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
-/* Visually hidden utility; focusable targets (like skip links) become visible on focus */
 .visually-hidden:where(:not(:focus-within, :active)) {
   position: absolute !important;
   clip-path: inset(50%) !important;
   overflow: hidden !important;
-  inline-size: 1px !important;
-  block-size: 1px !important;
+  width: 1px !important;
+  height: 1px !important;
   margin: -1px !important;
   padding: 0 !important;
   border: 0 !important;
@@ -160,8 +92,8 @@ svg {
 
 .skip-link:focus-visible {
   position: fixed;
-  inset-block-start: 16px;
-  inset-inline-start: 16px;
+  top: 16px;
+  left: 16px;
   z-index: 50;
   padding: 0.5rem 0.875rem;
   border-radius: 0.375rem;
@@ -177,7 +109,7 @@ svg {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-block-size: 100dvh;
+  min-height: 100dvh;
   background: linear-gradient(to top, var(--page-from), var(--page-to));
   color: var(--text-primary);
 }
@@ -187,16 +119,15 @@ svg {
   flex-grow: 1;
   align-items: center;
   justify-content: center;
-  padding-block: 5rem 3rem;
+  padding: 5rem 0 3rem;
 }
 
 .page--content main {
   flex-grow: 1;
-  inline-size: 100%;
-  max-inline-size: 42rem;
+  width: 100%;
+  max-width: 42rem;
   margin-inline: auto;
-  padding-block: 5rem 4rem;
-  padding-inline: 1.5rem;
+  padding: 5rem 1.5rem 4rem;
 }
 
 /* Header & Navigation */
@@ -275,8 +206,8 @@ pre.shiki:focus-visible,
   font-weight: 500;
 }
 
-/* With anchor positioning, one pill slides between the links. Keep the link hit
-   areas contiguous (gap: 0) and inset the pill visually so there's no hover dead zone. */
+/* With anchor positioning, one pill slides between links. Keep link hit areas
+   contiguous (gap: 0) and inset the pill visually so there's no hover dead zone. */
 @supports (anchor-name: --x) {
   .site-nav {
     gap: 0;
@@ -381,21 +312,22 @@ pre.shiki:focus-visible,
   opacity: 1;
 }
 
-/* Moon state (explicit dark override or OS dark mode without light override) */
-:root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  .theme-icon { transform: rotate(0deg); }
-  .theme-icon .body { transform: scale(1); }
-  .theme-icon .cutter { transform: translate(4.5px, -4.5px); }
-  .theme-icon .rays { transform: rotate(90deg) scale(0); opacity: 0; }
+/* Moon state (dark theme) */
+:root[data-theme="dark"] .theme-icon {
+  transform: rotate(0deg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
-    .theme-icon { transform: rotate(0deg); }
-    .theme-icon .body { transform: scale(1); }
-    .theme-icon .cutter { transform: translate(4.5px, -4.5px); }
-    .theme-icon .rays { transform: rotate(90deg) scale(0); opacity: 0; }
-  }
+:root[data-theme="dark"] .theme-icon .body {
+  transform: scale(1);
+}
+
+:root[data-theme="dark"] .theme-icon .cutter {
+  transform: translate(4.5px, -4.5px);
+}
+
+:root[data-theme="dark"] .theme-icon .rays {
+  transform: rotate(90deg) scale(0);
+  opacity: 0;
 }
 
 /* Page wipe: disable the default cross-fade (the circle is animated in JS) */
@@ -428,7 +360,7 @@ pre.shiki:focus-visible,
 
 /* Content pages & Prose */
 .article-header {
-  margin-block-end: 2rem;
+  margin-bottom: 2rem;
 }
 
 .article-header h1,
@@ -444,12 +376,12 @@ pre.shiki:focus-visible,
 .page-meta {
   font-size: 0.875rem;
   color: var(--text-muted);
-  margin-block-start: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .article-header .page-meta:first-child {
-  margin-block-start: 0;
-  margin-block-end: 0.75rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
 }
 
 .back-link {
@@ -480,7 +412,8 @@ pre.shiki:focus-visible,
   line-height: 1.35;
   letter-spacing: -0.015em;
   color: var(--text-primary);
-  margin-block: 2.25rem 0.75rem;
+  margin-top: 2.25rem;
+  margin-bottom: 0.75rem;
   text-wrap: balance;
 }
 
@@ -489,7 +422,8 @@ pre.shiki:focus-visible,
   font-weight: 600;
   line-height: 1.4;
   color: var(--text-primary);
-  margin-block: 1.75rem 0.5rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
   text-wrap: balance;
 }
 
@@ -500,17 +434,18 @@ pre.shiki:focus-visible,
 .prose blockquote + p,
 .prose .table-wrapper + p,
 .prose .placeholder-notice + p {
-  margin-block-start: 1.15rem;
+  margin-top: 1.15rem;
 }
 
 .prose ul,
 .prose ol {
-  margin-block: 0.75rem 1.15rem;
-  padding-inline-start: 1.35rem;
+  margin-top: 0.75rem;
+  margin-bottom: 1.15rem;
+  padding-left: 1.35rem;
 }
 
 .prose li + li {
-  margin-block-start: 0.4rem;
+  margin-top: 0.4rem;
 }
 
 .prose a {
@@ -528,14 +463,13 @@ pre.shiki:focus-visible,
 
 .prose blockquote {
   margin-block: 1.25rem;
-  padding-block: 0.25rem;
-  padding-inline-start: 1rem;
-  border-inline-start: 2px solid var(--border-subtle);
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 2px solid var(--border-subtle);
   color: var(--text-muted);
 }
 
 .prose hr {
-  border-block-start: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-subtle);
   margin-block: 2rem;
 }
 
@@ -552,50 +486,47 @@ pre.shiki:focus-visible,
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Prose tables */
 .table-wrapper {
   overflow-x: auto;
-  max-inline-size: 100%;
+  max-width: 100%;
   margin-block: 1.5rem;
 }
 
 .prose table {
-  inline-size: 100%;
+  width: 100%;
   border-collapse: collapse;
   font-size: 0.9375rem;
   line-height: 1.5;
-  text-align: start;
 }
 
 .prose th,
 .prose td {
-  padding-block: 0.625rem;
-  padding-inline: 0.75rem;
-  border-block-end: 1px solid var(--border-subtle);
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
   vertical-align: top;
 }
 
 .prose th:first-child,
 .prose td:first-child {
-  padding-inline-start: 0;
+  padding-left: 0;
 }
 
 .prose th:last-child,
 .prose td:last-child {
-  padding-inline-end: 0;
+  padding-right: 0;
 }
 
 .prose th {
   font-weight: 600;
   color: var(--text-primary);
-  border-block-end-width: 2px;
-  text-align: start;
+  border-bottom-width: 2px;
   text-wrap: balance;
 }
 
 .placeholder-notice {
   padding: 0.875rem 1rem;
-  margin-block-end: 1.75rem;
+  margin-bottom: 1.75rem;
   border-radius: 0.5rem;
   border: 1px solid var(--border-subtle);
   background: var(--surface-subtle);
@@ -609,7 +540,7 @@ pre.shiki:focus-visible,
   align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
-  margin-block-end: 2rem;
+  margin-bottom: 2rem;
 }
 
 .rss-link {
@@ -626,24 +557,24 @@ pre.shiki:focus-visible,
 }
 
 .rss-link svg {
-  inline-size: 0.875rem;
-  block-size: 0.875rem;
+  width: 0.875rem;
+  height: 0.875rem;
 }
 
 .notes-list {
   list-style: none;
-  border-block-start: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-subtle);
 }
 
 .notes-list li {
-  border-block-end: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .notes-list a {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  padding-block: 1rem;
+  padding: 1rem 0;
   transition: color 150ms;
 }
 
@@ -660,7 +591,7 @@ pre.shiki:focus-visible,
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;
-  min-inline-size: 6.5rem;
+  min-width: 6.5rem;
 }
 
 .note-title {
@@ -683,28 +614,13 @@ pre.shiki {
   margin-block: 1.25rem;
 }
 
-:root:has(> head > meta[name="color-scheme"][content="dark"]) {
-  .shiki,
-  .shiki span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
-    .shiki,
-    .shiki span {
-      color: var(--shiki-dark) !important;
-      background-color: var(--shiki-dark-bg) !important;
-      font-style: var(--shiki-dark-font-style) !important;
-      font-weight: var(--shiki-dark-font-weight) !important;
-      text-decoration: var(--shiki-dark-text-decoration) !important;
-    }
-  }
+:root[data-theme="dark"] .shiki,
+:root[data-theme="dark"] .shiki span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 /* Footer */
@@ -718,7 +634,7 @@ pre.shiki {
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
-  inline-size: 100%;
+  width: 100%;
   margin-inline: auto;
   text-align: center;
   color: var(--footer-text);
@@ -741,33 +657,33 @@ pre.shiki {
 
 @media (min-width: 40rem) {
   .footer-inner {
-    max-inline-size: 40rem;
+    max-width: 40rem;
     flex-direction: row;
     justify-content: space-between;
-    text-align: start;
+    text-align: left;
   }
 }
 
 @media (min-width: 48rem) {
   .footer-inner {
-    max-inline-size: 48rem;
+    max-width: 48rem;
   }
 }
 
 @media (min-width: 64rem) {
   .footer-inner {
-    max-inline-size: 64rem;
+    max-width: 64rem;
   }
 }
 
 @media (min-width: 80rem) {
   .footer-inner {
-    max-inline-size: 80rem;
+    max-width: 80rem;
   }
 }
 
 @media (min-width: 96rem) {
   .footer-inner {
-    max-inline-size: 96rem;
+    max-width: 96rem;
   }
 }

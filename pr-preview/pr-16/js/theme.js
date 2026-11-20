@@ -1,39 +1,38 @@
-// Theme toggle: overrides <meta name="color-scheme"> and persists only when diverging
-// from the system preference, with a circular View Transition wipe where supported.
+// Theme toggle: flips and saves overrides (clearing storage when returning to
+// the system preference), with a circular View Transition wipe where supported.
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.getElementById("theme-toggle");
   const meta = document.querySelector('meta[name="color-scheme"]');
-  if (!toggle || !meta) return;
+  if (!toggle) return;
 
+  const root = document.documentElement;
   const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-  const isDarkRendered = () =>
-    meta.content === "dark" || (meta.content !== "light" && darkQuery.matches);
+  const getSaved = () => {
+    try { return localStorage.getItem("theme"); } catch (e) { return null; }
+  };
 
-  // Sync overrides made in another tab
-  window.addEventListener("storage", function (event) {
-    if (event.key !== "color-scheme") return;
-    meta.content =
-      event.newValue === "light" || event.newValue === "dark"
-        ? event.newValue
-        : "light dark";
-  });
+  const syncFromPreference = () => {
+    const saved = getSaved();
+    const dark = saved ? saved === "dark" : darkQuery.matches;
+    root.dataset.theme = dark ? "dark" : "light";
+    if (meta) meta.content = saved === "light" || saved === "dark" ? saved : "light dark";
+  };
+
+  // Follow OS changes when not overridden, and stay in sync across tabs
+  darkQuery.addEventListener("change", () => { if (!getSaved()) syncFromPreference(); });
+  window.addEventListener("storage", (e) => { if (e.key === "theme") syncFromPreference(); });
 
   toggle.addEventListener("click", function () {
-    const root = document.documentElement;
-    const target = isDarkRendered() ? "light" : "dark";
-    const systemScheme = darkQuery.matches ? "dark" : "light";
-    const nextMeta = target === systemScheme ? "light dark" : target;
+    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    const matchesSystem = next === (darkQuery.matches ? "dark" : "light");
 
     const apply = () => {
-      meta.content = nextMeta;
+      root.dataset.theme = next;
+      if (meta) meta.content = matchesSystem ? "light dark" : next;
       try {
-        localStorage.removeItem("theme");
-        if (nextMeta === "light dark") {
-          localStorage.removeItem("color-scheme");
-        } else {
-          localStorage.setItem("color-scheme", nextMeta);
-        }
+        if (matchesSystem) localStorage.removeItem("theme");
+        else localStorage.setItem("theme", next);
       } catch (e) { }
     };
 

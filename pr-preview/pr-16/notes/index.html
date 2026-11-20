@@ -10,11 +10,12 @@
   <meta name="author" content="David Ollerhead">
   <meta name="color-scheme" content="light dark">
   <script>
-    // Apply any saved color-scheme override before first paint to avoid a flash
+    // Apply saved (or system) theme before first paint to avoid a flash
     (function () {
       var saved = null;
-      // localStorage can throw (e.g. site data blocked / private mode)
-      try { saved = localStorage.getItem("color-scheme") || localStorage.getItem("theme"); } catch (e) { }
+      try { saved = localStorage.getItem("theme"); } catch (e) { }
+      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
       if (saved === "light" || saved === "dark") {
         document.querySelector('meta[name="color-scheme"]').content = saved;
       }
