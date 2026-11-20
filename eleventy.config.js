@@ -15,24 +15,14 @@ export default async function (eleventyConfig) {
   eleventyConfig.amendLibrary("md", (mdLib) => {
     mdLib.use(shikiPlugin);
 
-    // Wrap Markdown tables in a keyboard-scrollable region and scope column headers
-    const defaultTableOpen =
-      mdLib.renderer.rules.table_open ||
-      ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
-    const defaultTableClose =
-      mdLib.renderer.rules.table_close ||
-      ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
-    const defaultThOpen =
-      mdLib.renderer.rules.th_open ||
-      ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
-
-    mdLib.renderer.rules.table_open = (tokens, idx, options, env, self) =>
-      `<div class="table-wrapper" tabindex="0" role="region" aria-label="Table">${defaultTableOpen(tokens, idx, options, env, self)}`;
-    mdLib.renderer.rules.table_close = (tokens, idx, options, env, self) =>
-      `${defaultTableClose(tokens, idx, options, env, self)}</div>`;
-    mdLib.renderer.rules.th_open = (tokens, idx, options, env, self) => {
+    // Wrap Markdown tables in a scrollable region and add scope="col" to headers
+    const render = (tokens, idx, options, env, self) => self.renderToken(tokens, idx, options);
+    mdLib.renderer.rules.table_open = (...args) =>
+      `<div class="table-wrapper" tabindex="0" role="region" aria-label="Table">${render(...args)}`;
+    mdLib.renderer.rules.table_close = (...args) => `${render(...args)}</div>`;
+    mdLib.renderer.rules.th_open = (tokens, idx, ...rest) => {
       tokens[idx].attrSet("scope", "col");
-      return defaultThOpen(tokens, idx, options, env, self);
+      return render(tokens, idx, ...rest);
     };
   });
 
