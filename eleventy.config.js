@@ -8,7 +8,7 @@ export default async function (eleventyConfig) {
 
   const shikiPlugin = await Shiki({
     themes: {
-      light: "github-light",
+      light: "catppuccin-latte",
       dark: "tokyo-night",
     },
   });

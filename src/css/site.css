@@ -1,40 +1,28 @@
-/* Theme tokens: light is the default, [data-theme="dark"] overrides it */
+/* Theme tokens: follow system preference by default, overridden by [data-theme] */
 :root {
-  /* Match native UI (scrollbars etc.) to the theme */
-  color-scheme: light;
-  --page-from: #d5d9de;
-  --page-to: #ccd0d4;
-  --footer-bg: #e5e7eb;
-  --footer-text: #606876;
-  --footer-hover: #4b5563;
-  --text-primary: #1f242d;
-  --text-secondary: #374151;
-  --text-muted: #606876;
-  --link-color: #1f242d;
-  --link-hover: #4b5563;
-  --border-subtle: rgba(96, 104, 118, 0.22);
-  --surface-subtle: rgba(255, 255, 255, 0.45);
-  --code-bg: rgba(255, 255, 255, 0.6);
-  --pill-bg: rgba(31, 36, 45, 0.07);
+  color-scheme: light dark;
+  --page-from: light-dark(#d5d9de, #1e2030);
+  --page-to: light-dark(#ccd0d4, #24283b);
+  --footer-bg: light-dark(#e5e7eb, #1a1c2a);
+  --footer-text: light-dark(#4f5765, #8994c2);
+  --footer-hover: light-dark(#2d333d, #a9b8e8);
+  --text-primary: light-dark(#1f242d, #c0caf5);
+  --text-secondary: light-dark(#374151, #a9b1d6);
+  --text-muted: light-dark(#4f5765, #8994c2);
+  --link-color: light-dark(#1f242d, #c0caf5);
+  --link-hover: light-dark(#2d333d, #a9b8e8);
+  --border-subtle: light-dark(rgba(79, 87, 101, 0.25), rgba(137, 148, 194, 0.24));
+  --surface-subtle: light-dark(rgba(255, 255, 255, 0.45), rgba(26, 28, 42, 0.5));
+  --code-bg: light-dark(rgba(255, 255, 255, 0.6), rgba(26, 28, 42, 0.7));
+  --pill-bg: light-dark(rgba(31, 36, 45, 0.07), rgba(192, 202, 245, 0.09));
 }
 
-/* Dark theme (Tokyo Night inspired) */
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --page-from: #1e2030;
-  --page-to: #24283b;
-  --footer-bg: #1a1c2a;
-  --footer-text: #7c86b2;
-  --footer-hover: #a9b8e8;
-  --text-primary: #c0caf5;
-  --text-secondary: #a9b1d6;
-  --text-muted: #7c86b2;
-  --link-color: #c0caf5;
-  --link-hover: #a9b8e8;
-  --border-subtle: rgba(124, 134, 178, 0.22);
-  --surface-subtle: rgba(26, 28, 42, 0.5);
-  --code-bg: rgba(26, 28, 42, 0.7);
-  --pill-bg: rgba(192, 202, 245, 0.09);
 }
 
 *,
@@ -77,15 +65,12 @@ svg {
   color: var(--text-primary);
 }
 
-.page--home {
-  height: 100dvh;
-}
-
 .page--home main {
   display: flex;
   flex-grow: 1;
   align-items: center;
   justify-content: center;
+  padding: 5rem 0 3rem;
 }
 
 .page--content main {
@@ -98,17 +83,14 @@ svg {
 
 /* Header & Navigation */
 .site-header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.site-header {
   position: absolute;
   inset-block-start: 16px;
   inset-inline: 16px;
   z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .site-brand {
@@ -126,13 +108,22 @@ svg {
 
 .site-brand:focus-visible,
 .site-nav a:focus-visible,
+.theme-toggle:focus-visible,
+.prose a:focus-visible,
+.notes-list a:focus-visible,
+.rss-link:focus-visible,
+.back-link:focus-visible,
+.social-links a:focus-visible,
+pre.shiki:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 .prose a:focus-visible,
 .notes-list a:focus-visible,
 .rss-link:focus-visible,
 .back-link:focus-visible,
 .social-links a:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
   border-radius: 0.25rem;
 }
 
@@ -145,15 +136,17 @@ svg {
 }
 
 .site-nav a {
-  padding: 0.375rem 0.75rem;
+  padding: 0.375rem 1rem;
   border-radius: 9999px;
   font-size: 0.875rem;
   color: var(--footer-text);
   transition: color 150ms;
 }
 
+/* Hover pill fallback for browsers without anchor positioning */
 .site-nav a:hover {
   color: var(--footer-hover);
+  background: var(--pill-bg);
 }
 
 .site-nav a[aria-current="page"] {
@@ -161,18 +154,22 @@ svg {
   font-weight: 500;
 }
 
-/* Hover pill: no-anchor-support fallback is a plain per-link background */
-.site-nav a:hover {
-  background: var(--pill-bg);
-}
-
-/* With anchor positioning, one pill slides between the links. The hovered link
-   is the anchor; the nav's ::before is positioned against it. */
+/* With anchor positioning, one pill slides between links. The hovered link
+   is the anchor; the nav's ::before draws the rounded pill so the links keep
+   rectangular hit boxes with no corner dead zones between them. */
 @supports (anchor-name: --x) {
+  .site-nav a {
+    border-radius: 0;
+  }
+
   .site-nav a:hover,
   .site-nav a:focus-visible {
     anchor-name: --nav-hover;
     background: none;
+  }
+
+  .site-nav a:focus-visible {
+    border-radius: 9999px;
   }
 
   .site-nav::before {
@@ -184,17 +181,15 @@ svg {
     background: var(--pill-bg);
     opacity: 0;
     pointer-events: none;
-    transition: inset 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+    transition: opacity 300ms ease;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: inset 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+    }
   }
 
   .site-nav:has(a:hover, a:focus-visible)::before {
     opacity: 1;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .site-nav::before {
-    transition: opacity 300ms ease;
   }
 }
 
@@ -212,11 +207,6 @@ svg {
 
 .theme-toggle:hover {
   color: var(--footer-hover);
-}
-
-.theme-toggle:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
 }
 
 /* Sun <-> moon morph: the disc grows while a "cutter" circle slides across it
@@ -317,6 +307,7 @@ svg {
   line-height: 1.25;
   letter-spacing: -0.02em;
   color: var(--text-primary);
+  text-wrap: balance;
 }
 
 .page-meta {
@@ -343,6 +334,13 @@ svg {
   color: var(--text-secondary);
   font-size: 1.03125rem;
   line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.prose p,
+.prose li,
+.prose blockquote {
+  text-wrap: pretty;
 }
 
 .prose h2 {
@@ -353,6 +351,7 @@ svg {
   color: var(--text-primary);
   margin-top: 2.25rem;
   margin-bottom: 0.75rem;
+  text-wrap: balance;
 }
 
 .prose h3 {
@@ -362,6 +361,7 @@ svg {
   color: var(--text-primary);
   margin-top: 1.75rem;
   margin-bottom: 0.5rem;
+  text-wrap: balance;
 }
 
 .prose p + p,
@@ -369,6 +369,7 @@ svg {
 .prose ol + p,
 .prose pre + p,
 .prose blockquote + p,
+.prose table + p,
 .prose .placeholder-notice + p {
   margin-top: 1.15rem;
 }
@@ -420,6 +421,39 @@ svg {
 
 .prose pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: 1.5rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.prose th,
+.prose td {
+  padding: 0.625rem 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+  vertical-align: top;
+}
+
+.prose th:first-child,
+.prose td:first-child {
+  padding-left: 0;
+}
+
+.prose th:last-child,
+.prose td:last-child {
+  padding-right: 0;
+}
+
+.prose th {
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom-width: 2px;
+  text-wrap: balance;
 }
 
 .placeholder-notice {
@@ -501,7 +535,7 @@ svg {
   color: var(--footer-hover);
 }
 
-/* Shiki dual-theme switching (github-light by default, tokyo-night in dark mode) */
+/* Shiki dual-theme switching (catppuccin-latte by default, tokyo-night in dark mode) */
 pre.shiki {
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;

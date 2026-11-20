@@ -1,14 +1,22 @@
-// Theme toggle: flips and saves the theme, with a circular wipe where supported
+// Theme toggle: flips and saves overrides (clearing storage when returning to
+// the system preference), with a circular wipe where supported.
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.getElementById("theme-toggle");
+  const meta = document.querySelector('meta[name="color-scheme"]');
   if (!toggle) return;
 
   toggle.addEventListener("click", function () {
     const root = document.documentElement;
     const next = root.dataset.theme === "dark" ? "light" : "dark";
+    const matchesSystem = next === (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+
     const apply = () => {
       root.dataset.theme = next;
-      try { localStorage.setItem("theme", next); } catch (e) { }
+      if (meta) meta.content = matchesSystem ? "light dark" : next;
+      try {
+        if (matchesSystem) localStorage.removeItem("theme");
+        else localStorage.setItem("theme", next);
+      } catch (e) { }
     };
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
