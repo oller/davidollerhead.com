@@ -1,0 +1,764 @@
+/* Theme tokens: follow system preference by default, overridden via <meta name="color-scheme"> */
+:root {
+  color-scheme: light dark;
+
+  --page-from-light: #d5d9de;
+  --page-to-light: #ccd0d4;
+  --footer-bg-light: #e5e7eb;
+  --footer-text-light: #4f5765;
+  --footer-hover-light: #2d333d;
+  --text-primary-light: #1f242d;
+  --text-secondary-light: #374151;
+  --text-muted-light: #4f5765;
+  --link-color-light: #1f242d;
+  --link-hover-light: #2d333d;
+  --border-subtle-light: rgba(79, 87, 101, 0.25);
+  --surface-subtle-light: rgba(255, 255, 255, 0.45);
+  --code-bg-light: rgba(255, 255, 255, 0.6);
+  --pill-bg-light: rgba(31, 36, 45, 0.07);
+
+  /* Dark palette (Tokyo Night inspired) */
+  --page-from-dark: #1e2030;
+  --page-to-dark: #24283b;
+  --footer-bg-dark: #1a1c2a;
+  --footer-text-dark: #8994c2;
+  --footer-hover-dark: #a9b8e8;
+  --text-primary-dark: #c0caf5;
+  --text-secondary-dark: #a9b1d6;
+  --text-muted-dark: #8994c2;
+  --link-color-dark: #c0caf5;
+  --link-hover-dark: #a9b8e8;
+  --border-subtle-dark: rgba(137, 148, 194, 0.24);
+  --surface-subtle-dark: rgba(26, 28, 42, 0.5);
+  --code-bg-dark: rgba(26, 28, 42, 0.7);
+  --pill-bg-dark: rgba(192, 202, 245, 0.09);
+
+  /* Fallback tokens for browsers without light-dark() */
+  --page-from: var(--page-from-light);
+  --page-to: var(--page-to-light);
+  --footer-bg: var(--footer-bg-light);
+  --footer-text: var(--footer-text-light);
+  --footer-hover: var(--footer-hover-light);
+  --text-primary: var(--text-primary-light);
+  --text-secondary: var(--text-secondary-light);
+  --text-muted: var(--text-muted-light);
+  --link-color: var(--link-color-light);
+  --link-hover: var(--link-hover-light);
+  --border-subtle: var(--border-subtle-light);
+  --surface-subtle: var(--surface-subtle-light);
+  --code-bg: var(--code-bg-light);
+  --pill-bg: var(--pill-bg-light);
+
+  @media (prefers-color-scheme: dark) {
+    --page-from: var(--page-from-dark);
+    --page-to: var(--page-to-dark);
+    --footer-bg: var(--footer-bg-dark);
+    --footer-text: var(--footer-text-dark);
+    --footer-hover: var(--footer-hover-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --text-muted: var(--text-muted-dark);
+    --link-color: var(--link-color-dark);
+    --link-hover: var(--link-hover-dark);
+    --border-subtle: var(--border-subtle-dark);
+    --surface-subtle: var(--surface-subtle-dark);
+    --code-bg: var(--code-bg-dark);
+    --pill-bg: var(--pill-bg-dark);
+  }
+
+  @supports (color: light-dark(white, black)) {
+    --page-from: light-dark(var(--page-from-light), var(--page-from-dark));
+    --page-to: light-dark(var(--page-to-light), var(--page-to-dark));
+    --footer-bg: light-dark(var(--footer-bg-light), var(--footer-bg-dark));
+    --footer-text: light-dark(var(--footer-text-light), var(--footer-text-dark));
+    --footer-hover: light-dark(var(--footer-hover-light), var(--footer-hover-dark));
+    --text-primary: light-dark(var(--text-primary-light), var(--text-primary-dark));
+    --text-secondary: light-dark(var(--text-secondary-light), var(--text-secondary-dark));
+    --text-muted: light-dark(var(--text-muted-light), var(--text-muted-dark));
+    --link-color: light-dark(var(--link-color-light), var(--link-color-dark));
+    --link-hover: light-dark(var(--link-hover-light), var(--link-hover-dark));
+    --border-subtle: light-dark(var(--border-subtle-light), var(--border-subtle-dark));
+    --surface-subtle: light-dark(var(--surface-subtle-light), var(--surface-subtle-dark));
+    --code-bg: light-dark(var(--code-bg-light), var(--code-bg-dark));
+    --pill-bg: light-dark(var(--pill-bg-light), var(--pill-bg-dark));
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+blockquote,
+pre,
+hr {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+hr {
+  border: 0;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+svg {
+  display: block;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+/* Visually hidden utility; focusable targets (like skip links) become visible on focus */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  inline-size: 1px !important;
+  block-size: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.skip-link:focus-visible {
+  position: fixed;
+  inset-block-start: 16px;
+  inset-inline-start: 16px;
+  z-index: 50;
+  padding: 0.5rem 0.875rem;
+  border-radius: 0.375rem;
+  background: var(--footer-bg);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-block-size: 100dvh;
+  background: linear-gradient(to top, var(--page-from), var(--page-to));
+  color: var(--text-primary);
+}
+
+.page--home main {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  padding-block: 5rem 3rem;
+}
+
+.page--content main {
+  flex-grow: 1;
+  inline-size: 100%;
+  max-inline-size: 42rem;
+  margin-inline: auto;
+  padding-block: 5rem 4rem;
+  padding-inline: 1.5rem;
+}
+
+/* Header & Navigation */
+.site-header {
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline: 16px;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.site-brand {
+  grid-column: 1;
+  justify-self: start;
+  padding: 8px;
+  border-radius: 9999px;
+  color: var(--footer-text);
+  transition: color 150ms;
+}
+
+.site-brand:hover {
+  color: var(--footer-hover);
+}
+
+.site-brand:focus-visible,
+.site-nav a:focus-visible,
+.theme-toggle:focus-visible,
+.prose a:focus-visible,
+.notes-list a:focus-visible,
+.rss-link:focus-visible,
+.back-link:focus-visible,
+.social-links a:focus-visible,
+pre.shiki:focus-visible,
+.table-wrapper:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.prose a:focus-visible,
+.notes-list a:focus-visible,
+.rss-link:focus-visible,
+.back-link:focus-visible,
+.social-links a:focus-visible,
+.table-wrapper:focus-visible {
+  border-radius: 0.25rem;
+}
+
+.site-nav {
+  grid-column: 2;
+  justify-self: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.site-nav a {
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  color: var(--footer-text);
+  transition: color 150ms;
+}
+
+/* Hover pill fallback for browsers without anchor positioning */
+.site-nav a:hover {
+  color: var(--footer-hover);
+  background: var(--pill-bg);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* With anchor positioning, one pill slides between the links. The hovered link
+   is the anchor; the nav's ::before is positioned against it. */
+@supports (anchor-name: --x) {
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    anchor-name: --nav-hover;
+    background: none;
+  }
+
+  .site-nav::before {
+    content: "";
+    position: absolute;
+    position-anchor: --nav-hover;
+    inset: anchor(top) anchor(right) anchor(bottom) anchor(left);
+    border-radius: 9999px;
+    background: var(--pill-bg);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: inset 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 300ms ease;
+    }
+  }
+
+  .site-nav:has(a:hover, a:focus-visible)::before {
+    opacity: 1;
+  }
+}
+
+@media (forced-colors: active) {
+  .site-nav::before,
+  .site-nav a:hover {
+    border: 1px solid Highlight;
+  }
+
+  .site-nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+  }
+}
+
+/* Theme toggle */
+.theme-toggle {
+  grid-column: 3;
+  justify-self: end;
+  padding: 8px;
+  border-radius: 9999px;
+  color: var(--footer-text);
+  cursor: pointer;
+  transition: color 150ms;
+  view-transition-name: theme-toggle;
+}
+
+.theme-toggle:hover {
+  color: var(--footer-hover);
+}
+
+/* Sun <-> moon morph: the disc grows while a "cutter" circle slides across it
+   to carve the crescent, and the rays shrink into the centre. */
+.theme-icon .body,
+.theme-icon .cutter,
+.theme-icon .rays {
+  transform-box: view-box;
+  transform-origin: 12px 12px;
+}
+
+.theme-icon,
+.theme-icon .body,
+.theme-icon .cutter,
+.theme-icon .rays {
+  transition: transform 500ms cubic-bezier(0.34, 1.3, 0.5, 1), opacity 300ms ease;
+}
+
+/* Constant line weight while scaling */
+.theme-icon .disc,
+.theme-icon .cutter {
+  vector-effect: non-scaling-stroke;
+}
+
+.theme-icon {
+  transform: rotate(90deg);
+}
+
+/* Sun state. The 90deg spin is invisible at rest (sun repeats every 45deg) */
+.theme-icon .body {
+  transform: scale(0.5);
+}
+
+.theme-icon .cutter {
+  transform: translate(20px, -20px);
+}
+
+.theme-icon .rays {
+  transform: rotate(0deg) scale(1);
+  opacity: 1;
+}
+
+/* Moon state (explicit dark override or OS dark mode without light override) */
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  .theme-icon { transform: rotate(0deg); }
+  .theme-icon .body { transform: scale(1); }
+  .theme-icon .cutter { transform: translate(4.5px, -4.5px); }
+  .theme-icon .rays { transform: rotate(90deg) scale(0); opacity: 0; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    .theme-icon { transform: rotate(0deg); }
+    .theme-icon .body { transform: scale(1); }
+    .theme-icon .cutter { transform: translate(4.5px, -4.5px); }
+    .theme-icon .rays { transform: rotate(90deg) scale(0); opacity: 0; }
+  }
+}
+
+/* Page wipe: disable the default cross-fade (the circle is animated in JS) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+/* Lift the toggle into its own layer so it stays visible above the wipe */
+::view-transition-group(theme-toggle) {
+  z-index: 2;
+}
+
+/* No icon animation for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-icon,
+  .theme-icon * {
+    transition: none !important;
+  }
+}
+
+/* Content pages & Prose */
+.article-header {
+  margin-block-end: 2rem;
+}
+
+.article-header h1,
+.notes-header h1 {
+  font-size: 1.875rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.page-meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-block-start: 0.5rem;
+}
+
+.article-header .page-meta:first-child {
+  margin-block-start: 0;
+  margin-block-end: 0.75rem;
+}
+
+.back-link {
+  color: var(--text-muted);
+  transition: color 150ms;
+}
+
+.back-link:hover {
+  color: var(--link-hover);
+}
+
+.prose {
+  color: var(--text-secondary);
+  font-size: 1.03125rem;
+  line-height: 1.7;
+  overflow-wrap: break-word;
+}
+
+.prose p,
+.prose li,
+.prose blockquote {
+  text-wrap: pretty;
+}
+
+.prose h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+  margin-block: 2.25rem 0.75rem;
+  text-wrap: balance;
+}
+
+.prose h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+  margin-block: 1.75rem 0.5rem;
+  text-wrap: balance;
+}
+
+.prose p + p,
+.prose ul + p,
+.prose ol + p,
+.prose pre + p,
+.prose blockquote + p,
+.prose .table-wrapper + p,
+.prose .placeholder-notice + p {
+  margin-block-start: 1.15rem;
+}
+
+.prose ul,
+.prose ol {
+  margin-block: 0.75rem 1.15rem;
+  padding-inline-start: 1.35rem;
+}
+
+.prose li + li {
+  margin-block-start: 0.4rem;
+}
+
+.prose a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-color: var(--border-subtle);
+  text-underline-offset: 0.2em;
+  transition: color 150ms, text-decoration-color 150ms;
+}
+
+.prose a:hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+.prose blockquote {
+  margin-block: 1.25rem;
+  padding-block: 0.25rem;
+  padding-inline-start: 1rem;
+  border-inline-start: 2px solid var(--border-subtle);
+  color: var(--text-muted);
+}
+
+.prose hr {
+  border-block-start: 1px solid var(--border-subtle);
+  margin-block: 2rem;
+}
+
+.prose :not(pre) > code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.875em;
+  padding: 0.15em 0.35em;
+  border-radius: 0.25rem;
+  background: var(--code-bg);
+  border: 1px solid var(--border-subtle);
+}
+
+.prose pre {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Prose tables */
+.table-wrapper {
+  overflow-x: auto;
+  max-inline-size: 100%;
+  margin-block: 1.5rem;
+}
+
+.prose table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-align: start;
+}
+
+.prose th,
+.prose td {
+  padding-block: 0.625rem;
+  padding-inline: 0.75rem;
+  border-block-end: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.prose th:first-child,
+.prose td:first-child {
+  padding-inline-start: 0;
+}
+
+.prose th:last-child,
+.prose td:last-child {
+  padding-inline-end: 0;
+}
+
+.prose th {
+  font-weight: 600;
+  color: var(--text-primary);
+  border-block-end-width: 2px;
+  text-align: start;
+  text-wrap: balance;
+}
+
+.placeholder-notice {
+  padding: 0.875rem 1rem;
+  margin-block-end: 1.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-subtle);
+  font-size: 0.9375rem;
+  color: var(--text-muted);
+}
+
+/* Notes index */
+.notes-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-block-end: 2rem;
+}
+
+.rss-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  transition: color 150ms;
+}
+
+.rss-link:hover {
+  color: var(--footer-hover);
+}
+
+.rss-link svg {
+  inline-size: 0.875rem;
+  block-size: 0.875rem;
+}
+
+.notes-list {
+  list-style: none;
+  border-block-start: 1px solid var(--border-subtle);
+}
+
+.notes-list li {
+  border-block-end: 1px solid var(--border-subtle);
+}
+
+.notes-list a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-block: 1rem;
+  transition: color 150ms;
+}
+
+@media (min-width: 40rem) {
+  .notes-list a {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+}
+
+.notes-list time {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  min-inline-size: 6.5rem;
+}
+
+.note-title {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.notes-list a:hover .note-title {
+  color: var(--footer-hover);
+}
+
+/* Shiki dual-theme switching (github-light by default, tokyo-night in dark mode) */
+pre.shiki {
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  border: 1px solid var(--border-subtle);
+  margin-block: 1.25rem;
+}
+
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    .shiki,
+    .shiki span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+  }
+}
+
+/* Footer */
+.site-footer {
+  padding: 2rem 1.5rem;
+  background: var(--footer-bg);
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  inline-size: 100%;
+  margin-inline: auto;
+  text-align: center;
+  color: var(--footer-text);
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.social-links a {
+  padding: 0.5rem;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-footer a:hover {
+  color: var(--footer-hover);
+}
+
+@media (min-width: 40rem) {
+  .footer-inner {
+    max-inline-size: 40rem;
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: start;
+  }
+}
+
+@media (min-width: 48rem) {
+  .footer-inner {
+    max-inline-size: 48rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .footer-inner {
+    max-inline-size: 64rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .footer-inner {
+    max-inline-size: 80rem;
+  }
+}
+
+@media (min-width: 96rem) {
+  .footer-inner {
+    max-inline-size: 96rem;
+  }
+}
