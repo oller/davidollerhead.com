@@ -1,14 +1,40 @@
-// Theme toggle: flips and saves the theme, with a circular wipe where supported
+// Theme toggle: overrides <meta name="color-scheme"> and persists only when diverging
+// from the system preference, with a circular View Transition wipe where supported.
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.getElementById("theme-toggle");
-  if (!toggle) return;
+  const meta = document.querySelector('meta[name="color-scheme"]');
+  if (!toggle || !meta) return;
+
+  const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  const isDarkRendered = () =>
+    meta.content === "dark" || (meta.content !== "light" && darkQuery.matches);
+
+  // Sync overrides made in another tab
+  window.addEventListener("storage", function (event) {
+    if (event.key !== "color-scheme") return;
+    meta.content =
+      event.newValue === "light" || event.newValue === "dark"
+        ? event.newValue
+        : "light dark";
+  });
 
   toggle.addEventListener("click", function () {
     const root = document.documentElement;
-    const next = root.dataset.theme === "dark" ? "light" : "dark";
+    const target = isDarkRendered() ? "light" : "dark";
+    const systemScheme = darkQuery.matches ? "dark" : "light";
+    const nextMeta = target === systemScheme ? "light dark" : target;
+
     const apply = () => {
-      root.dataset.theme = next;
-      try { localStorage.setItem("theme", next); } catch (e) { }
+      meta.content = nextMeta;
+      try {
+        localStorage.removeItem("theme");
+        if (nextMeta === "light dark") {
+          localStorage.removeItem("color-scheme");
+        } else {
+          localStorage.setItem("color-scheme", nextMeta);
+        }
+      } catch (e) { }
     };
 
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

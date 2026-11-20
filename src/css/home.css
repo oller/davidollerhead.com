@@ -25,31 +25,26 @@
     0 -10px 15px -1px rgba(255, 255, 255, 0.7),
     inset 0 8px 18px 0 rgba(0, 0, 0, 0.25),
     inset 0 0 4px 1px rgba(255, 255, 255, 0.65);
-}
 
-/* Dark theme (Tokyo Night inspired). Highlights are muted slate blue rather
-   than white, which reads as a grey veil on dark surfaces. */
-:root[data-theme="dark"] {
-  --btn-bg: linear-gradient(180deg, #292d44 0%, #242840 100%);
-  --glow-bg: #485a8c;
-  --glow-shadow: rgba(72, 90, 140, 0.7);
-  /* Fainter halo than light mode (0.25) */
-  --glow-opacity: 0.1;
-  --shadow-rest:
+  --btn-bg-dark: linear-gradient(180deg, #292d44 0%, #242840 100%);
+  --glow-bg-dark: #485a8c;
+  --glow-shadow-dark: rgba(72, 90, 140, 0.7);
+  --glow-opacity-dark: 0.1;
+  --shadow-rest-dark:
     0 14px 22px -4px rgba(3, 4, 10, 0.7),
     inset 0 -3px 4px -1px rgba(3, 4, 10, 0.4),
     0 -8px 12px -2px rgba(95, 120, 190, 0.13),
     inset 0 1px 1.5px 0 rgba(105, 130, 200, 0.16),
     inset 0 0 2px 1px rgba(100, 125, 195, 0.08),
     inset 0 16px 24px 0 rgba(105, 130, 200, 0.035);
-  --shadow-active:
+  --shadow-active-dark:
     0 12px 20px -4px rgba(3, 4, 10, 0.6),
     inset 0 -8px 25px 1px rgba(100, 125, 195, 0.34),
     0 -8px 12px -2px rgba(95, 120, 190, 0.12),
     inset 0 10px 22px 0 rgba(3, 4, 10, 0.85),
     inset 0 3px 6px 0 rgba(3, 4, 10, 0.5),
     inset 0 0 5px 1px rgba(120, 145, 210, 0.32);
-  --shadow-checked:
+  --shadow-checked-dark:
     0 12px 20px -4px rgba(3, 4, 10, 0.6),
     inset 0 -8px 22px 0 rgba(100, 125, 195, 0.3),
     0 -8px 12px -2px rgba(95, 120, 190, 0.11),
@@ -58,11 +53,35 @@
     inset 0 0 5px 1px rgba(120, 145, 210, 0.26);
 }
 
+/* Dark theme (Tokyo Night inspired) when overridden via <meta> or following OS dark mode.
+   Highlights are muted slate blue rather than white, which reads as a grey veil on dark surfaces. */
+:root:has(> head > meta[name="color-scheme"][content="dark"]) {
+  --btn-bg: var(--btn-bg-dark);
+  --glow-bg: var(--glow-bg-dark);
+  --glow-shadow: var(--glow-shadow-dark);
+  --glow-opacity: var(--glow-opacity-dark);
+  --shadow-rest: var(--shadow-rest-dark);
+  --shadow-active: var(--shadow-active-dark);
+  --shadow-checked: var(--shadow-checked-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    --btn-bg: var(--btn-bg-dark);
+    --glow-bg: var(--glow-bg-dark);
+    --glow-shadow: var(--glow-shadow-dark);
+    --glow-opacity: var(--glow-opacity-dark);
+    --shadow-rest: var(--shadow-rest-dark);
+    --shadow-active: var(--shadow-active-dark);
+    --shadow-checked: var(--shadow-checked-dark);
+  }
+}
+
 .initial {
   position: relative;
-  height: 100px;
-  width: 100px;
-  margin: 0 10px;
+  block-size: 100px;
+  inline-size: 100px;
+  margin-inline: 10px;
 }
 
 .initial::before {
@@ -77,11 +96,11 @@
 }
 
 /* D shape - overrides */
-.initial:first-child {
-  width: 90px;
+.initial:first-of-type {
+  inline-size: 90px;
 }
 
-.initial:first-child .button {
+.initial:first-of-type .button {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -109,9 +128,27 @@
   box-shadow: var(--shadow-checked);
 }
 
+.initial input:focus-visible ~ .button {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
 /* Active press state (native :active and programmatic .is-active) */
 .initial input:active ~ .button,
 .initial.is-active .button {
   box-shadow: var(--shadow-active);
   transform: scale(0.985);
+}
+
+/* Preserve visible boundaries and state when shadows/gradients are stripped */
+@media (forced-colors: active) {
+  .initial .button {
+    filter: none;
+    border: 2px solid ButtonText;
+  }
+
+  .initial input:checked ~ .button {
+    background: Highlight;
+    border-color: HighlightText;
+  }
 }
