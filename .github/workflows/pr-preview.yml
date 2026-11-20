@@ -18,7 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        if: github.event.action != 'closed'
         uses: actions/checkout@v4
 
       - name: Setup Node
