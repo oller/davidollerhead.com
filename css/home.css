@@ -109,6 +109,11 @@
   box-shadow: var(--shadow-checked);
 }
 
+.initial input:focus-visible ~ .button {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 4px;
+}
+
 /* Active press state (native :active and programmatic .is-active) */
 .initial input:active ~ .button,
 .initial.is-active .button {

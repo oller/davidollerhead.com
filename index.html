@@ -4,23 +4,25 @@
 <head>
   <link rel="icon" href="data:,">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>David Ollerhead</title>
   <meta name="description" content="David Ollerhead landing page" />
   <meta name="author" content="David Ollerhead" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="canonical" href="https://davidollerhead.com/" />
-  <link rel="alternate" type="application/atom+xml" title="David Ollerhead — Notes" href="https://davidollerhead.com/feed.xml" />
   <script>
-    // Apply the saved (or system) theme before first paint to avoid a flash
+    // Apply saved (or system) theme before first paint to avoid a flash
     (function () {
       var saved = null;
-      // localStorage can throw (e.g. private mode)
       try { saved = localStorage.getItem("theme"); } catch (e) { }
       var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.dataset.theme = dark ? "dark" : "light";
+      if (saved === "light" || saved === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = saved;
+      }
     })();
   </script>
+  <link rel="canonical" href="https://davidollerhead.com/" />
+  <link rel="alternate" type="application/atom+xml" title="David Ollerhead — Notes" href="https://davidollerhead.com/feed.xml" />
   <script src="https://www.vexo.co/analytics.js" defer></script>
   <link rel="stylesheet" href="/css/site.css" />
   <link rel="stylesheet" href="/css/home.css" />
@@ -80,7 +82,7 @@
           Currently @ JPMorganChase.
         </div>
         <div class="social-links">
-          <a href="/feed.xml" aria-label="Atom feed for David Ollerhead's Notes">
+          <a href="/feed.xml" aria-label="Atom feed">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 11a9 9 0 0 1 9 9" />

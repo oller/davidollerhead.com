@@ -4,23 +4,25 @@
 <head>
   <link rel="icon" href="data:,">
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Notes — David Ollerhead</title>
   <meta name="description" content="Notes and essays by David Ollerhead." />
   <meta name="author" content="David Ollerhead" />
   <meta name="color-scheme" content="light dark" />
-  <link rel="canonical" href="https://davidollerhead.com/notes/" />
-  <link rel="alternate" type="application/atom+xml" title="David Ollerhead — Notes" href="https://davidollerhead.com/feed.xml" />
   <script>
-    // Apply the saved (or system) theme before first paint to avoid a flash
+    // Apply saved (or system) theme before first paint to avoid a flash
     (function () {
       var saved = null;
-      // localStorage can throw (e.g. private mode)
       try { saved = localStorage.getItem("theme"); } catch (e) { }
       var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
       document.documentElement.dataset.theme = dark ? "dark" : "light";
+      if (saved === "light" || saved === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = saved;
+      }
     })();
   </script>
+  <link rel="canonical" href="https://davidollerhead.com/notes/" />
+  <link rel="alternate" type="application/atom+xml" title="David Ollerhead — Notes" href="https://davidollerhead.com/feed.xml" />
   <script src="https://www.vexo.co/analytics.js" defer></script>
   <link rel="stylesheet" href="/css/site.css" />
   <script src="/js/theme.js" defer></script>
@@ -63,14 +65,14 @@
     <main>
       <header class="notes-header">
   <h1>Notes</h1>
-  <a href="/feed.xml" class="rss-link" aria-label="Atom feed for Notes">
+  <a href="/feed.xml" class="rss-link">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M4 11a9 9 0 0 1 9 9" />
       <path d="M4 4a16 16 0 0 1 16 16" />
       <circle cx="5" cy="19" r="1" fill="currentColor" />
     </svg>
-    <span>RSS</span>
+    <span>Atom feed</span>
   </a>
 </header>
 
@@ -92,7 +94,7 @@
           Currently @ JPMorganChase.
         </div>
         <div class="social-links">
-          <a href="/feed.xml" aria-label="Atom feed for David Ollerhead's Notes">
+          <a href="/feed.xml" aria-label="Atom feed">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M4 11a9 9 0 0 1 9 9" />
