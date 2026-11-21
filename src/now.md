@@ -34,3 +34,5 @@ Seeing as I've twin toddlers and cycle to work, I must confess convenience is le
 I continue to experiment with [Vimgym](https://vim-gym.netlify.app/), as I endeavour to make up for years of avoiding Vim.
 
 I am also enjoying using Grokbot to continue to offload mundane tasks (home insurance quotes, energy provider renewals etc.) and claw some time back. The degrees of orchestration that you can put in place in the always-on Grok virtual machine makes for some interesting opportunities.
+
+Building out these additional pages on this site using [eleventy](https://www.11ty.dev/). Getting the lighthouse scores to 100% across all metrics, and enjoying the process with minimal AI usage and embracing the chance to hone my Vim motions.
