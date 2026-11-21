@@ -1,12 +1,10 @@
 ---
 title: Mutation testing
-date: 2026-11-19
+date: 2026-11-21
 description: Placeholder note on mutation testing and measuring test suite effectiveness beyond line coverage.
 slug: mutation-testing
 ---
-<div class="placeholder-notice">
-  <strong>Placeholder copy:</strong> This note is a temporary placeholder. The full post on mutation testing will replace this text later.
-</div>
+
 
 Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.
 
@@ -23,8 +21,6 @@ export function isEligibleForDiscount(quantity: number): boolean {
 ```
 
 If every test passes `quantity = 12` or `quantity = 5` and nothing exercises `quantity = 10`, line coverage stays at 100%, yet the `>` mutant survives unnoticed. Adding a boundary test turns that surviving mutant into a caught regression.
-
-
 
 ## How it works
 
