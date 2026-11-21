@@ -4,7 +4,7 @@
   <subtitle>David Ollerhead - Front End focused Engineering Manager</subtitle>
   <link href="https://davidollerhead.com/feed.xml" rel="self"/>
   <link href="https://davidollerhead.com/notes/"/>
-  <updated>2026-11-19T00:00:00Z</updated>
+  <updated>2026-11-21T00:00:00Z</updated>
   <id>https://davidollerhead.com/notes/</id>
   <author>
     <name>David Ollerhead</name>
@@ -12,12 +12,9 @@
   <entry>
     <title>Mutation testing</title>
     <link href="https://davidollerhead.com/notes/mutation-testing/"/>
-    <updated>2026-11-19T00:00:00Z</updated>
+    <updated>2026-11-21T00:00:00Z</updated>
     <id>https://davidollerhead.com/notes/mutation-testing/</id>
-    <content xml:lang="en" type="html">&lt;div class=&quot;placeholder-notice&quot;&gt;
-  &lt;strong&gt;Placeholder copy:&lt;/strong&gt; This note is a temporary placeholder. The full post on mutation testing will replace this text later.
-&lt;/div&gt;
-&lt;p&gt;Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.&lt;/p&gt;
+    <content xml:lang="en" type="html">&lt;p&gt;Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.&lt;/p&gt;
 &lt;p&gt;Mutation testing addresses that gap by making small, automated changes (mutants) to your source code, such as flipping conditionals, changing arithmetic operators, or removing return values, and re-running the test suite against each mutant. If the tests still pass, the mutant &lt;em&gt;survived&lt;/em&gt;, pointing to a blind spot in your assertions.&lt;/p&gt;
 &lt;p&gt;Consider a simple boundary check:&lt;/p&gt;
 &lt;pre class=&quot;shiki shiki-themes catppuccin-latte tokyo-night&quot; style=&quot;background-color:#eff1f5;--shiki-dark-bg:#1a1b26;color:#4c4f69;--shiki-dark:#a9b1d6&quot; tabindex=&quot;0&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;line&quot;&gt;&lt;span style=&quot;color:#8839EF;--shiki-dark:#7DCFFF&quot;&gt;export&lt;/span&gt;&lt;span style=&quot;color:#8839EF;--shiki-dark:#BB9AF7&quot;&gt; function&lt;/span&gt;&lt;span style=&quot;color:#1E66F5;--shiki-light-font-style:italic;--shiki-dark:#7AA2F7;--shiki-dark-font-style:inherit&quot;&gt; isEligibleForDiscount&lt;/span&gt;&lt;span style=&quot;color:#7C7F93;--shiki-dark:#9ABDF5&quot;&gt;(&lt;/span&gt;&lt;span style=&quot;color:#E64553;--shiki-light-font-style:italic;--shiki-dark:#E0AF68;--shiki-dark-font-style:inherit&quot;&gt;quantity&lt;/span&gt;&lt;span style=&quot;color:#179299;--shiki-dark:#89DDFF&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;color:#8839EF;--shiki-dark:#0DB9D7&quot;&gt; number&lt;/span&gt;&lt;span style=&quot;color:#7C7F93;--shiki-dark:#9ABDF5&quot;&gt;)&lt;/span&gt;&lt;span style=&quot;color:#179299;--shiki-dark:#89DDFF&quot;&gt;:&lt;/span&gt;&lt;span style=&quot;color:#8839EF;--shiki-dark:#0DB9D7&quot;&gt; boolean&lt;/span&gt;&lt;span style=&quot;color:#7C7F93;--shiki-dark:#9ABDF5&quot;&gt; {&lt;/span&gt;&lt;/span&gt;
