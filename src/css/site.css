@@ -5,20 +5,13 @@
 	--page-from: light-dark(#d5d9de, #1e2030);
 	--page-to: light-dark(#ccd0d4, #24283b);
 	--footer-bg: light-dark(#e5e7eb, #1a1c2a);
-	--footer-text: light-dark(#4f5765, #8994c2);
-	--footer-hover: light-dark(#2d333d, #a9b8e8);
 	--text-primary: light-dark(#1f242d, #c0caf5);
 	--text-secondary: light-dark(#374151, #a9b1d6);
 	--text-muted: light-dark(#4f5765, #8994c2);
-	--link-color: light-dark(#1f242d, #c0caf5);
 	--link-hover: light-dark(#2d333d, #a9b8e8);
 	--border-subtle: light-dark(
 		rgba(79, 87, 101, 0.25),
 		rgba(137, 148, 194, 0.24)
-	);
-	--surface-subtle: light-dark(
-		rgba(255, 255, 255, 0.45),
-		rgba(26, 28, 42, 0.5)
 	);
 	--code-bg: light-dark(rgba(255, 255, 255, 0.6), rgba(26, 28, 42, 0.7));
 	--pill-bg: light-dark(rgba(31, 36, 45, 0.07), rgba(192, 202, 245, 0.09));
@@ -113,32 +106,20 @@ main {
 	justify-self: start;
 	padding: 8px;
 	border-radius: 9999px;
-	color: var(--footer-text);
+	color: var(--text-muted);
 	transition: color 150ms;
 }
 
 .site-brand:hover {
-	color: var(--footer-hover);
+	color: var(--link-hover);
 }
 
-.site-brand:focus-visible,
-.site-nav a:focus-visible,
-.theme-toggle:focus-visible,
-.prose a:focus-visible,
-.notes-list a:focus-visible,
-.rss-link:focus-visible,
-.back-link:focus-visible,
-.social-links a:focus-visible,
-pre.shiki:focus-visible {
+:is(a, button, pre.shiki):focus-visible {
 	outline: 2px solid currentColor;
 	outline-offset: 2px;
 }
 
-.prose a:focus-visible,
-.notes-list a:focus-visible,
-.rss-link:focus-visible,
-.back-link:focus-visible,
-.social-links a:focus-visible {
+:where(a:focus-visible) {
 	border-radius: 0.25rem;
 }
 
@@ -152,16 +133,24 @@ pre.shiki:focus-visible {
 
 .site-nav a {
 	padding: 0.375rem 1rem;
-	border-radius: 9999px;
 	font-size: 0.875rem;
-	color: var(--footer-text);
+	color: var(--text-muted);
 	transition: color 150ms;
 }
 
-/* Hover pill fallback for browsers without anchor positioning */
 .site-nav a:hover {
-	color: var(--footer-hover);
-	background: var(--pill-bg);
+	color: var(--link-hover);
+}
+
+/* Hover pill fallback for browsers without anchor positioning */
+@supports not (anchor-name: --x) {
+	.site-nav a {
+		border-radius: 9999px;
+	}
+
+	.site-nav a:hover {
+		background: var(--pill-bg);
+	}
 }
 
 .site-nav a[aria-current="page"] {
@@ -173,14 +162,9 @@ pre.shiki:focus-visible {
    is the anchor; the nav's ::before draws the rounded pill so the links keep
    rectangular hit boxes with no corner dead zones between them. */
 @supports (anchor-name: --x) {
-	.site-nav a {
-		border-radius: 0;
-	}
-
 	.site-nav a:hover,
 	.site-nav a:focus-visible {
 		anchor-name: --nav-hover;
-		background: none;
 	}
 
 	.site-nav a:focus-visible {
@@ -216,14 +200,14 @@ pre.shiki:focus-visible {
 	justify-self: end;
 	padding: 8px;
 	border-radius: 9999px;
-	color: var(--footer-text);
+	color: var(--text-muted);
 	cursor: pointer;
 	transition: color 150ms;
 	view-transition-name: theme-toggle;
 }
 
 .theme-toggle:hover {
-	color: var(--footer-hover);
+	color: var(--link-hover);
 }
 
 /* Sun <-> moon morph: the disc grows while a "cutter" circle slides across it
@@ -235,13 +219,15 @@ pre.shiki:focus-visible {
 	transform-origin: 12px 12px;
 }
 
-.theme-icon,
-.theme-icon .body,
-.theme-icon .cutter,
-.theme-icon .rays {
-	transition:
-		transform 500ms cubic-bezier(0.34, 1.3, 0.5, 1),
-		opacity 300ms ease;
+@media (prefers-reduced-motion: no-preference) {
+	.theme-icon,
+	.theme-icon .body,
+	.theme-icon .cutter,
+	.theme-icon .rays {
+		transition:
+			transform 500ms cubic-bezier(0.34, 1.3, 0.5, 1),
+			opacity 300ms ease;
+	}
 }
 
 /* Constant line weight while scaling */
@@ -306,14 +292,6 @@ pre.shiki:focus-visible {
 /* Lift the toggle into its own layer so it stays visible above the wipe */
 ::view-transition-group(theme-toggle) {
 	z-index: 2;
-}
-
-/* No icon animation for reduced motion */
-@media (prefers-reduced-motion: reduce) {
-	.theme-icon,
-	.theme-icon * {
-		transition: none !important;
-	}
 }
 
 /* Content pages & Prose */
@@ -385,13 +363,7 @@ pre.shiki:focus-visible {
 	text-wrap: balance;
 }
 
-.prose p + p,
-.prose ul + p,
-.prose ol + p,
-.prose pre + p,
-.prose blockquote + p,
-.prose table + p,
-.prose .placeholder-notice + p {
+.prose :where(p, ul, ol, pre, blockquote, table) + p {
 	margin-top: 1.15rem;
 }
 
@@ -407,7 +379,7 @@ pre.shiki:focus-visible {
 }
 
 .prose a {
-	color: var(--link-color);
+	color: var(--text-primary);
 	text-decoration: underline;
 	text-decoration-color: var(--border-subtle);
 	text-underline-offset: 0.2em;
@@ -433,21 +405,18 @@ pre.shiki:focus-visible {
 	margin-block: 2rem;
 }
 
-.prose :not(pre) > code {
+.prose :is(code, pre) {
 	font-family:
 		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
 		"Courier New", monospace;
+}
+
+.prose :not(pre) > code {
 	font-size: 0.875em;
 	padding: 0.15em 0.35em;
 	border-radius: 0.25rem;
 	background: var(--code-bg);
 	border: 1px solid var(--border-subtle);
-}
-
-.prose pre {
-	font-family:
-		ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-		"Courier New", monospace;
 }
 
 .prose table {
@@ -502,7 +471,7 @@ pre.shiki:focus-visible {
 }
 
 .rss-link:hover {
-	color: var(--footer-hover);
+	color: var(--link-hover);
 }
 
 .rss-link svg {
@@ -549,7 +518,7 @@ pre.shiki:focus-visible {
 }
 
 .notes-list a:hover .note-title {
-	color: var(--footer-hover);
+	color: var(--link-hover);
 }
 
 /* Shiki code blocks (dual-themed via light-dark()) */
@@ -575,9 +544,10 @@ pre.shiki {
 	align-items: center;
 	gap: 1.5rem;
 	width: 100%;
+	max-width: 96rem;
 	margin-inline: auto;
 	text-align: center;
-	color: var(--footer-text);
+	color: var(--text-muted);
 }
 
 .social-links {
@@ -588,42 +558,17 @@ pre.shiki {
 
 .social-links a {
 	padding: 0.5rem;
-	transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+	transition: color 150ms;
 }
 
 .site-footer a:hover {
-	color: var(--footer-hover);
+	color: var(--link-hover);
 }
 
 @media (min-width: 40rem) {
 	.footer-inner {
-		max-width: 40rem;
 		flex-direction: row;
 		justify-content: space-between;
 		text-align: left;
-	}
-}
-
-@media (min-width: 48rem) {
-	.footer-inner {
-		max-width: 48rem;
-	}
-}
-
-@media (min-width: 64rem) {
-	.footer-inner {
-		max-width: 64rem;
-	}
-}
-
-@media (min-width: 80rem) {
-	.footer-inner {
-		max-width: 80rem;
-	}
-}
-
-@media (min-width: 96rem) {
-	.footer-inner {
-		max-width: 96rem;
 	}
 }
