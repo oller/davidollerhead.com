@@ -69,6 +69,29 @@ svg {
   height: 1.25rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.if-dark {
+  display: none;
+}
+
+@container style(--color-scheme: dark) {
+  .if-light {
+    display: none;
+  }
+
+  .if-dark {
+    display: inline;
+  }
+}
+
 body {
   position: relative;
   display: flex;

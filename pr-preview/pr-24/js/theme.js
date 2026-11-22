@@ -5,23 +5,15 @@
   const meta = document.querySelector('meta[name="color-scheme"]');
   if (!toggle || !meta) return;
 
-  const isDark = () =>
-    meta.content === "dark" ||
-    (meta.content !== "light" && window.matchMedia("(prefers-color-scheme: dark)").matches);
-  const updateLabel = () => {
-    toggle.ariaLabel = `Switch to ${isDark() ? "light" : "dark"} theme`;
-  };
-  updateLabel();
-
   toggle.addEventListener("click", function () {
     const root = document.documentElement;
     const system = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    const next = isDark() ? "light" : "dark";
+    const current = meta.content === "light" || meta.content === "dark" ? meta.content : system;
+    const next = current === "dark" ? "light" : "dark";
     const matchesSystem = next === system;
 
     const apply = () => {
       meta.content = matchesSystem ? "light dark" : next;
-      updateLabel();
       try {
         if (matchesSystem) localStorage.removeItem("theme");
         else localStorage.setItem("theme", next);
