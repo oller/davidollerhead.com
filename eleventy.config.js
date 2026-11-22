@@ -3,14 +3,32 @@ import {
   IdAttributePlugin,
   InputPathToUrlTransformPlugin,
 } from "@11ty/eleventy";
-import rssPlugin from "@11ty/eleventy-plugin-rss";
+import { feedPlugin } from "@11ty/eleventy-plugin-rss";
 import Shiki from "@shikijs/markdown-it";
+import site from "./src/_data/site.json" with { type: "json" };
 
 export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
   eleventyConfig.addPlugin(IdAttributePlugin);
   eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
-  eleventyConfig.addPlugin(rssPlugin);
+  eleventyConfig.addPlugin(feedPlugin, {
+    type: "atom",
+    outputPath: "/feed.xml",
+    collection: {
+      name: "notes",
+      limit: 0,
+      sort: "descending",
+    },
+    metadata: {
+      language: "en",
+      title: `${site.title} - Notes`,
+      subtitle: site.description,
+      base: `${site.url}/`,
+      author: {
+        name: site.author,
+      },
+    },
+  });
 
   // Exclude draft pages from production builds (still visible during dev/serve)
   eleventyConfig.addPreprocessor("drafts", "*", (data) => {
@@ -24,6 +42,8 @@ export default async function (eleventyConfig) {
       light: "catppuccin-latte",
       dark: "tokyo-night",
     },
+    defaultColor: "light-dark()",
+    colorsRendering: "none",
   });
   eleventyConfig.amendLibrary("md", (mdLib) => {
     mdLib.use(shikiPlugin);
