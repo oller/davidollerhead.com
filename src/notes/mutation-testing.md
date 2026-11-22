@@ -5,6 +5,7 @@ description: Placeholder note on mutation testing and measuring test suite effec
 slug: mutation-testing
 ---
 
+Disclaimer:  This is 100% placeholder slop.
 
 Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.
 
