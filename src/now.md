@@ -2,7 +2,6 @@
 layout: layouts/page.njk
 title: Now
 description: What David Ollerhead is focused on right now.
-permalink: /now/
 updated: 2026-11-21
 ---
 

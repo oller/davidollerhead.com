@@ -2,7 +2,6 @@
 title: Mutation testing
 date: 2026-11-21
 description: Placeholder note on mutation testing and measuring test suite effectiveness beyond line coverage.
-slug: mutation-testing
 ---
 
 Disclaimer:  This is 100% placeholder slop.

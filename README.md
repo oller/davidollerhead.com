@@ -31,7 +31,6 @@ Add a Markdown file under `src/notes/` (e.g. `src/notes/my-note.md`):
 title: Your Note Title
 date: 2026-11-19
 description: Short summary for metadata.
-slug: my-note
 ---
 
 Note content in Markdown...
@@ -40,9 +39,8 @@ Note content in Markdown...
 - `title` (required): Shown in `/notes/`, on the note page, and in `/feed.xml`.
 - `date` (required): `YYYY-MM-DD`; notes sort reverse-chronologically.
 - `description` (optional): Meta description for the page.
-- `slug` (optional): Overrides the URL slug (defaults to the filename).
 
-Each file builds to `/notes/<slug>/` and is automatically listed in `/notes/` and `/feed.xml`.
+Each file builds to `/notes/<filename>/` (or set `permalink` to override) and is automatically listed in `/notes/` and `/feed.xml`.
 
 ### Now page
 
