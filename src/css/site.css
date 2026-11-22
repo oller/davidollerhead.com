@@ -48,6 +48,11 @@ html {
     "Segoe UI Symbol", "Noto Color Emoji";
 }
 
+::selection {
+  background: #bb9af7;
+  color: #1a1b26;
+}
+
 button {
   background: transparent;
   font: inherit;
