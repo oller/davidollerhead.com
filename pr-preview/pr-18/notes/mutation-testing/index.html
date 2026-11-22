@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="icon" href="data:,">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutation testing - David Ollerhead</title>
+  <meta name="description" content="Placeholder note on mutation testing and measuring test suite effectiveness beyond line coverage.">
+  <meta name="author" content="David Ollerhead">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Apply saved theme override before first paint to avoid a flash
+    try {
+      const s = localStorage.getItem("theme");
+      if (s === "light" || s === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = s;
+      }
+    } catch {}
+  </script>
+  <link rel="canonical" href="https://davidollerhead.com/notes/mutation-testing/">
+  <link rel="alternate" type="application/atom+xml" title="David Ollerhead - Notes" href="https://davidollerhead.com/feed.xml">
+  <script src="https://www.vexo.co/analytics.js" defer=""></script>
+  <link rel="stylesheet" href="/pr-preview/pr-18/css/site.css">
+  <script src="/pr-preview/pr-18/js/theme.js" defer=""></script>
+  </head>
+
+<body>
+    <header class="site-header">
+      <a href="/pr-preview/pr-18/" class="site-brand" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/pr-preview/pr-18/now/">Now</a>
+        <a href="/pr-preview/pr-18/notes/" aria-current="page">Notes</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <defs>
+            <mask id="moon-mask">
+              <rect x="-12" y="-12" width="48" height="48" fill="#fff" stroke="none"></rect>
+              <circle class="cutter" cx="12" cy="12" r="7.5" fill="#000" stroke="none"></circle>
+            </mask>
+            <clipPath id="moon-clip">
+              <circle cx="12" cy="12" r="10"></circle>
+            </clipPath>
+          </defs>
+          <g class="body">
+            <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon-mask)"></circle>
+            <g clip-path="url(#moon-clip)">
+              <circle class="cutter" cx="12" cy="12" r="7.5"></circle>
+            </g>
+          </g>
+          <g class="rays">
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </g>
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <article class="prose">
+  <header class="article-header">
+    <p class="page-meta"><a href="/pr-preview/pr-18/notes/" class="back-link">&larr; Notes</a> &middot; <time datetime="2026-11-21">21 Nov 2026</time></p>
+    <h1 id="mutation-testing">Mutation testing</h1>
+  </header>
+  <p>Disclaimer:  This is 100% placeholder slop.</p>
+<p>Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.</p>
+<p>Mutation testing addresses that gap by making small, automated changes (mutants) to your source code, such as flipping conditionals, changing arithmetic operators, or removing return values, and re-running the test suite against each mutant. If the tests still pass, the mutant <em>survived</em>, pointing to a blind spot in your assertions.</p>
+<p>Consider a simple boundary check:</p>
+<pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#8839EF, #7DCFFF)">export</span><span style="color:light-dark(#8839EF, #BB9AF7)"> function</span><span style="color:light-dark(#1E66F5, #7AA2F7)"> isEligibleForDiscount</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">quantity</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#8839EF, #0DB9D7)"> number</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#8839EF, #0DB9D7)"> boolean</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
+<span class="line"><span style="color:light-dark(#7C7F93, #51597D)">  // Original condition: >=</span></span>
+<span class="line"><span style="color:light-dark(#7C7F93, #51597D)">  // A common mutant swaps >= for ></span></span>
+<span class="line"><span style="color:light-dark(#8839EF, #BB9AF7)">  return</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> quantity</span><span style="color:light-dark(#179299, #BB9AF7)"> >=</span><span style="color:light-dark(#FE640B, #FF9E64)"> 10</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span></span></code></pre>
+<p>If every test passes <code>quantity = 12</code> or <code>quantity = 5</code> and nothing exercises <code>quantity = 10</code>, line coverage stays at 100%, yet the <code>&gt;</code> mutant survives unnoticed. Adding a boundary test turns that surviving mutant into a caught regression.</p>
+<h2 id="how-it-works">How it works</h2>
+<p>A mutation testing tool parses your source, applies one small change at a time, and runs the tests that cover the changed code. Each mutant ends up in one of a few states:</p>
+<ul>
+<li><strong>Killed:</strong> at least one test failed, which is what you want.</li>
+<li><strong>Survived:</strong> every test passed, so nothing noticed the change.</li>
+<li><strong>Timed out:</strong> the mutant caused an infinite loop, which usually counts as killed.</li>
+<li><strong>No coverage:</strong> no test touched the mutated line at all.</li>
+</ul>
+<p>The <em>mutation score</em> is the percentage of mutants killed. Unlike line coverage, it measures whether your tests can detect a change in behaviour, not just whether they ran the code.</p>
+<h2 id="common-mutators">Common mutators</h2>
+<p>Most tools ship a similar set of mutation operators:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Original</th>
+<th>Mutant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Conditional boundary</td>
+<td><code>a &gt;= b</code></td>
+<td><code>a &gt; b</code></td>
+</tr>
+<tr>
+<td>Negated conditional</td>
+<td><code>a === b</code></td>
+<td><code>a !== b</code></td>
+</tr>
+<tr>
+<td>Arithmetic</td>
+<td><code>a + b</code></td>
+<td><code>a - b</code></td>
+</tr>
+<tr>
+<td>Logical</td>
+<td><code>a &amp;&amp; b</code></td>
+<td><code>a || b</code></td>
+</tr>
+<tr>
+<td>Return value</td>
+<td><code>return total</code></td>
+<td><code>return 0</code></td>
+</tr>
+<tr>
+<td>Statement removal</td>
+<td><code>audit.log(event)</code></td>
+<td><em>(deleted)</em></td>
+</tr>
+<tr>
+<td>String literal</td>
+<td><code>&quot;active&quot;</code></td>
+<td><code>&quot;&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each of these maps to a real class of bug: off-by-one errors, inverted checks, forgotten side effects, and silently dropped return values.</p>
+<h2 id="a-second-example">A second example</h2>
+<p>Boundary conditions are the classic case, but removed side effects are just as common:</p>
+<pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#8839EF, #7DCFFF)">export</span><span style="color:light-dark(#8839EF, #BB9AF7)"> function</span><span style="color:light-dark(#1E66F5, #7AA2F7)"> checkout</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">cart</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#DF8E1D, #C0CAF5)"> Cart</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#E64553, #E0AF68)"> payments</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#DF8E1D, #C0CAF5)"> PaymentGateway</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#E64553, #E0AF68)"> audit</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#DF8E1D, #C0CAF5)"> AuditLog</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
+<span class="line"><span style="color:light-dark(#8839EF, #9D7CD8)">  const</span><span style="color:light-dark(#4C4F69, #BB9AF7)"> total</span><span style="color:light-dark(#179299, #89DDFF)"> =</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> cart</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">items</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">reduce</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">sum</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#E64553, #E0AF68)"> item</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#179299, #BB9AF7)"> =></span><span style="color:light-dark(#4C4F69, #C0CAF5)"> sum</span><span style="color:light-dark(#179299, #89DDFF)"> +</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> item</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">price</span><span style="color:light-dark(#179299, #89DDFF)"> *</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> item</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">quantity</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#FE640B, #FF9E64)"> 0</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:light-dark(#4C4F69, #C0CAF5)">  payments</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">charge</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#4C4F69, #C0CAF5)">cart</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">customerId</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> total</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"><span style="color:light-dark(#4C4F69, #C0CAF5)">  audit</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">record</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#40A02B, #9ECE6A)">checkout</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span><span style="color:light-dark(#4C4F69, #73DACA)"> customerId</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> cart</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">customerId</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> total</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> }</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:light-dark(#8839EF, #BB9AF7)">  return</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> total</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> }</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span></span></code></pre>
+<p>If your tests only assert on the returned <code>total</code>, a mutant that deletes the <code>audit.record(...)</code> call survives. The behaviour changed, compliance would be unhappy, and every test is still green. Asserting that the audit log received the expected entry kills it.</p>
+<pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#1E66F5, #7AA2F7)">it</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#40A02B, #9ECE6A)">records an audit entry for each checkout</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> ()</span><span style="color:light-dark(#179299, #BB9AF7)"> =></span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
+<span class="line"><span style="color:light-dark(#8839EF, #9D7CD8)">  const</span><span style="color:light-dark(#4C4F69, #BB9AF7)"> audit</span><span style="color:light-dark(#179299, #89DDFF)"> =</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span><span style="color:light-dark(#4C4F69, #73DACA)"> record</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> vi</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">fn</span><span style="color:light-dark(#4C4F69, #9ABDF5)">() </span><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"><span style="color:light-dark(#1E66F5, #7AA2F7)">  checkout</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#4C4F69, #C0CAF5)">cartWithTwoItems</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> fakeGateway</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> audit</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:light-dark(#1E66F5, #7AA2F7)">  expect</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#4C4F69, #C0CAF5)">audit</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">record</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">toHaveBeenCalledWith</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#40A02B, #9ECE6A)">checkout</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
+<span class="line"><span style="color:light-dark(#4C4F69, #73DACA)">    customerId</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#40A02B, #89DDFF)"> "</span><span style="color:light-dark(#40A02B, #9ECE6A)">cust_123</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span></span>
+<span class="line"><span style="color:light-dark(#4C4F69, #73DACA)">    total</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#FE640B, #FF9E64)"> 45</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span></span>
+<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">  }</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
+<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span></code></pre>
+<h2 id="running-it-in-practice">Running it in practice</h2>
+<p>Mutation testing is expensive. A suite that takes a minute to run might need to run hundreds of times, once per mutant. A few habits keep it practical:</p>
+<ol>
+<li><strong>Scope it.</strong> Start with a single module or a critical directory rather than the whole repository.</li>
+<li><strong>Run incrementally.</strong> Only mutate files changed in the current branch and cache results between runs.</li>
+<li><strong>Use coverage data.</strong> Skip mutants on lines no test executes; they will trivially survive and add noise.</li>
+<li><strong>Run in CI on a schedule.</strong> A nightly or weekly full run is often a better fit than blocking every pull request.</li>
+<li><strong>Parallelise.</strong> Mutants are independent, so they split cleanly across workers.</li>
+</ol>
+<h2 id="reading-the-results">Reading the results</h2>
+<p>A surviving mutant is a question, not a verdict. Before writing a new test, ask:</p>
+<ul>
+<li>Is this a genuine gap in my assertions?</li>
+<li>Is the mutant <em>equivalent</em>, meaning it changes the code without changing observable behaviour (for example, <code>i &lt; 10</code> versus <code>i != 10</code> in a loop that always exits earlier)?</li>
+<li>Is the code itself dead, and should it simply be deleted?</li>
+</ul>
+<p>Equivalent mutants are the main source of false positives. You can't eliminate them entirely, which is why chasing a 100% mutation score is rarely worth it. A score in the 70–85% range on important code is a healthy target for many teams.</p>
+<h2 id="where-it-fits">Where it fits</h2>
+<p>Mutation testing doesn't replace code coverage, property-based testing, or code review. It complements them by answering a different question: <em>if this code were wrong, would my tests tell me?</em></p>
+<p>Used selectively on the logic that matters most, such as pricing, permissions, and data transformations, it tends to surface a handful of high-value missing assertions rather than a mountain of busywork. That is usually enough to justify the runtime.</p>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li>The documentation for your language's mutation testing tool, such as Stryker for JavaScript and TypeScript, PIT for Java, or mutmut for Python.</li>
+<li>Research on the <em>coupling effect</em>, which argues that tests that catch simple mutants also tend to catch more complex faults.</li>
+<li>Your own test suite: pick one critical function, mutate it by hand, and see whether anything fails.</li>
+</ul>
+
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          David Ollerhead is a hands-on Front End focused Engineering Manager.
+          Currently @ JPMorganChase.
+        </div>
+        <div class="social-links">
+          <a href="/pr-preview/pr-18/feed.xml" aria-label="Atom feed">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 11a9 9 0 0 1 9 9"></path>
+              <path d="M4 4a16 16 0 0 1 16 16"></path>
+              <circle cx="5" cy="19" r="1" fill="currentColor"></circle>
+            </svg>
+          </a>
+          <a href="https://github.com/oller" target="_blank" rel="noopener noreferrer" aria-label="Open David Ollerhead's GitHub profile (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
+              </path>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/davidollerhead/" target="_blank" rel="noopener noreferrer" aria-label="Open David Ollerhead's LinkedIn profile (opens in a new tab)">
+            <svg viewBox="0 0 382 382" fill="currentColor" aria-hidden="true">
+              <path d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+
+</html>
