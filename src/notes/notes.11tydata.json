@@ -1,4 +1,3 @@
 {
-  "layout": "layouts/note.njk",
-  "permalink": "/notes/{{ slug or page.fileSlug }}/"
+  "layout": "layouts/note.njk"
 }

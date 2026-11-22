@@ -9,3 +9,24 @@ description: David Ollerhead landing page
 <div class="initial">
   <input type="checkbox" id="O" aria-label="O" />
 </div>
+<script>
+  (() => {
+    const o = document.getElementById("O");
+    if (!o) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      o.checked = true;
+      return;
+    }
+    const timers = [
+      setTimeout(() => o.classList.add("is-active"), 2000),
+      setTimeout(() => { o.checked = true; }, 2500),
+      setTimeout(() => o.classList.remove("is-active"), 2550),
+    ];
+    const cancel = () => {
+      timers.forEach(clearTimeout);
+      o.classList.remove("is-active");
+    };
+    o.addEventListener("pointerdown", cancel, { once: true });
+    o.addEventListener("change", cancel, { once: true });
+  })();
+</script>

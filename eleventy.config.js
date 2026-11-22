@@ -50,8 +50,7 @@ export default async function (eleventyConfig) {
   });
 
   // Passthrough copy root static files and assets
-  eleventyConfig.addPassthroughCopy({ "CNAME": "CNAME" });
-  eleventyConfig.addPassthroughCopy({ ".nojekyll": ".nojekyll" });
+  eleventyConfig.addPassthroughCopy({ "CNAME": "CNAME", ".nojekyll": ".nojekyll" });
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
 
@@ -82,8 +81,6 @@ export default async function (eleventyConfig) {
     dir: {
       input: "src",
       output: "_site",
-      includes: "_includes",
-      data: "_data",
     },
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
