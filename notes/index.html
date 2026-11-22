@@ -10,16 +10,13 @@
   <meta name="author" content="David Ollerhead">
   <meta name="color-scheme" content="light dark">
   <script>
-    // Apply saved (or system) theme before first paint to avoid a flash
-    (function () {
-      var saved = null;
-      try { saved = localStorage.getItem("theme"); } catch (e) { }
-      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.dataset.theme = dark ? "dark" : "light";
-      if (saved === "light" || saved === "dark") {
-        document.querySelector('meta[name="color-scheme"]').content = saved;
+    // Apply saved theme override before first paint to avoid a flash
+    try {
+      const s = localStorage.getItem("theme");
+      if (s === "light" || s === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = s;
       }
-    })();
+    } catch {}
   </script>
   <link rel="canonical" href="https://davidollerhead.com/notes/">
   <link rel="alternate" type="application/atom+xml" title="David Ollerhead - Notes" href="https://davidollerhead.com/feed.xml">
@@ -29,7 +26,6 @@
   </head>
 
 <body>
-  <div class="page page--content">
     <header class="site-header">
       <a href="/" class="site-brand" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg></a>
       <nav class="site-nav" aria-label="Primary">
@@ -113,7 +109,6 @@
         </div>
       </div>
     </footer>
-  </div>
 </body>
 
 </html>

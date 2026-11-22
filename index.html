@@ -10,16 +10,13 @@
   <meta name="author" content="David Ollerhead">
   <meta name="color-scheme" content="light dark">
   <script>
-    // Apply saved (or system) theme before first paint to avoid a flash
-    (function () {
-      var saved = null;
-      try { saved = localStorage.getItem("theme"); } catch (e) { }
-      var dark = saved ? saved === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-      document.documentElement.dataset.theme = dark ? "dark" : "light";
-      if (saved === "light" || saved === "dark") {
-        document.querySelector('meta[name="color-scheme"]').content = saved;
+    // Apply saved theme override before first paint to avoid a flash
+    try {
+      const s = localStorage.getItem("theme");
+      if (s === "light" || s === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = s;
       }
-    })();
+    } catch {}
   </script>
   <link rel="canonical" href="https://davidollerhead.com/">
   <link rel="alternate" type="application/atom+xml" title="David Ollerhead - Notes" href="https://davidollerhead.com/feed.xml">
@@ -30,8 +27,7 @@
   <script src="/js/home.js" defer=""></script>
   </head>
 
-<body>
-  <div class="page page--home">
+<body class="home">
     <header class="site-header">
       <nav class="site-nav" aria-label="Primary">
         <a href="/now/">Now</a>
@@ -64,11 +60,9 @@
     <main>
       <div class="initial">
   <input type="checkbox" id="D" aria-label="D">
-  <span class="button"></span>
 </div>
 <div class="initial">
   <input type="checkbox" id="O" aria-label="O">
-  <span class="button"></span>
 </div>
 
     </main>
@@ -102,7 +96,6 @@
         </div>
       </div>
     </footer>
-  </div>
 </body>
 
 </html>

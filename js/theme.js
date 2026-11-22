@@ -3,16 +3,17 @@
 document.addEventListener("DOMContentLoaded", function () {
   const toggle = document.getElementById("theme-toggle");
   const meta = document.querySelector('meta[name="color-scheme"]');
-  if (!toggle) return;
+  if (!toggle || !meta) return;
 
   toggle.addEventListener("click", function () {
     const root = document.documentElement;
-    const next = root.dataset.theme === "dark" ? "light" : "dark";
-    const matchesSystem = next === (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const system = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    const current = meta.content === "light" || meta.content === "dark" ? meta.content : system;
+    const next = current === "dark" ? "light" : "dark";
+    const matchesSystem = next === system;
 
     const apply = () => {
-      root.dataset.theme = next;
-      if (meta) meta.content = matchesSystem ? "light dark" : next;
+      meta.content = matchesSystem ? "light dark" : next;
       try {
         if (matchesSystem) localStorage.removeItem("theme");
         else localStorage.setItem("theme", next);
