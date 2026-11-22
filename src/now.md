@@ -12,16 +12,16 @@ updated: 2026-11-21
 Current focus and interests:
 
 - Multi-platform design-agnostic Server Driven UI that can support whole flows, including data collection & validation, with a robust and resilient network layer.
-- Cross-platform (Web, React Native, Native) component libraries, considering a11y and performance as first class citizens.
-- Internally centralising dependency management to reduce the duplicated effort of vulnerability management and speed up dependency updates across multiple consuming teams.
+- Cross-platform (Web, React Native, Native) component libraries. Considering a11y, performance and agentic generation as first class citizens.
+- Deterministic vulnerability management processes to speed up dependency updates across organisations.
 
 ## Exploring
 
-I am interested in the cost-efficiency dimension to AI usage. I suspect many engineers continue to just use Opus for "all the things", and many are yet to grasp the efficiencies of orchestration.
+I am interested in the cost-efficiency dimension to AI usage. I suspect many engineers continue to just use Opus (at high/max reasoning) for "all the things", and many are yet to grasp the efficiencies of orchestration.
 
 I am looking at ways to dynamically optimise orchestration and delegation to the most cost-effective models at that given point in time, based on empirical benchmark evidence and real-time token pricing.
 
-Additionally, I'm encouraging teams to bake mutation testing into the SDLC. A programmatic and deterministic means to ensure AI generated tests are actually testing the right things.  You can [read a post](/notes/mutation-testing) I've made on this subject.
+Additionally, I'm encouraging teams to bake mutation testing into the SDLC. A programmatic and deterministic means to ensure AI generated tests are actually testing the right things. You can [read a post](notes/mutation-testing.md) I've made on this subject.
 
 ## Reading
 

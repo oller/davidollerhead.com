@@ -1,10 +1,23 @@
-import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
+import {
+  EleventyHtmlBasePlugin,
+  IdAttributePlugin,
+  InputPathToUrlTransformPlugin,
+} from "@11ty/eleventy";
 import rssPlugin from "@11ty/eleventy-plugin-rss";
 import Shiki from "@shikijs/markdown-it";
 
 export default async function (eleventyConfig) {
   eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+  eleventyConfig.addPlugin(IdAttributePlugin);
+  eleventyConfig.addPlugin(InputPathToUrlTransformPlugin);
   eleventyConfig.addPlugin(rssPlugin);
+
+  // Exclude draft pages from production builds (still visible during dev/serve)
+  eleventyConfig.addPreprocessor("drafts", "*", (data) => {
+    if (data.draft && process.env.ELEVENTY_RUN_MODE === "build") {
+      return false;
+    }
+  });
 
   const shikiPlugin = await Shiki({
     themes: {
