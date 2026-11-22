@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" href="data:,">
   <meta charset="utf-8" />
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{% if title and not isHome %}{{ title }} - {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{{ description or site.description }}" />
@@ -37,9 +37,11 @@
       {% endif -%}
       <nav class="site-nav" aria-label="Primary">
         <a href="/now/"{% if page.url == "/now/" %} aria-current="page"{% endif %}>Now</a>
-        <a href="/notes/"{% if page.url and page.url.startsWith("/notes/") %} aria-current="page"{% endif %}>Notes</a>
+        <a href="/notes/"{% if page.url == "/notes/" %} aria-current="page"{% elif page.url and page.url.startsWith("/notes/") %} data-active{% endif %}>Notes</a>
       </nav>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+      <button type="button" class="theme-toggle" id="theme-toggle">
+        <span class="sr-only if-light">Switch to dark theme</span>
+        <span class="sr-only if-dark">Switch to light theme</span>
         <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <defs>

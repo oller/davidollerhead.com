@@ -26,7 +26,7 @@ Additionally, I'm encouraging teams to bake mutation testing into the SDLC. A pr
 
 Based on a recommendation from a colleague, I'm currently enjoying [The Peregrine](https://www.goodreads.com/en/book/show/1071726.The_Peregrine).
 
-Seeing as I've twin toddlers and cycle to work, I must confess convenience is leading to me into taking the audiobook route. It being narrated by David Attenborough makes it all the more enjoyable.
+Seeing as I've twin toddlers and cycle to work, I must confess convenience is leading me into taking the audiobook route. It being narrated by David Attenborough makes it all the more enjoyable.
 
 ## Tinkering
 
