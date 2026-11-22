@@ -17,7 +17,7 @@ Current focus and interests:
 
 ## Exploring
 
-I am interested in the cost-efficiency dimension to AI usage. I suspect many engineers continue to just use Opus for "all the things".
+I am interested in the cost-efficiency dimension to AI usage. I suspect many engineers continue to just use Opus for "all the things", and many are yet to grasp the efficiencies of orchestration.
 
 I am looking at ways to dynamically optimise orchestration and delegation to the most cost-effective models at that given point in time, based on empirical benchmark evidence and real-time token pricing.
 
@@ -27,7 +27,7 @@ Additionally, I'm encouraging teams to bake mutation testing into the SDLC. A pr
 
 Based on a recommendation from a colleague, I'm currently enjoying [The Peregrine](https://www.goodreads.com/en/book/show/1071726.The_Peregrine).
 
-Seeing as I've twin toddlers and cycle to work, I must confess convenience is leading to me taking the audiobook route. It being narrated by David Attenborough makes it all the more enjoyable.
+Seeing as I've twin toddlers and cycle to work, I must confess convenience is leading to me into taking the audiobook route. It being narrated by David Attenborough makes it all the more enjoyable.
 
 ## Tinkering
 
