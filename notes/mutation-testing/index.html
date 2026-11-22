@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" href="data:,">
   <meta charset="utf-8">
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mutation testing - David Ollerhead</title>
   <meta name="description" content="Placeholder note on mutation testing and measuring test suite effectiveness beyond line coverage.">
@@ -30,9 +30,11 @@
       <a href="/" class="site-brand" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg></a>
       <nav class="site-nav" aria-label="Primary">
         <a href="/now/">Now</a>
-        <a href="/notes/" aria-current="page">Notes</a>
+        <a href="/notes/" data-active="">Notes</a>
       </nav>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+      <button type="button" class="theme-toggle" id="theme-toggle">
+        <span class="sr-only if-light">Switch to dark theme</span>
+        <span class="sr-only if-dark">Switch to light theme</span>
         <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <defs>
             <mask id="moon-mask">

@@ -1,6 +1,6 @@
 // Theme toggle: flips and saves overrides (clearing storage when returning to
 // the system preference), with a circular wipe where supported.
-document.addEventListener("DOMContentLoaded", function () {
+(() => {
   const toggle = document.getElementById("theme-toggle");
   const meta = document.querySelector('meta[name="color-scheme"]');
   if (!toggle || !meta) return;
@@ -41,4 +41,4 @@ document.addEventListener("DOMContentLoaded", function () {
       );
     }).catch(() => { }); // skipped or interrupted: nothing to do
   });
-});
+})();

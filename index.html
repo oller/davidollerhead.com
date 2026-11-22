@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" href="data:,">
   <meta charset="utf-8">
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>David Ollerhead</title>
   <meta name="description" content="David Ollerhead landing page">
@@ -24,7 +24,6 @@
   <link rel="stylesheet" href="/css/site.css">
   <script src="/js/theme.js" defer=""></script>
   <link rel="stylesheet" href="/css/home.css">
-  <script src="/js/home.js" defer=""></script>
   </head>
 
 <body class="home">
@@ -33,7 +32,9 @@
         <a href="/now/">Now</a>
         <a href="/notes/">Notes</a>
       </nav>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+      <button type="button" class="theme-toggle" id="theme-toggle">
+        <span class="sr-only if-light">Switch to dark theme</span>
+        <span class="sr-only if-dark">Switch to light theme</span>
         <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <defs>
             <mask id="moon-mask">
@@ -64,6 +65,27 @@
 <div class="initial">
   <input type="checkbox" id="O" aria-label="O">
 </div>
+<script>
+  (() => {
+    const o = document.getElementById("O");
+    if (!o) return;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      o.checked = true;
+      return;
+    }
+    const timers = [
+      setTimeout(() => o.classList.add("is-active"), 2000),
+      setTimeout(() => { o.checked = true; }, 2500),
+      setTimeout(() => o.classList.remove("is-active"), 2550),
+    ];
+    const cancel = () => {
+      timers.forEach(clearTimeout);
+      o.classList.remove("is-active");
+    };
+    o.addEventListener("pointerdown", cancel, { once: true });
+    o.addEventListener("change", cancel, { once: true });
+  })();
+</script>
 
     </main>
 

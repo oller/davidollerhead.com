@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-  <link rel="icon" href="data:,">
   <meta charset="utf-8">
+  <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Page not found - David Ollerhead</title>
   <meta name="description" content="The requested page could not be found.">
@@ -31,7 +31,9 @@
         <a href="/now/">Now</a>
         <a href="/notes/">Notes</a>
       </nav>
-      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme">
+      <button type="button" class="theme-toggle" id="theme-toggle">
+        <span class="sr-only if-light">Switch to dark theme</span>
+        <span class="sr-only if-dark">Switch to light theme</span>
         <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <defs>
             <mask id="moon-mask">
@@ -59,9 +61,11 @@
       <article class="prose">
   <header class="article-header">
     <h1 id="page-not-found">Page not found</h1>
+    
   </header>
   <p>Sorry, that page doesn’t exist or may have moved.</p>
-  <p>Head back to the <a href="/">home page</a> or browse <a href="/notes/">notes</a>.</p>
+<p>Head back to the <a href="/">home page</a> or browse <a href="/notes/">notes</a>.</p>
+
 </article>
 
     </main>
