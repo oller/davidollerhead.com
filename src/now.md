@@ -2,36 +2,31 @@
 layout: layouts/page.njk
 title: Now
 description: What David Ollerhead is focused on right now.
-updated: 2026-11-21
+updated: 2026-11-23
 ---
-
 
 ## Work
 
-Current focus and interests:
-
-- Multi-platform design-agnostic Server Driven UI that can support whole flows, including data collection & validation, with a robust and resilient network layer.
-- Cross-platform (Web, React Native, Native) component libraries. Considering a11y, performance and agentic generation as first class citizens.
-- Deterministic vulnerability management processes to speed up dependency updates across organisations.
+- **Server-driven UI:** Multi-platform, design-agnostic architecture supporting full user flows, including data collection, validation, and resilient networking.
+- **Cross-platform component libraries:** Spanning Web, React Native, and native, with accessibility, performance, and agentic generation treated as first-class citizens.
+- **Vulnerability management:** Deterministic workflows to speed up dependency updates across large organisations.
 
 ## Exploring
 
-I am interested in the cost-efficiency dimension to AI usage. I suspect many engineers continue to just use Opus (at high/max reasoning) for "all the things", and many are yet to grasp the efficiencies of orchestration.
+I'm particularly interested in the cost-efficiency of AI usage. Too many engineers still default to Opus at max reasoning for everything, overlooking the efficiencies of good orchestration. Right now, I'm exploring ways to dynamically route and delegate tasks to the most cost-effective model using live benchmarks and real-time token pricing.
 
-I am looking at ways to dynamically optimise orchestration and delegation to the most cost-effective models at that given point in time, based on empirical benchmark evidence and real-time token pricing.
-
-Additionally, I'm encouraging teams to bake mutation testing into the SDLC. A programmatic and deterministic means to ensure AI generated tests are actually testing the right things. You can [read a post](notes/mutation-testing.md) I've made on this subject.
+Alongside that, I'm encouraging teams to bake [mutation testing](notes/mutation-testing.md) into the SDLC as a deterministic way to ensure AI-generated tests actually catch bugs, rather than just inflating coverage.
 
 ## Reading
 
-Based on a recommendation from a colleague, I'm currently enjoying [The Peregrine](https://www.goodreads.com/en/book/show/1071726.The_Peregrine).
+On a colleague's recommendation, I'm currently reading *[The Peregrine](https://www.goodreads.com/en/book/show/1071726.The_Peregrine)* by J.A. Baker.
 
-Seeing as I've twin toddlers and cycle to work, I must confess convenience is leading me into taking the audiobook route. It being narrated by David Attenborough makes it all the more enjoyable.
+With twin toddlers and a cycle commute, convenience has pushed me down the audiobook route. Having David Attenborough narrate makes that an easy compromise.
 
 ## Tinkering
 
-I continue to experiment with [Vimgym](https://vim-gym.netlify.app/), as I endeavour to make up for years of avoiding Vim.
+I'm still experimenting with [VimGym](https://vim-gym.netlify.app/) as I endeavour to make up for years of avoiding Vim.
 
-I am also enjoying using Grokbot to continue to offload mundane tasks (home insurance quotes, energy provider renewals etc.) and claw some time back. The degrees of orchestration that you can put in place in the always-on Grok virtual machine makes for some interesting opportunities.
+I've been using Grokbot to offload mundane tasks (home insurance quotes, energy renewals) and claw some time back. Having an always-on Grok virtual machine opens up some interesting automation opportunities.
 
-Building out these additional pages on this site using [eleventy](https://www.11ty.dev/). Getting the lighthouse scores to 100% across all metrics, and enjoying the process with minimal AI usage and embracing the chance to hone my Vim motions.
+I'm also building out this site with [Eleventy](https://www.11ty.dev/), working to ensure a perfect Lighthouse score. Keeping AI usage minimal along the way has been a welcome chance to hone my Vim motions.
