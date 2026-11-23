@@ -277,11 +277,6 @@ main {
   transform: translate(20px, -20px);
 }
 
-.theme-icon .rays {
-  transform: rotate(0deg) scale(1);
-  opacity: 1;
-}
-
 /* Moon state (dark theme) */
 @container style(--color-scheme: dark) {
   .theme-icon {
@@ -521,7 +516,6 @@ main {
   flex-direction: column;
   gap: 0.25rem;
   padding: 1rem 0;
-  transition: color 150ms;
 }
 
 @media (min-width: 40rem) {
@@ -543,6 +537,7 @@ main {
 .note-title {
   font-weight: 500;
   color: var(--text-primary);
+  transition: color 150ms;
 }
 
 .notes-list a:hover .note-title {
