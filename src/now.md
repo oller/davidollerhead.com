@@ -7,15 +7,15 @@ updated: 2026-11-23
 
 ## Work
 
-- **Server-driven UI:** Multi-platform, design-agnostic architecture supporting full user flows, including data collection, validation, and resilient networking.
-- **Cross-platform component libraries:** Spanning Web, React Native, and native, with accessibility, performance, and agentic generation treated as first-class citizens.
-- **Vulnerability management:** Deterministic workflows to speed up dependency updates across large organisations.
+- Server-driven UI: Multi-platform, design-agnostic architecture supporting full user flows, including data collection, validation, and resilient networking.
+- Cross-platform component libraries: Spanning Web, React Native, and native, with accessibility, performance, and agentic generation treated as first-class citizens.
+- Vulnerability management: Deterministic workflows to speed up dependency updates across large organisations.
 
 ## Exploring
 
 I'm particularly interested in the cost-efficiency of AI usage. Too many engineers still default to Opus at max reasoning for everything, overlooking the efficiencies of good orchestration. Right now, I'm exploring ways to dynamically route and delegate tasks to the most cost-effective model using live benchmarks and real-time token pricing.
 
-Alongside that, I'm encouraging teams to bake [mutation testing](notes/mutation-testing.md) into the SDLC as a deterministic way to ensure AI-generated tests actually catch bugs, rather than just inflating coverage.
+Alongside that, I'm encouraging teams to bake [mutation testing](notes/mutation-testing.md) into the SDLC as a deterministic way to ensure AI-generated tests actually catch bugs, rather than agents baking in blind spots and inflating coverage.
 
 ## Reading
 
