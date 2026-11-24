@@ -7,9 +7,9 @@ updated: 2026-11-23
 
 ## Work
 
-- Server-driven UI: Multi-platform, design-agnostic architecture supporting full user flows, including data collection, validation, and resilient networking.
-- Cross-platform component libraries: Spanning Web, React Native, and native, with accessibility, performance, and agentic generation treated as first-class citizens.
-- Vulnerability management: Deterministic workflows to speed up dependency updates across large organisations.
+- **Server-driven UI:** Multi-platform, design-agnostic architecture supporting full user flows, including data collection, validation, and resilient networking.
+- **Cross-platform component libraries:** Spanning Web, React Native, and native, with accessibility, performance, and agentic generation treated as first-class citizens.
+- **Vulnerability management:** Deterministic workflows to speed up dependency updates across large organisations.
 
 ## Exploring
 
