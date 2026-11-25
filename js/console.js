@@ -1,63 +1,41 @@
-// Console easter egg: mirrors the homepage's raised D and recessed O using
-// CSS light-dark() so shading adapts automatically to DevTools light/dark mode.
+// Console easter egg: mirrors the homepage's raised D and O using CSS
+// light-dark() so shading adapts automatically to DevTools light/dark mode.
 (() => {
-  const base = "font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;line-height:1.05;";
+  const base = "font:11px/1.05 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;";
+  const tone = (l, d) => `${base}color:${l};color:light-dark(${l},${d})`;
 
-  const palette = {
-    "0": ["█", "#8e96a3", "#171a2b"],
-    "1": ["█", "#a4acb8", "#21263d"],
-    "2": ["█", "#b7bec9", "#2b324f"],
-    "3": ["█", "#c7cdd6", "#353e61"],
-    "4": ["█", "#d4d9e1", "#434f7a"],
-    "5": ["█", "#dfe3ea", "#546496"],
-    "6": ["█", "#eaeef3", "#6d80ba"],
-    "a": ["·", "#b8bec8", "#0e1017"],
-    "b": ["░", "#9da4b0", "#090a0f"],
+  const shades = {
+    1: ["█", "#a6a9ae", "#232528"],
+    2: ["█", "#b8bbbf", "#2d2f33"],
+    3: ["█", "#c8cacd", "#383a3e"],
+    4: ["█", "#d5d7da", "#46484c"],
+    5: ["█", "#e2e3e5", "#56595e"],
+    6: ["█", "#ededef", "#686b70"],
+    a: ["·", "#bcbfc4", "#141518"],
+    b: ["░", "#9ea1a6", "#0d0e10"],
   };
 
-  const art = [
-    "   6666666666                  0000",
-    "   66555555555666          000001110000",
-    "   654444444444456        001222222222100",
-    "   6544444444444445      01222222222222210",
-    "   54444444444444445    1223333333333333221",
-    "   44333333333333344    2333333333333333322",
-    "  a33333333333333333aa a4333333333333333344",
-    "  a3333333333333333aaaaaa54444444444444445aa",
-    "  a222222222222222baa  aaa655444444444556aa",
-    "  a1222222222211bbba    aaba66665556666bba",
-    "  aabbbbbbbbbbbbbaa      aaabbbbaabbbbbaa",
-    "   aabbbbbbbbbaaa           aaaabbbaaaa",
-    "     aaaaaaaa",
-  ].join("\n");
+  const art = `
+  666666666666              666666666
+  65555555555566          6655555555566
+  6544444444444556      65544444444444556
+  54444444444444455    5544444444444444455
+  44444444444444444    4444444444444444444
+  43333333333333334    4333333333333333334
+ a33333333333333333a  a3333333333333333333a
+ a2233333333333322aa  aa22333333333333322aa
+ a22222222222222baaa  aaab2222222222222baaa
+ a111111111111bbaaa    aaabb111111111bbaaa
+ aabbbbbbbbbbbaaa        aaabbbbbbbbbaaa
+ aaaaaaaaaaaaa              aaaaaaaaa`;
 
-  let fmt = "\n";
-  const styles = [];
-  let prev = null;
+  const styles = [base];
+  const body = art.replace(/([1-6ab])\1*/g, (run, k) => {
+    const [glyph, light, dark] = shades[k];
+    styles.push(tone(light, dark));
+    return `%c${glyph.repeat(run.length)}`;
+  });
 
-  for (const ch of art) {
-    if (ch === "\n") {
-      fmt += "\n";
-      continue;
-    }
-    const token = palette[ch];
-    const key = token ? ch : " ";
-    if (key !== prev) {
-      fmt += "%c";
-      styles.push(
-        token
-          ? `${base}color:${token[1]};color:light-dark(${token[1]},${token[2]});`
-          : base,
-      );
-      prev = key;
-    }
-    fmt += token ? token[0] : " ";
-  }
-
-  fmt += "\n\n%c  David Ollerhead — https://davidollerhead.com";
-  styles.push(
-    "font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;font-size:11px;color:#5f6368;color:light-dark(#5f6368,#8994c2);",
-  );
-
-  console.log(fmt, ...styles);
+  styles.push(tone("#5f6368", "#9aa0a6"));
+  console.log(`%c${body}\n\n%c  David Ollerhead — https://davidollerhead.com`, ...styles);
 })();
