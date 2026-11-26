@@ -6,7 +6,7 @@
   <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mutation testing - David Ollerhead</title>
-  <meta name="description" content="Placeholder note on mutation testing and measuring test suite effectiveness beyond line coverage.">
+  <meta name="description" content="What is mutation testing, and why it matters even more in an agent-driven world.">
   <meta name="author" content="David Ollerhead">
   <meta name="color-scheme" content="light dark">
   <script>
@@ -66,6 +66,7 @@
   </header>
   <p>Disclaimer:  This is 100% placeholder slop.</p>
 <p>Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.</p>
+<p>It's worth re-reading that above sentence again</p>
 <p>Mutation testing addresses that gap by making small, automated changes (mutants) to your source code, such as flipping conditionals, changing arithmetic operators, or removing return values, and re-running the test suite against each mutant. If the tests still pass, the mutant <em>survived</em>, pointing to a blind spot in your assertions.</p>
 <p>Consider a simple boundary check:</p>
 <pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#8839EF, #7DCFFF)">export</span><span style="color:light-dark(#8839EF, #BB9AF7)"> function</span><span style="color:light-dark(#1E66F5, #7AA2F7)"> isEligibleForDiscount</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">quantity</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#8839EF, #0DB9D7)"> number</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#8839EF, #0DB9D7)"> boolean</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
