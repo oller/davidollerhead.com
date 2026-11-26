@@ -37,5 +37,5 @@
   });
 
   styles.push(tone("#5f6368", "#9aa0a6"));
-  console.log(`%c${body}\n\n%c  David Ollerhead — https://davidollerhead.com`, ...styles);
+  console.log(`%c${body}\n\n%c`, ...styles);
 })();

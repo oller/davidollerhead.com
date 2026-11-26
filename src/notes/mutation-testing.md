@@ -1,12 +1,14 @@
 ---
 title: Mutation testing
 date: 2026-11-21
-description: Placeholder note on mutation testing and measuring test suite effectiveness beyond line coverage.
+description: What is mutation testing, and why it matters even more in an agent-driven world.
 ---
 
 Disclaimer:  This is 100% placeholder slop.
 
 Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.
+
+It's worth re-reading that above sentence again
 
 Mutation testing addresses that gap by making small, automated changes (mutants) to your source code, such as flipping conditionals, changing arithmetic operators, or removing return values, and re-running the test suite against each mutant. If the tests still pass, the mutant *survived*, pointing to a blind spot in your assertions.
 
