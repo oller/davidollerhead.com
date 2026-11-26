@@ -29,4 +29,4 @@ I'm still experimenting with [VimGym](https://vim-gym.netlify.app/) as I endeavo
 
 I've been using Grokbot to offload mundane tasks (home insurance quotes, energy renewals) and claw some time back. Having an always-on Grok virtual machine opens up some interesting automation opportunities.
 
-I'm also building out this site with [Eleventy](https://www.11ty.dev/), working to ensure a perfect Lighthouse score. Keeping AI usage minimal along the way has been a welcome chance to hone my Vim motions.
+Finally, building out this site with [Eleventy](https://www.11ty.dev/), working to ensure a perfect Lighthouse score 💯. Keeping AI usage minimal along the way has been a welcome chance to hone my Vim motions.
