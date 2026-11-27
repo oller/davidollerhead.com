@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mutation testing in the agentic age - David Ollerhead</title>
+  <meta name="description" content="Why deterministic mutation testing belongs in the standard verification loop for agent-driven work.">
+  <meta name="author" content="David Ollerhead">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // Apply saved theme override before first paint to avoid a flash
+    try {
+      const s = localStorage.getItem("theme");
+      if (s === "light" || s === "dark") {
+        document.querySelector('meta[name="color-scheme"]').content = s;
+      }
+    } catch {}
+  </script>
+  <link rel="canonical" href="https://davidollerhead.com/notes/mutation-testing/">
+  <link rel="alternate" type="application/atom+xml" title="David Ollerhead - Notes" href="https://davidollerhead.com/feed.xml">
+  <script src="https://www.vexo.co/analytics.js" defer=""></script>
+  <link rel="stylesheet" href="/pr-preview/pr-25/css/site.css">
+  <script src="/pr-preview/pr-25/js/theme.js" defer=""></script>
+  <link rel="stylesheet" href="/pr-preview/pr-25/css/mutation-demo.css">
+  <script src="/pr-preview/pr-25/js/mutation-demo.js" defer=""></script>
+  </head>
+
+<body>
+    <header class="site-header">
+      <a href="/pr-preview/pr-25/" class="site-brand" aria-label="Back to home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"></path></svg></a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/pr-preview/pr-25/now/">Now</a>
+        <a href="/pr-preview/pr-25/notes/" data-active="">Notes</a>
+      </nav>
+      <button type="button" class="theme-toggle" id="theme-toggle">
+        <span class="sr-only if-light">Switch to dark theme</span>
+        <span class="sr-only if-dark">Switch to light theme</span>
+        <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <defs>
+            <mask id="moon-mask">
+              <rect x="-12" y="-12" width="48" height="48" fill="#fff" stroke="none"></rect>
+              <circle class="cutter" cx="12" cy="12" r="7.5" fill="#000" stroke="none"></circle>
+            </mask>
+            <clipPath id="moon-clip">
+              <circle cx="12" cy="12" r="10"></circle>
+            </clipPath>
+          </defs>
+          <g class="body">
+            <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon-mask)"></circle>
+            <g clip-path="url(#moon-clip)">
+              <circle class="cutter" cx="12" cy="12" r="7.5"></circle>
+            </g>
+          </g>
+          <g class="rays">
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+          </g>
+        </svg>
+      </button>
+    </header>
+
+    <main>
+      <article class="prose">
+  <header class="article-header">
+    <p class="page-meta"><a href="/pr-preview/pr-25/notes/" class="back-link">&larr; Notes</a> &middot; <time datetime="2026-11-27">27 Nov 2026</time></p>
+    <h1 id="mutation-testing-in-the-agentic-age">Mutation testing in the agentic age</h1>
+  </header>
+  <p>We barely write our code anymore. Increasingly, we barely write our tests either.</p>
+<p>When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions slip straight through.</p>
+<p>Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line broke. An agent can hit 100% coverage effortlessly while verifying almost nothing.</p>
+<p>So how do we test our tests?</p>
+<h2 id="what-mutation-testing-actually-does">What mutation testing actually does</h2>
+<p>Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.</p>
+<p>A mutation testing tool parses your source code, introduces a single small breaking change (a <em>mutant</em>), and runs your test suite against it in isolation:</p>
+<ul>
+<li><strong>Tests fail:</strong> the mutant is <strong>killed</strong>. Your suite noticed the broken behaviour.</li>
+<li><strong>Tests pass:</strong> the mutant <strong>survives</strong>. Something meaningful changed and nothing complained.</li>
+</ul>
+<p>The tool repeats this at scale across common bug patterns: flipping <code>&gt;=</code> to <code>&gt;</code>, swapping <code>&amp;&amp;</code> for <code>||</code>, forcing a condition to <code>true</code>, or deleting a statement altogether. Your mutation score is the percentage of mutants your tests kill.</p>
+<h2 id="see-it-in-action">See it in action</h2>
+<p>Take a simple function that checks whether someone is 18 or older to vote. We already have a passing test with 100% line coverage. Step through what happens when mutation testing breaks the code in small ways while the test stays unchanged.</p>
+<div class="mstage" data-mstage="">
+  <div class="mstage-top">
+    <div class="mstage-steps">
+      <button type="button" class="mstage-seg" data-step="0" aria-current="step" aria-label="Step 1: 100% coverage starting point"></button>
+      <button type="button" class="mstage-seg" data-step="1" aria-label="Step 2: Mutant 1 survives"></button>
+      <button type="button" class="mstage-seg" data-step="2" aria-label="Step 3: Mutant 2 survives"></button>
+      <button type="button" class="mstage-seg" data-step="3" aria-label="Step 4: Mutant 3 killed, 33% score"></button>
+      <button type="button" class="mstage-seg" data-step="4" aria-label="Step 5: Strengthen the test"></button>
+      <button type="button" class="mstage-seg" data-step="5" aria-label="Step 6: Re-run all 3 mutants, 100% score"></button>
+    </div>
+    <span class="mstage-counter" data-mstage-counter="">1 / 6</span>
+  </div>
+  <div class="mstage-body">
+    <div class="mstage-code-wrap">
+      <pre class="mstage-code"><code data-mstage-code=""><span><span class="tok-kw">export</span> <span class="tok-kw">const</span> <span class="tok-fn">canVote</span> <span class="tok-op">=</span> <span class="tok-punct">(</span><span class="tok-param">age</span><span class="tok-op">:</span> <span class="tok-type">number</span><span class="tok-punct">)</span><span class="tok-op">:</span> <span class="tok-type">boolean</span> <span class="tok-op">=&gt;</span></span>
+<span>  <span class="tok-var">age</span> <span class="tok-op">&gt;=</span> <span class="tok-num">18</span><span class="tok-punct">;</span></span>
+<span> </span>
+<span><span class="tok-fn">it</span><span class="tok-punct">(</span><span class="tok-str">'lets adults vote'</span><span class="tok-punct">,</span> <span class="tok-punct">()</span> <span class="tok-op">=&gt;</span> <span class="tok-punct">{</span></span>
+<span>  <span class="tok-fn">expect</span><span class="tok-punct">(</span><span class="tok-fn">canVote</span><span class="tok-punct">(</span><span class="tok-num">30</span><span class="tok-punct">)).</span><span class="tok-fn">toBe</span><span class="tok-punct">(</span><span class="tok-num">true</span><span class="tok-punct">);</span> <span class="mstage-ok">// ✓ pass</span></span>
+<span><span class="tok-punct">});</span></span></code></pre>
+    </div>
+    <div class="mstage-narrative" data-mstage-narrative="" data-tone="neutral">
+      <p class="mstage-kicker" data-mstage-kicker="">Starting point</p>
+      <h3 class="mstage-headline" data-mstage-headline="" id="100-coverage-test-passes">100% coverage. Test passes.</h3>
+      <p class="mstage-copy" data-mstage-copy="">Everything looks green. Next, mutation testing will break this function in small ways while leaving the test untouched. If the test still passes on broken code, that mutant has survived.</p>
+    </div>
+  </div>
+  <div class="mstage-ledger-bar">
+    <table class="mstage-table">
+      <caption class="sr-only">Mutation results for original and improved tests</caption>
+      <thead>
+        <tr>
+          <th scope="col">Mutation</th>
+          <th scope="col">Original</th>
+          <th scope="col">Improved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-mstage-row="gt">
+          <th scope="row"><code>&gt;=</code> &rarr; <code>&gt;</code></th>
+          <td data-cell="orig-gt"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-gt"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+        <tr data-mstage-row="true">
+          <th scope="row"><code>condition</code> &rarr; <code>true</code></th>
+          <td data-cell="orig-true"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-true"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+        <tr data-mstage-row="lt">
+          <th scope="row"><code>&gt;=</code> &rarr; <code>&lt;</code></th>
+          <td data-cell="orig-lt"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-lt"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mstage-scores">
+      <div class="mstage-meter">
+        <div class="mstage-meter-head">
+          <span>Line coverage</span>
+          <strong>100%</strong>
+        </div>
+        <div class="mstage-track" aria-hidden="true">
+          <div class="mstage-fill mstage-fill-pass" style="width: 100%"></div>
+        </div>
+      </div>
+      <div class="mstage-meter">
+        <div class="mstage-meter-head">
+          <span>Mutation score</span>
+          <strong data-mstage-mut-val="">Not run yet</strong>
+        </div>
+        <div class="mstage-track" aria-hidden="true">
+          <div class="mstage-fill mstage-fill-fail" data-mstage-mut-bar="" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mstage-footer">
+    <div class="mstage-footer-left">
+      <button type="button" class="mstage-btn mstage-btn-ghost" data-mstage-prev="" aria-disabled="true">&larr; Back</button>
+      <span class="mstage-kbd-hint" aria-hidden="true">or use &larr; / &rarr; keys</span>
+    </div>
+    <button type="button" class="mstage-btn mstage-btn-primary" data-mstage-next="">Break the code &rarr;</button>
+  </div>
+  <p class="sr-only" aria-live="polite" data-mstage-live=""></p>
+  <noscript>
+    <p class="mstage-noscript">With only <code>canVote(30)</code> tested, line coverage is 100% but two of three mutants survive (<code>age &gt; 18</code> and <code>true</code>), leaving a 33% mutation score. Adding assertions for age 18 and age 17 kills all three mutants and lifts the mutation score to 100%.</p>
+  </noscript>
+</div>
+<h2 id="why-it-pairs-so-well-with-agents">Why it pairs so well with agents</h2>
+<p>Agents often widen this gap, and mutation testing turns closing it into a task they excel at.</p>
+<p>A surviving mutant report is not a vague prompt to &quot;write better tests&quot;. It hands an agent:</p>
+<ul>
+<li><strong>An exact target:</strong> the file, the line, and the specific mutation that went unnoticed.</li>
+<li><strong>A scoped task:</strong> add or tighten an assertion so that this change breaks the suite.</li>
+<li><strong>Deterministic feedback:</strong> the original code passes, and the mutated code fails.</li>
+</ul>
+<p>There is no guesswork and no second LLM opining on whether a test suite &quot;looks thorough&quot;. Either the mutant dies or it does not.</p>
+<h2 id="part-of-the-standard-sdlc-loop">Part of the standard SDLC loop</h2>
+<p>Running mutation testing across an entire codebase is slow, because executing a suite against hundreds or thousands of mutants adds up quickly. Modern tools make this practical, though: incremental runs cache previous results and only mutate changed code, making diff-scoped PR checks viable alongside broader scheduled runs.</p>
+<p>A few habits can keep it useful rather than noisy:</p>
+<ul>
+<li><strong>Match the scope to the cadence.</strong> Use incremental, diff-scoped runs on pull requests to catch weak tests as code lands, and save full codebase runs for nightly or weekly jobs.</li>
+<li><strong>Treat scores as advisory.</strong> Not every surviving mutant needs a test. Some are equivalent mutants that do not change observable behaviour, and others point to dead code worth deleting. Chasing 100% creates busywork; tracking trends and surfacing weak files creates signal.</li>
+<li><strong>Close the loop cleanly.</strong> Feed genuine survivors back into the workflow as small, targeted test fixes, and review them with the mutation diff right beside the test change.</li>
+</ul>
+<p>Mature tooling already exists across most stacks (<a href="https://stryker-mutator.io/">Stryker</a> for JS/TS and C#, <a href="https://pitest.org/">PIT</a> for Java, <a href="https://github.com/boxed/mutmut">mutmut</a> for Python). As agent-written code becomes the default, linters, typecheckers, and unit tests are no longer enough on their own. Deterministic mutation testing belongs right beside them as a standard part of the verification loop.</p>
+
+</article>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          David Ollerhead is a hands-on Front End focused Engineering Manager.
+          Currently @ JPMorganChase.
+        </div>
+        <div class="social-links">
+          <a href="/pr-preview/pr-25/feed.xml" aria-label="Atom feed">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 11a9 9 0 0 1 9 9"></path>
+              <path d="M4 4a16 16 0 0 1 16 16"></path>
+              <circle cx="5" cy="19" r="1" fill="currentColor"></circle>
+            </svg>
+          </a>
+          <a href="https://github.com/oller" target="_blank" rel="noopener noreferrer" aria-label="Open David Ollerhead's GitHub profile (opens in a new tab)">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12">
+              </path>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/davidollerhead/" target="_blank" rel="noopener noreferrer" aria-label="Open David Ollerhead's LinkedIn profile (opens in a new tab)">
+            <svg viewBox="0 0 382 382" fill="currentColor" aria-hidden="true">
+              <path d="M347.445,0H34.555C15.471,0,0,15.471,0,34.555v312.889C0,366.529,15.471,382,34.555,382h312.889 C366.529,382,382,366.529,382,347.444V34.555C382,15.471,366.529,0,347.445,0z M118.207,329.844c0,5.554-4.502,10.056-10.056,10.056 H65.345c-5.554,0-10.056-4.502-10.056-10.056V150.403c0-5.554,4.502-10.056,10.056-10.056h42.806 c5.554,0,10.056,4.502,10.056,10.056V329.844z M86.748,123.432c-22.459,0-40.666-18.207-40.666-40.666S64.289,42.1,86.748,42.1 s40.666,18.207,40.666,40.666S109.208,123.432,86.748,123.432z M341.91,330.654c0,5.106-4.14,9.246-9.246,9.246H286.73 c-5.106,0-9.246-4.14-9.246-9.246v-84.168c0-12.556,3.683-55.021-32.813-55.021c-28.309,0-34.051,29.066-35.204,42.11v97.079 c0,5.106-4.139,9.246-9.246,9.246h-44.426c-5.106,0-9.246-4.14-9.246-9.246V149.593c0-5.106,4.14-9.246,9.246-9.246h44.426 c5.106,0,9.246,4.14,9.246,9.246v15.655c10.497-15.753,26.097-27.912,59.312-27.912c73.552,0,73.131,68.716,73.131,106.472 L341.91,330.654L341.91,330.654z">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </footer>
+</body>
+
+</html>
