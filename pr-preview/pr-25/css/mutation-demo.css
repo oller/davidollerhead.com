@@ -125,13 +125,6 @@
   box-shadow: inset 0 -1.5px 0 var(--ms-mut);
 }
 
-.mstage-restored {
-  display: inline-block;
-  padding: 0.02em 0.38em;
-  border-radius: 0.25rem;
-  background: var(--ms-accent-soft);
-}
-
 .mstage-ok { color: var(--ms-pass); font-weight: 600; }
 .mstage-bad { color: var(--ms-fail); font-weight: 650; }
 .mstage-kills { color: var(--ms-accent); font-weight: 500; }
