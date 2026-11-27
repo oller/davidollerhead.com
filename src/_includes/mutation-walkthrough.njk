@@ -1,0 +1,88 @@
+<div class="mstage" data-mstage>
+  <div class="mstage-top">
+    <div class="mstage-steps">
+      <button type="button" class="mstage-seg" data-step="0" aria-current="step" aria-label="Step 1: 100% coverage starting point"></button>
+      <button type="button" class="mstage-seg" data-step="1" aria-label="Step 2: Mutant 1 survives"></button>
+      <button type="button" class="mstage-seg" data-step="2" aria-label="Step 3: Mutant 2 survives"></button>
+      <button type="button" class="mstage-seg" data-step="3" aria-label="Step 4: Mutant 3 killed, 33% score"></button>
+      <button type="button" class="mstage-seg" data-step="4" aria-label="Step 5: Strengthen the test"></button>
+      <button type="button" class="mstage-seg" data-step="5" aria-label="Step 6: Re-run all 3 mutants, 100% score"></button>
+    </div>
+    <span class="mstage-counter" data-mstage-counter>1 / 6</span>
+  </div>
+  <div class="mstage-body">
+    <div class="mstage-code-wrap">
+      <pre class="mstage-code"><code data-mstage-code><span><span class="tok-kw">export</span> <span class="tok-kw">const</span> <span class="tok-fn">canVote</span> <span class="tok-op">=</span> <span class="tok-punct">(</span><span class="tok-param">age</span><span class="tok-op">:</span> <span class="tok-type">number</span><span class="tok-punct">)</span><span class="tok-op">:</span> <span class="tok-type">boolean</span> <span class="tok-op">=&gt;</span></span>
+<span>  <span class="tok-var">age</span> <span class="tok-op">&gt;=</span> <span class="tok-num">18</span><span class="tok-punct">;</span></span>
+<span> </span>
+<span><span class="tok-fn">it</span><span class="tok-punct">(</span><span class="tok-str">'lets adults vote'</span><span class="tok-punct">,</span> <span class="tok-punct">()</span> <span class="tok-op">=&gt;</span> <span class="tok-punct">{</span></span>
+<span>  <span class="tok-fn">expect</span><span class="tok-punct">(</span><span class="tok-fn">canVote</span><span class="tok-punct">(</span><span class="tok-num">30</span><span class="tok-punct">)).</span><span class="tok-fn">toBe</span><span class="tok-punct">(</span><span class="tok-num">true</span><span class="tok-punct">);</span> <span class="mstage-ok">// ✓ pass</span></span>
+<span><span class="tok-punct">});</span></span></code></pre>
+    </div>
+    <div class="mstage-narrative" data-mstage-narrative data-tone="neutral">
+      <p class="mstage-kicker" data-mstage-kicker>Starting point</p>
+      <h3 class="mstage-headline" data-mstage-headline>100% coverage. Test passes.</h3>
+      <p class="mstage-copy" data-mstage-copy>Everything looks green. Next, mutation testing will break this function in small ways while leaving the test untouched. If the test still passes on broken code, that mutant has survived.</p>
+    </div>
+  </div>
+  <div class="mstage-ledger-bar">
+    <table class="mstage-table">
+      <caption class="sr-only">Mutation results for original and improved tests</caption>
+      <thead>
+        <tr>
+          <th scope="col">Mutation</th>
+          <th scope="col">Original</th>
+          <th scope="col">Improved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-mstage-row="gt">
+          <th scope="row"><code>&gt;=</code> &rarr; <code>&gt;</code></th>
+          <td data-cell="orig-gt"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-gt"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+        <tr data-mstage-row="true">
+          <th scope="row"><code>condition</code> &rarr; <code>true</code></th>
+          <td data-cell="orig-true"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-true"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+        <tr data-mstage-row="lt">
+          <th scope="row"><code>&gt;=</code> &rarr; <code>&lt;</code></th>
+          <td data-cell="orig-lt"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-lt"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mstage-scores">
+      <div class="mstage-meter">
+        <div class="mstage-meter-head">
+          <span>Line coverage</span>
+          <strong>100%</strong>
+        </div>
+        <div class="mstage-track" aria-hidden="true">
+          <div class="mstage-fill mstage-fill-pass" style="width: 100%"></div>
+        </div>
+      </div>
+      <div class="mstage-meter">
+        <div class="mstage-meter-head">
+          <span>Mutation score</span>
+          <strong data-mstage-mut-val>Not run yet</strong>
+        </div>
+        <div class="mstage-track" aria-hidden="true">
+          <div class="mstage-fill mstage-fill-fail" data-mstage-mut-bar style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mstage-footer">
+    <div class="mstage-footer-left">
+      <button type="button" class="mstage-btn mstage-btn-ghost" data-mstage-prev aria-disabled="true">&larr; Back</button>
+      <span class="mstage-kbd-hint" aria-hidden="true">or use &larr; / &rarr; keys</span>
+    </div>
+    <button type="button" class="mstage-btn mstage-btn-primary" data-mstage-next>Break the code &rarr;</button>
+  </div>
+  <p class="sr-only" aria-live="polite" data-mstage-live></p>
+  <noscript>
+    <p class="mstage-noscript">With only <code>canVote(30)</code> tested, line coverage is 100% but two of three mutants survive (<code>age &gt; 18</code> and <code>true</code>), leaving a 33% mutation score. Adding assertions for age 18 and age 17 kills all three mutants and lifts the mutation score to 100%.</p>
+  </noscript>
+</div>
