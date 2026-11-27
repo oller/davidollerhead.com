@@ -8,22 +8,22 @@ extraJs: /js/mutation-demo.js
 
 We barely write our code anymore. Increasingly, we barely write our tests either.
 
-When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions slip straight through.
+When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions can slip straight through.
 
-Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line broke. An agent can hit 100% coverage effortlessly while verifying almost nothing.
+Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line changed. An agent can hit 100% coverage effortlessly while verifying almost nothing.
 
-So how do we test our tests?
+So, how do we test our tests?
 
 ## What mutation testing actually does
 
-Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.
+Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.  This means its cheap, deterministic and what programming used to be...
 
 A mutation testing tool parses your source code, introduces a single small breaking change (a *mutant*), and runs your test suite against it in isolation:
 
 - **Tests fail:** the mutant is **killed**. Your suite noticed the broken behaviour.
 - **Tests pass:** the mutant **survives**. Something meaningful changed and nothing complained.
 
-The tool repeats this at scale across common bug patterns: flipping `>=` to `>`, swapping `&&` for `||`, forcing a condition to `true`, or deleting a statement altogether. Your mutation score is the percentage of mutants your tests kill.
+The tool repeats this at scale across common bug patterns: flipping `>=` to `>`, swapping `&&` for `||`, forcing a condition to `true`, or deleting a statement altogether. Your mutation score is the percentage of mutants your tests kill. 
 
 ## See it in action
 
