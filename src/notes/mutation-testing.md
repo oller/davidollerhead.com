@@ -29,7 +29,7 @@ The tool repeats this at scale across common bug patterns: flipping `>=` to `>`,
 
 Take a simple function that checks whether someone is 18 or older to vote. We already have a passing test with 100% line coverage. Step through what happens when mutation testing breaks the code in small ways while the test stays unchanged.
 
-{% include "mutation-walkthrough.njk" %}
+{% include "notes/mutation-walkthrough.njk" %}
 
 ## Why it pairs so well with agents
 
