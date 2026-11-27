@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <link rel="icon" href="data:,">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mutation testing - David Ollerhead</title>
-  <meta name="description" content="What is mutation testing, and why it matters even more in an agent-driven world.">
+  <title>Mutation testing in the agentic age - David Ollerhead</title>
+  <meta name="description" content="Why deterministic mutation testing belongs in the standard verification loop for agent-driven work.">
   <meta name="author" content="David Ollerhead">
   <meta name="color-scheme" content="light dark">
   <script>
@@ -23,6 +23,8 @@
   <script src="https://www.vexo.co/analytics.js" defer=""></script>
   <link rel="stylesheet" href="/css/site.css">
   <script src="/js/theme.js" defer=""></script>
+  <link rel="stylesheet" href="/css/mutation-demo.css">
+  <script src="/js/mutation-demo.js" defer=""></script>
   </head>
 
 <body>
@@ -61,124 +63,129 @@
     <main>
       <article class="prose">
   <header class="article-header">
-    <p class="page-meta"><a href="/notes/" class="back-link">&larr; Notes</a> &middot; <time datetime="2026-11-21">21 Nov 2026</time></p>
-    <h1 id="mutation-testing">Mutation testing</h1>
+    <p class="page-meta"><a href="/notes/" class="back-link">&larr; Notes</a> &middot; <time datetime="2026-11-27">27 Nov 2026</time></p>
+    <h1 id="mutation-testing-in-the-agentic-age">Mutation testing in the agentic age</h1>
   </header>
-  <p>Disclaimer:  This is 100% placeholder slop.</p>
-<p>Line coverage tells you which lines of code executed while your tests ran, not whether your assertions would actually notice if those lines behaved differently.</p>
-<p>It's worth re-reading that above sentence again</p>
-<p>Mutation testing addresses that gap by making small, automated changes (mutants) to your source code, such as flipping conditionals, changing arithmetic operators, or removing return values, and re-running the test suite against each mutant. If the tests still pass, the mutant <em>survived</em>, pointing to a blind spot in your assertions.</p>
-<p>Consider a simple boundary check:</p>
-<pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#8839EF, #7DCFFF)">export</span><span style="color:light-dark(#8839EF, #BB9AF7)"> function</span><span style="color:light-dark(#1E66F5, #7AA2F7)"> isEligibleForDiscount</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">quantity</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#8839EF, #0DB9D7)"> number</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#8839EF, #0DB9D7)"> boolean</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
-<span class="line"><span style="color:light-dark(#7C7F93, #51597D)">  // Original condition: >=</span></span>
-<span class="line"><span style="color:light-dark(#7C7F93, #51597D)">  // A common mutant swaps >= for ></span></span>
-<span class="line"><span style="color:light-dark(#8839EF, #BB9AF7)">  return</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> quantity</span><span style="color:light-dark(#179299, #BB9AF7)"> >=</span><span style="color:light-dark(#FE640B, #FF9E64)"> 10</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span></span></code></pre>
-<p>If every test passes <code>quantity = 12</code> or <code>quantity = 5</code> and nothing exercises <code>quantity = 10</code>, line coverage stays at 100%, yet the <code>&gt;</code> mutant survives unnoticed. Adding a boundary test turns that surviving mutant into a caught regression.</p>
-<h2 id="how-it-works">How it works</h2>
-<p>A mutation testing tool parses your source, applies one small change at a time, and runs the tests that cover the changed code. Each mutant ends up in one of a few states:</p>
+  <p>We barely write our code anymore. Increasingly, we barely write our tests either.</p>
+<p>When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions slip straight through.</p>
+<p>Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line broke. An agent can hit 100% coverage effortlessly while verifying almost nothing.</p>
+<p>So how do we test our tests?</p>
+<h2 id="what-mutation-testing-actually-does">What mutation testing actually does</h2>
+<p>Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.</p>
+<p>A mutation testing tool parses your source code, introduces a single small breaking change (a <em>mutant</em>), and runs your test suite against it in isolation:</p>
 <ul>
-<li><strong>Killed:</strong> at least one test failed, which is what you want.</li>
-<li><strong>Survived:</strong> every test passed, so nothing noticed the change.</li>
-<li><strong>Timed out:</strong> the mutant caused an infinite loop, which usually counts as killed.</li>
-<li><strong>No coverage:</strong> no test touched the mutated line at all.</li>
+<li><strong>Tests fail:</strong> the mutant is <strong>killed</strong>. Your suite noticed the broken behaviour.</li>
+<li><strong>Tests pass:</strong> the mutant <strong>survives</strong>. Something meaningful changed and nothing complained.</li>
 </ul>
-<p>The <em>mutation score</em> is the percentage of mutants killed. Unlike line coverage, it measures whether your tests can detect a change in behaviour, not just whether they ran the code.</p>
-<h2 id="common-mutators">Common mutators</h2>
-<p>Most tools ship a similar set of mutation operators:</p>
-<table>
-<thead>
-<tr>
-<th>Category</th>
-<th>Original</th>
-<th>Mutant</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Conditional boundary</td>
-<td><code>a &gt;= b</code></td>
-<td><code>a &gt; b</code></td>
-</tr>
-<tr>
-<td>Negated conditional</td>
-<td><code>a === b</code></td>
-<td><code>a !== b</code></td>
-</tr>
-<tr>
-<td>Arithmetic</td>
-<td><code>a + b</code></td>
-<td><code>a - b</code></td>
-</tr>
-<tr>
-<td>Logical</td>
-<td><code>a &amp;&amp; b</code></td>
-<td><code>a || b</code></td>
-</tr>
-<tr>
-<td>Return value</td>
-<td><code>return total</code></td>
-<td><code>return 0</code></td>
-</tr>
-<tr>
-<td>Statement removal</td>
-<td><code>audit.log(event)</code></td>
-<td><em>(deleted)</em></td>
-</tr>
-<tr>
-<td>String literal</td>
-<td><code>&quot;active&quot;</code></td>
-<td><code>&quot;&quot;</code></td>
-</tr>
-</tbody>
-</table>
-<p>Each of these maps to a real class of bug: off-by-one errors, inverted checks, forgotten side effects, and silently dropped return values.</p>
-<h2 id="a-second-example">A second example</h2>
-<p>Boundary conditions are the classic case, but removed side effects are just as common:</p>
-<pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#8839EF, #7DCFFF)">export</span><span style="color:light-dark(#8839EF, #BB9AF7)"> function</span><span style="color:light-dark(#1E66F5, #7AA2F7)"> checkout</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">cart</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#DF8E1D, #C0CAF5)"> Cart</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#E64553, #E0AF68)"> payments</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#DF8E1D, #C0CAF5)"> PaymentGateway</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#E64553, #E0AF68)"> audit</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#DF8E1D, #C0CAF5)"> AuditLog</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
-<span class="line"><span style="color:light-dark(#8839EF, #9D7CD8)">  const</span><span style="color:light-dark(#4C4F69, #BB9AF7)"> total</span><span style="color:light-dark(#179299, #89DDFF)"> =</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> cart</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">items</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">reduce</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#7C7F93, #9ABDF5)">(</span><span style="color:light-dark(#E64553, #E0AF68)">sum</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#E64553, #E0AF68)"> item</span><span style="color:light-dark(#7C7F93, #9ABDF5)">)</span><span style="color:light-dark(#179299, #BB9AF7)"> =></span><span style="color:light-dark(#4C4F69, #C0CAF5)"> sum</span><span style="color:light-dark(#179299, #89DDFF)"> +</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> item</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">price</span><span style="color:light-dark(#179299, #89DDFF)"> *</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> item</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">quantity</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#FE640B, #FF9E64)"> 0</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:light-dark(#4C4F69, #C0CAF5)">  payments</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">charge</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#4C4F69, #C0CAF5)">cart</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">customerId</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> total</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"><span style="color:light-dark(#4C4F69, #C0CAF5)">  audit</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">record</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#40A02B, #9ECE6A)">checkout</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span><span style="color:light-dark(#4C4F69, #73DACA)"> customerId</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> cart</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">customerId</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> total</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> }</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:light-dark(#8839EF, #BB9AF7)">  return</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> total</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> }</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span></span></code></pre>
-<p>If your tests only assert on the returned <code>total</code>, a mutant that deletes the <code>audit.record(...)</code> call survives. The behaviour changed, compliance would be unhappy, and every test is still green. Asserting that the audit log received the expected entry kills it.</p>
-<pre class="shiki shiki-themes catppuccin-latte tokyo-night" style="background-color:light-dark(#eff1f5, #1a1b26);--shiki-light-bg:#eff1f5;color:light-dark(#4c4f69, #a9b1d6);--shiki-light:#4c4f69" tabindex="0"><code class="language-ts"><span class="line"><span style="color:light-dark(#1E66F5, #7AA2F7)">it</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#40A02B, #9ECE6A)">records an audit entry for each checkout</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> ()</span><span style="color:light-dark(#179299, #BB9AF7)"> =></span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
-<span class="line"><span style="color:light-dark(#8839EF, #9D7CD8)">  const</span><span style="color:light-dark(#4C4F69, #BB9AF7)"> audit</span><span style="color:light-dark(#179299, #89DDFF)"> =</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span><span style="color:light-dark(#4C4F69, #73DACA)"> record</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> vi</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">fn</span><span style="color:light-dark(#4C4F69, #9ABDF5)">() </span><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"><span style="color:light-dark(#1E66F5, #7AA2F7)">  checkout</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#4C4F69, #C0CAF5)">cartWithTwoItems</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> fakeGateway</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#4C4F69, #C0CAF5)"> audit</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"></span>
-<span class="line"><span style="color:light-dark(#1E66F5, #7AA2F7)">  expect</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#4C4F69, #C0CAF5)">audit</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#4C4F69, #7DCFFF)">record</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#179299, #89DDFF)">.</span><span style="color:light-dark(#1E66F5, #7AA2F7)">toHaveBeenCalledWith</span><span style="color:light-dark(#4C4F69, #9ABDF5)">(</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#40A02B, #9ECE6A)">checkout</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span><span style="color:light-dark(#7C7F93, #9ABDF5)"> {</span></span>
-<span class="line"><span style="color:light-dark(#4C4F69, #73DACA)">    customerId</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#40A02B, #89DDFF)"> "</span><span style="color:light-dark(#40A02B, #9ECE6A)">cust_123</span><span style="color:light-dark(#40A02B, #89DDFF)">"</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span></span>
-<span class="line"><span style="color:light-dark(#4C4F69, #73DACA)">    total</span><span style="color:light-dark(#179299, #89DDFF)">:</span><span style="color:light-dark(#FE640B, #FF9E64)"> 45</span><span style="color:light-dark(#7C7F93, #89DDFF)">,</span></span>
-<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">  }</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span>
-<span class="line"><span style="color:light-dark(#7C7F93, #9ABDF5)">}</span><span style="color:light-dark(#4C4F69, #9ABDF5)">)</span><span style="color:light-dark(#7C7F93, #89DDFF)">;</span></span></code></pre>
-<h2 id="running-it-in-practice">Running it in practice</h2>
-<p>Mutation testing is expensive. A suite that takes a minute to run might need to run hundreds of times, once per mutant. A few habits keep it practical:</p>
-<ol>
-<li><strong>Scope it.</strong> Start with a single module or a critical directory rather than the whole repository.</li>
-<li><strong>Run incrementally.</strong> Only mutate files changed in the current branch and cache results between runs.</li>
-<li><strong>Use coverage data.</strong> Skip mutants on lines no test executes; they will trivially survive and add noise.</li>
-<li><strong>Run in CI on a schedule.</strong> A nightly or weekly full run is often a better fit than blocking every pull request.</li>
-<li><strong>Parallelise.</strong> Mutants are independent, so they split cleanly across workers.</li>
-</ol>
-<h2 id="reading-the-results">Reading the results</h2>
-<p>A surviving mutant is a question, not a verdict. Before writing a new test, ask:</p>
+<p>The tool repeats this at scale across common bug patterns: flipping <code>&gt;=</code> to <code>&gt;</code>, swapping <code>&amp;&amp;</code> for <code>||</code>, forcing a condition to <code>true</code>, or deleting a statement altogether. Your mutation score is the percentage of mutants your tests kill.</p>
+<h2 id="see-it-in-action">See it in action</h2>
+<p>Take a simple function that checks whether someone is 18 or older to vote. We already have a passing test with 100% line coverage. Step through what happens when mutation testing breaks the code in small ways while the test stays unchanged.</p>
+<div class="mstage" data-mstage="">
+  <div class="mstage-top">
+    <div class="mstage-steps">
+      <button type="button" class="mstage-seg" data-step="0" aria-current="step" aria-label="Step 1: 100% coverage starting point"></button>
+      <button type="button" class="mstage-seg" data-step="1" aria-label="Step 2: Mutant 1 survives"></button>
+      <button type="button" class="mstage-seg" data-step="2" aria-label="Step 3: Mutant 2 survives"></button>
+      <button type="button" class="mstage-seg" data-step="3" aria-label="Step 4: Mutant 3 killed, 33% score"></button>
+      <button type="button" class="mstage-seg" data-step="4" aria-label="Step 5: Strengthen the test"></button>
+      <button type="button" class="mstage-seg" data-step="5" aria-label="Step 6: Re-run all 3 mutants, 100% score"></button>
+    </div>
+    <span class="mstage-counter" data-mstage-counter="">1 / 6</span>
+  </div>
+  <div class="mstage-body">
+    <div class="mstage-code-wrap">
+      <pre class="mstage-code"><code data-mstage-code=""><span><span class="tok-kw">export</span> <span class="tok-kw">const</span> <span class="tok-fn">canVote</span> <span class="tok-op">=</span> <span class="tok-punct">(</span><span class="tok-param">age</span><span class="tok-op">:</span> <span class="tok-type">number</span><span class="tok-punct">)</span><span class="tok-op">:</span> <span class="tok-type">boolean</span> <span class="tok-op">=&gt;</span></span>
+<span>  <span class="tok-var">age</span> <span class="tok-op">&gt;=</span> <span class="tok-num">18</span><span class="tok-punct">;</span></span>
+<span> </span>
+<span><span class="tok-fn">it</span><span class="tok-punct">(</span><span class="tok-str">'lets adults vote'</span><span class="tok-punct">,</span> <span class="tok-punct">()</span> <span class="tok-op">=&gt;</span> <span class="tok-punct">{</span></span>
+<span>  <span class="tok-fn">expect</span><span class="tok-punct">(</span><span class="tok-fn">canVote</span><span class="tok-punct">(</span><span class="tok-num">30</span><span class="tok-punct">)).</span><span class="tok-fn">toBe</span><span class="tok-punct">(</span><span class="tok-num">true</span><span class="tok-punct">);</span> <span class="mstage-ok">// ✓ pass</span></span>
+<span><span class="tok-punct">});</span></span></code></pre>
+    </div>
+    <div class="mstage-narrative" data-mstage-narrative="" data-tone="neutral">
+      <p class="mstage-kicker" data-mstage-kicker="">Starting point</p>
+      <h3 class="mstage-headline" data-mstage-headline="" id="100-coverage-test-passes">100% coverage. Test passes.</h3>
+      <p class="mstage-copy" data-mstage-copy="">Everything looks green. Next, mutation testing will break this function in small ways while leaving the test untouched. If the test still passes on broken code, that mutant has survived.</p>
+    </div>
+  </div>
+  <div class="mstage-ledger-bar">
+    <table class="mstage-table">
+      <caption class="sr-only">Mutation results for original and improved tests</caption>
+      <thead>
+        <tr>
+          <th scope="col">Mutation</th>
+          <th scope="col">Original</th>
+          <th scope="col">Improved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-mstage-row="gt">
+          <th scope="row"><code>&gt;=</code> &rarr; <code>&gt;</code></th>
+          <td data-cell="orig-gt"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-gt"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+        <tr data-mstage-row="true">
+          <th scope="row"><code>condition</code> &rarr; <code>true</code></th>
+          <td data-cell="orig-true"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-true"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+        <tr data-mstage-row="lt">
+          <th scope="row"><code>&gt;=</code> &rarr; <code>&lt;</code></th>
+          <td data-cell="orig-lt"><span class="mstage-dot-empty">&middot;</span></td>
+          <td data-cell="imp-lt"><span class="mstage-dot-empty">&middot;</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="mstage-scores">
+      <div class="mstage-meter">
+        <div class="mstage-meter-head">
+          <span>Line coverage</span>
+          <strong>100%</strong>
+        </div>
+        <div class="mstage-track" aria-hidden="true">
+          <div class="mstage-fill mstage-fill-pass" style="width: 100%"></div>
+        </div>
+      </div>
+      <div class="mstage-meter">
+        <div class="mstage-meter-head">
+          <span>Mutation score</span>
+          <strong data-mstage-mut-val="">Not run yet</strong>
+        </div>
+        <div class="mstage-track" aria-hidden="true">
+          <div class="mstage-fill mstage-fill-fail" data-mstage-mut-bar="" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mstage-footer">
+    <div class="mstage-footer-left">
+      <button type="button" class="mstage-btn mstage-btn-ghost" data-mstage-prev="" aria-disabled="true">&larr; Back</button>
+      <span class="mstage-kbd-hint" aria-hidden="true">or use &larr; / &rarr; keys</span>
+    </div>
+    <button type="button" class="mstage-btn mstage-btn-primary" data-mstage-next="">Break the code &rarr;</button>
+  </div>
+  <p class="sr-only" aria-live="polite" data-mstage-live=""></p>
+  <noscript>
+    <p class="mstage-noscript">With only <code>canVote(30)</code> tested, line coverage is 100% but two of three mutants survive (<code>age &gt; 18</code> and <code>true</code>), leaving a 33% mutation score. Adding assertions for age 18 and age 17 kills all three mutants and lifts the mutation score to 100%.</p>
+  </noscript>
+</div>
+<h2 id="why-it-pairs-so-well-with-agents">Why it pairs so well with agents</h2>
+<p>Agents often widen this gap, and mutation testing turns closing it into a task they excel at.</p>
+<p>A surviving mutant report is not a vague prompt to &quot;write better tests&quot;. It hands an agent:</p>
 <ul>
-<li>Is this a genuine gap in my assertions?</li>
-<li>Is the mutant <em>equivalent</em>, meaning it changes the code without changing observable behaviour (for example, <code>i &lt; 10</code> versus <code>i != 10</code> in a loop that always exits earlier)?</li>
-<li>Is the code itself dead, and should it simply be deleted?</li>
+<li><strong>An exact target:</strong> the file, the line, and the specific mutation that went unnoticed.</li>
+<li><strong>A scoped task:</strong> add or tighten an assertion so that this change breaks the suite.</li>
+<li><strong>Deterministic feedback:</strong> the original code passes, and the mutated code fails.</li>
 </ul>
-<p>Equivalent mutants are the main source of false positives. You can't eliminate them entirely, which is why chasing a 100% mutation score is rarely worth it. A score in the 70–85% range on important code is a healthy target for many teams.</p>
-<h2 id="where-it-fits">Where it fits</h2>
-<p>Mutation testing doesn't replace code coverage, property-based testing, or code review. It complements them by answering a different question: <em>if this code were wrong, would my tests tell me?</em></p>
-<p>Used selectively on the logic that matters most, such as pricing, permissions, and data transformations, it tends to surface a handful of high-value missing assertions rather than a mountain of busywork. That is usually enough to justify the runtime.</p>
-<h2 id="further-reading">Further reading</h2>
+<p>There is no guesswork and no second LLM opining on whether a test suite &quot;looks thorough&quot;. Either the mutant dies or it does not.</p>
+<h2 id="part-of-the-standard-sdlc-loop">Part of the standard SDLC loop</h2>
+<p>Running mutation testing across an entire codebase is slow, because executing a suite against hundreds or thousands of mutants adds up quickly. Modern tools make this practical, though: incremental runs cache previous results and only mutate changed code, making diff-scoped PR checks viable alongside broader scheduled runs.</p>
+<p>A few habits can keep it useful rather than noisy:</p>
 <ul>
-<li>The documentation for your language's mutation testing tool, such as Stryker for JavaScript and TypeScript, PIT for Java, or mutmut for Python.</li>
-<li>Research on the <em>coupling effect</em>, which argues that tests that catch simple mutants also tend to catch more complex faults.</li>
-<li>Your own test suite: pick one critical function, mutate it by hand, and see whether anything fails.</li>
+<li><strong>Match the scope to the cadence.</strong> Use incremental, diff-scoped runs on pull requests to catch weak tests as code lands, and save full codebase runs for nightly or weekly jobs.</li>
+<li><strong>Treat scores as advisory.</strong> Not every surviving mutant needs a test. Some are equivalent mutants that do not change observable behaviour, and others point to dead code worth deleting. Chasing 100% creates busywork; tracking trends and surfacing weak files creates signal.</li>
+<li><strong>Close the loop cleanly.</strong> Feed genuine survivors back into the workflow as small, targeted test fixes, and review them with the mutation diff right beside the test change.</li>
 </ul>
+<p>Mature tooling already exists across most stacks (<a href="https://stryker-mutator.io/">Stryker</a> for JS/TS and C#, <a href="https://pitest.org/">PIT</a> for Java, <a href="https://github.com/boxed/mutmut">mutmut</a> for Python). As agent-written code becomes the default, linters, typecheckers, and unit tests are no longer enough on their own. Deterministic mutation testing belongs right beside them as a standard part of the verification loop.</p>
 
 </article>
 
