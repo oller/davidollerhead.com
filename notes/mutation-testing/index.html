@@ -67,11 +67,11 @@
     <h1 id="mutation-testing-in-the-agentic-age">Mutation testing in the agentic age</h1>
   </header>
   <p>We barely write our code anymore. Increasingly, we barely write our tests either.</p>
-<p>When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions slip straight through.</p>
-<p>Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line broke. An agent can hit 100% coverage effortlessly while verifying almost nothing.</p>
-<p>So how do we test our tests?</p>
+<p>When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions can slip straight through.</p>
+<p>Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line changed. An agent can hit 100% coverage effortlessly while verifying almost nothing.</p>
+<p>So, how do we test our tests?</p>
 <h2 id="what-mutation-testing-actually-does">What mutation testing actually does</h2>
-<p>Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.</p>
+<p>Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.  This means its cheap, deterministic and what programming used to be...</p>
 <p>A mutation testing tool parses your source code, introduces a single small breaking change (a <em>mutant</em>), and runs your test suite against it in isolation:</p>
 <ul>
 <li><strong>Tests fail:</strong> the mutant is <strong>killed</strong>. Your suite noticed the broken behaviour.</li>

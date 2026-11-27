@@ -16,11 +16,11 @@
     <updated>2026-11-27T00:00:00Z</updated>
     <id>https://davidollerhead.com/notes/mutation-testing/</id>
     <content type="html">&lt;p&gt;We barely write our code anymore. Increasingly, we barely write our tests either.&lt;/p&gt;
-&lt;p&gt;When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions slip straight through.&lt;/p&gt;
-&lt;p&gt;Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line broke. An agent can hit 100% coverage effortlessly while verifying almost nothing.&lt;/p&gt;
-&lt;p&gt;So how do we test our tests?&lt;/p&gt;
+&lt;p&gt;When the same coding agent writes both the implementation and the test suite, it brings the same assumptions to both. Any blind spot in the logic gets mirrored in the assertions, and bugs can get locked in behind a Potemkin facade of green ticks ✅. Worse, we tend to skim-review generated tests far more lightly than production code, so weak assertions can slip straight through.&lt;/p&gt;
+&lt;p&gt;Code coverage does not save us here. Line coverage only tells you that a line executed during a test run, not that an assertion would actually fail if that line changed. An agent can hit 100% coverage effortlessly while verifying almost nothing.&lt;/p&gt;
+&lt;p&gt;So, how do we test our tests?&lt;/p&gt;
 &lt;h2 id=&quot;what-mutation-testing-actually-does&quot;&gt;What mutation testing actually does&lt;/h2&gt;
-&lt;p&gt;Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.&lt;/p&gt;
+&lt;p&gt;Mutation testing takes a programmatic, rule-based approach with zero AI inference involved.  This means its cheap, deterministic and what programming used to be...&lt;/p&gt;
 &lt;p&gt;A mutation testing tool parses your source code, introduces a single small breaking change (a &lt;em&gt;mutant&lt;/em&gt;), and runs your test suite against it in isolation:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Tests fail:&lt;/strong&gt; the mutant is &lt;strong&gt;killed&lt;/strong&gt;. Your suite noticed the broken behaviour.&lt;/li&gt;
