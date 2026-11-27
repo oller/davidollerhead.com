@@ -99,7 +99,7 @@
       copy: "Restore the real code and add two targeted assertions: the exact boundary (18) and someone just under it (17). All assertions pass.",
       nextLabel: "Re-run all 3 mutants →",
       code: code(
-        `<span class="mstage-restored">${EXPR_ORIG}</span>`,
+        EXPR_ORIG,
         [
           assertLine(30, "true", `<span class="mstage-ok">// ✓ pass</span>`, true),
           assertLine(18, "true", `<span class="mstage-ok">// ✓ boundary</span>`),
