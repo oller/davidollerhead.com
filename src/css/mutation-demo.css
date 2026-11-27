@@ -117,12 +117,11 @@
 
 .mstage-mut {
   display: inline-block;
-  padding: 0.02em 0.38em;
-  border-radius: 0.25rem;
+  padding: 0.02em 0.4em;
+  border-radius: 0.3rem;
   background: var(--ms-mut-soft);
   color: var(--ms-mut);
   font-weight: 650;
-  box-shadow: inset 0 -1.5px 0 var(--ms-mut);
 }
 
 .mstage-ok { color: var(--ms-pass); font-weight: 600; }
