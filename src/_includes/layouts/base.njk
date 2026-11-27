@@ -29,6 +29,12 @@
   <link rel="stylesheet" href="/css/home.css" />
   <script src="/js/console.js" defer></script>
   {% endif -%}
+  {% if extraCss -%}
+  <link rel="stylesheet" href="{{ extraCss }}" />
+  {% endif -%}
+  {% if extraJs -%}
+  <script src="{{ extraJs }}" defer></script>
+  {% endif -%}
 </head>
 
 <body{% if isHome %} class="home"{% endif %}>
